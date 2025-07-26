@@ -1,6 +1,6 @@
 import { ModelInfo, lMStudioDefaultModelInfo } from "@roo-code/types"
 import { LLM, LLMInfo, LLMInstanceInfo, LMStudioClient } from "@lmstudio/sdk"
-import axios from "axios"
+import { HttpClientWithProxy } from "../../../core/http/HttpClientWithProxy"
 
 export const parseLMStudioModel = (rawModel: LLMInstanceInfo | LLMInfo): ModelInfo => {
 	// Handle both LLMInstanceInfo (from loaded models) and LLMInfo (from downloaded models)
@@ -19,6 +19,7 @@ export const parseLMStudioModel = (rawModel: LLMInstanceInfo | LLMInfo): ModelIn
 }
 
 export async function getLMStudioModels(baseUrl = "http://localhost:1234"): Promise<Record<string, ModelInfo>> {
+	const httpClient = HttpClientWithProxy.getInstance()
 	// clearing the input can leave an empty string; use the default in that case
 	baseUrl = baseUrl === "" ? "http://localhost:1234" : baseUrl
 
@@ -33,7 +34,7 @@ export async function getLMStudioModels(baseUrl = "http://localhost:1234"): Prom
 
 		// test the connection to LM Studio first
 		// errors will be caught further down
-		await axios.get(`${baseUrl}/v1/models`)
+		await httpClient.get(`${baseUrl}/v1/models`)
 
 		const client = new LMStudioClient({ baseUrl: lmsUrl })
 

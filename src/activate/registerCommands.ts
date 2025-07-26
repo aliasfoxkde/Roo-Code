@@ -218,6 +218,48 @@ const getCommandsMap = ({ context, outputChannel, provider }: RegisterCommandOpt
 
 		visibleProvider.postMessageToWebview({ type: "acceptInput" })
 	},
+	configureProxy: async () => {
+		const visibleProvider = getVisibleProviderOrLog(outputChannel)
+		if (!visibleProvider) {
+			return
+		}
+
+		// Show quick pick for enabling/disabling proxy
+		const proxyEnabled = await visibleProvider.getValue("proxyEnabled") || false
+		const quickPick = vscode.window.createQuickPick()
+		quickPick.items = [
+			{
+				label: proxyEnabled ? "$(check) Proxy Enabled" : "$(circle-slash) Proxy Disabled",
+				description: proxyEnabled ? "Click to disable proxy" : "Click to enable proxy"
+			},
+			{
+				label: "$(settings-gear) Configure Proxy Settings",
+				description: "Open settings to configure proxy URL and authentication"
+			}
+		]
+		quickPick.placeholder = "Configure proxy settings"
+		
+		quickPick.onDidAccept(async () => {
+			const selectedItem = quickPick.selectedItems[0]
+			if (selectedItem) {
+				if (selectedItem.label.includes("Proxy Enabled") || selectedItem.label.includes("Proxy Disabled")) {
+					// Toggle proxy enabled state
+					await visibleProvider.setValue("proxyEnabled", !proxyEnabled)
+					vscode.window.showInformationMessage(
+						!proxyEnabled
+							? "Proxy enabled. Configure proxy settings in Roo Code settings."
+							: "Proxy disabled."
+					)
+				} else if (selectedItem.label.includes("Configure Proxy Settings")) {
+					// Open settings to proxy configuration
+					await vscode.commands.executeCommand("workbench.action.openSettings", "rooCode.proxy")
+				}
+			}
+			quickPick.hide()
+		})
+		
+		quickPick.show()
+	},
 })
 
 export const openClineInNewTab = async ({ context, outputChannel }: Omit<RegisterCommandOptions, "provider">) => {

@@ -1,5 +1,5 @@
-import axios from "axios"
 import { z } from "zod"
+import { HttpClientWithProxy } from "../../../core/http/HttpClientWithProxy"
 
 import {
 	type ModelInfo,
@@ -94,11 +94,12 @@ type OpenRouterModelEndpointsResponse = z.infer<typeof openRouterModelEndpointsR
  */
 
 export async function getOpenRouterModels(options?: ApiHandlerOptions): Promise<Record<string, ModelInfo>> {
+	const httpClient = HttpClientWithProxy.getInstance()
 	const models: Record<string, ModelInfo> = {}
 	const baseURL = options?.openRouterBaseUrl || "https://openrouter.ai/api/v1"
 
 	try {
-		const response = await axios.get<OpenRouterModelsResponse>(`${baseURL}/models`)
+		const response = await httpClient.get<OpenRouterModelsResponse>(`${baseURL}/models`)
 		const result = openRouterModelsResponseSchema.safeParse(response.data)
 		const data = result.success ? result.data.data : response.data.data
 
@@ -134,11 +135,12 @@ export async function getOpenRouterModelEndpoints(
 	modelId: string,
 	options?: ApiHandlerOptions,
 ): Promise<Record<string, ModelInfo>> {
+	const httpClient = HttpClientWithProxy.getInstance()
 	const models: Record<string, ModelInfo> = {}
 	const baseURL = options?.openRouterBaseUrl || "https://openrouter.ai/api/v1"
 
 	try {
-		const response = await axios.get<OpenRouterModelEndpointsResponse>(`${baseURL}/models/${modelId}/endpoints`)
+		const response = await httpClient.get<OpenRouterModelEndpointsResponse>(`${baseURL}/models/${modelId}/endpoints`)
 		const result = openRouterModelEndpointsResponseSchema.safeParse(response.data)
 		const data = result.success ? result.data.data : response.data.data
 

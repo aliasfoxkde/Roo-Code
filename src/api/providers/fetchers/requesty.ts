@@ -1,10 +1,10 @@
-import axios from "axios"
-
 import type { ModelInfo } from "@roo-code/types"
+import { HttpClientWithProxy } from "../../../core/http/HttpClientWithProxy"
 
 import { parseApiPrice } from "../../../shared/cost"
 
 export async function getRequestyModels(apiKey?: string): Promise<Record<string, ModelInfo>> {
+	const httpClient = HttpClientWithProxy.getInstance()
 	const models: Record<string, ModelInfo> = {}
 
 	try {
@@ -15,7 +15,7 @@ export async function getRequestyModels(apiKey?: string): Promise<Record<string,
 		}
 
 		const url = "https://router.requesty.ai/v1/models"
-		const response = await axios.get(url, { headers })
+		const response = await httpClient.get(url, { headers })
 		const rawModels = response.data.data
 
 		for (const rawModel of rawModels) {

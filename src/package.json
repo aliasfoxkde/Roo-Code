@@ -174,6 +174,11 @@
 				"command": "roo-cline.acceptInput",
 				"title": "%command.acceptInput.title%",
 				"category": "%configuration.title%"
+			},
+			{
+				"command": "roo-cline.configureProxy",
+				"title": "Configure Proxy",
+				"category": "%configuration.title%"
 			}
 		],
 		"menus": {
@@ -391,6 +396,42 @@
 					"type": "boolean",
 					"default": true,
 					"description": "%settings.useAgentRules.description%"
+				},
+				"roo-cline.proxy": {
+					"type": "object",
+					"scope": "application",
+					"description": "Proxy settings for LLM API connections",
+					"properties": {
+						"enabled": {
+							"type": "boolean",
+							"default": false,
+							"description": "Enable proxy for LLM API calls"
+						},
+						"url": {
+							"type": "string",
+							"default": "",
+							"description": "Proxy URL (e.g., http://proxy.example.com:8080)"
+						},
+						"auth": {
+							"type": "object",
+							"description": "Proxy authentication settings",
+							"properties": {
+								"username": {
+									"type": "string",
+									"default": ""
+								},
+								"password": {
+									"type": "string",
+									"default": ""
+								}
+							}
+						},
+						"bypassForLocal": {
+							"type": "boolean",
+							"default": true,
+							"description": "Bypass proxy for local addresses"
+						}
+					}
 				}
 			}
 		}
@@ -480,7 +521,9 @@
 		"web-tree-sitter": "^0.25.6",
 		"workerpool": "^9.2.0",
 		"yaml": "^2.8.0",
-		"zod": "^3.25.61"
+		"zod": "^3.25.61",
+		"https-proxy-agent": "^7.0.0",
+		"socks-proxy-agent": "^8.0.0"
 	},
 	"devDependencies": {
 		"@roo-code/build": "workspace:^",

@@ -1,14 +1,15 @@
-import axios from "axios"
+import { HttpClientWithProxy } from "../../../core/http/HttpClientWithProxy"
 
 import type { ModelInfo } from "@roo-code/types"
 
 import { parseApiPrice } from "../../../shared/cost"
 
 export async function getGlamaModels(): Promise<Record<string, ModelInfo>> {
+	const httpClient = HttpClientWithProxy.getInstance()
 	const models: Record<string, ModelInfo> = {}
 
 	try {
-		const response = await axios.get("https://glama.ai/api/gateway/v1/models")
+		const response = await httpClient.get("https://glama.ai/api/gateway/v1/models")
 		const rawModels = response.data
 
 		for (const rawModel of rawModels) {

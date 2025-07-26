@@ -1,6 +1,6 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
-import axios from "axios"
+import { HttpClientWithProxy } from "../../core/http/HttpClientWithProxy"
 
 import { type ModelInfo, openAiModelInfoSaneDefaults, LMSTUDIO_DEFAULT_TEMPERATURE } from "@roo-code/types"
 
@@ -163,12 +163,13 @@ export class LmStudioHandler extends BaseProvider implements SingleCompletionHan
 }
 
 export async function getLmStudioModels(baseUrl = "http://localhost:1234") {
+	const httpClient = HttpClientWithProxy.getInstance()
 	try {
 		if (!URL.canParse(baseUrl)) {
 			return []
 		}
 
-		const response = await axios.get(`${baseUrl}/v1/models`)
+		const response = await httpClient.get(`${baseUrl}/v1/models`)
 		const modelsArray = response.data?.data?.map((model: any) => model.id) || []
 		return [...new Set<string>(modelsArray)]
 	} catch (error) {

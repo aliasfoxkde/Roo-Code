@@ -1,6 +1,6 @@
 import * as net from "net"
-import axios from "axios"
 import * as dns from "dns"
+import { HttpClientWithProxy } from "../../core/http/HttpClientWithProxy"
 
 /**
  * Check if a port is open on a given host
@@ -43,9 +43,10 @@ export async function isPortOpen(host: string, port: number, timeout = 1000): Pr
  * Try to connect to Chrome at a specific IP address
  */
 export async function tryChromeHostUrl(chromeHostUrl: string): Promise<boolean> {
+	const httpClient = HttpClientWithProxy.getInstance()
 	try {
 		console.log(`Trying to connect to Chrome at: ${chromeHostUrl}/json/version`)
-		await axios.get(`${chromeHostUrl}/json/version`, { timeout: 1000 })
+		await httpClient.get(`${chromeHostUrl}/json/version`, { timeout: 1000 })
 		return true
 	} catch (error) {
 		return false

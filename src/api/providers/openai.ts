@@ -1,6 +1,6 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI, { AzureOpenAI } from "openai"
-import axios from "axios"
+import { HttpClientWithProxy } from "../../core/http/HttpClientWithProxy"
 
 import {
 	type ModelInfo,
@@ -411,6 +411,7 @@ export class OpenAiHandler extends BaseProvider implements SingleCompletionHandl
 }
 
 export async function getOpenAiModels(baseUrl?: string, apiKey?: string, openAiHeaders?: Record<string, string>) {
+	const httpClient = HttpClientWithProxy.getInstance()
 	try {
 		if (!baseUrl) {
 			return []
@@ -434,7 +435,7 @@ export async function getOpenAiModels(baseUrl?: string, apiKey?: string, openAiH
 			config["headers"] = headers
 		}
 
-		const response = await axios.get(`${baseUrl}/models`, config)
+		const response = await httpClient.get(`${baseUrl}/models`, config)
 		const modelsArray = response.data?.data?.map((model: any) => model.id) || []
 		return [...new Set<string>(modelsArray)]
 	} catch (error) {

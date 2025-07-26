@@ -5,9 +5,9 @@ import EventEmitter from "events"
 
 import { Anthropic } from "@anthropic-ai/sdk"
 import delay from "delay"
-import axios from "axios"
 import pWaitFor from "p-wait-for"
 import * as vscode from "vscode"
+import { HttpClientWithProxy } from "../http/HttpClientWithProxy"
 
 import {
 	type GlobalState,
@@ -637,7 +637,8 @@ export class ClineProvider
 
 		// Check if local dev server is running.
 		try {
-			await axios.get(`http://${localServerUrl}`)
+			const httpClient = HttpClientWithProxy.getInstance()
+			await httpClient.get(`http://${localServerUrl}`)
 		} catch (error) {
 			vscode.window.showErrorMessage(t("common:errors.hmr_not_running"))
 
@@ -1046,13 +1047,14 @@ export class ClineProvider
 
 	async handleOpenRouterCallback(code: string) {
 		let { apiConfiguration, currentApiConfigName } = await this.getState()
+		const httpClient = HttpClientWithProxy.getInstance()
 
 		let apiKey: string
 		try {
 			const baseUrl = apiConfiguration.openRouterBaseUrl || "https://openrouter.ai/api/v1"
 			// Extract the base domain for the auth endpoint
 			const baseUrlDomain = baseUrl.match(/^(https?:\/\/[^\/]+)/)?.[1] || "https://openrouter.ai"
-			const response = await axios.post(`${baseUrlDomain}/api/v1/auth/keys`, { code })
+			const response = await httpClient.post(`${baseUrlDomain}/api/v1/auth/keys`, { code })
 			if (response.data && response.data.key) {
 				apiKey = response.data.key
 			} else {
@@ -1078,9 +1080,10 @@ export class ClineProvider
 	// Glama
 
 	async handleGlamaCallback(code: string) {
+		const httpClient = HttpClientWithProxy.getInstance()
 		let apiKey: string
 		try {
-			const response = await axios.post("https://glama.ai/api/gateway/v1/auth/exchange-code", { code })
+			const response = await httpClient.post("https://glama.ai/api/gateway/v1/auth/exchange-code", { code })
 			if (response.data && response.data.apiKey) {
 				apiKey = response.data.apiKey
 			} else {

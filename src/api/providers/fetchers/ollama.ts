@@ -1,6 +1,6 @@
-import axios from "axios"
 import { ModelInfo, ollamaDefaultModelInfo } from "@roo-code/types"
 import { z } from "zod"
+import { HttpClientWithProxy } from "../../../core/http/HttpClientWithProxy"
 
 const OllamaModelDetailsSchema = z.object({
 	family: z.string(),
@@ -56,6 +56,7 @@ export const parseOllamaModel = (rawModel: OllamaModelInfoResponse): ModelInfo =
 
 export async function getOllamaModels(baseUrl = "http://localhost:11434"): Promise<Record<string, ModelInfo>> {
 	const models: Record<string, ModelInfo> = {}
+	const httpClient = HttpClientWithProxy.getInstance()
 
 	// clearing the input can leave an empty string; use the default in that case
 	baseUrl = baseUrl === "" ? "http://localhost:11434" : baseUrl
@@ -65,18 +66,18 @@ export async function getOllamaModels(baseUrl = "http://localhost:11434"): Promi
 			return models
 		}
 
-		const response = await axios.get<OllamaModelsResponse>(`${baseUrl}/api/tags`)
+		const response = await httpClient.get<OllamaModelsResponse>(`${baseUrl}/api/tags`)
 		const parsedResponse = OllamaModelsResponseSchema.safeParse(response.data)
 		let modelInfoPromises = []
 
 		if (parsedResponse.success) {
 			for (const ollamaModel of parsedResponse.data.models) {
 				modelInfoPromises.push(
-					axios
+					httpClient
 						.post<OllamaModelInfoResponse>(`${baseUrl}/api/show`, {
 							model: ollamaModel.model,
 						})
-						.then((ollamaModelInfo) => {
+						.then((ollamaModelInfo: any) => {
 							models[ollamaModel.name] = parseOllamaModel(ollamaModelInfo.data)
 						}),
 				)

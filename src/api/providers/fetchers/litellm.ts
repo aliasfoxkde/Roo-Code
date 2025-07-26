@@ -1,4 +1,4 @@
-import axios from "axios"
+import { HttpClientWithProxy } from "../../../core/http/HttpClientWithProxy"
 
 import { LITELLM_COMPUTER_USE_MODELS } from "@roo-code/types"
 
@@ -14,6 +14,7 @@ import { DEFAULT_HEADERS } from "../constants"
  * @throws Will throw an error if the request fails or the response is not as expected.
  */
 export async function getLiteLLMModels(apiKey: string, baseUrl: string): Promise<ModelRecord> {
+	const httpClient = HttpClientWithProxy.getInstance()
 	try {
 		const headers: Record<string, string> = {
 			"Content-Type": "application/json",
@@ -30,7 +31,7 @@ export async function getLiteLLMModels(apiKey: string, baseUrl: string): Promise
 		urlObj.pathname = urlObj.pathname.replace(/\/+$/, "").replace(/\/+/g, "/") + "/v1/model/info"
 		const url = urlObj.href
 		// Added timeout to prevent indefinite hanging
-		const response = await axios.get(url, { headers, timeout: 5000 })
+		const response = await httpClient.get(url, { headers, timeout: 5000 })
 		const models: ModelRecord = {}
 
 		const computerModels = Array.from(LITELLM_COMPUTER_USE_MODELS)
@@ -84,11 +85,13 @@ export async function getLiteLLMModels(apiKey: string, baseUrl: string): Promise
 		return models
 	} catch (error: any) {
 		console.error("Error fetching LiteLLM models:", error.message ? error.message : error)
-		if (axios.isAxiosError(error) && error.response) {
+		// Note: Error handling for axios errors needs to be updated since we're using a wrapper
+		// For now, we'll handle generic errors
+		if (error.response) {
 			throw new Error(
 				`Failed to fetch LiteLLM models: ${error.response.status} ${error.response.statusText}. Check base URL and API key.`,
 			)
-		} else if (axios.isAxiosError(error) && error.request) {
+		} else if (error.request) {
 			throw new Error(
 				"Failed to fetch LiteLLM models: No response from server. Check LiteLLM server status and base URL.",
 			)

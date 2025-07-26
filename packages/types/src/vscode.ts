@@ -53,6 +53,8 @@ export const commandIds = [
 	"focusInput",
 	"acceptInput",
 	"focusPanel",
+
+	"configureProxy",
 ] as const
 
 export type CommandId = (typeof commandIds)[number]

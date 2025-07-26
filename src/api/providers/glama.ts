@@ -1,6 +1,6 @@
 import { Anthropic } from "@anthropic-ai/sdk"
-import axios from "axios"
 import OpenAI from "openai"
+import { HttpClientWithProxy } from "../../core/http/HttpClientWithProxy"
 
 import { glamaDefaultModelId, glamaDefaultModelInfo, GLAMA_DEFAULT_TEMPERATURE } from "@roo-code/types"
 
@@ -82,6 +82,7 @@ export class GlamaHandler extends RouterProvider implements SingleCompletionHand
 		}
 
 		try {
+			const httpClient = HttpClientWithProxy.getInstance()
 			let attempt = 0
 
 			const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -89,7 +90,7 @@ export class GlamaHandler extends RouterProvider implements SingleCompletionHand
 			while (attempt++ < 10) {
 				// In case of an interrupted request, we need to wait for the upstream API to finish processing the request
 				// before we can fetch information about the token usage and cost.
-				const response = await axios.get(
+				const response = await httpClient.get(
 					`https://glama.ai/api/gateway/v1/completion-requests/${completionRequestId}`,
 					{ headers: { Authorization: `Bearer ${this.options.glamaApiKey}` } },
 				)

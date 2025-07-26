@@ -1,9 +1,9 @@
-import axios from "axios"
 import * as yaml from "yaml"
 import { z } from "zod"
 import { getRooCodeApiUrl } from "@roo-code/cloud"
 import type { MarketplaceItem, MarketplaceItemType } from "@roo-code/types"
 import { modeMarketplaceItemSchema, mcpMarketplaceItemSchema } from "@roo-code/types"
+import { HttpClientWithProxy } from "../../core/http/HttpClientWithProxy"
 
 // Response schemas for YAML API responses
 const modeMarketplaceResponse = z.object({
@@ -73,11 +73,12 @@ export class RemoteConfigLoader {
 	}
 
 	private async fetchWithRetry<T>(url: string, maxRetries = 3): Promise<T> {
+		const httpClient = HttpClientWithProxy.getInstance()
 		let lastError: Error
 
 		for (let i = 0; i < maxRetries; i++) {
 			try {
-				const response = await axios.get(url, {
+				const response = await httpClient.get(url, {
 					timeout: 10000, // 10 second timeout
 					headers: {
 						Accept: "application/json",

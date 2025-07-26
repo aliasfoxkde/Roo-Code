@@ -74,6 +74,15 @@ const baseProviderSettingsSchema = z.object({
 	reasoningEffort: reasoningEffortsSchema.optional(),
 	modelMaxTokens: z.number().optional(),
 	modelMaxThinkingTokens: z.number().optional(),
+
+	// Proxy settings
+	proxyEnabled: z.boolean().optional(),
+	proxyUrl: z.string().optional(),
+	proxyAuth: z.object({
+		username: z.string().optional(),
+		password: z.string().optional()
+	}).optional(),
+	proxyBypassLocal: z.boolean().optional(),
 })
 
 // Several of the providers share common model config properties.
