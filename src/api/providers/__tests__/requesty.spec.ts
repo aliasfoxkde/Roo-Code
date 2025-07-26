@@ -59,8 +59,8 @@ describe("RequestyHandler", () => {
 			apiKey: mockOptions.requestyApiKey,
 			defaultHeaders: {
 				"HTTP-Referer": "https://github.com/RooVetGit/Roo-Cline",
-				"X-Title": "Roo Code",
-				"User-Agent": `RooCode/${Package.version}`,
+				"X-Title": "Hivemind",
+				"User-Agent": `Hivemind/${Package.version}`,
 			},
 		})
 	})

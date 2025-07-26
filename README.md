@@ -12,7 +12,7 @@
 </div>
 <br>
 <div align="center">
-  <h1>Roo Code (prev. Roo Cline)</h1>
+  <h1>Hivemind (prev. Roo Code)</h1>
   <p align="center">
   <img src="https://media.githubusercontent.com/media/RooCodeInc/Roo-Code/main/src/assets/docs/demo.gif" width="100%" />
   </p>
@@ -34,31 +34,31 @@
 
 </div>
 
-**Roo Code** is an AI-powered **autonomous coding agent** that lives in your editor. It can:
+**Hivemind** is an AI-powered **autonomous coding agent** that lives in your editor. It can:
 
 - Communicate in natural language
 - Read and write files directly in your workspace
 - Run terminal commands
 - Automate browser actions
 - Integrate with any OpenAI-compatible or custom API/model
-- Adapt its “personality” and capabilities through **Custom Modes**
+- Adapt its "personality" and capabilities through **Custom Modes**
 
-Whether you’re seeking a flexible coding partner, a system architect, or specialized roles like a QA engineer or product manager, Roo Code can help you build software more efficiently.
+Whether you're seeking a flexible coding partner, a system architect, or specialized roles like a QA engineer or product manager, Hivemind can help you build software more efficiently.
 
 Check out the [CHANGELOG](CHANGELOG.md) for detailed updates and fixes.
 
 ---
 
-## 🎉 Roo Code 3.23 Released
+## 🎉 Hivemind 3.23 Released
 
-Roo Code 3.23 brings powerful new features and significant improvements to enhance your development workflow!
+Hivemind 3.23 brings powerful new features and significant improvements to enhance your development workflow!
 
 - **Codebase Indexing Graduated from Experimental** - Full codebase indexing is now stable and ready for production use with improved search and context understanding.
 - **New Todo List Feature** - Keep your tasks on track with integrated todo management that helps you stay organized and focused on your development goals.
 
 ---
 
-## What Can Roo Code Do?
+## What Can Hivemind Do?
 
 - 🚀 **Generate Code** from natural language descriptions
 - 🔧 **Refactor & Debug** existing code
@@ -69,7 +69,7 @@ Roo Code 3.23 brings powerful new features and significant improvements to enhan
 
 ## Quick Start
 
-1. [Install Roo Code](https://docs.roocode.com/getting-started/installing)
+1. [Install Hivemind](https://docs.roocode.com/getting-started/installing)
 2. [Connect Your AI Provider](https://docs.roocode.com/getting-started/connecting-api-provider)
 3. [Try Your First Task](https://docs.roocode.com/getting-started/your-first-task)
 
@@ -77,7 +77,7 @@ Roo Code 3.23 brings powerful new features and significant improvements to enhan
 
 ### Multiple Modes
 
-Roo Code adapts to your needs with specialized [modes](https://docs.roocode.com/basic-usage/using-modes):
+Hivemind adapts to your needs with specialized [modes](https://docs.roocode.com/basic-usage/using-modes):
 
 - **Code Mode:** For general-purpose coding tasks
 - **Architect Mode:** For planning and technical leadership
@@ -87,18 +87,18 @@ Roo Code adapts to your needs with specialized [modes](https://docs.roocode.com/
 
 ### Smart Tools
 
-Roo Code comes with powerful [tools](https://docs.roocode.com/basic-usage/how-tools-work) that can:
+Hivemind comes with powerful [tools](https://docs.roocode.com/basic-usage/how-tools-work) that can:
 
 - Read and write files in your project
 - Execute commands in your VS Code terminal
 - Control a web browser
 - Use external tools via [MCP (Model Context Protocol)](https://docs.roocode.com/advanced-usage/mcp)
 
-MCP extends Roo Code's capabilities by allowing you to add unlimited custom tools. Integrate with external APIs, connect to databases, or create specialized development tools - MCP provides the framework to expand Roo Code's functionality to meet your specific needs.
+MCP extends Hivemind's capabilities by allowing you to add unlimited custom tools. Integrate with external APIs, connect to databases, or create specialized development tools - MCP provides the framework to expand Hivemind's functionality to meet your specific needs.
 
 ### Customization
 
-Make Roo Code work your way with:
+Make Hivemind work your way with:
 
 - [Custom Instructions](https://docs.roocode.com/advanced-usage/custom-instructions) for personalized behavior
 - [Custom Modes](https://docs.roocode.com/advanced-usage/custom-modes) for specialized tasks
@@ -137,13 +137,13 @@ pnpm install
 
 3. **Run the extension**:
 
-There are several ways to run the Roo Code extension:
+There are several ways to run the Hivemind extension:
 
 ### Development Mode (F5)
 
 For active development, use VSCode's built-in debugging:
 
-Press `F5` (or go to **Run** → **Start Debugging**) in VSCode. This will open a new VSCode window with the Roo Code extension running.
+Press `F5` (or go to **Run** → **Start Debugging**) in VSCode. This will open a new VSCode window with the Hivemind extension running.
 
 - Changes to the webview will appear immediately.
 - Changes to the core extension will also hot reload automatically.
@@ -191,7 +191,7 @@ We use [changesets](https://github.com/changesets/changesets) for versioning and
 
 ## Disclaimer
 
-**Please note** that Roo Code, Inc does **not** make any representations or warranties regarding any code, models, or other tools provided or made available in connection with Roo Code, any associated third-party tools, or any resulting outputs. You assume **all risks** associated with the use of any such tools or outputs; such tools are provided on an **"AS IS"** and **"AS AVAILABLE"** basis. Such risks may include, without limitation, intellectual property infringement, cyber vulnerabilities or attacks, bias, inaccuracies, errors, defects, viruses, downtime, property loss or damage, and/or personal injury. You are solely responsible for your use of any such tools or outputs (including, without limitation, the legality, appropriateness, and results thereof).
+**Please note** that Roo Code, Inc does **not** make any representations or warranties regarding any code, models, or other tools provided or made available in connection with Hivemind, any associated third-party tools, or any resulting outputs. You assume **all risks** associated with the use of any such tools or outputs; such tools are provided on an **"AS IS"** and **"AS AVAILABLE"** basis. Such risks may include, without limitation, intellectual property infringement, cyber vulnerabilities or attacks, bias, inaccuracies, errors, defects, viruses, downtime, property loss or damage, and/or personal injury. You are solely responsible for your use of any such tools or outputs (including, without limitation, the legality, appropriateness, and results thereof).
 
 ---
 
@@ -203,7 +203,7 @@ We love community contributions! Get started by reading our [CONTRIBUTING.md](CO
 
 ## Contributors
 
-Thanks to all our contributors who have helped make Roo Code better!
+Thanks to all our contributors who have helped make Hivemind better!
 
 <!-- START CONTRIBUTORS SECTION - AUTO-GENERATED, DO NOT EDIT MANUALLY -->
 
@@ -233,25 +233,4 @@ Thanks to all our contributors who have helped make Roo Code better!
 |  <a href="https://github.com/Githubguy132010"><img src="https://avatars.githubusercontent.com/u/145768128?v=4" width="100" height="100" alt="Githubguy132010"/><br /><sub><b>Githubguy132010</b></sub></a>   |            <a href="https://github.com/DeXtroTip"><img src="https://avatars.githubusercontent.com/u/21011087?v=4" width="100" height="100" alt="DeXtroTip"/><br /><sub><b>DeXtroTip</b></sub></a>            |    <a href="https://github.com/PretzelVector"><img src="https://avatars.githubusercontent.com/u/95664360?v=4" width="100" height="100" alt="PretzelVector"/><br /><sub><b>PretzelVector</b></sub></a>    |                  <a href="https://github.com/zetaloop"><img src="https://avatars.githubusercontent.com/u/36418285?v=4" width="100" height="100" alt="zetaloop"/><br /><sub><b>zetaloop</b></sub></a>                  |              <a href="https://github.com/cdlliuy"><img src="https://avatars.githubusercontent.com/u/17263036?v=4" width="100" height="100" alt="cdlliuy"/><br /><sub><b>cdlliuy</b></sub></a>               |                <a href="https://github.com/user202729"><img src="https://avatars.githubusercontent.com/u/25191436?v=4" width="100" height="100" alt="user202729"/><br /><sub><b>user202729</b></sub></a>                 |
 |           <a href="https://github.com/thill2323"><img src="https://avatars.githubusercontent.com/u/221205361?v=4" width="100" height="100" alt="thill2323"/><br /><sub><b>thill2323</b></sub></a>            |          <a href="https://github.com/takakoutso"><img src="https://avatars.githubusercontent.com/u/10097886?v=4" width="100" height="100" alt="takakoutso"/><br /><sub><b>takakoutso</b></sub></a>           |     <a href="https://github.com/student20880"><img src="https://avatars.githubusercontent.com/u/74263488?v=4" width="100" height="100" alt="student20880"/><br /><sub><b>student20880</b></sub></a>      |        <a href="https://github.com/shubhamgupta731"><img src="https://avatars.githubusercontent.com/u/963927?v=4" width="100" height="100" alt="shubhamgupta731"/><br /><sub><b>shubhamgupta731</b></sub></a>         |       <a href="https://github.com/shohei-ihaya"><img src="https://avatars.githubusercontent.com/u/25131938?v=4" width="100" height="100" alt="shohei-ihaya"/><br /><sub><b>shohei-ihaya</b></sub></a>       |               <a href="https://github.com/shivamd1810"><img src="https://avatars.githubusercontent.com/u/3871414?v=4" width="100" height="100" alt="shivamd1810"/><br /><sub><b>shivamd1810</b></sub></a>                |
 |                 <a href="https://github.com/shaybc"><img src="https://avatars.githubusercontent.com/u/8535905?v=4" width="100" height="100" alt="shaybc"/><br /><sub><b>shaybc</b></sub></a>                 |          <a href="https://github.com/sensei-woo"><img src="https://avatars.githubusercontent.com/u/168141084?v=4" width="100" height="100" alt="sensei-woo"/><br /><sub><b>sensei-woo</b></sub></a>          |     <a href="https://github.com/samir-nimbly"><img src="https://avatars.githubusercontent.com/u/112695483?v=4" width="100" height="100" alt="samir-nimbly"/><br /><sub><b>samir-nimbly</b></sub></a>     |           <a href="https://github.com/robertheadley"><img src="https://avatars.githubusercontent.com/u/1780455?v=4" width="100" height="100" alt="robertheadley"/><br /><sub><b>robertheadley</b></sub></a>           |       <a href="https://github.com/refactorthis"><img src="https://avatars.githubusercontent.com/u/3012240?v=4" width="100" height="100" alt="refactorthis"/><br /><sub><b>refactorthis</b></sub></a>        |              <a href="https://github.com/qingyuan1109"><img src="https://avatars.githubusercontent.com/u/841732?v=4" width="100" height="100" alt="qingyuan1109"/><br /><sub><b>qingyuan1109</b></sub></a>               |
-|               <a href="https://github.com/pokutuna"><img src="https://avatars.githubusercontent.com/u/57545?v=4" width="100" height="100" alt="pokutuna"/><br /><sub><b>pokutuna</b></sub></a>               |          <a href="https://github.com/philipnext"><img src="https://avatars.githubusercontent.com/u/81944499?v=4" width="100" height="100" alt="philipnext"/><br /><sub><b>philipnext</b></sub></a>           |       <a href="https://github.com/village-way"><img src="https://avatars.githubusercontent.com/u/11625846?v=4" width="100" height="100" alt="village-way"/><br /><sub><b>village-way</b></sub></a>       |                  <a href="https://github.com/oprstchn"><img src="https://avatars.githubusercontent.com/u/16177972?v=4" width="100" height="100" alt="oprstchn"/><br /><sub><b>oprstchn</b></sub></a>                  |               <a href="https://github.com/nobu007"><img src="https://avatars.githubusercontent.com/u/8529529?v=4" width="100" height="100" alt="nobu007"/><br /><sub><b>nobu007</b></sub></a>               |                   <a href="https://github.com/mosleyit"><img src="https://avatars.githubusercontent.com/u/189396442?v=4" width="100" height="100" alt="mosleyit"/><br /><sub><b>mosleyit</b></sub></a>                   |
-|         <a href="https://github.com/moqimoqidea"><img src="https://avatars.githubusercontent.com/u/39821951?v=4" width="100" height="100" alt="moqimoqidea"/><br /><sub><b>moqimoqidea</b></sub></a>         |               <a href="https://github.com/mlopezr"><img src="https://avatars.githubusercontent.com/u/8202027?v=4" width="100" height="100" alt="mlopezr"/><br /><sub><b>mlopezr</b></sub></a>                |                <a href="https://github.com/mecab"><img src="https://avatars.githubusercontent.com/u/1580772?v=4" width="100" height="100" alt="mecab"/><br /><sub><b>mecab</b></sub></a>                 |                        <a href="https://github.com/olup"><img src="https://avatars.githubusercontent.com/u/13785588?v=4" width="100" height="100" alt="olup"/><br /><sub><b>olup</b></sub></a>                        |         <a href="https://github.com/lightrabbit"><img src="https://avatars.githubusercontent.com/u/1521765?v=4" width="100" height="100" alt="lightrabbit"/><br /><sub><b>lightrabbit</b></sub></a>         |                        <a href="https://github.com/lhish"><img src="https://avatars.githubusercontent.com/u/59965910?v=4" width="100" height="100" alt="lhish"/><br /><sub><b>lhish</b></sub></a>                        |
-|                  <a href="https://github.com/kohii"><img src="https://avatars.githubusercontent.com/u/6891780?v=4" width="100" height="100" alt="kohii"/><br /><sub><b>kohii</b></sub></a>                   |                  <a href="https://github.com/pfitz"><img src="https://avatars.githubusercontent.com/u/3062911?v=4" width="100" height="100" alt="pfitz"/><br /><sub><b>pfitz</b></sub></a>                   |         <a href="https://github.com/ExactDoug"><img src="https://avatars.githubusercontent.com/u/158221557?v=4" width="100" height="100" alt="ExactDoug"/><br /><sub><b>ExactDoug</b></sub></a>          |       <a href="https://github.com/celestial-vault"><img src="https://avatars.githubusercontent.com/u/58194240?v=4" width="100" height="100" alt="celestial-vault"/><br /><sub><b>celestial-vault</b></sub></a>        |               <a href="https://github.com/linegel"><img src="https://avatars.githubusercontent.com/u/1746296?v=4" width="100" height="100" alt="linegel"/><br /><sub><b>linegel</b></sub></a>               | <a href="https://github.com/edwin-truthsearch-io"><img src="https://avatars.githubusercontent.com/u/211044285?v=4" width="100" height="100" alt="edwin-truthsearch-io"/><br /><sub><b>edwin-truthsearch-io</b></sub></a> |
-|       <a href="https://github.com/EamonNerbonne"><img src="https://avatars.githubusercontent.com/u/803518?v=4" width="100" height="100" alt="EamonNerbonne"/><br /><sub><b>EamonNerbonne</b></sub></a>       |             <a href="https://github.com/dbasclpy"><img src="https://avatars.githubusercontent.com/u/139889137?v=4" width="100" height="100" alt="dbasclpy"/><br /><sub><b>dbasclpy</b></sub></a>             |          <a href="https://github.com/dflatline"><img src="https://avatars.githubusercontent.com/u/60121893?v=4" width="100" height="100" alt="dflatline"/><br /><sub><b>dflatline</b></sub></a>          |                   <a href="https://github.com/Deon588"><img src="https://avatars.githubusercontent.com/u/12716437?v=4" width="100" height="100" alt="Deon588"/><br /><sub><b>Deon588</b></sub></a>                    |                  <a href="https://github.com/dleen"><img src="https://avatars.githubusercontent.com/u/1297964?v=4" width="100" height="100" alt="dleen"/><br /><sub><b>dleen</b></sub></a>                  |                      <a href="https://github.com/CW-B-W"><img src="https://avatars.githubusercontent.com/u/76680670?v=4" width="100" height="100" alt="CW-B-W"/><br /><sub><b>CW-B-W</b></sub></a>                       |
-|            <a href="https://github.com/chadgauth"><img src="https://avatars.githubusercontent.com/u/2413356?v=4" width="100" height="100" alt="chadgauth"/><br /><sub><b>chadgauth</b></sub></a>             |         <a href="https://github.com/thecolorblue"><img src="https://avatars.githubusercontent.com/u/13137?v=4" width="100" height="100" alt="thecolorblue"/><br /><sub><b>thecolorblue</b></sub></a>         |         <a href="https://github.com/bogdan0083"><img src="https://avatars.githubusercontent.com/u/7077307?v=4" width="100" height="100" alt="bogdan0083"/><br /><sub><b>bogdan0083</b></sub></a>         |                  <a href="https://github.com/benashby"><img src="https://avatars.githubusercontent.com/u/1023089?v=4" width="100" height="100" alt="benashby"/><br /><sub><b>benashby</b></sub></a>                   |              <a href="https://github.com/Atlogit"><img src="https://avatars.githubusercontent.com/u/86947554?v=4" width="100" height="100" alt="Atlogit"/><br /><sub><b>Atlogit</b></sub></a>               |                  <a href="https://github.com/atlasgong"><img src="https://avatars.githubusercontent.com/u/68199735?v=4" width="100" height="100" alt="atlasgong"/><br /><sub><b>atlasgong</b></sub></a>                  |
-|      <a href="https://github.com/andrewshu2000"><img src="https://avatars.githubusercontent.com/u/57741937?v=4" width="100" height="100" alt="andrewshu2000"/><br /><sub><b>andrewshu2000</b></sub></a>      |    <a href="https://github.com/andreastempsch"><img src="https://avatars.githubusercontent.com/u/117991125?v=4" width="100" height="100" alt="andreastempsch"/><br /><sub><b>andreastempsch</b></sub></a>    |             <a href="https://github.com/alasano"><img src="https://avatars.githubusercontent.com/u/14372930?v=4" width="100" height="100" alt="alasano"/><br /><sub><b>alasano</b></sub></a>             |               <a href="https://github.com/QuinsZouls"><img src="https://avatars.githubusercontent.com/u/40646096?v=4" width="100" height="100" alt="QuinsZouls"/><br /><sub><b>QuinsZouls</b></sub></a>               |    <a href="https://github.com/HadesArchitect"><img src="https://avatars.githubusercontent.com/u/1742301?v=4" width="100" height="100" alt="HadesArchitect"/><br /><sub><b>HadesArchitect</b></sub></a>     |                       <a href="https://github.com/alarno"><img src="https://avatars.githubusercontent.com/u/4355547?v=4" width="100" height="100" alt="alarno"/><br /><sub><b>alarno</b></sub></a>                       |
-|               <a href="https://github.com/nexon33"><img src="https://avatars.githubusercontent.com/u/47557266?v=4" width="100" height="100" alt="nexon33"/><br /><sub><b>nexon33</b></sub></a>               |          <a href="https://github.com/adilhafeez"><img src="https://avatars.githubusercontent.com/u/13196462?v=4" width="100" height="100" alt="adilhafeez"/><br /><sub><b>adilhafeez</b></sub></a>           |       <a href="https://github.com/adamwlarson"><img src="https://avatars.githubusercontent.com/u/1392315?v=4" width="100" height="100" alt="adamwlarson"/><br /><sub><b>adamwlarson</b></sub></a>        |                   <a href="https://github.com/adamhill"><img src="https://avatars.githubusercontent.com/u/188638?v=4" width="100" height="100" alt="adamhill"/><br /><sub><b>adamhill</b></sub></a>                   |               <a href="https://github.com/AMHesch"><img src="https://avatars.githubusercontent.com/u/4777192?v=4" width="100" height="100" alt="AMHesch"/><br /><sub><b>AMHesch</b></sub></a>               |                        <a href="https://github.com/tgfjt"><img src="https://avatars.githubusercontent.com/u/2628239?v=4" width="100" height="100" alt="tgfjt"/><br /><sub><b>tgfjt</b></sub></a>                         |
-|       <a href="https://github.com/maekawataiki"><img src="https://avatars.githubusercontent.com/u/26317009?v=4" width="100" height="100" alt="maekawataiki"/><br /><sub><b>maekawataiki</b></sub></a>        | <a href="https://github.com/AlexandruSmirnov"><img src="https://avatars.githubusercontent.com/u/210187997?v=4" width="100" height="100" alt="AlexandruSmirnov"/><br /><sub><b>AlexandruSmirnov</b></sub></a> |      <a href="https://github.com/samsilveira"><img src="https://avatars.githubusercontent.com/u/109295696?v=4" width="100" height="100" alt="samsilveira"/><br /><sub><b>samsilveira</b></sub></a>       |                    <a href="https://github.com/01Rian"><img src="https://avatars.githubusercontent.com/u/109045233?v=4" width="100" height="100" alt="01Rian"/><br /><sub><b>01Rian</b></sub></a>                     |                     <a href="https://github.com/RSO"><img src="https://avatars.githubusercontent.com/u/139663?v=4" width="100" height="100" alt="RSO"/><br /><sub><b>RSO</b></sub></a>                      |            <a href="https://github.com/RandalSchwartz"><img src="https://avatars.githubusercontent.com/u/6342?v=4" width="100" height="100" alt="RandalSchwartz"/><br /><sub><b>RandalSchwartz</b></sub></a>             |
-| <a href="https://github.com/SECKainersdorfer"><img src="https://avatars.githubusercontent.com/u/155164204?v=4" width="100" height="100" alt="SECKainersdorfer"/><br /><sub><b>SECKainersdorfer</b></sub></a> |                  <a href="https://github.com/R-omk"><img src="https://avatars.githubusercontent.com/u/1633879?v=4" width="100" height="100" alt="R-omk"/><br /><sub><b>R-omk</b></sub></a>                   |                <a href="https://github.com/Sarke"><img src="https://avatars.githubusercontent.com/u/2719310?v=4" width="100" height="100" alt="Sarke"/><br /><sub><b>Sarke</b></sub></a>                 |  <a href="https://github.com/PaperBoardOfficial"><img src="https://avatars.githubusercontent.com/u/151846514?v=4" width="100" height="100" alt="PaperBoardOfficial"/><br /><sub><b>PaperBoardOfficial</b></sub></a>   |        <a href="https://github.com/OlegOAndreev"><img src="https://avatars.githubusercontent.com/u/149705?v=4" width="100" height="100" alt="OlegOAndreev"/><br /><sub><b>OlegOAndreev</b></sub></a>        |                      <a href="https://github.com/kvokka"><img src="https://avatars.githubusercontent.com/u/15954013?v=4" width="100" height="100" alt="kvokka"/><br /><sub><b>kvokka</b></sub></a>                       |
-|                <a href="https://github.com/ecmasx"><img src="https://avatars.githubusercontent.com/u/135958728?v=4" width="100" height="100" alt="ecmasx"/><br /><sub><b>ecmasx</b></sub></a>                |                 <a href="https://github.com/mollux"><img src="https://avatars.githubusercontent.com/u/3983285?v=4" width="100" height="100" alt="mollux"/><br /><sub><b>mollux</b></sub></a>                 |     <a href="https://github.com/marvijo-code"><img src="https://avatars.githubusercontent.com/u/82562019?v=4" width="100" height="100" alt="marvijo-code"/><br /><sub><b>marvijo-code</b></sub></a>      |                <a href="https://github.com/markijbema"><img src="https://avatars.githubusercontent.com/u/624143?v=4" width="100" height="100" alt="markijbema"/><br /><sub><b>markijbema</b></sub></a>                |      <a href="https://github.com/mamertofabian"><img src="https://avatars.githubusercontent.com/u/7698436?v=4" width="100" height="100" alt="mamertofabian"/><br /><sub><b>mamertofabian</b></sub></a>      |        <a href="https://github.com/monkeyDluffy6017"><img src="https://avatars.githubusercontent.com/u/9354193?v=4" width="100" height="100" alt="monkeyDluffy6017"/><br /><sub><b>monkeyDluffy6017</b></sub></a>        |
-|       <a href="https://github.com/libertyteeth"><img src="https://avatars.githubusercontent.com/u/32841567?v=4" width="100" height="100" alt="libertyteeth"/><br /><sub><b>libertyteeth</b></sub></a>        |                 <a href="https://github.com/shtse8"><img src="https://avatars.githubusercontent.com/u/8020099?v=4" width="100" height="100" alt="shtse8"/><br /><sub><b>shtse8</b></sub></a>                 |          <a href="https://github.com/Rexarrior"><img src="https://avatars.githubusercontent.com/u/25753287?v=4" width="100" height="100" alt="Rexarrior"/><br /><sub><b>Rexarrior</b></sub></a>          |             <a href="https://github.com/kevinvandijk"><img src="https://avatars.githubusercontent.com/u/223256?v=4" width="100" height="100" alt="kevinvandijk"/><br /><sub><b>kevinvandijk</b></sub></a>             |            <a href="https://github.com/KevinZhao"><img src="https://avatars.githubusercontent.com/u/1167525?v=4" width="100" height="100" alt="KevinZhao"/><br /><sub><b>KevinZhao</b></sub></a>            |                          <a href="https://github.com/ksze"><img src="https://avatars.githubusercontent.com/u/381556?v=4" width="100" height="100" alt="ksze"/><br /><sub><b>ksze</b></sub></a>                           |
-|                 <a href="https://github.com/Juice10"><img src="https://avatars.githubusercontent.com/u/4106?v=4" width="100" height="100" alt="Juice10"/><br /><sub><b>Juice10</b></sub></a>                 |                  <a href="https://github.com/Fovty"><img src="https://avatars.githubusercontent.com/u/38868829?v=4" width="100" height="100" alt="Fovty"/><br /><sub><b>Fovty</b></sub></a>                  |              <a href="https://github.com/Jdo300"><img src="https://avatars.githubusercontent.com/u/67338327?v=4" width="100" height="100" alt="Jdo300"/><br /><sub><b>Jdo300</b></sub></a>               |                     <a href="https://github.com/hesara"><img src="https://avatars.githubusercontent.com/u/1335918?v=4" width="100" height="100" alt="hesara"/><br /><sub><b>hesara</b></sub></a>                      |                                                                                                                                                                                                             |                                                                                                                                                                                                                          |
-
-<!-- END CONTRIBUTORS SECTION -->
-
-## License
-
-[Apache 2.0 © 2025 Roo Code, Inc.](./LICENSE)
-
----
-
-**Enjoy Roo Code!** Whether you keep it on a short leash or let it roam autonomously, we can’t wait to see what you build. If you have questions or feature ideas, drop by our [Reddit community](https://www.reddit.com/r/RooCode/) or [Discord](https://discord.gg/roocode). Happy coding!
+|               <a href="https://github.com/pokutuna"><img src="https://avatars.githubusercontent.com/u/57545?v=4" width="100" height="100" alt="pokutuna"/><br /><sub><b>pokutuna</b></sub></a>               |          <a href="https://github.com/philipnext"><img src="https://avatars.githubusercontent.com/u/81944499?v=4" width="100" height="100" alt="philipnext"/><br /><sub><b>philipnext</b></sub></a>           |       <a href="https://github.com/village-way"><img src="https://avatars.githubusercontent.com/u/11625846?v=4" width="100" height="100" alt="village-way"/><br /><sub><b>village-way</b></sub></a>       |                  <a href="https://github.com/oprstchn"><img src="https://avatars.githubusercontent.com/u/16177972?v=4" width="100" height="100" alt="oprstchn"/><br /><sub><b>oprstchn</b></sub></a>                  |               <a href="https://github.com/nobu007"><img src="https://avatars.githubusercontent.com/u/8529529?v=4" width="100" height="100" alt="nobu007"/><br /><sub><b>nobu007</b></sub></a>               |

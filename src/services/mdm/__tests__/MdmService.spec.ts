@@ -36,7 +36,7 @@ vi.mock("vscode", () => ({
 vi.mock("../../../shared/package", () => ({
 	Package: {
 		publisher: "roo-code",
-		name: "roo-cline",
+		name: "hivemind",
 		version: "1.0.0",
 		outputChannel: "Roo-Code",
 		sha: undefined,
@@ -47,9 +47,9 @@ vi.mock("../../../i18n", () => ({
 	t: vi.fn((key: string) => {
 		const translations: Record<string, string> = {
 			"mdm.errors.cloud_auth_required":
-				"Your organization requires Roo Code Cloud authentication. Please sign in to continue.",
+				"Your organization requires Hivemind Cloud authentication. Please sign in to continue.",
 			"mdm.errors.organization_mismatch":
-				"You must be authenticated with your organization's Roo Code Cloud account.",
+				"You must be authenticated with your organization's Hivemind Cloud account.",
 			"mdm.errors.verification_failed": "Unable to verify organization authentication.",
 		}
 		return translations[key] || key
@@ -278,7 +278,7 @@ describe("MdmService", () => {
 
 			expect(compliance.compliant).toBe(false)
 			if (!compliance.compliant) {
-				expect(compliance.reason).toContain("Your organization requires Roo Code Cloud authentication")
+				expect(compliance.reason).toContain("Your organization requires Hivemind Cloud authentication")
 			}
 		})
 
@@ -301,7 +301,7 @@ describe("MdmService", () => {
 			expect(compliance.compliant).toBe(false)
 			if (!compliance.compliant) {
 				expect(compliance.reason).toContain(
-					"You must be authenticated with your organization's Roo Code Cloud account",
+					"You must be authenticated with your organization's Hivemind Cloud account",
 				)
 			}
 		})

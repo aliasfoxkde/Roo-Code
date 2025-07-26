@@ -135,7 +135,7 @@ function runProcess({
 		"stream-json",
 		"--disallowedTools",
 		claudeCodeTools,
-		// Roo Code will handle recursive calls
+		// Hivemind will handle recursive calls
 		"--max-turns",
 		"1",
 	)

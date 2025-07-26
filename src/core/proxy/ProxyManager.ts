@@ -49,7 +49,7 @@ export class ProxyManager {
 		}
 
 		// Fall back to global VSCode configuration
-		const config = vscode.workspace.getConfiguration("roo-cline.proxy")
+		const config = vscode.workspace.getConfiguration("hivemind.proxy")
 		return {
 			proxyEnabled: config.get<boolean>("enabled", false),
 			proxyUrl: config.get<string>("url", ""),
