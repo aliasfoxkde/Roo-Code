@@ -13,7 +13,7 @@ import { DEFAULT_HEADERS } from "../constants"
  * @returns A promise that resolves to a record of model IDs to model info
  * @throws Will throw an error if the request fails or the response is not as expected.
  */
-export async function getLiteLLMModels(apiKey: string, baseUrl: string): Promise<ModelRecord> {
+export async function getLiteLLMModels(apiKey: string, baseUrl: string, options?: any): Promise<ModelRecord> {
 	const httpClient = HttpClientWithProxy.getInstance()
 	try {
 		const headers: Record<string, string> = {
@@ -31,7 +31,7 @@ export async function getLiteLLMModels(apiKey: string, baseUrl: string): Promise
 		urlObj.pathname = urlObj.pathname.replace(/\/+$/, "").replace(/\/+/g, "/") + "/v1/model/info"
 		const url = urlObj.href
 		// Added timeout to prevent indefinite hanging
-		const response = await httpClient.get(url, { headers, timeout: 5000 })
+		const response = await httpClient.get(url, { headers, timeout: 5000 }, options)
 		const models: ModelRecord = {}
 
 		const computerModels = Array.from(LITELLM_COMPUTER_USE_MODELS)

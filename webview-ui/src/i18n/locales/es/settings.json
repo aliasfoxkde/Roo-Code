@@ -409,6 +409,19 @@
 			"placeholder": "Por defecto: claude",
 			"maxTokensLabel": "Tokens máximos de salida",
 			"maxTokensDescription": "Número máximo de tokens de salida para las respuestas de Claude Code. El valor predeterminado es 8000."
+		},
+		"proxy": {
+			"enableProxy": "Habilitar proxy",
+			"url": "URL del proxy",
+			"urlPlaceholder": "Ingrese la URL del proxy (ej., http://proxy.example.com:8080)",
+			"urlDescription": "La URL del servidor proxy incluyendo protocolo y puerto",
+			"enableAuthentication": "Habilitar autenticación de proxy",
+			"username": "Nombre de usuario",
+			"usernamePlaceholder": "Ingrese el nombre de usuario del proxy",
+			"password": "Contraseña",
+			"passwordPlaceholder": "Ingrese la contraseña del proxy",
+			"bypassLocal": "Omitir proxy para direcciones locales",
+			"bypassLocalDescription": "No usar el proxy para direcciones locales (intranet)"
 		}
 	},
 	"browser": {

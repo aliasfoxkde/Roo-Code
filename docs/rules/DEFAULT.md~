@@ -22,13 +22,16 @@
 **Remember**: Less is more. Clarity beats cleverness. Structure enables scalability.
 
 
-Rules:
-Always use valid English and code syntax. Make sure NOT to use Chinese characters!
-*Before generating code, validate that this follows ESLint 'strict' rules and uses TypeScript 5.0+ syntax.*
-Follow the tsconfig.json in this project (strict mode, moduleResolution: bundler).
-Match the .eslintrc.cjs rules from this workspace.
-Make sure to use modern type hints and checkers to validate as you write code.
-Slow down. Write line-by-line, pausing for IntelliSense-like corrections.
+**Rules:**
+- Always use valid English and code syntax. Make sure NOT to use Chinese characters!
+- *Before generating code, validate that this follows ESLint 'strict' rules and uses TypeScript 5.0+ syntax.*
+- Follow the tsconfig.json in this project (strict mode, moduleResolution: bundler).
+- Match the .eslintrc.cjs rules from this workspace.
+- Make sure to use modern type hints and checkers to validate as you write code.
+- Slow down. Write line-by-line, pausing for IntelliSense-like corrections.
+- Catch if a task is repetitive and prefer handling programatically rather than making multple API calls.
+- Combine multiple reads into a single request to optimize calls and exuction time.
+- If you run into terminal executions that tie up the console process, "Proceed While Running" automatically.
 
 **REQUIRED APPROACH:**
 1. Create a numbered task list for each issue category
@@ -57,14 +60,19 @@ I want to be able to use open source models but one model generally does not hav
 
 Add ability to have an orchestrator agent that manages all tasks, user interactions, voice chat, etc.
 
+The goal is to use this system to run 24/7, splitting up tasks to multiple models (Prompt enhancement, Context Condensing, Codebase Indexing, etc.) and pack more into the context by using prompt batching (main context, then combine several questsion/answers together in one prompt, using streaming for optimal usage; the response can be used before all batches returned, edc.). Prompt batching should include a slider to choose the batch quantity but default to a safe number that should fit within the given model's context window (depending on it's size).
+
 Priorities:
 - Proxy/VPN per model
-- Prompt Batching
-- Event Triggers (code)
-- Set custom rules and presets
-- Improve base prompts
-- Add variables for prompts
+- Prompt Batching (described above) added to Settings --> Providers
+- Event Triggers (custom code execution) should be added to Settings --> Prompts and provide a custom code block per action (that contains prompt, API configuration, etc.)
+- Set custom rules and presets (keep same rules and presets but reduce lenghth/context and optimize them)
+- Improve base prompts (refine, research, enhance and test)
+- Add variables to be used in prompts (to be dynamic) with comprehensive documentation (such as $codebase_index)
+- Add tool use options to prompts to make them more dynamic
 - Optimize base settings
 
 Next:
 - Advanced parameters per Model config.
+
+github vs uithub

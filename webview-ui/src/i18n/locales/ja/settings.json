@@ -409,6 +409,19 @@
 			"placeholder": "デフォルト：claude",
 			"maxTokensLabel": "最大出力トークン",
 			"maxTokensDescription": "Claude Codeレスポンスの最大出力トークン数。デフォルトは8000です。"
+		},
+		"proxy": {
+			"enableProxy": "プロキシを有効化",
+			"url": "プロキシURL",
+			"urlPlaceholder": "プロキシURLを入力してください（例：http://proxy.example.com:8080）",
+			"urlDescription": "プロトコルとポートを含むプロキシサーバーのURL",
+			"enableAuthentication": "プロキシ認証を有効化",
+			"username": "ユーザー名",
+			"usernamePlaceholder": "プロキシユーザー名を入力してください",
+			"password": "パスワード",
+			"passwordPlaceholder": "プロキシパスワードを入力してください",
+			"bypassLocal": "ローカルアドレスのプロキシをバイパス",
+			"bypassLocalDescription": "ローカル（イントラネット）アドレスに対してプロキシを使用しない"
 		}
 	},
 	"browser": {

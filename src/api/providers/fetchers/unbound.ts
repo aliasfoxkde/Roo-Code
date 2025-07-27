@@ -2,7 +2,7 @@ import { HttpClientWithProxy } from "../../../core/http/HttpClientWithProxy"
 
 import type { ModelInfo } from "@roo-code/types"
 
-export async function getUnboundModels(apiKey?: string | null): Promise<Record<string, ModelInfo>> {
+export async function getUnboundModels(apiKey?: string | null, options?: any): Promise<Record<string, ModelInfo>> {
 	const httpClient = HttpClientWithProxy.getInstance()
 	const models: Record<string, ModelInfo> = {}
 
@@ -13,7 +13,7 @@ export async function getUnboundModels(apiKey?: string | null): Promise<Record<s
 			headers["Authorization"] = `Bearer ${apiKey}`
 		}
 
-		const response = await httpClient.get("https://api.getunbound.ai/models", { headers })
+		const response = await httpClient.get("https://api.getunbound.ai/models", { headers }, options)
 
 		if (response.data) {
 			const rawModels: Record<string, any> = response.data

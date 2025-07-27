@@ -1,6 +1,7 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI, { AzureOpenAI } from "openai"
 import { HttpClientWithProxy } from "../../core/http/HttpClientWithProxy"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 import {
 	type ModelInfo,
@@ -66,6 +67,7 @@ export class OpenAiHandler extends BaseProvider implements SingleCompletionHandl
 		} else {
 			this.client = new OpenAI({
 				baseURL,
+				fetch: createProxyFetch(this.options),
 				apiKey,
 				defaultHeaders: headers,
 			})

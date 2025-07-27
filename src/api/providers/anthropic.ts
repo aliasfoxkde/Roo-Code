@@ -1,6 +1,7 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import { Stream as AnthropicStream } from "@anthropic-ai/sdk/streaming"
 import { CacheControlEphemeral } from "@anthropic-ai/sdk/resources"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 import {
 	type ModelInfo,
@@ -32,6 +33,7 @@ export class AnthropicHandler extends BaseProvider implements SingleCompletionHa
 
 		this.client = new Anthropic({
 			baseURL: this.options.anthropicBaseUrl || undefined,
+			fetch: createProxyFetch(this.options),
 			[apiKeyFieldName]: this.options.apiKey,
 		})
 	}

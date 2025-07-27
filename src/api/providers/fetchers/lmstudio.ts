@@ -18,7 +18,7 @@ export const parseLMStudioModel = (rawModel: LLMInstanceInfo | LLMInfo): ModelIn
 	return modelInfo
 }
 
-export async function getLMStudioModels(baseUrl = "http://localhost:1234"): Promise<Record<string, ModelInfo>> {
+export async function getLMStudioModels(baseUrl = "http://localhost:1234", options?: any): Promise<Record<string, ModelInfo>> {
 	const httpClient = HttpClientWithProxy.getInstance()
 	// clearing the input can leave an empty string; use the default in that case
 	baseUrl = baseUrl === "" ? "http://localhost:1234" : baseUrl

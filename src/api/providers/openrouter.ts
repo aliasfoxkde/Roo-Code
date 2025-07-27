@@ -1,5 +1,6 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 import {
 	openRouterDefaultModelId,
@@ -66,7 +67,7 @@ export class OpenRouterHandler extends BaseProvider implements SingleCompletionH
 		const baseURL = this.options.openRouterBaseUrl || "https://openrouter.ai/api/v1"
 		const apiKey = this.options.openRouterApiKey ?? "not-provided"
 
-		this.client = new OpenAI({ baseURL, apiKey, defaultHeaders: DEFAULT_HEADERS })
+		this.client = new OpenAI({ baseURL, apiKey, defaultHeaders: DEFAULT_HEADERS, fetch: createProxyFetch(this.options) })
 	}
 
 	override async *createMessage(
@@ -180,6 +181,7 @@ export class OpenRouterHandler extends BaseProvider implements SingleCompletionH
 				router: "openrouter",
 				modelId: this.options.openRouterModelId,
 				endpoint: this.options.openRouterSpecificProvider,
+				options: this.options,
 			}),
 		])
 

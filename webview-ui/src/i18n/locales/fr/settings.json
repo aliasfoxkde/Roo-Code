@@ -409,6 +409,19 @@
 			"placeholder": "Défaut : claude",
 			"maxTokensLabel": "Jetons de sortie max",
 			"maxTokensDescription": "Nombre maximum de jetons de sortie pour les réponses de Claude Code. La valeur par défaut est 8000."
+		},
+		"proxy": {
+			"enableProxy": "Activer le proxy",
+			"url": "URL du proxy",
+			"urlPlaceholder": "Entrez l'URL du proxy (ex., http://proxy.example.com:8080)",
+			"urlDescription": "L'URL du serveur proxy incluant le protocole et le port",
+			"enableAuthentication": "Activer l'authentification proxy",
+			"username": "Nom d'utilisateur",
+			"usernamePlaceholder": "Entrez le nom d'utilisateur du proxy",
+			"password": "Mot de passe",
+			"passwordPlaceholder": "Entrez le mot de passe du proxy",
+			"bypassLocal": "Contourner le proxy pour les adresses locales",
+			"bypassLocalDescription": "Ne pas utiliser le proxy pour les adresses locales (intranet)"
 		}
 	},
 	"browser": {

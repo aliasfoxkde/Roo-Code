@@ -18,6 +18,7 @@ import { getModelParams } from "../transform/model-params"
 
 import type { SingleCompletionHandler, ApiHandlerCreateMessageMetadata } from "../index"
 import { BaseProvider } from "./base-provider"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 type GeminiHandlerOptions = ApiHandlerOptions & {
 	isVertex?: boolean

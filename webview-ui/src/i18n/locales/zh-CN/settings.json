@@ -409,6 +409,19 @@
 			"placeholder": "默认：claude",
 			"maxTokensLabel": "最大输出 Token",
 			"maxTokensDescription": "Claude Code 响应的最大输出 Token 数量。默认为 8000。"
+		},
+		"proxy": {
+			"enableProxy": "启用代理",
+			"url": "代理 URL",
+			"urlPlaceholder": "输入代理 URL（例如：http://proxy.example.com:8080）",
+			"urlDescription": "代理服务器 URL，包括协议和端口",
+			"enableAuthentication": "启用代理身份验证",
+			"username": "用户名",
+			"usernamePlaceholder": "输入代理用户名",
+			"password": "密码",
+			"passwordPlaceholder": "输入代理密码",
+			"bypassLocal": "绕过本地地址的代理",
+			"bypassLocalDescription": "不对本地（内网）地址使用代理"
 		}
 	},
 	"browser": {

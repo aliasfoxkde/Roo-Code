@@ -1,6 +1,7 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
 import { HttpClientWithProxy } from "../../core/http/HttpClientWithProxy"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 import { glamaDefaultModelId, glamaDefaultModelInfo, GLAMA_DEFAULT_TEMPERATURE } from "@roo-code/types"
 

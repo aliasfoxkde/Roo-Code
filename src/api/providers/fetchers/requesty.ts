@@ -3,7 +3,7 @@ import { HttpClientWithProxy } from "../../../core/http/HttpClientWithProxy"
 
 import { parseApiPrice } from "../../../shared/cost"
 
-export async function getRequestyModels(apiKey?: string): Promise<Record<string, ModelInfo>> {
+export async function getRequestyModels(apiKey?: string, options?: any): Promise<Record<string, ModelInfo>> {
 	const httpClient = HttpClientWithProxy.getInstance()
 	const models: Record<string, ModelInfo> = {}
 
@@ -15,7 +15,7 @@ export async function getRequestyModels(apiKey?: string): Promise<Record<string,
 		}
 
 		const url = "https://router.requesty.ai/v1/models"
-		const response = await httpClient.get(url, { headers })
+		const response = await httpClient.get(url, { headers }, options)
 		const rawModels = response.data.data
 
 		for (const rawModel of rawModels) {

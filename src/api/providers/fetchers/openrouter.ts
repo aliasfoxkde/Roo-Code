@@ -99,7 +99,7 @@ export async function getOpenRouterModels(options?: ApiHandlerOptions): Promise<
 	const baseURL = options?.openRouterBaseUrl || "https://openrouter.ai/api/v1"
 
 	try {
-		const response = await httpClient.get<OpenRouterModelsResponse>(`${baseURL}/models`)
+		const response = await httpClient.get<OpenRouterModelsResponse>(`${baseURL}/models`, {}, options)
 		const result = openRouterModelsResponseSchema.safeParse(response.data)
 		const data = result.success ? result.data.data : response.data.data
 

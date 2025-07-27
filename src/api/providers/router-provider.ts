@@ -8,6 +8,7 @@ import { BaseProvider } from "./base-provider"
 import { getModels } from "./fetchers/modelCache"
 
 import { DEFAULT_HEADERS } from "./constants"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 type RouterProviderOptions = {
 	name: RouterName
@@ -47,6 +48,7 @@ export abstract class RouterProvider extends BaseProvider {
 
 		this.client = new OpenAI({
 			baseURL,
+			fetch: createProxyFetch(this.options),
 			apiKey,
 			defaultHeaders: {
 				...DEFAULT_HEADERS,
@@ -56,7 +58,7 @@ export abstract class RouterProvider extends BaseProvider {
 	}
 
 	public async fetchModel() {
-		this.models = await getModels({ provider: this.name, apiKey: this.client.apiKey, baseUrl: this.client.baseURL })
+		this.models = await getModels({ provider: this.name, apiKey: this.client.apiKey, baseUrl: this.client.baseURL, ...this.options })
 		return this.getModel()
 	}
 

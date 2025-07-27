@@ -1,5 +1,6 @@
 import OpenAI from "openai"
 import { Anthropic } from "@anthropic-ai/sdk" // Keep for type usage only
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 import { litellmDefaultModelId, litellmDefaultModelInfo } from "@roo-code/types"
 

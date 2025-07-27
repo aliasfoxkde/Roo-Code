@@ -7,6 +7,7 @@ import { convertToOpenAiMessages } from "../transform/openai-format"
 import type { SingleCompletionHandler, ApiHandlerCreateMessageMetadata } from "../index"
 import { DEFAULT_HEADERS } from "./constants"
 import { BaseProvider } from "./base-provider"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 export class HuggingFaceHandler extends BaseProvider implements SingleCompletionHandler {
 	private client: OpenAI
@@ -22,6 +23,7 @@ export class HuggingFaceHandler extends BaseProvider implements SingleCompletion
 
 		this.client = new OpenAI({
 			baseURL: "https://router.huggingface.co/v1",
+			fetch: createProxyFetch(this.options),
 			apiKey: this.options.huggingFaceApiKey,
 			defaultHeaders: DEFAULT_HEADERS,
 		})

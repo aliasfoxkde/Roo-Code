@@ -19,6 +19,7 @@ import { getModelParams } from "../transform/model-params"
 
 import { BaseProvider } from "./base-provider"
 import type { SingleCompletionHandler, ApiHandlerCreateMessageMetadata } from "../index"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 export type OpenAiNativeModel = ReturnType<OpenAiNativeHandler["getModel"]>
 
@@ -30,7 +31,7 @@ export class OpenAiNativeHandler extends BaseProvider implements SingleCompletio
 		super()
 		this.options = options
 		const apiKey = this.options.openAiNativeApiKey ?? "not-provided"
-		this.client = new OpenAI({ baseURL: this.options.openAiNativeBaseUrl, apiKey })
+		this.client = new OpenAI({ baseURL: this.options.openAiNativeBaseUrl, apiKey, fetch: createProxyFetch(this.options) })
 	}
 
 	override async *createMessage(

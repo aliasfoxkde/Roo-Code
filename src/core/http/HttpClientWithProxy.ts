@@ -19,6 +19,8 @@ export class HttpClientWithProxy {
 
 	/**
 	 * Create an axios instance with proxy support
+	 * @param providerSettings Optional provider-specific settings that may contain proxy configuration
+	 * @returns Axios instance configured with proxy support
 	 */
 	public createProxyAxios(providerSettings?: ProviderSettings): AxiosInstance {
 		const instance = axios.create()
@@ -49,6 +51,10 @@ export class HttpClientWithProxy {
 
 	/**
 	 * Make a GET request with proxy support
+	 * @param url The URL to request
+	 * @param config Optional axios request configuration
+	 * @param providerSettings Optional provider-specific settings that may contain proxy configuration
+	 * @returns Promise resolving to the response
 	 */
 	public async get<T = any>(url: string, config?: AxiosRequestConfig, providerSettings?: ProviderSettings): Promise<AxiosResponse<T>> {
 		const client = this.createProxyAxios(providerSettings)
@@ -57,6 +63,11 @@ export class HttpClientWithProxy {
 
 	/**
 	 * Make a POST request with proxy support
+	 * @param url The URL to request
+	 * @param data Optional data to send in the request body
+	 * @param config Optional axios request configuration
+	 * @param providerSettings Optional provider-specific settings that may contain proxy configuration
+	 * @returns Promise resolving to the response
 	 */
 	public async post<T = any>(url: string, data?: any, config?: AxiosRequestConfig, providerSettings?: ProviderSettings): Promise<AxiosResponse<T>> {
 		const client = this.createProxyAxios(providerSettings)
@@ -65,6 +76,11 @@ export class HttpClientWithProxy {
 
 	/**
 	 * Make a PUT request with proxy support
+	 * @param url The URL to request
+	 * @param data Optional data to send in the request body
+	 * @param config Optional axios request configuration
+	 * @param providerSettings Optional provider-specific settings that may contain proxy configuration
+	 * @returns Promise resolving to the response
 	 */
 	public async put<T = any>(url: string, data?: any, config?: AxiosRequestConfig, providerSettings?: ProviderSettings): Promise<AxiosResponse<T>> {
 		const client = this.createProxyAxios(providerSettings)
@@ -73,6 +89,10 @@ export class HttpClientWithProxy {
 
 	/**
 	 * Make a DELETE request with proxy support
+	 * @param url The URL to request
+	 * @param config Optional axios request configuration
+	 * @param providerSettings Optional provider-specific settings that may contain proxy configuration
+	 * @returns Promise resolving to the response
 	 */
 	public async delete<T = any>(url: string, config?: AxiosRequestConfig, providerSettings?: ProviderSettings): Promise<AxiosResponse<T>> {
 		const client = this.createProxyAxios(providerSettings)
@@ -81,9 +101,40 @@ export class HttpClientWithProxy {
 
 	/**
 	 * Generic request method with proxy support
+	 * @param config Axios request configuration
+	 * @param providerSettings Optional provider-specific settings that may contain proxy configuration
+	 * @returns Promise resolving to the response
 	 */
 	public async request<T = any>(config: AxiosRequestConfig, providerSettings?: ProviderSettings): Promise<AxiosResponse<T>> {
 		const client = this.createProxyAxios(providerSettings)
 		return client.request<T>(config)
+	}
+
+	/**
+	 * Test proxy connectivity for a given URL and provider settings
+	 * @param url The URL to test connectivity to
+	 * @param providerSettings Optional provider-specific settings that may contain proxy configuration
+	 * @returns Promise resolving to true if connectivity is successful, false otherwise
+	 */
+	public async testProxyConnectivity(url: string, providerSettings?: ProviderSettings): Promise<boolean> {
+		try {
+			// Create a test client with proxy configuration
+			const testClient = this.createProxyAxios(providerSettings)
+			
+			// Set a short timeout for the test
+			const config: AxiosRequestConfig = {
+				timeout: 5000, // 5 second timeout
+				validateStatus: () => true // Accept any status code for testing
+			}
+			
+			// Make a simple HEAD request to test connectivity
+			const response = await testClient.head(url, config)
+			
+			// Consider successful if we get any response (even 4xx/5xx)
+			return response.status > 0
+		} catch (error) {
+			console.error(`Proxy connectivity test failed for ${url}:`, error)
+			return false
+		}
 	}
 }

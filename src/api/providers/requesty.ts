@@ -1,5 +1,6 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 import { type ModelInfo, requestyDefaultModelId, requestyDefaultModelInfo } from "@roo-code/types"
 
@@ -48,6 +49,7 @@ export class RequestyHandler extends BaseProvider implements SingleCompletionHan
 
 		this.client = new OpenAI({
 			baseURL: "https://router.requesty.ai/v1",
+			fetch: createProxyFetch(this.options),
 			apiKey: this.options.requestyApiKey ?? "not-provided",
 			defaultHeaders: DEFAULT_HEADERS,
 		})

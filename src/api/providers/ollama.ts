@@ -1,5 +1,6 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 import { type ModelInfo, openAiModelInfoSaneDefaults, DEEP_SEEK_DEFAULT_TEMPERATURE } from "@roo-code/types"
 
@@ -26,6 +27,7 @@ export class OllamaHandler extends BaseProvider implements SingleCompletionHandl
 		this.client = new OpenAI({
 			baseURL: (this.options.ollamaBaseUrl || "http://localhost:11434") + "/v1",
 			apiKey: "ollama",
+			fetch: createProxyFetch(this.options),
 		})
 	}
 

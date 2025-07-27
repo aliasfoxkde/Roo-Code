@@ -54,7 +54,7 @@ export const parseOllamaModel = (rawModel: OllamaModelInfoResponse): ModelInfo =
 	return modelInfo
 }
 
-export async function getOllamaModels(baseUrl = "http://localhost:11434"): Promise<Record<string, ModelInfo>> {
+export async function getOllamaModels(baseUrl = "http://localhost:11434", options?: any): Promise<Record<string, ModelInfo>> {
 	const models: Record<string, ModelInfo> = {}
 	const httpClient = HttpClientWithProxy.getInstance()
 
@@ -66,7 +66,7 @@ export async function getOllamaModels(baseUrl = "http://localhost:11434"): Promi
 			return models
 		}
 
-		const response = await httpClient.get<OllamaModelsResponse>(`${baseUrl}/api/tags`)
+		const response = await httpClient.get<OllamaModelsResponse>(`${baseUrl}/api/tags`, {}, options)
 		const parsedResponse = OllamaModelsResponseSchema.safeParse(response.data)
 		let modelInfoPromises = []
 

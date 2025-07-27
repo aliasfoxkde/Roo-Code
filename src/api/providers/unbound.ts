@@ -1,5 +1,6 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 import { unboundDefaultModelId, unboundDefaultModelInfo } from "@roo-code/types"
 

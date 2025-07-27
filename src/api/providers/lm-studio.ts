@@ -1,6 +1,7 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
 import { HttpClientWithProxy } from "../../core/http/HttpClientWithProxy"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 import { type ModelInfo, openAiModelInfoSaneDefaults, LMSTUDIO_DEFAULT_TEMPERATURE } from "@roo-code/types"
 
@@ -23,6 +24,7 @@ export class LmStudioHandler extends BaseProvider implements SingleCompletionHan
 		this.options = options
 		this.client = new OpenAI({
 			baseURL: (this.options.lmStudioBaseUrl || "http://localhost:1234") + "/v1",
+			fetch: createProxyFetch(this.options),
 			apiKey: "noop",
 		})
 	}

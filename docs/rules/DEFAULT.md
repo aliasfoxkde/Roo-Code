@@ -22,13 +22,16 @@
 **Remember**: Less is more. Clarity beats cleverness. Structure enables scalability.
 
 
-Rules:
-Always use valid English and code syntax. Make sure NOT to use Chinese characters!
-*Before generating code, validate that this follows ESLint 'strict' rules and uses TypeScript 5.0+ syntax.*
-Follow the tsconfig.json in this project (strict mode, moduleResolution: bundler).
-Match the .eslintrc.cjs rules from this workspace.
-Make sure to use modern type hints and checkers to validate as you write code.
-Slow down. Write line-by-line, pausing for IntelliSense-like corrections.
+**Rules:**
+- Always use valid English and code syntax. Make sure NOT to use Chinese characters!
+- *Before generating code, validate that this follows ESLint 'strict' rules and uses TypeScript 5.0+ syntax.*
+- Follow the tsconfig.json in this project (strict mode, moduleResolution: bundler).
+- Match the .eslintrc.cjs rules from this workspace.
+- Make sure to use modern type hints and checkers to validate as you write code.
+- Slow down. Write line-by-line, pausing for IntelliSense-like corrections.
+- Catch if a task is repetitive and prefer handling programatically rather than making multple API calls.
+- Combine multiple reads into a single request to optimize calls and exuction time.
+- If you run into terminal executions that tie up the console process, "Proceed While Running" automatically.
 
 **REQUIRED APPROACH:**
 1. Create a numbered task list for each issue category
@@ -46,7 +49,7 @@ Slow down. Write line-by-line, pausing for IntelliSense-like corrections.
 - Ensure zero TypeScript/ESLint/Console errors
 - Confirm all components render and function correctly
 
-Start by creating the detailed task list, then proceed with the first critical issue (terminal rendering).
+Start by creating the detailed task list, then proceed with the first critical issue.
 
 **Important**: This is a critical workflow step that must be completed. Create a systematic approach to ensure you follow through on the commit/push requirement, as this has been missed in previous attempts.
 

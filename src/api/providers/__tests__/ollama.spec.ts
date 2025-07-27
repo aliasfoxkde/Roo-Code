@@ -4,6 +4,8 @@ import { Anthropic } from "@anthropic-ai/sdk"
 
 import { OllamaHandler } from "../ollama"
 import { ApiHandlerOptions } from "../../../shared/api"
+import { ProxyManager } from "../../../core/proxy/ProxyManager"
+import { createProxyFetch } from "../../../core/http/proxyFetch"
 
 const mockCreate = vitest.fn()
 
@@ -162,6 +164,20 @@ describe("OllamaHandler", () => {
 			expect(modelInfo.info).toBeDefined()
 			expect(modelInfo.info.maxTokens).toBe(-1)
 			expect(modelInfo.info.contextWindow).toBe(128_000)
+		})
+	})
+
+	describe("proxy functionality", () => {
+		it("should create proxy fetch function", () => {
+			const proxyFetch = createProxyFetch(mockOptions)
+			expect(typeof proxyFetch).toBe("function")
+		})
+
+		it("should initialize OpenAI client with proxy fetch", () => {
+			const handler = new OllamaHandler(mockOptions)
+			// The fetch function should be passed to the OpenAI client
+			// We can't easily test this without mocking the OpenAI constructor more extensively
+			expect(handler).toBeInstanceOf(OllamaHandler)
 		})
 	})
 })

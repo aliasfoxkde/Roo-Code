@@ -1,5 +1,6 @@
 import { Anthropic } from "@anthropic-ai/sdk"
 import OpenAI from "openai"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 import type { ModelInfo } from "@roo-code/types"
 
@@ -57,6 +58,7 @@ export abstract class BaseOpenAiCompatibleProvider<ModelName extends string>
 
 		this.client = new OpenAI({
 			baseURL,
+			fetch: createProxyFetch(this.options),
 			apiKey: this.options.apiKey,
 			defaultHeaders: DEFAULT_HEADERS,
 		})

@@ -12,6 +12,7 @@ import { getModelParams } from "../transform/model-params"
 import { DEFAULT_HEADERS } from "./constants"
 import { BaseProvider } from "./base-provider"
 import type { SingleCompletionHandler, ApiHandlerCreateMessageMetadata } from "../index"
+import { createProxyFetch } from "../../core/http/proxyFetch"
 
 const XAI_DEFAULT_TEMPERATURE = 0
 
@@ -24,6 +25,7 @@ export class XAIHandler extends BaseProvider implements SingleCompletionHandler 
 		this.options = options
 		this.client = new OpenAI({
 			baseURL: "https://api.x.ai/v1",
+			fetch: createProxyFetch(this.options),
 			apiKey: this.options.xaiApiKey ?? "not-provided",
 			defaultHeaders: DEFAULT_HEADERS,
 		})

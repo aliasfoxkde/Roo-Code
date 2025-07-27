@@ -55,28 +55,28 @@ export const getModels = async (options: GetModelsOptions): Promise<ModelRecord>
 	try {
 		switch (provider) {
 			case "openrouter":
-				models = await getOpenRouterModels()
+				models = await getOpenRouterModels(options as any)
 				break
 			case "requesty":
 				// Requesty models endpoint requires an API key for per-user custom policies
-				models = await getRequestyModels(options.apiKey)
+				models = await getRequestyModels(options.apiKey, options as any)
 				break
 			case "glama":
-				models = await getGlamaModels()
+				models = await getGlamaModels(options as any)
 				break
 			case "unbound":
 				// Unbound models endpoint requires an API key to fetch application specific models
-				models = await getUnboundModels(options.apiKey)
+				models = await getUnboundModels(options.apiKey, options as any)
 				break
 			case "litellm":
 				// Type safety ensures apiKey and baseUrl are always provided for litellm
-				models = await getLiteLLMModels(options.apiKey, options.baseUrl)
+				models = await getLiteLLMModels(options.apiKey, options.baseUrl, options as any)
 				break
 			case "ollama":
-				models = await getOllamaModels(options.baseUrl)
+				models = await getOllamaModels(options.baseUrl, options as any)
 				break
 			case "lmstudio":
-				models = await getLMStudioModels(options.baseUrl)
+				models = await getLMStudioModels(options.baseUrl, options as any)
 				break
 			default: {
 				// Ensures router is exhaustively checked if RouterName is a strict union
