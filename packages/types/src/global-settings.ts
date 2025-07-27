@@ -71,6 +71,20 @@ export const globalSettingsSchema = z.object({
 	autoCondenseContext: z.boolean().optional(),
 	autoCondenseContextPercent: z.number().optional(),
 	maxConcurrentFileReads: z.number().optional(),
+	
+	// Prompt batching settings
+	promptBatchingEnabled: z.boolean().optional(),
+	promptBatchSize: z.number().optional(),
+	promptBatchDelay: z.number().optional(),
+	promptMaxQueueSize: z.number().optional(),
+	
+	// Event triggers settings
+	eventTriggersEnabled: z.boolean().optional(),
+	eventTriggers: z.array(z.object({
+		eventName: z.string(),
+		triggerPrompt: z.string(),
+		enabled: z.boolean().optional(),
+	})).optional(),
 
 	/**
 	 * Whether to include diagnostic messages (errors, warnings) in tool outputs
@@ -144,7 +158,21 @@ export const globalSettingsSchema = z.object({
 	lastModeImportPath: z.string().optional(),
 })
 
-export type GlobalSettings = z.infer<typeof globalSettingsSchema>
+export type GlobalSettings = z.infer<typeof globalSettingsSchema> & {
+	// Prompt batching settings
+	promptBatchingEnabled?: boolean
+	promptBatchSize?: number
+	promptBatchDelay?: number
+	promptMaxQueueSize?: number
+	
+	// Event triggers settings
+	eventTriggersEnabled?: boolean
+	eventTriggers?: Array<{
+		eventName: string
+		triggerPrompt: string
+		enabled?: boolean
+	}>
+}
 
 export const GLOBAL_SETTINGS_KEYS = globalSettingsSchema.keyof().options
 
@@ -237,6 +265,16 @@ export const EVALS_SETTINGS: RooCodeSettings = {
 	commandExecutionTimeout: 20,
 	commandTimeoutAllowlist: [],
 	preventCompletionWithOpenTodos: false,
+	
+	// Prompt batching defaults
+	promptBatchingEnabled: false,
+	promptBatchSize: 5,
+	promptBatchDelay: 1000,
+	promptMaxQueueSize: 100,
+	
+	// Event triggers defaults
+	eventTriggersEnabled: false,
+	eventTriggers: [],
 
 	browserToolEnabled: false,
 	browserViewportSize: "900x600",

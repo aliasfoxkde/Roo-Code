@@ -15,6 +15,15 @@ export interface ProxySettings {
 	proxyBypassLocal?: boolean
 }
 
+export interface VpnSettings {
+	vpnEnabled?: boolean
+	vpnServer?: string
+	vpnUsername?: string
+	vpnPassword?: string
+	vpnCertificatePath?: string
+	vpnBypassLocal?: boolean
+}
+
 export class ProxyManager {
 	private static instance: ProxyManager
 
@@ -58,6 +67,37 @@ export class ProxyManager {
 				password: config.get<string>("auth.password", ""),
 			},
 			proxyBypassLocal: config.get<boolean>("bypassForLocal", true),
+		}
+	}
+
+	/**
+	 * Get VPN settings from provider settings
+	 */
+	public getVpnSettings(providerSettings?: ProviderSettings): VpnSettings {
+		// Check provider-specific VPN settings
+		if (providerSettings) {
+			if (
+				providerSettings.vpnEnabled !== undefined ||
+				providerSettings.vpnServer ||
+				providerSettings.vpnUsername ||
+				providerSettings.vpnPassword ||
+				providerSettings.vpnCertificatePath ||
+				providerSettings.vpnBypassLocal !== undefined
+			) {
+				return {
+					vpnEnabled: providerSettings.vpnEnabled,
+					vpnServer: providerSettings.vpnServer,
+					vpnUsername: providerSettings.vpnUsername,
+					vpnPassword: providerSettings.vpnPassword,
+					vpnCertificatePath: providerSettings.vpnCertificatePath,
+					vpnBypassLocal: providerSettings.vpnBypassLocal,
+				}
+			}
+		}
+
+		// No global VPN configuration support yet
+		return {
+			vpnEnabled: false,
 		}
 	}
 

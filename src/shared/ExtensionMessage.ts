@@ -260,6 +260,12 @@ export type ExtensionState = Pick<
 	| "profileThresholds"
 	| "includeDiagnosticMessages"
 	| "maxDiagnosticMessages"
+	| "promptBatchingEnabled"
+	| "promptBatchSize"
+	| "promptBatchDelay"
+	| "promptMaxQueueSize"
+	| "eventTriggersEnabled"
+	| "eventTriggers"
 > & {
 	version: string
 	clineMessages: ClineMessage[]

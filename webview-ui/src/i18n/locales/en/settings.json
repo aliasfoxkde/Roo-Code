@@ -34,7 +34,47 @@
 		"about": "About Roo Code"
 	},
 	"prompts": {
-		"description": "Configure support prompts that are used for quick actions like enhancing prompts, explaining code, and fixing issues. These prompts help Roo provide better assistance for common development tasks."
+		"description": "Configure support prompts that are used for quick actions like enhancing prompts, explaining code, and fixing issues. These prompts help Roo provide better assistance for common development tasks.",
+		"batching": {
+			"title": "Prompt Batching",
+			"description": "Configure how prompts are batched and processed for better performance and rate limit management.",
+			"enableBatching": "Enable prompt batching",
+			"enableBatchingDescription": "When enabled, Roo will group multiple prompts together to be processed in batches, which can improve performance and help manage API rate limits.",
+			"batchSize": "Batch size",
+			"batchSizeDescription": "Maximum number of prompts to include in each batch. Larger batches may be more efficient but could exceed rate limits.",
+			"batchDelay": "Batch delay",
+			"batchDelayDescription": "Time to wait before sending a batch of prompts, allowing more prompts to accumulate.",
+			"maxQueueSize": "Maximum queue size",
+			"maxQueueSizeDescription": "Maximum number of prompts that can be queued for batching. When exceeded, older prompts will be discarded."
+		},
+		"eventTriggers": {
+			"title": "Event Triggers",
+			"description": "Configure automatic prompt triggers based on specific events in your development workflow.",
+			"enableTriggers": "Enable event triggers",
+			"enableTriggersDescription": "When enabled, Roo will automatically trigger specific prompts based on configured events.",
+			"triggerEvents": {
+				"fileSave": "File Save",
+				"fileSaveDescription": "Trigger when a file is saved",
+				"terminalCommand": "Terminal Command",
+				"terminalCommandDescription": "Trigger when a terminal command is executed",
+				"gitCommit": "Git Commit",
+				"gitCommitDescription": "Trigger when a Git commit is made",
+				"codeReview": "Code Review",
+				"codeReviewDescription": "Trigger when code review is requested",
+				"errorDetection": "Error Detection",
+				"errorDetectionDescription": "Trigger when errors are detected in code"
+			},
+			"customTrigger": {
+				"label": "Custom Event Trigger",
+				"description": "Create a custom event trigger for specific development workflows.",
+				"eventName": "Event Name",
+				"eventNamePlaceholder": "Enter event name",
+				"triggerPrompt": "Trigger Prompt",
+				"triggerPromptPlaceholder": "Enter the prompt to trigger when this event occurs",
+				"addTrigger": "Add Trigger",
+				"removeTrigger": "Remove Trigger"
+			}
+		}
 	},
 	"codeIndex": {
 		"title": "Codebase Indexing",
@@ -422,6 +462,21 @@
 			"passwordPlaceholder": "Enter proxy password",
 			"bypassLocal": "Bypass proxy for local addresses",
 			"bypassLocalDescription": "Do not use the proxy for local (intranet) addresses"
+		},
+		"vpn": {
+			"enableVpn": "Enable VPN",
+			"server": "VPN Server",
+			"serverPlaceholder": "Enter VPN server address",
+			"serverDescription": "The VPN server address including protocol and port",
+			"username": "Username",
+			"usernamePlaceholder": "Enter VPN username",
+			"password": "Password",
+			"passwordPlaceholder": "Enter VPN password",
+			"certificatePath": "Certificate Path",
+			"certificatePathPlaceholder": "Enter path to VPN certificate file",
+			"certificatePathDescription": "Path to the VPN certificate file for authentication",
+			"bypassLocal": "Bypass VPN for local addresses",
+			"bypassLocalDescription": "Do not route local (intranet) addresses through the VPN"
 		}
 	},
 	"browser": {

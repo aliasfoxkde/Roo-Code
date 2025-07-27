@@ -179,6 +179,12 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 		followupAutoApproveTimeoutMs,
 		includeDiagnosticMessages,
 		maxDiagnosticMessages,
+		promptBatchingEnabled,
+		promptBatchSize,
+		promptBatchDelay,
+		promptMaxQueueSize,
+		eventTriggersEnabled,
+		eventTriggers,
 	} = cachedState
 
 	const apiConfiguration = useMemo(() => cachedState.apiConfiguration ?? {}, [cachedState.apiConfiguration])
@@ -699,6 +705,18 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 						<PromptsSettings
 							customSupportPrompts={customSupportPrompts || {}}
 							setCustomSupportPrompts={setCustomSupportPromptsField}
+							promptBatchingEnabled={promptBatchingEnabled}
+							setPromptBatchingEnabled={(value) => setCachedStateField("promptBatchingEnabled", value)}
+							promptBatchSize={promptBatchSize}
+							setPromptBatchSize={(value) => setCachedStateField("promptBatchSize", value)}
+							promptBatchDelay={promptBatchDelay}
+							setPromptBatchDelay={(value) => setCachedStateField("promptBatchDelay", value)}
+							promptMaxQueueSize={promptMaxQueueSize}
+							setPromptMaxQueueSize={(value) => setCachedStateField("promptMaxQueueSize", value)}
+							eventTriggersEnabled={eventTriggersEnabled}
+							setEventTriggersEnabled={(value) => setCachedStateField("eventTriggersEnabled", value)}
+							eventTriggers={eventTriggers}
+							setEventTriggers={(value) => setCachedStateField("eventTriggers", value)}
 						/>
 					)}
 

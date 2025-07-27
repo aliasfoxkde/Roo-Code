@@ -138,6 +138,22 @@ export interface ExtensionStateContextType extends ExtensionState {
 	setIncludeDiagnosticMessages: (value: boolean) => void
 	maxDiagnosticMessages?: number
 	setMaxDiagnosticMessages: (value: number) => void
+	
+	// Prompt batching properties
+	promptBatchingEnabled?: boolean
+	setPromptBatchingEnabled: (value: boolean) => void
+	promptBatchSize?: number
+	setPromptBatchSize: (value: number) => void
+	promptBatchDelay?: number
+	setPromptBatchDelay: (value: number) => void
+	promptMaxQueueSize?: number
+	setPromptMaxQueueSize: (value: number) => void
+	
+	// Event triggers properties
+	eventTriggersEnabled?: boolean
+	setEventTriggersEnabled: (value: boolean) => void
+	eventTriggers?: Array<{ eventName: string; triggerPrompt: string; enabled?: boolean }>
+	setEventTriggers: (value: Array<{ eventName: string; triggerPrompt: string; enabled?: boolean }>) => void
 }
 
 export const ExtensionStateContext = createContext<ExtensionStateContextType | undefined>(undefined)
@@ -488,6 +504,18 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		setMaxDiagnosticMessages: (value) => {
 			setState((prevState) => ({ ...prevState, maxDiagnosticMessages: value }))
 		},
+		promptBatchingEnabled: state.promptBatchingEnabled,
+		setPromptBatchingEnabled: (value) => setState((prevState) => ({ ...prevState, promptBatchingEnabled: value })),
+		promptBatchSize: state.promptBatchSize,
+		setPromptBatchSize: (value) => setState((prevState) => ({ ...prevState, promptBatchSize: value })),
+		promptBatchDelay: state.promptBatchDelay,
+		setPromptBatchDelay: (value) => setState((prevState) => ({ ...prevState, promptBatchDelay: value })),
+		promptMaxQueueSize: state.promptMaxQueueSize,
+		setPromptMaxQueueSize: (value) => setState((prevState) => ({ ...prevState, promptMaxQueueSize: value })),
+		eventTriggersEnabled: state.eventTriggersEnabled,
+		setEventTriggersEnabled: (value) => setState((prevState) => ({ ...prevState, eventTriggersEnabled: value })),
+		eventTriggers: state.eventTriggers,
+		setEventTriggers: (value) => setState((prevState) => ({ ...prevState, eventTriggers: value })),
 	}
 
 	return <ExtensionStateContext.Provider value={contextValue}>{children}</ExtensionStateContext.Provider>

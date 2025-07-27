@@ -88,6 +88,7 @@ import { ConsecutiveMistakeLimitControl } from "./ConsecutiveMistakeLimitControl
 import { BedrockCustomArn } from "./providers/BedrockCustomArn"
 import { buildDocLink } from "@src/utils/docLinks"
 import { ProxyConfigForm } from "./ProxyConfigForm"
+import { VpnConfigForm } from "./VpnConfigForm"
 
 export interface ApiOptionsProps {
 	uriScheme: string | undefined
@@ -647,6 +648,15 @@ const ApiOptions = ({
 								</div>
 							)}
 						<ProxyConfigForm
+							settings={apiConfiguration}
+							onChange={(newSettings) => {
+								Object.entries(newSettings).forEach(([key, value]) => {
+									setApiConfigurationField(key as keyof ProviderSettings, value as any)
+								})
+							}}
+							showAdvanced={true}
+						/>
+						<VpnConfigForm
 							settings={apiConfiguration}
 							onChange={(newSettings) => {
 								Object.entries(newSettings).forEach(([key, value]) => {

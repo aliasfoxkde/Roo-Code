@@ -83,6 +83,28 @@ const baseProviderSettingsSchema = z.object({
 		password: z.string().optional()
 	}).optional(),
 	proxyBypassLocal: z.boolean().optional(),
+	
+	// VPN settings
+	vpnEnabled: z.boolean().optional(),
+	vpnServer: z.string().optional(),
+	vpnUsername: z.string().optional(),
+	vpnPassword: z.string().optional(),
+	vpnCertificatePath: z.string().optional(),
+	vpnBypassLocal: z.boolean().optional(),
+	
+	// Prompt batching settings
+	promptBatchingEnabled: z.boolean().optional(),
+	promptBatchSize: z.number().min(1).max(100).optional(),
+	promptBatchDelay: z.number().min(0).max(10000).optional(),
+	promptMaxQueueSize: z.number().min(1).max(1000).optional(),
+	
+	// Event trigger settings
+	eventTriggersEnabled: z.boolean().optional(),
+	eventTriggers: z.array(z.object({
+		eventName: z.string(),
+		triggerPrompt: z.string(),
+		enabled: z.boolean().optional()
+	})).optional(),
 })
 
 // Several of the providers share common model config properties.
