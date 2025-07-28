@@ -6,7 +6,7 @@ import { SocksProxyAgent } from "socks-proxy-agent"
 import { ProviderSettings } from "@roo-code/types"
 
 export interface ProxySettings {
-	proxyEnabled?: boolean
+	proxyRoutingEnabled?: boolean
 	proxyUrl?: string
 	proxyAuth?: {
 		username?: string
@@ -16,7 +16,7 @@ export interface ProxySettings {
 }
 
 export interface VpnSettings {
-	vpnEnabled?: boolean
+	vpnRoutingEnabled?: boolean
 	vpnServer?: string
 	vpnUsername?: string
 	vpnPassword?: string
@@ -43,13 +43,13 @@ export class ProxyManager {
 		// First check provider-specific settings
 		if (providerSettings) {
 			if (
-				providerSettings.proxyEnabled !== undefined ||
+				providerSettings.proxyRoutingEnabled !== undefined ||
 				providerSettings.proxyUrl ||
 				providerSettings.proxyAuth ||
 				providerSettings.proxyBypassLocal !== undefined
 			) {
 				return {
-					proxyEnabled: providerSettings.proxyEnabled,
+					proxyRoutingEnabled: providerSettings.proxyRoutingEnabled,
 					proxyUrl: providerSettings.proxyUrl,
 					proxyAuth: providerSettings.proxyAuth,
 					proxyBypassLocal: providerSettings.proxyBypassLocal,
@@ -60,7 +60,7 @@ export class ProxyManager {
 		// Fall back to global VSCode configuration
 		const config = vscode.workspace.getConfiguration("hivemind.proxy")
 		return {
-			proxyEnabled: config.get<boolean>("enabled", false),
+			proxyRoutingEnabled: config.get<boolean>("enabled", false),
 			proxyUrl: config.get<string>("url", ""),
 			proxyAuth: {
 				username: config.get<string>("auth.username", ""),
@@ -77,7 +77,7 @@ export class ProxyManager {
 		// Check provider-specific VPN settings
 		if (providerSettings) {
 			if (
-				providerSettings.vpnEnabled !== undefined ||
+				providerSettings.vpnRoutingEnabled !== undefined ||
 				providerSettings.vpnServer ||
 				providerSettings.vpnUsername ||
 				providerSettings.vpnPassword ||
@@ -85,7 +85,7 @@ export class ProxyManager {
 				providerSettings.vpnBypassLocal !== undefined
 			) {
 				return {
-					vpnEnabled: providerSettings.vpnEnabled,
+					vpnRoutingEnabled: providerSettings.vpnRoutingEnabled,
 					vpnServer: providerSettings.vpnServer,
 					vpnUsername: providerSettings.vpnUsername,
 					vpnPassword: providerSettings.vpnPassword,
@@ -97,7 +97,7 @@ export class ProxyManager {
 
 		// No global VPN configuration support yet
 		return {
-			vpnEnabled: false,
+			vpnRoutingEnabled: false,
 		}
 	}
 
@@ -108,7 +108,7 @@ export class ProxyManager {
 		const settings = this.getProxySettings(providerSettings)
 
 		// Check if proxy is enabled
-		if (!settings.proxyEnabled || !settings.proxyUrl) {
+		if (!settings.proxyRoutingEnabled || !settings.proxyUrl) {
 			return null
 		}
 

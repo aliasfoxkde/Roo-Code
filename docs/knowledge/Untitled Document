@@ -1,0 +1,4293 @@
+![Markdown Editor](https://github.com/user-attachments/assets/0b4e5f65-54cf-475f-9c68-557a4e9edb46)
+
+# @gravity-ui/markdown-editor &middot; [![npm package](https://img.shields.io/npm/v/@gravity-ui/markdown-editor)](https://www.npmjs.com/package/@gravity-ui/markdown-editor) [![CI](https://img.shields.io/github/actions/workflow/status/gravity-ui/markdown-editor/ci.yml?branch=main&label=CI)](https://github.com/gravity-ui/markdown-editor/actions/workflows/ci.yml?query=branch:main) [![Release](https://img.shields.io/github/actions/workflow/status/gravity-ui/markdown-editor/release.yml?branch=main&label=Release)](https://github.com/gravity-ui/markdown-editor/actions/workflows/release.yml?query=branch:main) [![storybook](https://img.shields.io/badge/Storybook-deployed-ff4685)](https://preview.gravity-ui.com/md-editor/)
+
+## Markdown wysiwyg and markup editor
+
+MarkdownEditor is a powerful tool for working with Markdown, which combines WYSIWYG and Markup modes. This means that you can create and edit content in a convenient visual mode, as well as have full control over the markup.
+
+### 🔧 Main features
+
+- Support for the basic Markdown and [YFM](https://ydocs.tech) syntax.
+- Extensibility through the use of ProseMirror and CodeMirror engines.
+- The ability to work in WYSIWYG and Markup modes for maximum flexibility.
+
+## Install
+
+```shell
+npm install @gravity-ui/markdown-editor
+```
+
+### Required dependencies
+
+Please note that to start using the package, your project must also have the following installed: `@diplodoc/transform`, `react`, `react-dom`, `@gravity-ui/uikit`, `@gravity-ui/components` and some others. Check out the `peerDependencies` section of `package.json` for accurate information.
+
+## Getting started
+
+The markdown editor is supplied as a React hook to create an instance of editor and a component for rendering the view.\
+To set up styling and theme see [UIKit docs](https://github.com/gravity-ui/uikit?tab=readme-ov-file#styles).
+
+```tsx
+import React from 'react';
+import {useMarkdownEditor, MarkdownEditorView} from '@gravity-ui/markdown-editor';
+
+function Editor({onSubmit}) {
+  const editor = useMarkdownEditor({allowHTML: false});
+
+  React.useEffect(() => {
+    function submitHandler() {
+      // Serialize current content to markdown markup
+      const value = editor.getValue();
+      onSubmit(value);
+    }
+
+    editor.on('submit', submitHandler);
+    return () => {
+      editor.off('submit', submitHandler);
+    };
+  }, [onSubmit]);
+
+  return <MarkdownEditorView stickyToolbar autofocus editor={editor} />;
+}
+```
+Read more:
+- [How to connect the editor in the Create React App](https://preview.gravity-ui.com/md-editor/?path=/docs/docs-getting-started-create-react-app--docs)
+- [How to add preview for markup mode](https://preview.gravity-ui.com/md-editor/?path=/docs/docs-getting-started-preview--docs)
+- [How to add HTML extension](https://preview.gravity-ui.com/md-editor/?path=/docs/docs-extensions-html-block--docs)
+- [How to add Latex extension](https://preview.gravity-ui.com/md-editor/?path=/docs/docs-extensions-latex-extension--docs)
+- [How to add Mermaid extension](https://preview.gravity-ui.com/md-editor/?path=/docs/docs-extensions-mermaid-extension--docs)
+- [How to write extension](https://preview.gravity-ui.com/md-editor/?path=/docs/docs-develop-extension-creation--docs)
+- [How to add GPT extension](https://preview.gravity-ui.com/md-editor/?path=/docs/docs-extensions-gpt--docs)
+- [How to add text binding extension in markdown](https://preview.gravity-ui.com/md-editor/?path=/docs/docs-develop-extension-with-popup--docs)
+
+### Development
+To start the dev storybook
+
+```shell
+npm start
+```
+
+
+### i18n
+
+To set up internationalization, you just need to use the `configure`:
+
+```typescript
+import {configure} from '@gravity-ui/markdown-editor';
+
+configure({
+  lang: 'ru',
+});
+```
+
+Don't forget to call `configure()` from [UIKit](https://github.com/gravity-ui/uikit?tab=readme-ov-file#i18n) and other UI libraries.
+
+### Contributing
+
+- [Contributor Guidelines](https://preview.gravity-ui.com/md-editor/?path=/docs/docs-contributing--docs)
+
+
+## Structure:
+
+├── .babelrc
+├── .editorconfig
+├── .eslintignore
+├── .eslintrc
+├── .github
+    ├── ISSUE_TEMPLATE
+    │   └── feature_request.md
+    └── workflows
+    │   ├── branch-preview.yaml
+    │   ├── ci.yml
+    │   ├── main-preview.yml
+    │   ├── pr-preview-build.yml
+    │   ├── pr-preview-deploy.yml
+    │   ├── pr-visual-tests-report.yml
+    │   ├── pr-visual-tests.yml
+    │   ├── prerelease.yaml
+    │   └── release.yml
+├── .gitignore
+├── .npmrc
+├── .nvmrc
+├── .prettierrc.js
+├── .storybook
+    ├── addons
+    │   └── generateDocs.ts
+    ├── main.ts
+    ├── manager.ts
+    ├── preview.ts
+    └── theme.ts
+├── .stylelintrc
+├── CHANGELOG.md
+├── CODEOWNERS
+├── CONTRIBUTING.md
+├── LICENSE.txt
+├── README-ru.md
+├── README.md
+├── demo
+    ├── .eslintrc
+    ├── components
+    │   ├── PMSelection.tsx
+    │   ├── Playground.scss
+    │   ├── Playground.tsx
+    │   ├── PlaygroundLayout.tsx
+    │   ├── PlaygroundMini.tsx
+    │   ├── ProseMirrorDevTools.tsx
+    │   └── SplitModePreview.tsx
+    ├── defaults
+    │   ├── args.ts
+    │   ├── content.ts
+    │   ├── excluded-controls.ts
+    │   └── md-plugins.ts
+    ├── global.d.ts
+    ├── hocs
+    │   ├── withLang.tsx
+    │   ├── withThemeProvider.tsx
+    │   └── withToaster.tsx
+    ├── hooks
+    │   ├── useLogs.ts
+    │   ├── useMarkdownEditorValue.ts
+    │   └── useYfmHtmlBlockStyles.ts
+    ├── stories
+    │   ├── css-variables
+    │   │   ├── CSSVariables.stories.tsx
+    │   │   └── CSSVariables.tsx
+    │   ├── editor-in-editor
+    │   │   ├── EditorInEditor.stories.tsx
+    │   │   ├── EditorInEditor.tsx
+    │   │   └── EditorInEditorExtension
+    │   │   │   ├── index.scss
+    │   │   │   └── index.tsx
+    │   ├── escape-config
+    │   │   ├── EscapeConfig.stories.tsx
+    │   │   └── EscapeConfig.tsx
+    │   ├── examples
+    │   │   └── img-custom-form
+    │   │   │   ├── ImageCustomForm.stories.tsx
+    │   │   │   └── ImageCustomForm.tsx
+    │   ├── experiments
+    │   │   ├── empty-row
+    │   │   │   ├── EmptyRow.stories.tsx
+    │   │   │   └── EmptyRows.tsx
+    │   │   ├── hide-some-settings
+    │   │   │   ├── HideSomeSettings.stories.tsx
+    │   │   │   └── HideSomeSettings.tsx
+    │   │   └── store-raw
+    │   │   │   ├── StoreRawMarkup.stories.tsx
+    │   │   │   └── StoreRawMarkup.tsx
+    │   ├── ghost
+    │   │   ├── Ghost.stories.tsx
+    │   │   ├── Ghost.tsx
+    │   │   ├── README.md
+    │   │   ├── content.ts
+    │   │   └── ghostExtension
+    │   │   │   ├── commands.ts
+    │   │   │   ├── effects.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── plugin.ts
+    │   │   │   ├── popup.tsx
+    │   │   │   └── toolbar.ts
+    │   ├── gpt
+    │   │   ├── GPT.stories.tsx
+    │   │   ├── GPT.tsx
+    │   │   ├── content.ts
+    │   │   └── gptWidgetOptions.tsx
+    │   ├── markdown
+    │   │   ├── Markdown.stories.tsx
+    │   │   └── markup.ts
+    │   ├── playground
+    │   │   └── Playground.stories.tsx
+    │   ├── presets
+    │   │   ├── Preset.tsx
+    │   │   ├── Presets.stories.tsx
+    │   │   └── presets.ts
+    │   ├── quoteLink
+    │   │   ├── QuoteLink.tsx
+    │   │   └── quoteLink.stories.ts
+    │   ├── remember-mode
+    │   │   ├── RememberMode.stories.tsx
+    │   │   ├── RememberMode.tsx
+    │   │   └── content.ts
+    │   ├── settings
+    │   │   └── selection-context
+    │   │   │   ├── SelectionContext.stories.tsx
+    │   │   │   └── SelectionContext.tsx
+    │   ├── view
+    │   │   ├── gallery
+    │   │   │   ├── Gallery.stories.tsx
+    │   │   │   ├── ViewWithGallery.scss
+    │   │   │   ├── ViewWithGallery.tsx
+    │   │   │   └── markup.ts
+    │   │   └── staticView
+    │   │   │   └── YfmStaticView.stories.tsx
+    │   └── yfm
+    │   │   ├── YFM.stories.tsx
+    │   │   └── content.ts
+    └── utils
+    │   ├── cn.ts
+    │   ├── delay.ts
+    │   ├── getInitialMd.ts
+    │   ├── imageUrl.ts
+    │   └── location.ts
+├── docs
+    ├── assets
+    │   └── gifs
+    │   │   ├── custom-prompt-preset-gpt.gif
+    │   │   └── prompt-preset-gpt.gif
+    ├── guidelines-contributions.md
+    ├── how-to-add-editor-with-create-react-app.md
+    ├── how-to-add-editor-with-nextjs.md
+    ├── how-to-add-preview.md
+    ├── how-to-add-text-binding-extension-in-markdown.md
+    ├── how-to-add-visual-test.md
+    ├── how-to-connect-gpt-extensions.md
+    ├── how-to-connect-html-extension.md
+    ├── how-to-connect-latex-extension.md
+    ├── how-to-connect-mermaid-extension.md
+    ├── how-to-create-extension.md
+    ├── how-to-customize-the-editor.md
+    └── how-to-customize-toolbars.md
+├── gulpfile.js
+├── jest.config.js
+├── package-lock.json
+├── package.json
+├── scripts
+    ├── check-circular-deps.js
+    ├── generate-playwright-test.js
+    └── playwright-docker.sh
+├── src
+    ├── .eslintrc
+    ├── bundle
+    │   ├── Editor.ts
+    │   ├── HorizontalDrag.tsx
+    │   ├── MarkdownEditorView.scss
+    │   ├── MarkdownEditorView.tsx
+    │   ├── MarkupEditorComponent.tsx
+    │   ├── MarkupEditorView.scss
+    │   ├── MarkupEditorView.tsx
+    │   ├── MarkupManager.ts
+    │   ├── SplitModeView.tsx
+    │   ├── ToolbarView.tsx
+    │   ├── WysiwygEditorComponent.tsx
+    │   ├── WysiwygEditorView.scss
+    │   ├── WysiwygEditorView.tsx
+    │   ├── config
+    │   │   ├── action-names.ts
+    │   │   ├── dynamicModifiers.test.ts
+    │   │   ├── dynamicModifiers.ts
+    │   │   ├── icons.ts
+    │   │   ├── index.ts
+    │   │   ├── markup.tsx
+    │   │   ├── previews
+    │   │   │   ├── ActionPreview.scss
+    │   │   │   ├── ActionPreview.tsx
+    │   │   │   ├── HeadingPreview.tsx
+    │   │   │   └── TextPreview.tsx
+    │   │   ├── w-heading-config.tsx
+    │   │   └── wysiwyg.ts
+    │   ├── context.ts
+    │   ├── emoji.ts
+    │   ├── index.ts
+    │   ├── settings
+    │   │   ├── MarkdownHints
+    │   │   │   ├── MarkdownHints.scss
+    │   │   │   ├── MarkdownHints.tsx
+    │   │   │   └── index.ts
+    │   │   ├── index.scss
+    │   │   └── index.tsx
+    │   ├── sticky
+    │   │   ├── index.ts
+    │   │   └── sticky.scss
+    │   ├── toolbar
+    │   │   ├── ToolbarButtonWithPopupMenu.scss
+    │   │   ├── ToolbarButtonWithPopupMenu.tsx
+    │   │   ├── ToolbarSelect.scss
+    │   │   ├── ToolbarSelect.tsx
+    │   │   ├── custom
+    │   │   │   ├── ToolbarColors.scss
+    │   │   │   ├── ToolbarColors.tsx
+    │   │   │   ├── ToolbarFilePopup.tsx
+    │   │   │   ├── ToolbarImagePopup.tsx
+    │   │   │   └── readme.md
+    │   │   ├── markup
+    │   │   │   ├── MToolbarColors.tsx
+    │   │   │   ├── MToolbarFilePopup.tsx
+    │   │   │   ├── MToolbarImagePopup.tsx
+    │   │   │   └── context.ts
+    │   │   ├── types.ts
+    │   │   ├── utils
+    │   │   │   ├── flattenPreset.test.tsx
+    │   │   │   ├── flattenPreset.ts
+    │   │   │   └── toolbarsConfigs.ts
+    │   │   └── wysiwyg
+    │   │   │   ├── WToolbarColors.tsx
+    │   │   │   └── WToolbarTextSelect.tsx
+    │   ├── types.ts
+    │   ├── useMarkdownEditor.ts
+    │   └── wysiwyg-preset.ts
+    ├── classname.ts
+    ├── cm
+    │   ├── autocomplete.ts
+    │   ├── commands.ts
+    │   ├── language.ts
+    │   ├── readme.md
+    │   ├── state.ts
+    │   └── view.ts
+    ├── commands
+    │   ├── join.test.ts
+    │   └── join.ts
+    ├── common
+    │   └── index.ts
+    ├── configure.ts
+    ├── core
+    │   ├── ActionsManager.tsx
+    │   ├── ContentHandler.test.ts
+    │   ├── ContentHandler.ts
+    │   ├── Editor.ts
+    │   ├── ExtensionBuilder.test.ts
+    │   ├── ExtensionBuilder.ts
+    │   ├── ExtensionsManager.ts
+    │   ├── ParserTokensRegistry.ts
+    │   ├── SchemaDynamicModifier.ts
+    │   ├── SchemaSpecRegistry.ts
+    │   ├── SerializerTokensRegistry.test.ts
+    │   ├── SerializerTokensRegistry.ts
+    │   ├── index.ts
+    │   ├── markdown
+    │   │   ├── Markdown.test.ts
+    │   │   ├── MarkdownParser.test.ts
+    │   │   ├── MarkdownParser.ts
+    │   │   ├── MarkdownSerializer.ts
+    │   │   ├── MarkdownSerializerDynamicModifier.ts
+    │   │   └── ProseMirrorTransformer
+    │   │   │   ├── emptyRowTransformer.ts
+    │   │   │   ├── getTransformers.ts
+    │   │   │   └── index.ts
+    │   ├── types
+    │   │   ├── actions.ts
+    │   │   ├── dynamicModifiers.ts
+    │   │   ├── extension.ts
+    │   │   ├── keymap.ts
+    │   │   ├── node-views.ts
+    │   │   ├── parser.ts
+    │   │   └── serializer.ts
+    │   └── utils
+    │   │   ├── actions.test.ts
+    │   │   ├── actions.ts
+    │   │   ├── dynamicModifiers.test.ts
+    │   │   ├── dynamicModifiers.ts
+    │   │   ├── logger.ts
+    │   │   └── metrics.ts
+    ├── extensions
+    │   ├── additional
+    │   │   ├── FoldingHeading
+    │   │   │   ├── FoldingHeading.ts
+    │   │   │   ├── FoldingHeadingSpec
+    │   │   │   │   ├── FoldingHeadingSpecs.test.ts
+    │   │   │   │   ├── FoldingHeadingSpecs.ts
+    │   │   │   │   ├── const.ts
+    │   │   │   │   ├── index.ts
+    │   │   │   │   └── md
+    │   │   │   │   │   └── skip-heading-sections.ts
+    │   │   │   ├── actions.ts
+    │   │   │   ├── commands
+    │   │   │   │   ├── index.ts
+    │   │   │   │   ├── openHeadingAndCreateParagraphAfterIfCursorAtEndOfHeading.ts
+    │   │   │   │   ├── removeFoldingIfCursorAtStartOfHeading.ts
+    │   │   │   │   └── toggleFoldingOfHeading.ts
+    │   │   │   ├── const.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── input-rules.ts
+    │   │   │   ├── plugins
+    │   │   │   │   ├── Folding.ts
+    │   │   │   │   └── folding.scss
+    │   │   │   └── utils.ts
+    │   │   ├── GPT
+    │   │   │   ├── ErrorScreen
+    │   │   │   │   ├── ErrorScreen.scss
+    │   │   │   │   ├── ErrorScreen.tsx
+    │   │   │   │   └── types.ts
+    │   │   │   ├── GptDialog
+    │   │   │   │   ├── GptDialog.scss
+    │   │   │   │   ├── GptDialog.tsx
+    │   │   │   │   └── LoadingScreen
+    │   │   │   │   │   ├── LoadingScreen.scss
+    │   │   │   │   │   └── LoadingScreen.tsx
+    │   │   │   ├── IconRefuge
+    │   │   │   │   ├── IconRefuge.classname.tsx
+    │   │   │   │   ├── IconRefuge.scss
+    │   │   │   │   ├── IconRefuge.tsx
+    │   │   │   │   ├── IconRefuge.types.d.ts
+    │   │   │   │   └── index.ts
+    │   │   │   ├── MarkupGpt
+    │   │   │   │   ├── commands.ts
+    │   │   │   │   ├── effects.ts
+    │   │   │   │   ├── index.ts
+    │   │   │   │   ├── plugin.ts
+    │   │   │   │   ├── popup.tsx
+    │   │   │   │   └── toolbar.ts
+    │   │   │   ├── PresetList
+    │   │   │   │   ├── PresetList.tsx
+    │   │   │   │   └── Presetlist.scss
+    │   │   │   ├── actions.ts
+    │   │   │   ├── commands.ts
+    │   │   │   ├── constants.ts
+    │   │   │   ├── gptExtension
+    │   │   │   │   ├── gptExtension.ts
+    │   │   │   │   ├── view.scss
+    │   │   │   │   └── view.tsx
+    │   │   │   ├── hooks
+    │   │   │   │   ├── useGpt.tsx
+    │   │   │   │   ├── useGptHotKeys.ts
+    │   │   │   │   ├── useOverflowingHorizontalItems.tsx
+    │   │   │   │   └── usePresetList.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── plugin.ts
+    │   │   │   ├── utils.ts
+    │   │   │   └── wGptItemData.ts
+    │   │   ├── Math
+    │   │   │   ├── Math.test.ts
+    │   │   │   ├── MathSpecs
+    │   │   │   │   ├── const.ts
+    │   │   │   │   └── index.ts
+    │   │   │   ├── commands.ts
+    │   │   │   ├── const.ts
+    │   │   │   ├── hint.tsx
+    │   │   │   ├── index.scss
+    │   │   │   ├── index.ts
+    │   │   │   ├── types.ts
+    │   │   │   ├── view-and-edit.scss
+    │   │   │   └── view-and-edit.ts
+    │   │   ├── Mermaid
+    │   │   │   ├── Mermaid.test.ts
+    │   │   │   ├── MermaidNodeView
+    │   │   │   │   ├── Mermaid.scss
+    │   │   │   │   ├── MermaidView.tsx
+    │   │   │   │   ├── NodeView.tsx
+    │   │   │   │   └── index.ts
+    │   │   │   ├── MermaidSpecs
+    │   │   │   │   ├── const.ts
+    │   │   │   │   └── index.tsx
+    │   │   │   ├── actions.ts
+    │   │   │   ├── const.ts
+    │   │   │   ├── index.ts
+    │   │   │   └── types.ts
+    │   │   ├── QuoteLink
+    │   │   │   ├── PlaceholderWidget
+    │   │   │   │   ├── commands.ts
+    │   │   │   │   └── descriptor.tsx
+    │   │   │   ├── QuoteLink.test.ts
+    │   │   │   ├── QuoteLinkSpecs
+    │   │   │   │   ├── index.ts
+    │   │   │   │   └── md
+    │   │   │   │   │   ├── moveLinkToQuoteAttributes.ts
+    │   │   │   │   │   └── utils.ts
+    │   │   │   ├── commands.ts
+    │   │   │   ├── index.scss
+    │   │   │   └── index.ts
+    │   │   ├── YfmHtmlBlock
+    │   │   │   ├── YfmHtmlBlock.test.ts
+    │   │   │   ├── YfmHtmlBlockNodeView
+    │   │   │   │   ├── NodeView.tsx
+    │   │   │   │   ├── YfmHtmlBlock.scss
+    │   │   │   │   ├── YfmHtmlBlockView.tsx
+    │   │   │   │   └── index.ts
+    │   │   │   ├── YfmHtmlBlockSpecs
+    │   │   │   │   ├── const.ts
+    │   │   │   │   └── index.tsx
+    │   │   │   ├── actions.ts
+    │   │   │   ├── const.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── types.ts
+    │   │   │   ├── utils.test.ts
+    │   │   │   └── utils.ts
+    │   │   └── index.ts
+    │   ├── base
+    │   │   ├── BaseInputRules
+    │   │   │   └── index.ts
+    │   │   ├── BaseKeymap
+    │   │   │   └── index.ts
+    │   │   ├── BaseSchema
+    │   │   │   ├── BaseSchema.test.ts
+    │   │   │   ├── BaseSchemaSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   └── index.ts
+    │   │   ├── BaseStyles
+    │   │   │   ├── index.scss
+    │   │   │   └── index.ts
+    │   │   ├── index.ts
+    │   │   └── specs.ts
+    │   ├── behavior
+    │   │   ├── Autocomplete
+    │   │   │   ├── Autocomplete.test.ts
+    │   │   │   ├── handler.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── types.ts
+    │   │   │   └── utils.ts
+    │   │   ├── ClicksOnEdges
+    │   │   │   ├── ClicksOnEdges.ts
+    │   │   │   ├── commands.ts
+    │   │   │   └── index.ts
+    │   │   ├── Clipboard
+    │   │   │   ├── clipboard.ts
+    │   │   │   ├── code.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── utils.test.ts
+    │   │   │   └── utils.ts
+    │   │   ├── CommandMenu
+    │   │   │   ├── aliases.test.ts
+    │   │   │   ├── component.scss
+    │   │   │   ├── component.tsx
+    │   │   │   ├── const.ts
+    │   │   │   ├── handler.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── types.ts
+    │   │   │   └── utils.ts
+    │   │   ├── Cursor
+    │   │   │   ├── GapCursorSelection.ts
+    │   │   │   ├── gapcursor.scss
+    │   │   │   ├── gapcursor.ts
+    │   │   │   └── index.ts
+    │   │   ├── EditorModeKeymap
+    │   │   │   └── index.ts
+    │   │   ├── FilePaste
+    │   │   │   └── index.ts
+    │   │   ├── History
+    │   │   │   └── index.ts
+    │   │   ├── Placeholder
+    │   │   │   ├── index.scss
+    │   │   │   └── index.ts
+    │   │   ├── ReactRenderer
+    │   │   │   ├── ReactRenderer.test.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── react.tsx
+    │   │   │   └── types.ts
+    │   │   ├── Resizable
+    │   │   │   ├── Resizable.scss
+    │   │   │   └── Resizable.tsx
+    │   │   ├── Selection
+    │   │   │   ├── commands.test.ts
+    │   │   │   ├── commands.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── selection.scss
+    │   │   │   └── selection.ts
+    │   │   ├── SelectionContext
+    │   │   │   ├── index.ts
+    │   │   │   └── tooltip.tsx
+    │   │   ├── SharedState
+    │   │   │   ├── SharedState.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── plugin.ts
+    │   │   │   ├── types.ts
+    │   │   │   └── utils.ts
+    │   │   ├── WidgetDecoration
+    │   │   │   ├── ReactWidgetDescriptor.tsx
+    │   │   │   ├── WidgetDescriptor.ts
+    │   │   │   ├── actions.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── plugin.ts
+    │   │   │   └── types.ts
+    │   │   ├── index.ts
+    │   │   └── utils
+    │   │   │   └── upload.ts
+    │   ├── index.ts
+    │   ├── markdown
+    │   │   ├── Blockquote
+    │   │   │   ├── Blockquote.test.ts
+    │   │   │   ├── BlockquoteSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   ├── commands.test.ts
+    │   │   │   ├── commands.ts
+    │   │   │   ├── const.ts
+    │   │   │   └── index.ts
+    │   │   ├── Bold
+    │   │   │   ├── Bold.test.ts
+    │   │   │   ├── BoldSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   └── index.ts
+    │   │   ├── Breaks
+    │   │   │   ├── Breaks.test.ts
+    │   │   │   ├── BreaksSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   └── index.ts
+    │   │   ├── Code
+    │   │   │   ├── Code.test.ts
+    │   │   │   ├── CodeSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   ├── code.scss
+    │   │   │   └── index.ts
+    │   │   ├── CodeBlock
+    │   │   │   ├── CodeBlock.test.ts
+    │   │   │   ├── CodeBlockHighlight
+    │   │   │   │   ├── CodeBlockHighlight.ts
+    │   │   │   │   └── TooltipPlugin
+    │   │   │   │   │   ├── TooltipView.scss
+    │   │   │   │   │   └── index.tsx
+    │   │   │   ├── CodeBlockSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   ├── commands.ts
+    │   │   │   ├── const.ts
+    │   │   │   ├── handle-paste.ts
+    │   │   │   ├── index.ts
+    │   │   │   └── plugins
+    │   │   │   │   └── codeBlockPastePlugin.ts
+    │   │   ├── Deflist
+    │   │   │   ├── Deflist.test.ts
+    │   │   │   ├── DeflistSpecs
+    │   │   │   │   ├── const.ts
+    │   │   │   │   ├── index.ts
+    │   │   │   │   ├── parser.ts
+    │   │   │   │   ├── schema.ts
+    │   │   │   │   └── serializer.ts
+    │   │   │   ├── commands.ts
+    │   │   │   ├── const.ts
+    │   │   │   ├── index.ts
+    │   │   │   └── utils.ts
+    │   │   ├── Heading
+    │   │   │   ├── Heading.test.ts
+    │   │   │   ├── HeadingSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   ├── actions.ts
+    │   │   │   ├── commands.ts
+    │   │   │   ├── const.ts
+    │   │   │   ├── index.ts
+    │   │   │   └── utils.ts
+    │   │   ├── HorizontalRule
+    │   │   │   ├── HorizontalRule.test.ts
+    │   │   │   ├── HorizontalRuleSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   └── index.ts
+    │   │   ├── Html
+    │   │   │   ├── Html.test.ts
+    │   │   │   ├── const.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── parser.ts
+    │   │   │   ├── schema.ts
+    │   │   │   └── serializer.ts
+    │   │   ├── Image
+    │   │   │   ├── Image.test.ts
+    │   │   │   ├── ImageSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   ├── actions.ts
+    │   │   │   ├── const.ts
+    │   │   │   ├── imageUrlPaste
+    │   │   │   │   └── index.ts
+    │   │   │   └── index.ts
+    │   │   ├── Italic
+    │   │   │   ├── Italic.test.ts
+    │   │   │   ├── ItalicSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   └── index.ts
+    │   │   ├── Link
+    │   │   │   ├── Link.test.ts
+    │   │   │   ├── LinkSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   ├── PlaceholderWidget
+    │   │   │   │   ├── commands.ts
+    │   │   │   │   ├── descriptor.tsx
+    │   │   │   │   ├── widget.scss
+    │   │   │   │   └── widget.tsx
+    │   │   │   ├── actions
+    │   │   │   │   ├── linkActions.ts
+    │   │   │   │   └── linkEnhanceActions.ts
+    │   │   │   ├── commands.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── paste-plugin.test.ts
+    │   │   │   ├── paste-plugin.ts
+    │   │   │   ├── plugins
+    │   │   │   │   └── LinkTooltipPlugin
+    │   │   │   │   │   ├── TooltipView.tsx
+    │   │   │   │   │   └── index.tsx
+    │   │   │   └── utils.ts
+    │   │   ├── Lists
+    │   │   │   ├── Lists.test.ts
+    │   │   │   ├── ListsSpecs
+    │   │   │   │   ├── const.ts
+    │   │   │   │   ├── index.ts
+    │   │   │   │   ├── parser.ts
+    │   │   │   │   ├── schema.ts
+    │   │   │   │   └── serializer.ts
+    │   │   │   ├── actions.ts
+    │   │   │   ├── commands.test.ts
+    │   │   │   ├── commands.ts
+    │   │   │   ├── const.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── inputrules.ts
+    │   │   │   ├── plugins
+    │   │   │   │   ├── CollapseListsPlugin.test.ts
+    │   │   │   │   ├── CollapseListsPlugin.ts
+    │   │   │   │   ├── MergeListsPlugin.test.ts
+    │   │   │   │   └── MergeListsPlugin.ts
+    │   │   │   └── utils.ts
+    │   │   ├── Mark
+    │   │   │   ├── Mark.test.ts
+    │   │   │   ├── MarkSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   └── index.ts
+    │   │   ├── Strike
+    │   │   │   ├── Strike.test.ts
+    │   │   │   ├── StrikeSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   └── index.ts
+    │   │   ├── Subscript
+    │   │   │   ├── Subscript.test.ts
+    │   │   │   ├── SubscriptSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   └── index.ts
+    │   │   ├── Superscript
+    │   │   │   ├── Superscript.test.ts
+    │   │   │   ├── SuperscriptSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   └── index.ts
+    │   │   ├── Table
+    │   │   │   ├── Table.test.ts
+    │   │   │   ├── TableSpecs
+    │   │   │   │   ├── const.ts
+    │   │   │   │   ├── index.ts
+    │   │   │   │   ├── parser.ts
+    │   │   │   │   ├── schema.ts
+    │   │   │   │   └── serializer.ts
+    │   │   │   ├── actions
+    │   │   │   │   ├── cellAlign.ts
+    │   │   │   │   ├── innerActions.ts
+    │   │   │   │   └── tableActions.ts
+    │   │   │   ├── const.ts
+    │   │   │   ├── helpers.ts
+    │   │   │   ├── index.ts
+    │   │   │   └── plugins
+    │   │   │   │   └── TableCellContextPlugin
+    │   │   │   │       ├── floating.scss
+    │   │   │   │       ├── floating.tsx
+    │   │   │   │       ├── index.ts
+    │   │   │   │       └── view.tsx
+    │   │   ├── Underline
+    │   │   │   ├── Underline.test.ts
+    │   │   │   ├── UnderlineSpecs
+    │   │   │   │   └── index.ts
+    │   │   │   └── index.ts
+    │   │   ├── index.ts
+    │   │   └── specs.ts
+    │   ├── specs.ts
+    │   └── yfm
+    │   │   ├── Checkbox
+    │   │       ├── Checkbox.test.ts
+    │   │       ├── CheckboxSpecs
+    │   │       │   ├── const.ts
+    │   │       │   ├── index.ts
+    │   │       │   ├── parser.ts
+    │   │       │   ├── schema.ts
+    │   │       │   └── serializer.ts
+    │   │       ├── actions.test.ts
+    │   │       ├── actions.ts
+    │   │       ├── const.ts
+    │   │       ├── index.scss
+    │   │       ├── index.ts
+    │   │       ├── nodeviews.ts
+    │   │       ├── plugin.test.ts
+    │   │       ├── plugin.ts
+    │   │       ├── plugins
+    │   │       │   └── fix-paste.ts
+    │   │       └── utils.ts
+    │   │   ├── Color
+    │   │       ├── Color.test.ts
+    │   │       ├── ColorSpecs
+    │   │       │   ├── const.ts
+    │   │       │   └── index.ts
+    │   │       ├── colors.scss
+    │   │       ├── const.ts
+    │   │       ├── index.ts
+    │   │       └── utils.ts
+    │   │   ├── Emoji
+    │   │       ├── Emoji.ts
+    │   │       ├── EmojiInput
+    │   │       │   ├── EmojiInput.ts
+    │   │       │   └── index.ts
+    │   │       ├── EmojiSpecs
+    │   │       │   ├── EmojiSpecs.test.ts
+    │   │       │   ├── EmojiSpecs.ts
+    │   │       │   ├── const.ts
+    │   │       │   └── index.ts
+    │   │       ├── EmojiSuggest
+    │   │       │   ├── EmojiHandler.ts
+    │   │       │   ├── EmojiSuggest.ts
+    │   │       │   ├── EmojiSuggestComponent.scss
+    │   │       │   ├── EmojiSuggestComponent.tsx
+    │   │       │   ├── const.ts
+    │   │       │   ├── index.ts
+    │   │       │   ├── types.ts
+    │   │       │   └── utils.ts
+    │   │       └── index.ts
+    │   │   ├── ImgSize
+    │   │       ├── ImagePaste
+    │   │       │   ├── index.ts
+    │   │       │   ├── skeleton.scss
+    │   │       │   ├── skeleton.tsx
+    │   │       │   └── upload.ts
+    │   │       ├── ImageWidget
+    │   │       │   ├── actions.ts
+    │   │       │   ├── index.ts
+    │   │       │   ├── view.scss
+    │   │       │   ├── view.tsx
+    │   │       │   └── widget.tsx
+    │   │       ├── ImgSizeSpecs
+    │   │       │   ├── const.ts
+    │   │       │   └── index.ts
+    │   │       ├── YfmImage.test.ts
+    │   │       ├── actions.ts
+    │   │       ├── const.ts
+    │   │       ├── index.ts
+    │   │       ├── plugins
+    │   │       │   └── ImgSizeNodeView
+    │   │       │   │   ├── ImageForm
+    │   │       │   │       ├── ImageForm.scss
+    │   │       │   │       ├── ImageForm.tsx
+    │   │       │   │       └── index.ts
+    │   │       │   │   ├── ImgNodeView.scss
+    │   │       │   │   ├── ImgSettingsButton.scss
+    │   │       │   │   ├── ImgSettingsButton.tsx
+    │   │       │   │   ├── NodeView.tsx
+    │   │       │   │   └── index.ts
+    │   │       └── utils.ts
+    │   │   ├── Monospace
+    │   │       ├── Monospace.test.ts
+    │   │       ├── MonospaceSpecs
+    │   │       │   └── index.ts
+    │   │       └── index.ts
+    │   │   ├── Video
+    │   │       ├── Video.test.ts
+    │   │       ├── VideoSpecs
+    │   │       │   ├── const.ts
+    │   │       │   ├── index.ts
+    │   │       │   ├── md-video.ts
+    │   │       │   └── utils.ts
+    │   │       ├── actions.ts
+    │   │       ├── const.ts
+    │   │       └── index.ts
+    │   │   ├── YfmConfigs
+    │   │       ├── YfmConfigsSpecs
+    │   │       │   └── index.ts
+    │   │       ├── index.ts
+    │   │       └── yfm.scss
+    │   │   ├── YfmCut
+    │   │       ├── YfmCut.test.ts
+    │   │       ├── YfmCutSpecs
+    │   │       │   ├── const.ts
+    │   │       │   ├── index.ts
+    │   │       │   ├── parser.ts
+    │   │       │   ├── schema.ts
+    │   │       │   └── serializer.ts
+    │   │       ├── actions
+    │   │       │   └── toYfmCut.ts
+    │   │       ├── commands.test.ts
+    │   │       ├── commands.ts
+    │   │       ├── const.ts
+    │   │       ├── index.scss
+    │   │       ├── index.ts
+    │   │       ├── nodeviews
+    │   │       │   ├── yfm-cut-title.scss
+    │   │       │   └── yfm-cut-title.ts
+    │   │       └── plugins
+    │   │       │   ├── active.ts
+    │   │       │   └── auto-open.ts
+    │   │   ├── YfmFile
+    │   │       ├── YfmFile.test.ts
+    │   │       ├── YfmFilePaste
+    │   │       │   ├── index.ts
+    │   │       │   ├── skeleton.scss
+    │   │       │   ├── skeleton.tsx
+    │   │       │   └── upload.ts
+    │   │       ├── YfmFileSpecs
+    │   │       │   ├── const.ts
+    │   │       │   └── index.ts
+    │   │       ├── YfmFileWidget
+    │   │       │   ├── actions.ts
+    │   │       │   ├── index.ts
+    │   │       │   ├── view.scss
+    │   │       │   ├── view.tsx
+    │   │       │   └── widget.tsx
+    │   │       ├── index.scss
+    │   │       ├── index.ts
+    │   │       └── utils.ts
+    │   │   ├── YfmHeading
+    │   │       ├── YfmHeading.test.ts
+    │   │       ├── YfmHeadingSpecs
+    │   │       │   ├── const.ts
+    │   │       │   ├── index.ts
+    │   │       │   ├── markdown
+    │   │       │   │   └── heading-attrs.ts
+    │   │       │   └── utils.ts
+    │   │       ├── actions.ts
+    │   │       ├── commands.ts
+    │   │       ├── const.ts
+    │   │       └── index.ts
+    │   │   ├── YfmNote
+    │   │       ├── YfmNote.test.ts
+    │   │       ├── YfmNoteSpecs
+    │   │       │   ├── const.ts
+    │   │       │   ├── index.ts
+    │   │       │   ├── parser.ts
+    │   │       │   ├── schema.ts
+    │   │       │   ├── serializer.ts
+    │   │       │   └── utils.ts
+    │   │       ├── actions
+    │   │       │   └── toYfmNote.ts
+    │   │       ├── commands.test.ts
+    │   │       ├── commands.ts
+    │   │       ├── const.ts
+    │   │       ├── index.scss
+    │   │       ├── index.ts
+    │   │       ├── plugins
+    │   │       │   └── YfmNoteTooltipPlugin
+    │   │       │   │   ├── index.scss
+    │   │       │   │   └── index.tsx
+    │   │       └── utils.ts
+    │   │   ├── YfmTable
+    │   │       ├── YfmTable.test.ts
+    │   │       ├── YfmTableSpecs
+    │   │       │   ├── const.ts
+    │   │       │   ├── index.ts
+    │   │       │   ├── parser.ts
+    │   │       │   ├── schema.ts
+    │   │       │   ├── serializer.ts
+    │   │       │   └── utils.ts
+    │   │       ├── actions.test.ts
+    │   │       ├── actions.ts
+    │   │       ├── commands
+    │   │       │   ├── backspace.test.ts
+    │   │       │   ├── backspace.ts
+    │   │       │   ├── convert-table.ts
+    │   │       │   ├── goToNextRow.ts
+    │   │       │   └── remove-table.ts
+    │   │       ├── const.ts
+    │   │       ├── index.ts
+    │   │       ├── paste.ts
+    │   │       ├── plugins
+    │   │       │   ├── YfmTableControls
+    │   │       │   │   ├── actions.ts
+    │   │       │   │   ├── buttons.tsx
+    │   │       │   │   ├── view.scss
+    │   │       │   │   ├── view.tsx
+    │   │       │   │   ├── yfmTableCellView.scss
+    │   │       │   │   └── yfmTableCellView.tsx
+    │   │       │   └── yfmTableTransformPastedPlugin.ts
+    │   │       └── utils.ts
+    │   │   ├── YfmTabs
+    │   │       ├── YfmTabs.test.ts
+    │   │       ├── YfmTabsSpecs
+    │   │       │   ├── const.ts
+    │   │       │   ├── index.ts
+    │   │       │   ├── md-plugin.ts
+    │   │       │   ├── parser.ts
+    │   │       │   ├── schema.ts
+    │   │       │   └── serializer.ts
+    │   │       ├── actions.ts
+    │   │       ├── const.ts
+    │   │       ├── icons.ts
+    │   │       ├── index.scss
+    │   │       ├── index.ts
+    │   │       ├── plugins.ts
+    │   │       ├── utils.ts
+    │   │       └── views.ts
+    │   │   ├── index.ts
+    │   │   └── specs.ts
+    ├── forms
+    │   ├── FileForm.tsx
+    │   ├── ImageForm.scss
+    │   ├── ImageForm.tsx
+    │   ├── LinkForm.tsx
+    │   ├── TextInput.tsx
+    │   ├── UrlInputRow.scss
+    │   ├── UrlInputRow.tsx
+    │   ├── base
+    │   │   ├── Form.scss
+    │   │   ├── Form.tsx
+    │   │   ├── FormFooter.scss
+    │   │   ├── FormFooter.tsx
+    │   │   ├── FormLayout.scss
+    │   │   ├── FormLayout.tsx
+    │   │   ├── FormRow.scss
+    │   │   ├── FormRow.tsx
+    │   │   └── index.ts
+    │   ├── components
+    │   │   ├── ButtonAttach.tsx
+    │   │   ├── NumberInput.tsx
+    │   │   └── index.ts
+    │   ├── index.ts
+    │   ├── uploadHints.test.tsx
+    │   └── utils.ts
+    ├── global.d.ts
+    ├── i18n
+    │   ├── action-previews
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── bundle
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── codeblock
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── common
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── empty-row
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── forms
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── gpt
+    │   │   ├── dialog
+    │   │   │   ├── en.json
+    │   │   │   ├── index.ts
+    │   │   │   └── ru.json
+    │   │   ├── errors
+    │   │   │   ├── en.json
+    │   │   │   ├── index.ts
+    │   │   │   └── ru.json
+    │   │   ├── extension
+    │   │   │   ├── en.json
+    │   │   │   ├── index.ts
+    │   │   │   └── ru.json
+    │   │   └── loading
+    │   │   │   ├── en.json
+    │   │   │   ├── index.ts
+    │   │   │   └── ru.json
+    │   ├── hints
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── i18n.ts
+    │   ├── math-hint
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── md-hints
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── menubar
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── placeholder
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── search
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── suggest
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── widgets
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── yfm-block
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── yfm-layout
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   ├── yfm-note
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    │   └── yfm-table
+    │   │   ├── en.json
+    │   │   ├── index.ts
+    │   │   └── ru.json
+    ├── icons
+    │   ├── GPT.tsx
+    │   ├── GPTLoading.tsx
+    │   ├── Mermaid.tsx
+    │   ├── Mono.tsx
+    │   ├── Tabs.tsx
+    │   ├── WysiwygMode.tsx
+    │   └── index.ts
+    ├── index.ts
+    ├── lodash.ts
+    ├── logger.ts
+    ├── markdown-it
+    │   ├── color.ts
+    │   ├── emoji.ts
+    │   ├── ins.ts
+    │   ├── mark.ts
+    │   ├── readme.md
+    │   └── sub.ts
+    ├── markup
+    │   ├── codemirror
+    │   │   ├── autocomplete
+    │   │   │   ├── emptyRow.ts
+    │   │   │   └── index.ts
+    │   │   ├── create.ts
+    │   │   ├── directive-facet.ts
+    │   │   ├── files-upload-facet.ts
+    │   │   ├── files-upload-plugin
+    │   │   │   ├── const.ts
+    │   │   │   ├── effects.ts
+    │   │   │   ├── index.ts
+    │   │   │   ├── plugin.ts
+    │   │   │   ├── utils.ts
+    │   │   │   ├── widget.scss
+    │   │   │   └── widget.tsx
+    │   │   ├── gravity.ts
+    │   │   ├── html-to-markdown
+    │   │   │   ├── __tests__
+    │   │   │   │   ├── converter.test.ts
+    │   │   │   │   └── fixtures
+    │   │   │   │   │   ├── basic-text
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   │   │   ├── code
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   │   │   ├── formatting
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   │   │   ├── header-and-link
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   │   │   ├── headers
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   │   │   ├── image
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   │   │   ├── links-with-formatting
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   │   │   ├── links
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   │   │   ├── lists
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   │   │   ├── multiple-tables
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   │   │   ├── newline
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   │   │   └── tables
+    │   │   │   │   │       ├── input.html
+    │   │   │   │   │       └── output.md
+    │   │   │   ├── converters.ts
+    │   │   │   ├── handlers.ts
+    │   │   │   └── helpers.ts
+    │   │   ├── index.ts
+    │   │   ├── logger-facet.ts
+    │   │   ├── pairing-chars.ts
+    │   │   ├── react-facet.ts
+    │   │   ├── search-plugin
+    │   │   │   ├── plugin.ts
+    │   │   │   └── view
+    │   │   │   │   ├── SearchPopup.scss
+    │   │   │   │   └── SearchPopup.tsx
+    │   │   ├── smart-reindent
+    │   │   │   ├── __tests__
+    │   │   │   │   ├── index.test.ts
+    │   │   │   │   └── utils.test.ts
+    │   │   │   ├── index.ts
+    │   │   │   └── utils.ts
+    │   │   └── yfm.ts
+    │   ├── commands
+    │   │   ├── blocks.ts
+    │   │   ├── code.ts
+    │   │   ├── emptyRow.ts
+    │   │   ├── heading.ts
+    │   │   ├── helpers.ts
+    │   │   ├── index.ts
+    │   │   ├── inline.ts
+    │   │   ├── lists.ts
+    │   │   ├── marks.ts
+    │   │   ├── math.ts
+    │   │   └── yfm.ts
+    │   ├── editor.test.ts
+    │   ├── editor.ts
+    │   └── index.ts
+    ├── modules
+    │   └── toolbars
+    │   │   ├── constants.ts
+    │   │   ├── items.tsx
+    │   │   ├── presets.ts
+    │   │   └── types.ts
+    ├── plugins
+    │   ├── BaseTooltip
+    │   │   ├── index.scss
+    │   │   └── index.tsx
+    │   ├── TooltipButton
+    │   │   ├── TooltipButton.tsx
+    │   │   └── index.tsx
+    │   ├── TooltipSelect
+    │   │   ├── TooltipSelect.tsx
+    │   │   └── index.tsx
+    │   └── index.ts
+    ├── pm
+    │   ├── commands.ts
+    │   ├── history.ts
+    │   ├── inputrules.ts
+    │   ├── keymap.ts
+    │   ├── model.ts
+    │   ├── readme.md
+    │   ├── state.ts
+    │   ├── test-builder.ts
+    │   ├── transform.ts
+    │   ├── utils.ts
+    │   └── view.ts
+    ├── presets
+    │   ├── commonmark-specs.ts
+    │   ├── commonmark.ts
+    │   ├── default-specs.ts
+    │   ├── default.ts
+    │   ├── full-specs.ts
+    │   ├── full.ts
+    │   ├── yfm-specs.ts
+    │   ├── yfm.ts
+    │   ├── zero-specs.ts
+    │   └── zero.ts
+    ├── react-utils
+    │   ├── ErrorBoundary.tsx
+    │   ├── hooks.ts
+    │   ├── index.ts
+    │   ├── react-node-view.tsx
+    │   ├── useAutoFocus.ts
+    │   ├── useNodeEditing.ts
+    │   ├── useNodeHovered.ts
+    │   ├── useNodeResizing.ts
+    │   ├── useSharedEditingState.ts
+    │   └── useSticky.ts
+    ├── shortcuts
+    │   ├── const.ts
+    │   ├── default.ts
+    │   ├── formatter.ts
+    │   ├── index.ts
+    │   └── types.ts
+    ├── styles
+    │   ├── _zindex.scss
+    │   ├── list.scss
+    │   ├── markdown.scss
+    │   ├── mixins.scss
+    │   ├── styles.scss
+    │   ├── yc-colors.scss
+    │   └── yc-file.scss
+    ├── table-utils
+    │   ├── commands
+    │   │   ├── addColumnAfter.ts
+    │   │   ├── addRowAfter.ts
+    │   │   ├── appendColumn.ts
+    │   │   ├── appendRow.ts
+    │   │   ├── goToNextCell.ts
+    │   │   ├── index.ts
+    │   │   ├── removeColumn.ts
+    │   │   ├── removeCurrentColumn.ts
+    │   │   ├── removeCurrentRow.ts
+    │   │   ├── removeRow.ts
+    │   │   ├── transpose.test.ts
+    │   │   └── transpose.ts
+    │   ├── const.ts
+    │   ├── helpers.ts
+    │   ├── index.ts
+    │   ├── table-desc.ts
+    │   └── utils.ts
+    ├── toolbar
+    │   ├── FlexToolbar.scss
+    │   ├── FlexToolbar.tsx
+    │   ├── PreviewTooltip.scss
+    │   ├── PreviewTooltip.tsx
+    │   ├── Toolbar.scss
+    │   ├── Toolbar.tsx
+    │   ├── ToolbarButton.scss
+    │   ├── ToolbarButton.tsx
+    │   ├── ToolbarButtonPopup.tsx
+    │   ├── ToolbarGroup.scss
+    │   ├── ToolbarGroup.tsx
+    │   ├── ToolbarListButton.scss
+    │   ├── ToolbarListButton.tsx
+    │   ├── const.ts
+    │   ├── flexible.tsx
+    │   ├── index.ts
+    │   └── types.ts
+    ├── types
+    │   └── spec.ts
+    ├── utils
+    │   ├── actions.ts
+    │   ├── autocomplete-popup.ts
+    │   ├── carousel
+    │   │   ├── ArrayCarousel.test.ts
+    │   │   ├── ArrayCarousel.ts
+    │   │   ├── IndexCarousel.test.ts
+    │   │   ├── IndexCarousel.ts
+    │   │   └── index.ts
+    │   ├── clipboard.ts
+    │   ├── descedants.ts
+    │   ├── directive.ts
+    │   ├── ecapeRegexp.ts
+    │   ├── entity-id.ts
+    │   ├── event-emitter.test.ts
+    │   ├── event-emitter.ts
+    │   ├── facet.ts
+    │   ├── get-proportional-size.ts
+    │   ├── getSanitize.ts
+    │   ├── handlers.ts
+    │   ├── helpers.ts
+    │   ├── index.ts
+    │   ├── input-state.ts
+    │   ├── inputrules.ts
+    │   ├── keymap.ts
+    │   ├── marks.ts
+    │   ├── node-children.ts
+    │   ├── nodes.test.ts
+    │   ├── nodes.ts
+    │   ├── placeholder.ts
+    │   ├── platform.ts
+    │   ├── remove-node.ts
+    │   ├── rulebuilders.ts
+    │   ├── schema.ts
+    │   ├── selection.ts
+    │   ├── serialize-for-clipboard.ts
+    │   ├── sync-scroll.ts
+    │   └── upload.ts
+    ├── version.ts
+    └── view
+    │   ├── README.md
+    │   ├── components
+    │       ├── YfmHtml
+    │       │   ├── YfmStaticView.tsx
+    │       │   └── index.ts
+    │       └── index.ts
+    │   ├── hocs
+    │       ├── withLatex
+    │       │   ├── index.tsx
+    │       │   ├── types.ts
+    │       │   └── useLatexRuntime.ts
+    │       ├── withMermaid
+    │       │   ├── index.tsx
+    │       │   ├── types.ts
+    │       │   └── useMermaidRuntime.ts
+    │       └── withYfmHtml
+    │       │   ├── index.tsx
+    │       │   ├── types.ts
+    │       │   ├── useYfmHtmlBlockRuntime.ts
+    │       │   └── utils.ts
+    │   ├── hooks
+    │       ├── index.ts
+    │       ├── useFilesGallery
+    │       │   ├── README.md
+    │       │   ├── constants.ts
+    │       │   ├── index.ts
+    │       │   ├── types.ts
+    │       │   └── useFilesGallery.tsx
+    │       └── useYfmShowElemWithId
+    │       │   ├── index.ts
+    │       │   └── useYfmShowElemWithId.ts
+    │   ├── index.ts
+    │   └── types
+    │       └── index.ts
+├── tests
+    ├── dispatch-event.ts
+    ├── esbuild-test
+    │   ├── esbuild-tester.js
+    │   ├── esbuild-to-test.mjs
+    │   └── node-module-alias-fallback.js
+    ├── event-mock.ts
+    ├── parse-dom.ts
+    ├── playwright
+    │   ├── core
+    │   │   ├── actions.ts
+    │   │   ├── editor.ts
+    │   │   ├── expectScreenshot.ts
+    │   │   ├── helpers.ts
+    │   │   ├── index.ts
+    │   │   ├── mount.tsx
+    │   │   ├── types.ts
+    │   │   └── wait.ts
+    │   ├── playwright.config.ts
+    │   ├── playwright
+    │   │   ├── index.html
+    │   │   └── index.tsx
+    │   ├── slow-tests-reporter.ts
+    │   └── templates
+    │   │   └── Extension.template.tsx
+    ├── pollyfills.ts
+    ├── sameMarkup.ts
+    ├── setup.ts
+    ├── toMatchNode.ts
+    ├── utils.ts
+    └── visual-tests
+    │   ├── MarkdownExtensions.helpers.tsx
+    │   ├── MarkdownExtensions.visual.test.tsx
+    │   ├── Presets.helpers.tsx
+    │   ├── Presets.visual.test.tsx
+    │   ├── YfmExtensions.helpers.tsx
+    │   ├── YfmExtensions.visual.test.tsx
+    │   ├── __snapshots__
+    │       ├── Clipboard.visual.test.tsx-snapshots
+    │       │   ├── Clipboard-MARKUP-mode-should-paste-link-to-image-as-image-markup-dark-chromium-linux.png
+    │       │   ├── Clipboard-MARKUP-mode-should-paste-link-to-image-as-image-markup-dark-webkit-linux.png
+    │       │   ├── Clipboard-MARKUP-mode-should-paste-link-to-image-as-image-markup-light-chromium-linux.png
+    │       │   ├── Clipboard-MARKUP-mode-should-paste-link-to-image-as-image-markup-light-webkit-linux.png
+    │       │   ├── Clipboard-MARKUP-mode-should-reindent-pasted-markup-dark-chromium-linux.png
+    │       │   ├── Clipboard-MARKUP-mode-should-reindent-pasted-markup-dark-webkit-linux.png
+    │       │   ├── Clipboard-MARKUP-mode-should-reindent-pasted-markup-light-chromium-linux.png
+    │       │   ├── Clipboard-MARKUP-mode-should-reindent-pasted-markup-light-webkit-linux.png
+    │       │   ├── Clipboard-Paste-HTML-should-parse-HTML-in-markup-mode-dark-chromium-linux.png
+    │       │   ├── Clipboard-Paste-HTML-should-parse-HTML-in-markup-mode-dark-webkit-linux.png
+    │       │   ├── Clipboard-Paste-HTML-should-parse-HTML-in-markup-mode-light-chromium-linux.png
+    │       │   ├── Clipboard-Paste-HTML-should-parse-HTML-in-markup-mode-light-webkit-linux.png
+    │       │   ├── Clipboard-Paste-HTML-should-parse-HTML-in-wysiwyg-mode-dark-chromium-linux.png
+    │       │   ├── Clipboard-Paste-HTML-should-parse-HTML-in-wysiwyg-mode-dark-webkit-linux.png
+    │       │   ├── Clipboard-Paste-HTML-should-parse-HTML-in-wysiwyg-mode-light-chromium-linux.png
+    │       │   ├── Clipboard-Paste-HTML-should-parse-HTML-in-wysiwyg-mode-light-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-insert-into-inline-code-without-formatting-dark-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-insert-into-inline-code-without-formatting-dark-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-insert-into-inline-code-without-formatting-light-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-insert-into-inline-code-without-formatting-light-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-insert-link-from-ios-safari-share-button-dark-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-insert-link-from-ios-safari-share-button-dark-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-insert-link-from-ios-safari-share-button-light-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-insert-link-from-ios-safari-share-button-light-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-parse-markdown-markup-dark-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-parse-markdown-markup-dark-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-parse-markdown-markup-light-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-parse-markdown-markup-light-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-parse-pasting-text-as-markdown-markup-dark-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-parse-pasting-text-as-markdown-markup-dark-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-parse-pasting-text-as-markdown-markup-light-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-parse-pasting-text-as-markdown-markup-light-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-paste-to-code-block-without-as-is-dark-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-paste-to-code-block-without-as-is-dark-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-paste-to-code-block-without-as-is-light-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-paste-to-code-block-without-as-is-light-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-replace-selected-text-from-code-block-with-link-as-text-dark-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-replace-selected-text-from-code-block-with-link-as-text-dark-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-replace-selected-text-from-code-block-with-link-as-text-light-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-replace-selected-text-from-code-block-with-link-as-text-light-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-wrap-text-to-link-from-clipboard-dark-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-wrap-text-to-link-from-clipboard-dark-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-wrap-text-to-link-from-clipboard-light-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-Paste-should-wrap-text-to-link-from-clipboard-light-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-should-copy-and-paste-with-preserve-markup-dark-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-should-copy-and-paste-with-preserve-markup-dark-webkit-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-should-copy-and-paste-with-preserve-markup-light-chromium-linux.png
+    │       │   ├── Clipboard-WYSIWYG-mode-should-copy-and-paste-with-preserve-markup-light-webkit-linux.png
+    │       │   ├── Clipboard-should-copy-from-markup-mode-and-paste-formatted-to-wysiwyg-dark-chromium-linux.png
+    │       │   ├── Clipboard-should-copy-from-markup-mode-and-paste-formatted-to-wysiwyg-light-chromium-linux.png
+    │       │   ├── Clipboard-should-copy-from-wysiwyg-and-paste-formatted-to-markup-mode-dark-chromium-linux.png
+    │       │   └── Clipboard-should-copy-from-wysiwyg-and-paste-formatted-to-markup-mode-light-chromium-linux.png
+    │       ├── Colorify.visual.test.tsx-snapshots
+    │       │   ├── Colorify-specific-should-escape-parentheses-markup-dark-chromium-linux.png
+    │       │   ├── Colorify-specific-should-escape-parentheses-markup-dark-webkit-linux.png
+    │       │   ├── Colorify-specific-should-escape-parentheses-markup-light-chromium-linux.png
+    │       │   ├── Colorify-specific-should-escape-parentheses-markup-light-webkit-linux.png
+    │       │   ├── Colorify-specific-should-escape-parentheses-wysiwyg-dark-chromium-linux.png
+    │       │   ├── Colorify-specific-should-escape-parentheses-wysiwyg-dark-webkit-linux.png
+    │       │   ├── Colorify-specific-should-escape-parentheses-wysiwyg-light-chromium-linux.png
+    │       │   └── Colorify-specific-should-escape-parentheses-wysiwyg-light-webkit-linux.png
+    │       ├── Cut.visual.test.tsx-snapshots
+    │       │   ├── Cut-specific-should-cut-inside-open-second-cut-wysiwyg-dark-chromium-linux.png
+    │       │   ├── Cut-specific-should-cut-inside-open-second-cut-wysiwyg-dark-webkit-linux.png
+    │       │   ├── Cut-specific-should-cut-inside-open-second-cut-wysiwyg-light-chromium-linux.png
+    │       │   ├── Cut-specific-should-cut-inside-open-second-cut-wysiwyg-light-webkit-linux.png
+    │       │   ├── Cut-specific-should-open-second-cut-in-preview-markup-dark-chromium-linux.png
+    │       │   ├── Cut-specific-should-open-second-cut-in-preview-markup-dark-webkit-linux.png
+    │       │   ├── Cut-specific-should-open-second-cut-in-preview-markup-light-chromium-linux.png
+    │       │   ├── Cut-specific-should-open-second-cut-in-preview-markup-light-webkit-linux.png
+    │       │   ├── Cut-specific-should-open-second-cut-wysiwyg-dark-chromium-linux.png
+    │       │   ├── Cut-specific-should-open-second-cut-wysiwyg-dark-webkit-linux.png
+    │       │   ├── Cut-specific-should-open-second-cut-wysiwyg-light-chromium-linux.png
+    │       │   └── Cut-specific-should-open-second-cut-wysiwyg-light-webkit-linux.png
+    │       ├── Experimental.visual.test.tsx-snapshots
+    │       │   ├── Empty-rows-MARKUP-mode-markup-should-show-autocomplete-result-dark-chromium-linux.png
+    │       │   ├── Empty-rows-MARKUP-mode-markup-should-show-autocomplete-result-dark-webkit-linux.png
+    │       │   ├── Empty-rows-MARKUP-mode-markup-should-show-autocomplete-result-light-chromium-linux.png
+    │       │   ├── Empty-rows-MARKUP-mode-markup-should-show-autocomplete-result-light-webkit-linux.png
+    │       │   ├── Empty-rows-MARKUP-mode-markup-should-show-autocomplete-tooltip-dark-chromium-linux.png
+    │       │   ├── Empty-rows-MARKUP-mode-markup-should-show-autocomplete-tooltip-dark-webkit-linux.png
+    │       │   ├── Empty-rows-MARKUP-mode-markup-should-show-autocomplete-tooltip-light-chromium-linux.png
+    │       │   ├── Empty-rows-MARKUP-mode-markup-should-show-autocomplete-tooltip-light-webkit-linux.png
+    │       │   ├── Empty-rows-WYSIWYG-mode-wysiwyg-should-preserve-empty-rows-empty-dark-chromium-linux.png
+    │       │   ├── Empty-rows-WYSIWYG-mode-wysiwyg-should-preserve-empty-rows-empty-dark-webkit-linux.png
+    │       │   ├── Empty-rows-WYSIWYG-mode-wysiwyg-should-preserve-empty-rows-empty-light-chromium-linux.png
+    │       │   ├── Empty-rows-WYSIWYG-mode-wysiwyg-should-preserve-empty-rows-empty-light-webkit-linux.png
+    │       │   ├── Empty-rows-WYSIWYG-mode-wysiwyg-should-preserve-empty-rows-preserve-dark-chromium-linux.png
+    │       │   ├── Empty-rows-WYSIWYG-mode-wysiwyg-should-preserve-empty-rows-preserve-dark-webkit-linux.png
+    │       │   ├── Empty-rows-WYSIWYG-mode-wysiwyg-should-preserve-empty-rows-preserve-light-chromium-linux.png
+    │       │   ├── Empty-rows-WYSIWYG-mode-wysiwyg-should-preserve-empty-rows-preserve-light-webkit-linux.png
+    │       │   ├── Preserve-markup-formatting-should-preserve-markup-formatting-for-yfm-table-table-dark-chromium-linux.png
+    │       │   ├── Preserve-markup-formatting-should-preserve-markup-formatting-for-yfm-table-table-dark-webkit-linux.png
+    │       │   ├── Preserve-markup-formatting-should-preserve-markup-formatting-for-yfm-table-table-light-chromium-linux.png
+    │       │   └── Preserve-markup-formatting-should-preserve-markup-formatting-for-yfm-table-table-light-webkit-linux.png
+    │       ├── File.visual.test.tsx-snapshots
+    │       │   ├── File-insert-should-insert-via-toolbar-wysiwyg-dark-chromium-linux.png
+    │       │   ├── File-insert-should-insert-via-toolbar-wysiwyg-dark-webkit-linux.png
+    │       │   ├── File-insert-should-insert-via-toolbar-wysiwyg-light-chromium-linux.png
+    │       │   ├── File-insert-should-insert-via-toolbar-wysiwyg-light-webkit-linux.png
+    │       │   ├── File-mode-switch-should-remain-after-mode-switch-wysiwyg-markup-dark-chromium-linux.png
+    │       │   ├── File-mode-switch-should-remain-after-mode-switch-wysiwyg-markup-dark-webkit-linux.png
+    │       │   ├── File-mode-switch-should-remain-after-mode-switch-wysiwyg-markup-light-chromium-linux.png
+    │       │   └── File-mode-switch-should-remain-after-mode-switch-wysiwyg-markup-light-webkit-linux.png
+    │       ├── Image.visual.test.tsx-snapshots
+    │       │   ├── Images-insert-should-insert-via-toolbar-wysiwyg-dark-chromium-linux.png
+    │       │   ├── Images-insert-should-insert-via-toolbar-wysiwyg-dark-webkit-linux.png
+    │       │   ├── Images-insert-should-insert-via-toolbar-wysiwyg-light-chromium-linux.png
+    │       │   ├── Images-insert-should-insert-via-toolbar-wysiwyg-light-webkit-linux.png
+    │       │   ├── Images-mode-switch-should-remain-after-mode-switch-wysiwyg-markup-dark-chromium-linux.png
+    │       │   ├── Images-mode-switch-should-remain-after-mode-switch-wysiwyg-markup-dark-webkit-linux.png
+    │       │   ├── Images-mode-switch-should-remain-after-mode-switch-wysiwyg-markup-light-chromium-linux.png
+    │       │   ├── Images-mode-switch-should-remain-after-mode-switch-wysiwyg-markup-light-webkit-linux.png
+    │       │   ├── Images-specific-should-change-image-size-wysiwyg-dark-chromium-linux.png
+    │       │   ├── Images-specific-should-change-image-size-wysiwyg-edit-popup-dark-chromium-linux.png
+    │       │   ├── Images-specific-should-change-image-size-wysiwyg-edit-popup-light-chromium-linux.png
+    │       │   └── Images-specific-should-change-image-size-wysiwyg-light-chromium-linux.png
+    │       ├── Link.visual.test.tsx-snapshots
+    │       │   ├── Link-specific-should-open-edit-popup-on-link-click-wysiwyg-dark-chromium-linux.png
+    │       │   ├── Link-specific-should-open-edit-popup-on-link-click-wysiwyg-dark-webkit-linux.png
+    │       │   ├── Link-specific-should-open-edit-popup-on-link-click-wysiwyg-light-chromium-linux.png
+    │       │   └── Link-specific-should-open-edit-popup-on-link-click-wysiwyg-light-webkit-linux.png
+    │       ├── Lists.visual.test.tsx-snapshots
+    │       │   ├── Bullet-lists-specific-should-lift-list-item-wysiwyg-dark-chromium-linux.png
+    │       │   ├── Bullet-lists-specific-should-lift-list-item-wysiwyg-dark-webkit-linux.png
+    │       │   ├── Bullet-lists-specific-should-lift-list-item-wysiwyg-light-chromium-linux.png
+    │       │   ├── Bullet-lists-specific-should-lift-list-item-wysiwyg-light-webkit-linux.png
+    │       │   ├── Bullet-lists-specific-should-sink-list-item-markup-dark-chromium-linux.png
+    │       │   ├── Bullet-lists-specific-should-sink-list-item-markup-dark-webkit-linux.png
+    │       │   ├── Bullet-lists-specific-should-sink-list-item-markup-light-chromium-linux.png
+    │       │   ├── Bullet-lists-specific-should-sink-list-item-markup-light-webkit-linux.png
+    │       │   ├── Bullet-lists-specific-should-sink-list-item-wysiwyg-dark-chromium-linux.png
+    │       │   ├── Bullet-lists-specific-should-sink-list-item-wysiwyg-dark-webkit-linux.png
+    │       │   ├── Bullet-lists-specific-should-sink-list-item-wysiwyg-light-chromium-linux.png
+    │       │   ├── Bullet-lists-specific-should-sink-list-item-wysiwyg-light-webkit-linux.png
+    │       │   ├── Ordered-lists-specific-should-lift-list-item-wysiwyg-dark-chromium-linux.png
+    │       │   ├── Ordered-lists-specific-should-lift-list-item-wysiwyg-dark-webkit-linux.png
+    │       │   ├── Ordered-lists-specific-should-lift-list-item-wysiwyg-light-chromium-linux.png
+    │       │   ├── Ordered-lists-specific-should-lift-list-item-wysiwyg-light-webkit-linux.png
+    │       │   ├── Ordered-lists-specific-should-sink-list-item-markup-dark-chromium-linux.png
+    │       │   ├── Ordered-lists-specific-should-sink-list-item-markup-dark-webkit-linux.png
+    │       │   ├── Ordered-lists-specific-should-sink-list-item-markup-light-chromium-linux.png
+    │       │   ├── Ordered-lists-specific-should-sink-list-item-markup-light-webkit-linux.png
+    │       │   ├── Ordered-lists-specific-should-sink-list-item-wysiwyg-dark-chromium-linux.png
+    │       │   ├── Ordered-lists-specific-should-sink-list-item-wysiwyg-dark-webkit-linux.png
+    │       │   ├── Ordered-lists-specific-should-sink-list-item-wysiwyg-light-chromium-linux.png
+    │       │   └── Ordered-lists-specific-should-sink-list-item-wysiwyg-light-webkit-linux.png
+    │       ├── MarkdownExtensions.visual.test.tsx-snapshots
+    │       │   ├── Extensions-Markdown-Blockquotes-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Blockquotes-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Blockquotes-light-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Blockquotes-light-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Code-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Code-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Code-light-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Code-light-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Definition-list-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Definition-list-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Definition-list-light-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Definition-list-light-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Emojis-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Emojis-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Emojis-light-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Emojis-light-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Emphasis-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Emphasis-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Emphasis-light-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Emphasis-light-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Heading-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Heading-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Heading-light-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Heading-light-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Horizontal-Rules-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Horizontal-Rules-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Horizontal-Rules-light-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Horizontal-Rules-light-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Images-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Images-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Images-light-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Images-light-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Links-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Links-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Links-light-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Links-light-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Lists-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Lists-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Lists-light-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Lists-light-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Subscript-Superscript-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Subscript-Superscript-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Subscript-Superscript-light-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Subscript-Superscript-light-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Tables-dark-chromium-linux.png
+    │       │   ├── Extensions-Markdown-Tables-dark-webkit-linux.png
+    │       │   ├── Extensions-Markdown-Tables-light-chromium-linux.png
+    │       │   └── Extensions-Markdown-Tables-light-webkit-linux.png
+    │       ├── Note.visual.test.tsx-snapshots
+    │       │   ├── Note-specific-should-update-styles-independently-for-nested-and-parent-notes-nested-note-is-alert-dark-chromium-linux.png
+    │       │   ├── Note-specific-should-update-styles-independently-for-nested-and-parent-notes-nested-note-is-alert-dark-webkit-linux.png
+    │       │   ├── Note-specific-should-update-styles-independently-for-nested-and-parent-notes-nested-note-is-alert-light-chromium-linux.png
+    │       │   ├── Note-specific-should-update-styles-independently-for-nested-and-parent-notes-nested-note-is-alert-light-webkit-linux.png
+    │       │   ├── Note-specific-should-update-styles-independently-for-nested-and-parent-notes-parent-note-is-info-dark-chromium-linux.png
+    │       │   ├── Note-specific-should-update-styles-independently-for-nested-and-parent-notes-parent-note-is-info-dark-webkit-linux.png
+    │       │   ├── Note-specific-should-update-styles-independently-for-nested-and-parent-notes-parent-note-is-info-light-chromium-linux.png
+    │       │   └── Note-specific-should-update-styles-independently-for-nested-and-parent-notes-parent-note-is-info-light-webkit-linux.png
+    │       ├── Presets.visual.test.tsx-snapshots
+    │       │   ├── Extensions-Presets-Common-Mark-dark-chromium-linux.png
+    │       │   ├── Extensions-Presets-Common-Mark-dark-webkit-linux.png
+    │       │   ├── Extensions-Presets-Common-Mark-light-chromium-linux.png
+    │       │   ├── Extensions-Presets-Common-Mark-light-webkit-linux.png
+    │       │   ├── Extensions-Presets-Custom-dark-chromium-linux.png
+    │       │   ├── Extensions-Presets-Custom-dark-webkit-linux.png
+    │       │   ├── Extensions-Presets-Custom-light-chromium-linux.png
+    │       │   ├── Extensions-Presets-Custom-light-webkit-linux.png
+    │       │   ├── Extensions-Presets-Default-dark-chromium-linux.png
+    │       │   ├── Extensions-Presets-Default-dark-webkit-linux.png
+    │       │   ├── Extensions-Presets-Default-light-chromium-linux.png
+    │       │   ├── Extensions-Presets-Default-light-webkit-linux.png
+    │       │   ├── Extensions-Presets-Full-dark-chromium-linux.png
+    │       │   ├── Extensions-Presets-Full-dark-webkit-linux.png
+    │       │   ├── Extensions-Presets-Full-light-chromium-linux.png
+    │       │   ├── Extensions-Presets-Full-light-webkit-linux.png
+    │       │   ├── Extensions-Presets-YFM-dark-chromium-linux.png
+    │       │   ├── Extensions-Presets-YFM-dark-webkit-linux.png
+    │       │   ├── Extensions-Presets-YFM-light-chromium-linux.png
+    │       │   ├── Extensions-Presets-YFM-light-webkit-linux.png
+    │       │   ├── Extensions-Presets-Zero-dark-chromium-linux.png
+    │       │   ├── Extensions-Presets-Zero-dark-webkit-linux.png
+    │       │   ├── Extensions-Presets-Zero-light-chromium-linux.png
+    │       │   └── Extensions-Presets-Zero-light-webkit-linux.png
+    │       ├── Toolbar.visual.test.tsx-snapshots
+    │       │   ├── Toolbar-should-have-same-set-of-actions-in-both-modes-in-markup-mode-dark-chromium-linux.png
+    │       │   ├── Toolbar-should-have-same-set-of-actions-in-both-modes-in-markup-mode-dark-webkit-linux.png
+    │       │   ├── Toolbar-should-have-same-set-of-actions-in-both-modes-in-markup-mode-light-chromium-linux.png
+    │       │   ├── Toolbar-should-have-same-set-of-actions-in-both-modes-in-markup-mode-light-webkit-linux.png
+    │       │   ├── Toolbar-should-have-same-set-of-actions-in-both-modes-in-wysiwyg-mode-dark-chromium-linux.png
+    │       │   ├── Toolbar-should-have-same-set-of-actions-in-both-modes-in-wysiwyg-mode-dark-webkit-linux.png
+    │       │   ├── Toolbar-should-have-same-set-of-actions-in-both-modes-in-wysiwyg-mode-light-chromium-linux.png
+    │       │   ├── Toolbar-should-have-same-set-of-actions-in-both-modes-in-wysiwyg-mode-light-webkit-linux.png
+    │       │   ├── Toolbar-should-hide-actions-at-small-width-markup-width-small-light-chromium-linux.png
+    │       │   ├── Toolbar-should-hide-actions-at-small-width-markup-width-small-light-webkit-linux.png
+    │       │   ├── Toolbar-should-hide-actions-at-small-width-width-large-light-chromium-linux.png
+    │       │   ├── Toolbar-should-hide-actions-at-small-width-width-large-light-webkit-linux.png
+    │       │   ├── Toolbar-should-hide-actions-at-small-width-width-medium-light-chromium-linux.png
+    │       │   ├── Toolbar-should-hide-actions-at-small-width-width-medium-light-webkit-linux.png
+    │       │   ├── Toolbar-should-hide-actions-at-small-width-width-small-light-chromium-linux.png
+    │       │   ├── Toolbar-should-hide-actions-at-small-width-width-small-light-webkit-linux.png
+    │       │   ├── Toolbar-should-hide-all-actions-to-more-menu-in-markup-mode-dark-chromium-linux.png
+    │       │   ├── Toolbar-should-hide-all-actions-to-more-menu-in-markup-mode-dark-webkit-linux.png
+    │       │   ├── Toolbar-should-hide-all-actions-to-more-menu-in-markup-mode-light-chromium-linux.png
+    │       │   ├── Toolbar-should-hide-all-actions-to-more-menu-in-markup-mode-light-webkit-linux.png
+    │       │   ├── Toolbar-should-hide-all-actions-to-more-menu-in-wysiwyg-mode-dark-chromium-linux.png
+    │       │   ├── Toolbar-should-hide-all-actions-to-more-menu-in-wysiwyg-mode-dark-webkit-linux.png
+    │       │   ├── Toolbar-should-hide-all-actions-to-more-menu-in-wysiwyg-mode-light-chromium-linux.png
+    │       │   └── Toolbar-should-hide-all-actions-to-more-menu-in-wysiwyg-mode-light-webkit-linux.png
+    │       ├── YfmExtensions.visual.test.tsx-snapshots
+    │       │   ├── Extensions-YFM-Folding-Headings-dark-chromium-linux.png
+    │       │   ├── Extensions-YFM-Folding-Headings-dark-webkit-linux.png
+    │       │   ├── Extensions-YFM-Folding-Headings-light-chromium-linux.png
+    │       │   ├── Extensions-YFM-Folding-Headings-light-webkit-linux.png
+    │       │   ├── Extensions-YFM-LaTeX-Formulas-dark-chromium-linux.png
+    │       │   ├── Extensions-YFM-LaTeX-Formulas-dark-webkit-linux.png
+    │       │   ├── Extensions-YFM-LaTeX-Formulas-light-chromium-linux.png
+    │       │   ├── Extensions-YFM-LaTeX-Formulas-light-webkit-linux.png
+    │       │   ├── Extensions-YFM-Mermaid-diagram-dark-chromium-linux.png
+    │       │   ├── Extensions-YFM-Mermaid-diagram-dark-webkit-linux.png
+    │       │   ├── Extensions-YFM-Mermaid-diagram-light-chromium-linux.png
+    │       │   ├── Extensions-YFM-Mermaid-diagram-light-webkit-linux.png
+    │       │   ├── Extensions-YFM-Task-lists-dark-chromium-linux.png
+    │       │   ├── Extensions-YFM-Task-lists-dark-webkit-linux.png
+    │       │   ├── Extensions-YFM-Task-lists-light-chromium-linux.png
+    │       │   ├── Extensions-YFM-Task-lists-light-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-Cut-dark-chromium-linux.png
+    │       │   ├── Extensions-YFM-YFM-Cut-dark-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-Cut-light-chromium-linux.png
+    │       │   ├── Extensions-YFM-YFM-Cut-light-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-File-dark-chromium-linux.png
+    │       │   ├── Extensions-YFM-YFM-File-dark-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-File-light-chromium-linux.png
+    │       │   ├── Extensions-YFM-YFM-File-light-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-HTML-dark-chromium-linux.png
+    │       │   ├── Extensions-YFM-YFM-HTML-dark-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-HTML-light-chromium-linux.png
+    │       │   ├── Extensions-YFM-YFM-HTML-light-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-Notes-dark-chromium-linux.png
+    │       │   ├── Extensions-YFM-YFM-Notes-dark-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-Notes-light-chromium-linux.png
+    │       │   ├── Extensions-YFM-YFM-Notes-light-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-Table-dark-chromium-linux.png
+    │       │   ├── Extensions-YFM-YFM-Table-dark-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-Table-light-chromium-linux.png
+    │       │   ├── Extensions-YFM-YFM-Table-light-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-Tabs-dark-chromium-linux.png
+    │       │   ├── Extensions-YFM-YFM-Tabs-dark-webkit-linux.png
+    │       │   ├── Extensions-YFM-YFM-Tabs-light-chromium-linux.png
+    │       │   └── Extensions-YFM-YFM-Tabs-light-webkit-linux.png
+    │       └── YfmTable.visual.test.tsx-snapshots
+    │       │   ├── YfmTable-insert-should-insert-via-command-menu-in-wysiwyg-mode-dark-chromium-linux.png
+    │       │   ├── YfmTable-insert-should-insert-via-command-menu-in-wysiwyg-mode-dark-webkit-linux.png
+    │       │   ├── YfmTable-insert-should-insert-via-command-menu-in-wysiwyg-mode-light-chromium-linux.png
+    │       │   ├── YfmTable-insert-should-insert-via-command-menu-in-wysiwyg-mode-light-webkit-linux.png
+    │       │   ├── YfmTable-insert-should-insert-via-toolbar-in-markup-mode-dark-chromium-linux.png
+    │       │   ├── YfmTable-insert-should-insert-via-toolbar-in-markup-mode-dark-webkit-linux.png
+    │       │   ├── YfmTable-insert-should-insert-via-toolbar-in-markup-mode-light-chromium-linux.png
+    │       │   ├── YfmTable-insert-should-insert-via-toolbar-in-markup-mode-light-webkit-linux.png
+    │       │   ├── YfmTable-insert-should-insert-via-toolbar-in-wysiwyg-mode-dark-chromium-linux.png
+    │       │   ├── YfmTable-insert-should-insert-via-toolbar-in-wysiwyg-mode-dark-webkit-linux.png
+    │       │   ├── YfmTable-insert-should-insert-via-toolbar-in-wysiwyg-mode-light-chromium-linux.png
+    │       │   ├── YfmTable-insert-should-insert-via-toolbar-in-wysiwyg-mode-light-webkit-linux.png
+    │       │   ├── YfmTable-should-add-column-via-click-on-vertical-plus-button-wysiwyg-dark-chromium-linux.png
+    │       │   ├── YfmTable-should-add-column-via-click-on-vertical-plus-button-wysiwyg-dark-webkit-linux.png
+    │       │   ├── YfmTable-should-add-column-via-click-on-vertical-plus-button-wysiwyg-light-chromium-linux.png
+    │       │   ├── YfmTable-should-add-column-via-click-on-vertical-plus-button-wysiwyg-light-webkit-linux.png
+    │       │   ├── YfmTable-should-add-row-via-click-on-horizontal-plus-button-wysiwyg-dark-chromium-linux.png
+    │       │   ├── YfmTable-should-add-row-via-click-on-horizontal-plus-button-wysiwyg-dark-webkit-linux.png
+    │       │   ├── YfmTable-should-add-row-via-click-on-horizontal-plus-button-wysiwyg-light-chromium-linux.png
+    │       │   └── YfmTable-should-add-row-via-click-on-horizontal-plus-button-wysiwyg-light-webkit-linux.png
+    │   ├── playground
+    │       ├── Bold.visual.test.tsx
+    │       ├── Clipboard.visual.test.tsx
+    │       ├── Colorify.visual.test.tsx
+    │       ├── Cut.visual.test.tsx
+    │       ├── Experimental.visual.test.tsx
+    │       ├── File.visual.test.tsx
+    │       ├── Headings.visual.test.tsx
+    │       ├── Image.visual.test.tsx
+    │       ├── Italic.visual.test.tsx
+    │       ├── Link.visual.test.tsx
+    │       ├── Lists.visual.test.tsx
+    │       ├── Marked.visual.test.tsx
+    │       ├── Monospace.visual.test.tsx
+    │       ├── Note.visual.test.tsx
+    │       ├── Playground.helpers.tsx
+    │       ├── Strikethrough.visual.test.tsx
+    │       ├── Toolbar.visual.test.tsx
+    │       ├── Underline.visual.test.tsx
+    │       ├── UndoRedo.visual.test.tsx
+    │       └── YfmTable.visual.test.tsx
+    │   └── public
+    │       └── assets
+    │           └── test-image.jpg
+└── tsconfig.json
+
+/.editorconfig:
+--------------------------------------------------------------------------------
+ 1 | root = true
+ 2 |
+ 3 | [*]
+ 4 | indent_style = space
+ 5 | indent_size = 4
+ 6 | end_of_line = lf
+ 7 | charset = utf-8
+ 8 | trim_trailing_whitespace = true
+ 9 | insert_final_newline = true
+10 |
+11 | [{*.json,*.yml,*.md}]
+12 | indent_style = space
+13 | indent_size = 2
+14 |
+15 | [GNUmakefile]
+16 | indent_style = tab
+17 | indent_size = 4
+
+--------------------------------------------------------------------------------
+/.eslintignore:
+--------------------------------------------------------------------------------
+1 | build
+2 | coverage
+3 | node_modules
+4 | storybook-static
+
+--------------------------------------------------------------------------------
+/.github/ISSUE_TEMPLATE/feature_request.md:
+--------------------------------------------------------------------------------
+ 1 | ---
+ 2 | name: Feature request
+ 3 | about: Suggest an idea for this project
+ 4 | title: ''
+ 5 | labels: enhancement
+ 6 | assignees: ''
+ 7 |
+ 8 | ---
+ 9 |
+10 | ### Description
+11 | A clear and concise description of what the problem is.
+12 |
+13 | ### Proposal
+14 | A clear and concise description of what you want to happen.
+
+--------------------------------------------------------------------------------
+/.github/workflows/pr-preview-build.yml:
+--------------------------------------------------------------------------------
+ 1 | name: PR Preview Build
+ 2 |
+ 3 | on:
+ 4 |   pull_request:
+ 5 |
+ 6 | jobs:
+ 7 |   build:
+ 8 |     name: Build
+ 9 |     runs-on: ubuntu-latest
+10 |     steps:
+11 |     - uses: gravity-ui/preview-build-action@v2
+12 |       with:
+13 |         node-version: 18
+
+--------------------------------------------------------------------------------
+/.gitignore:
+--------------------------------------------------------------------------------
+ 1 | #npm
+ 2 | npm-debug.log*
+ 3 | node_modules
+ 4 |
+ 5 | #temporary
+ 6 | tmp/
+ 7 | temp/
+ 8 | *~
+ 9 |
+10 | #personal
+11 | .idea
+12 | .vscode
+13 | .DS_Store
+14 |
+15 | # git merge leftovers
+16 | *.orig
+17 |
+18 | # build
+19 | .cache
+20 | .cache*
+21 | build/
+22 | coverage/
+23 | storybook-static/
+24 | .eslintcache
+25 | demo/docs
+26 |
+27 | # tests
+28 | playwright-report*
+29 | test-results/
+
+--------------------------------------------------------------------------------
+/.npmrc:
+--------------------------------------------------------------------------------
+1 | registry=https://registry.npmjs.org/
+2 | save-exact=true
+
+--------------------------------------------------------------------------------
+/.nvmrc:
+--------------------------------------------------------------------------------
+1 | 18
+
+--------------------------------------------------------------------------------
+/.prettierrc.js:
+--------------------------------------------------------------------------------
+1 | module.exports = require("@gravity-ui/prettier-config");
+
+--------------------------------------------------------------------------------
+/.storybook/manager.ts:
+--------------------------------------------------------------------------------
+1 | import {addons} from '@storybook/manager-api';
+2 | import {themes} from './theme';
+3 |
+4 | addons.setConfig({
+5 |     theme: themes.light,
+6 | });
+
+--------------------------------------------------------------------------------
+/.stylelintrc:
+--------------------------------------------------------------------------------
+1 | {
+2 |     "extends": [
+3 |         "@gravity-ui/stylelint-config",
+4 |         "@gravity-ui/stylelint-config/order",
+5 |         "@gravity-ui/stylelint-config/prettier"
+6 |     ]
+7 | }
+
+--------------------------------------------------------------------------------
+/CODEOWNERS:
+--------------------------------------------------------------------------------
+1 | * @d3m1d0v @makhnatkin
+
+--------------------------------------------------------------------------------
+/demo/.eslintrc:
+--------------------------------------------------------------------------------
+1 | {
+2 |     "extends": ["@gravity-ui/eslint-config/client", "plugin:react/jsx-runtime"]
+3 | }
+
+--------------------------------------------------------------------------------
+/demo/defaults/excluded-controls.ts:
+--------------------------------------------------------------------------------
+1 | export const excludedControls = [
+2 |     'initial',
+3 |     'withDefaultInitialContent',
+4 |     'onChangeEditorType',
+5 |     'onChangeSplitModeEnabled',
+6 | ];
+
+--------------------------------------------------------------------------------
+/demo/stories/editor-in-editor/EditorInEditor.stories.tsx:
+--------------------------------------------------------------------------------
+ 1 | import type {StoryObj} from '@storybook/react';
+ 2 |
+ 3 | import {EditorInEditor as component} from './EditorInEditor';
+ 4 |
+ 5 | export const Story: StoryObj<typeof component> = {};
+ 6 | Story.storyName = 'Editor in editor';
+ 7 |
+ 8 | export default {
+ 9 |     component,
+10 |     title: 'Experiments / Editor in editor',
+11 | };
+
+--------------------------------------------------------------------------------
+/demo/stories/editor-in-editor/EditorInEditorExtension/index.scss:
+--------------------------------------------------------------------------------
+ 1 | .__editor-in-editor {
+ 2 |     margin-bottom: 15px;
+ 3 |     padding: 4px;
+ 4 |
+ 5 |     border-width: 1px;
+ 6 |     border-style: dashed;
+ 7 |     border-color: var(--g-color-line-generic);
+ 8 |     border-radius: var(--g-border-radius-s);
+ 9 | }
+
+--------------------------------------------------------------------------------
+/demo/stories/experiments/store-raw/StoreRawMarkup.stories.tsx:
+--------------------------------------------------------------------------------
+ 1 | import type {StoryObj} from '@storybook/react';
+ 2 |
+ 3 | import {StoreRawMarkupDemo as component} from './StoreRawMarkup';
+ 4 |
+ 5 | export const Story: StoryObj<typeof component> = {
+ 6 |     args: {},
+ 7 | };
+ 8 | Story.storyName = 'Store Raw Markup';
+ 9 |
+10 | export default {
+11 |     title: 'Experiments',
+12 |     component,
+13 | };
+
+--------------------------------------------------------------------------------
+/demo/stories/ghost/Ghost.stories.tsx:
+--------------------------------------------------------------------------------
+ 1 | import type {StoryObj} from '@storybook/react';
+ 2 |
+ 3 | import {Ghost as component} from './Ghost';
+ 4 |
+ 5 | export const Story: StoryObj<typeof component> = {};
+ 6 | Story.storyName = 'Popup in markup mode';
+ 7 |
+ 8 | export default {
+ 9 |     title: 'Experiments / Popup in markup mode',
+10 |     component,
+11 | };
+
+--------------------------------------------------------------------------------
+/demo/stories/ghost/README.md:
+--------------------------------------------------------------------------------
+1 | This is an example for documentation on creating and adding a text-bound extension for content mode.
+
+--------------------------------------------------------------------------------
+/demo/stories/ghost/ghostExtension/effects.ts:
+--------------------------------------------------------------------------------
+1 | import {StateEffect} from '#cm/state';
+2 |
+3 | export const ShowGhostPopupEffect = StateEffect.define();
+4 | export const HideGhostPopupEffect = StateEffect.define();
+
+--------------------------------------------------------------------------------
+/demo/stories/ghost/ghostExtension/index.ts:
+--------------------------------------------------------------------------------
+1 | import {GhostPopupPlugin} from './plugin';
+2 |
+3 | export {ghostPopupToolbarItem} from './toolbar';
+4 | export {showGhostPopup, hideGhostPopup} from './commands';
+5 |
+6 | export const ghostPopupExtension = GhostPopupPlugin.extension;
+
+--------------------------------------------------------------------------------
+/demo/stories/gpt/GPT.stories.tsx:
+--------------------------------------------------------------------------------
+ 1 | import type {StoryObj} from '@storybook/react';
+ 2 |
+ 3 | import {GPT as component} from './GPT';
+ 4 |
+ 5 | export const Story: StoryObj<typeof component> = {};
+ 6 | Story.storyName = 'GPT';
+ 7 |
+ 8 | export default {
+ 9 |     title: 'Experiments / GPT',
+10 |     component,
+11 | };
+
+--------------------------------------------------------------------------------
+/demo/stories/gpt/content.ts:
+--------------------------------------------------------------------------------
+1 | export const initialMdContent = `Markdown Editor GPT Playground`;
+
+--------------------------------------------------------------------------------
+/demo/stories/quoteLink/quoteLink.stories.ts:
+--------------------------------------------------------------------------------
+ 1 | import type {StoryObj} from '@storybook/react';
+ 2 |
+ 3 | import {QuoteLink as component} from './QuoteLink';
+ 4 |
+ 5 | export const Story: StoryObj<typeof component> = {};
+ 6 | Story.storyName = 'QuoteLink';
+ 7 |
+ 8 | export default {
+ 9 |     title: 'Extensions / YFM / QuoteLink',
+10 |     component,
+11 | };
+
+--------------------------------------------------------------------------------
+/demo/stories/remember-mode/RememberMode.stories.tsx:
+--------------------------------------------------------------------------------
+ 1 | import type {StoryObj} from '@storybook/react';
+ 2 |
+ 3 | import {RememberMode as component} from './RememberMode';
+ 4 |
+ 5 | export const Story: StoryObj<typeof component> = {};
+ 6 | Story.storyName = 'Remember the mode';
+ 7 |
+ 8 | export default {
+ 9 |     component,
+10 |     title: 'Experiments / Remember the mode',
+11 | };
+--------------------------------------------------------------------------------
+/demo/stories/view/gallery/ViewWithGallery.scss:
+--------------------------------------------------------------------------------
+1 | .view-with-gallery {
+2 |     img {
+3 |         cursor: pointer;
+4 |     }
+5 | }
+
+--------------------------------------------------------------------------------
+/demo/utils/cn.ts:
+--------------------------------------------------------------------------------
+1 | import {withNaming} from '@bem-react/classname';
+2 |
+3 | export const block = withNaming({e: '__', m: '_', v: '_'});
+
+--------------------------------------------------------------------------------
+/demo/utils/getInitialMd.ts:
+--------------------------------------------------------------------------------
+1 | import {markup} from '../defaults/content';
+3 | import {parseLocation} from './location';
+4 |
+5 | export const getInitialMd = () => parseLocation() || markup;
+--------------------------------------------------------------------------------
+/docs/assets/gifs/custom-prompt-preset-gpt.gif:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/gravity-ui/markdown-editor/ddf888accac1eae7db0da481b890f2210e4de365/docs/assets/gifs/custom-prompt-preset-gpt.gif
+
+--------------------------------------------------------------------------------
+/docs/assets/gifs/prompt-preset-gpt.gif:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/gravity-ui/markdown-editor/ddf888accac1eae7db0da481b890f2210e4de365/docs/assets/gifs/prompt-preset-gpt.gif
+
+--------------------------------------------------------------------------------
+/src/.eslintrc:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |     "extends": ["@gravity-ui/eslint-config/client", "plugin:react/jsx-runtime"],
+ 3 |     "overrides": [{
+ 4 |         "files": ["*"],
+ 5 |         "rules": {
+ 6 |             "new-cap": [2, { "capIsNew": false }],
+ 7 |             "@typescript-eslint/no-namespace": [2, { "allowDeclarations": true }]
+ 8 |         }
+ 9 |     }]
+
+--------------------------------------------------------------------------------
+/src/bundle/config/index.ts:
+--------------------------------------------------------------------------------
+1 | /**
+2 |  * @deprecated This file is deprecated. Use ToolbarsPreset instead.
+3 |  */
+4 | export * from './wysiwyg';
+5 | export * from './markup';
+
+--------------------------------------------------------------------------------
+/src/bundle/config/previews/ActionPreview.tsx:
+--------------------------------------------------------------------------------
+ 1 | import {cn} from '../../../classname';
+ 2 |
+ 3 | import './ActionPreview.scss';
+ 4 |
+ 5 | const b = cn('action-preview');
+ 6 |
+ 7 | export const ActionPreview = ({children}: {children: React.ReactNode}) => {
+ 8 |     return <div className={b(null, ['yfm'])}>{children}</div>;
+ 9 | };
+
+--------------------------------------------------------------------------------
+/src/bundle/context.ts:
+--------------------------------------------------------------------------------
+ 1 | import {createContext, useContext} from 'react';
+ 2 |
+ 3 | import type {Editor} from './Editor';
+ 4 |
+ 5 | const EditorContext = createContext<Editor | null>(null);
+ 6 |
+ 7 | export const MarkdownEditorProvider = EditorContext.Provider;
+ 8 | export function useMarkdownEditorContext() {
+ 9 |     return useContext(EditorContext);
+10 | }
+
+--------------------------------------------------------------------------------
+/src/bundle/settings/MarkdownHints/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './MarkdownHints';
+
+--------------------------------------------------------------------------------
+/src/classname.ts:
+--------------------------------------------------------------------------------
+1 | import {withNaming} from '@bem-react/classname';
+2 |
+3 | export const cn = withNaming({n: 'g-md-', e: '__', m: '_', v: '_'});
+4 |
+5 | export interface ClassNameProps {
+6 |     className?: string;
+7 | }
+
+--------------------------------------------------------------------------------
+/src/cm/autocomplete.ts:
+--------------------------------------------------------------------------------
+1 | export * from '@codemirror/autocomplete';
+
+--------------------------------------------------------------------------------
+/src/cm/commands.ts:
+--------------------------------------------------------------------------------
+1 | export * from '@codemirror/commands';
+
+--------------------------------------------------------------------------------
+/src/cm/language.ts:
+--------------------------------------------------------------------------------
+1 | export * from '@codemirror/language';
+
+--------------------------------------------------------------------------------
+/src/cm/state.ts:
+--------------------------------------------------------------------------------
+1 | export * from '@codemirror/state';
+
+--------------------------------------------------------------------------------
+/src/cm/view.ts:
+--------------------------------------------------------------------------------
+1 | export * from '@codemirror/view';
+
+--------------------------------------------------------------------------------
+/src/core/markdown/ProseMirrorTransformer/emptyRowTransformer.ts:
+--------------------------------------------------------------------------------
+1 | import type {TransformFn} from './index';
+2 |
+3 | export const transformEmptyParagraph: TransformFn = (node) => {
+4 |     if (node.type !== 'paragraph') return;
+5 |     if (node.content?.length !== 1) return;
+6 |     if (node.content[0]?.type !== 'text') return;
+7 |     if (node.content[0].text === String.fromCharCode(160)) delete node.content;
+8 | };
+
+--------------------------------------------------------------------------------
+/src/core/types/keymap.ts:
+--------------------------------------------------------------------------------
+1 | import type {Command} from 'prosemirror-state';
+2 |
+3 | export type Keymap = {
+4 |     [key: string]: Command;
+5 | };
+
+--------------------------------------------------------------------------------
+/src/core/types/node-views.ts:
+--------------------------------------------------------------------------------
+1 | import type {MarkViewConstructor, NodeViewConstructor} from 'prosemirror-view';
+2 |
+3 | export type {NodeViewConstructor, MarkViewConstructor};
+
+--------------------------------------------------------------------------------
+/src/core/types/serializer.ts:
+--------------------------------------------------------------------------------
+ 1 | export type {
+ 2 |     MarkdownSerializerState as SerializerState,
+ 3 |     SerializerNodeToken,
+ 4 |     SerializerMarkToken,
+ 5 |     MarkdownSerializer as Serializer,
+ 6 | } from '../markdown/MarkdownSerializer';
+ 7 |
+ 8 | declare module 'prosemirror-model' {
+ 9 |     interface NodeSpec {
+10 |         /** Default false */
+11 |         isBreak?: boolean;
+12 |     }
+13 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/FoldingHeading/FoldingHeadingSpec/const.ts:
+--------------------------------------------------------------------------------
+1 | import {TokenType as MdTokenType} from '@diplodoc/folding-headings-extension';
+2 |
+3 | export const TokenType = MdTokenType as Pick<typeof MdTokenType, 'Section' | 'Heading' | 'Content'>;
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/FoldingHeading/FoldingHeadingSpec/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './FoldingHeadingSpecs';
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/FoldingHeading/actions.ts:
+--------------------------------------------------------------------------------
+ 1 | import type {ActionSpec} from '../../../core';
+ 2 |
+ 3 | import {toggleFoldingOfHeading} from './commands';
+ 4 | import {hasFolding} from './utils';
+ 5 |
+ 6 | export const toggleHeadingFoldingAction: ActionSpec = {
+ 7 |     isActive: (state) => hasFolding(state.selection),
+ 8 |     isEnable: toggleFoldingOfHeading,
+ 9 |     run: toggleFoldingOfHeading,
+10 | };
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/FoldingHeading/commands/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './removeFoldingIfCursorAtStartOfHeading';
+2 | export * from './toggleFoldingOfHeading';
+3 | export * from './openHeadingAndCreateParagraphAfterIfCursorAtEndOfHeading';
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/FoldingHeading/const.ts:
+--------------------------------------------------------------------------------
+1 | export {YfmHeadingAttr, headingNodeName, type HeadingLevel} from '../../yfm/YfmHeading/const';
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/FoldingHeading/index.ts:
+--------------------------------------------------------------------------------
+1 | export {FoldingHeading} from './FoldingHeading';
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/GPT/IconRefuge/IconRefuge.classname.tsx:
+--------------------------------------------------------------------------------
+1 | import {cn} from '@bem-react/classname';
+2 |
+3 | export const cnIconRefuge = cn('icon-refuge');
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/GPT/IconRefuge/IconRefuge.scss:
+--------------------------------------------------------------------------------
+ 1 | .icon-refuge {
+ 2 |     display: inline-flex;
+ 3 |     justify-content: center;
+ 4 |     align-items: center;
+ 5 |
+ 6 |     &_inline {
+ 7 |         display: inline-flex;
+ 8 |     }
+ 9 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/GPT/IconRefuge/index.ts:
+--------------------------------------------------------------------------------
+1 | export {IconRefuge} from './IconRefuge';
+2 | export type {IconRefugeProps} from './IconRefuge.types';
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/GPT/MarkupGpt/effects.ts:
+--------------------------------------------------------------------------------
+1 | import {StateEffect} from '../../../../cm/state';
+2 |
+3 | export const ShowMarkupGptEffect = StateEffect.define();
+4 | export const HideMarkupGptEffect = StateEffect.define();
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/GPT/PresetList/Presetlist.scss:
+--------------------------------------------------------------------------------
+ 1 | .g-md-gpt-dialog-preset-list {
+ 2 |     &__preset + &__preset {
+ 3 |         margin-left: var(--g-spacing-2);
+ 4 |     }
+ 5 |
+ 6 |     &__more-button-wrapper {
+ 7 |         margin-left: var(--g-spacing-2);
+ 8 |     }
+ 9 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/GPT/actions.ts:
+--------------------------------------------------------------------------------
+ 1 | import type {ActionSpec, ExtensionDeps} from '../../../core';
+ 2 |
+ 3 | import {runGpt} from './commands';
+ 4 |
+ 5 | export const showGptWidget: (deps: ExtensionDeps) => ActionSpec = (_deps) => ({
+ 6 |     isActive() {
+ 7 |         return false;
+ 8 |     },
+ 9 |     isEnable() {
+10 |         return true;
+11 |     },
+12 |     run: runGpt,
+13 | });
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/GPT/hooks/useGptHotKeys.ts:
+--------------------------------------------------------------------------------
+ 1 | import type {Options} from 'react-hotkeys-hook';
+ 2 | import {useHotkeys} from 'react-hotkeys-hook';
+ 3 |
+ 4 | export function useGptHotKeys(
+ 5 |     key: string,
+ 6 |     callback: () => void,
+ 7 |     options: Options = {},
+ 8 |     dependencies?: unknown[],
+ 9 | ) {
+10 |     useHotkeys(key, callback, {preventDefault: true, ...options}, dependencies);
+11 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/GPT/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './wGptItemData';
+2 | export * from './gptExtension/gptExtension';
+3 | export * from './MarkupGpt';
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/Math/MathSpecs/const.ts:
+--------------------------------------------------------------------------------
+ 1 | export enum MathNode {
+ 2 |     Inline = 'math_inline',
+ 3 |     Block = 'math_display',
+ 4 | }
+ 5 |
+ 6 | export const CLASSNAMES = {
+ 7 |     Inline: {
+ 8 |         Container: 'math-inline',
+ 9 |         Sharp: 'math-inline__sharp',
+10 |         Content: 'math-inline__content',
+11 |     },
+12 | } as const;
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/Math/const.ts:
+--------------------------------------------------------------------------------
+1 | export * from './MathSpecs/const';
+2 | export {mathBType, mathIType} from './MathSpecs';
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/Math/index.scss:
+--------------------------------------------------------------------------------
+ 1 | .math-inline {
+ 2 |     font-family: var(--g-font-family-monospace);
+ 3 |
+ 4 |     color: var(--g-color-text-complementary);
+ 5 |     background-color: var(--g-color-base-misc-light);
+ 6 |
+ 7 |     &__sharp {
+ 8 |         color: var(--g-color-text-hint);
+ 9 |     }
+10 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/Mermaid/MermaidNodeView/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './NodeView';
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/Mermaid/const.ts:
+--------------------------------------------------------------------------------
+1 | export * from './MermaidSpecs/const';
+2 | export const MermaidAction = 'createMermaid';
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/Mermaid/types.ts:
+--------------------------------------------------------------------------------
+1 | export type MermaidEntitySharedState = {
+2 |     editing: boolean;
+3 | };
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/YfmHtmlBlock/YfmHtmlBlockNodeView/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './NodeView';
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/YfmHtmlBlock/const.ts:
+--------------------------------------------------------------------------------
+1 | export * from './YfmHtmlBlockSpecs/const';
+2 | export const YfmHtmlBlockAction = 'createYfmHtmlBlock';
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/YfmHtmlBlock/types.ts:
+--------------------------------------------------------------------------------
+1 | export type YfmHtmlBlockEntitySharedState = {
+2 |     editing: boolean;
+3 | };
+
+--------------------------------------------------------------------------------
+/src/extensions/additional/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './GPT';
+
+--------------------------------------------------------------------------------
+/src/extensions/base/BaseInputRules/index.ts:
+--------------------------------------------------------------------------------
+1 | import {ellipsis} from 'prosemirror-inputrules';
+2 |
+3 | import type {ExtensionAuto} from '../../../core';
+4 |
+5 | export const BaseInputRules: ExtensionAuto = (builder) => {
+6 |     builder.addInputRules(() => ({rules: [ellipsis]}));
+7 | };
+
+--------------------------------------------------------------------------------
+/src/extensions/base/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './BaseSchema';
+2 | export * from './BaseStyles';
+3 | export * from './BaseKeymap';
+4 | export * from './BaseInputRules';
+
+--------------------------------------------------------------------------------
+/src/extensions/base/specs.ts:
+--------------------------------------------------------------------------------
+1 | export * from './BaseSchema/BaseSchemaSpecs';
+
+--------------------------------------------------------------------------------
+/src/extensions/behavior/Autocomplete/utils.ts:
+--------------------------------------------------------------------------------
+ 1 | import {pluginKey} from 'prosemirror-autocomplete';
+ 2 |
+ 3 | import type {EditorState} from '#pm/state';
+ 4 |
+ 5 | import type {AutocompleteState} from './types';
+ 6 |
+ 7 | export function getAutocompleteState(state: EditorState): AutocompleteState | null {
+ 8 |     return pluginKey.getState(state) || null;
+ 9 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/behavior/ClicksOnEdges/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './ClicksOnEdges';
+
+--------------------------------------------------------------------------------
+/src/extensions/behavior/CommandMenu/const.ts:
+--------------------------------------------------------------------------------
+1 | export const DecoClassName = 'pm-command-input';
+
+--------------------------------------------------------------------------------
+/src/extensions/behavior/CommandMenu/types.ts:
+--------------------------------------------------------------------------------
+1 | import type {ActionStorage} from '../../../core';
+2 | import type {ToolbarItemData} from '../../../toolbar';
+3 |
+4 | export type CommandAction = ToolbarItemData<ActionStorage>;
+5 | export type Config = CommandAction[];
+
+--------------------------------------------------------------------------------
+/src/extensions/behavior/Selection/selection.scss:
+--------------------------------------------------------------------------------
+1 | .g-md-editor.ProseMirror-focused .pm-node-selected {
+2 |     box-shadow: var(--g-color-text-info) 0 0 0 1px;
+3 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/behavior/SharedState/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './SharedState';
+
+--------------------------------------------------------------------------------
+/src/extensions/behavior/WidgetDecoration/types.ts:
+--------------------------------------------------------------------------------
+ 1 | import type {WidgetDescriptor} from './WidgetDescriptor';
+ 2 |
+ 3 | export type Meta = {type: 'add'; descriptor: WidgetDescriptor} | {type: 'remove'; id: string};
+ 4 |
+ 5 | export type WidgetSpec = {
+ 6 |     id: string;
+ 7 |     descriptor: WidgetDescriptor;
+ 8 |     // needs for placeholder extension
+ 9 |     pos: number;
+10 | };
+
+--------------------------------------------------------------------------------
+/src/extensions/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './base';
+2 | export * from './behavior';
+3 | export * from './markdown';
+4 | export * from './yfm';
+5 | export * from './additional';
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/Blockquote/const.ts:
+--------------------------------------------------------------------------------
+1 | export {blockquoteNodeName, blockquoteType, isBlockqouteNode} from './BlockquoteSpecs';
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/CodeBlock/const.ts:
+--------------------------------------------------------------------------------
+1 | import {codeBlockType} from './CodeBlockSpecs';
+2 |
+3 | export {codeBlockNodeName, CodeBlockNodeAttr as CodeBlockAttr} from './CodeBlockSpecs';
+4 | export const cbAction = 'toCodeBlock';
+5 | export {codeBlockType};
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/Deflist/DeflistSpecs/const.ts:
+--------------------------------------------------------------------------------
+1 | export enum DeflistNode {
+2 |     List = 'dl',
+3 |     Term = 'dt',
+4 |     Desc = 'dd',
+5 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/Deflist/const.ts:
+--------------------------------------------------------------------------------
+1 | export {DeflistNode} from './DeflistSpecs';
+3 | export const dlAction = 'toDefList';
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/Deflist/utils.ts:
+--------------------------------------------------------------------------------
+1 | export {defDescType, defListType, defTermType} from './DeflistSpecs';
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/Heading/const.ts:
+--------------------------------------------------------------------------------
+ 1 | export {headingNodeName, headingLevelAttr} from './HeadingSpecs';
+ 2 |
+ 3 | export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+ 4 |
+ 5 | export enum HeadingAction {
+ 6 |     ToH1 = 'toH1',
+ 7 |     ToH2 = 'toH2',
+ 8 |     ToH3 = 'toH3',
+ 9 |     ToH4 = 'toH4',
+10 |     ToH5 = 'toH5',
+11 |     ToH6 = 'toH6',
+12 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/Html/const.ts:
+--------------------------------------------------------------------------------
+1 | export enum HtmlNode {
+2 |     Block = 'html_block',
+3 |     Inline = 'html_inline',
+4 | }
+5 |
+6 | export enum HtmlAttr {
+7 |     Content = 'html-content',
+8 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/Image/const.ts:
+--------------------------------------------------------------------------------
+1 | export {imageNodeName, ImageAttr} from './ImageSpecs';
+2 |
+3 | export const addImageAction = 'addImage';
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/Link/PlaceholderWidget/widget.scss:
+--------------------------------------------------------------------------------
+1 | .g-md-link-placeholder-widget {
+2 |     margin: 0 2px;
+3 |
+4 |     pointer-events: none;
+5 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/Lists/const.ts:
+--------------------------------------------------------------------------------
+1 | export {ListNode} from './ListsSpecs';
+2 |
+3 | export enum ListAction {
+4 |     ToBulletList = 'toBulletList',
+5 |     ToOrderedList = 'toOrderedList',
+6 |     SinkListItem = 'sinkListItem',
+7 |     LiftListItem = 'liftListItem',
+8 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/Table/const.ts:
+--------------------------------------------------------------------------------
+1 | export * from './TableSpecs/const';
+
+--------------------------------------------------------------------------------
+/src/extensions/markdown/Table/plugins/TableCellContextPlugin/floating.scss:
+--------------------------------------------------------------------------------
+ 1 | .table-cell-floating-button.g-button {
+ 2 |     height: 28px;
+ 3 |
+ 4 |     line-height: 28px;
+ 5 |
+ 6 |     .g-button__icon {
+ 7 |         width: 12px;
+ 8 |     }
+ 9 | }
+10 |
+11 | .table-cell-floating-icon {
+12 |     transform: rotate(90deg);
+13 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/specs.ts:
+--------------------------------------------------------------------------------
+1 | export * from './base/specs';
+2 | export * from './markdown/specs';
+3 | export * from './yfm/specs';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Checkbox/const.ts:
+--------------------------------------------------------------------------------
+1 | export {CheckboxAttr, CheckboxNode, b} from './CheckboxSpecs/const';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Checkbox/utils.ts:
+--------------------------------------------------------------------------------
+1 | export {checkboxType, checkboxInputType, checkboxLabelType} from './CheckboxSpecs';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Color/ColorSpecs/const.ts:
+--------------------------------------------------------------------------------
+1 | export const colorMarkName = 'color';
+2 | export const colorClassName = 'yfm-colorify';
+3 | export const domColorAttr = 'data-color';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Color/const.ts:
+--------------------------------------------------------------------------------
+ 1 | export * from './ColorSpecs/const';
+ 2 |
+ 3 | export const colorAction = 'colorify';
+ 4 |
+ 5 | export enum Colors {
+ 6 |     Gray = 'gray',
+ 7 |     Yellow = 'yellow',
+ 8 |     Orange = 'orange',
+ 9 |     Red = 'red',
+10 |     Green = 'green',
+11 |     Blue = 'blue',
+12 |     Violet = 'violet',
+13 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Emoji/EmojiInput/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './EmojiInput';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Emoji/EmojiSpecs/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './EmojiSpecs';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Emoji/EmojiSuggest/const.ts:
+--------------------------------------------------------------------------------
+1 | export const DecoClassName = 'pm-emoji-input';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Emoji/EmojiSuggest/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './EmojiSuggest';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Emoji/EmojiSuggest/types.ts:
+--------------------------------------------------------------------------------
+1 | export type EmojiDef = {
+2 |     symbol: string;
+3 |     name: string;
+4 |     origName: string;
+5 |     shortcuts?: readonly string[];
+6 |     origShortcuts?: readonly string[];
+7 | };
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Emoji/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './Emoji';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/ImgSize/ImagePaste/skeleton.scss:
+--------------------------------------------------------------------------------
+ 1 | .g-md-image-skeleton {
+ 2 |     $width: min(calc(var(--img-skeleton-width) * 1px), 100%);
+ 3 |     $height: min(calc(var(--img-skeleton-height) * 1px), 700px);
+ 4 |     vertical-align: middle;
+ 5 |
+ 6 |     &__skeleton {
+ 7 |         width: $width;
+ 8 |         height: $height;
+ 9 |         margin-bottom: -5px;
+10 |     }
+11 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/ImgSize/ImgSizeSpecs/const.ts:
+--------------------------------------------------------------------------------
+ 1 | import {ImsizeAttr} from '@diplodoc/transform/lib/plugins/imsize/const.js';
+ 2 |
+ 3 | export const ImgSizeAttr = {
+ 4 |     Alt: ImsizeAttr.Alt,
+ 5 |     Src: ImsizeAttr.Src,
+ 6 |     Title: ImsizeAttr.Title,
+ 7 |     Width: ImsizeAttr.Width,
+ 8 |     Height: ImsizeAttr.Height,
+ 9 |     Loading: 'loading',
+10 | } as const;
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/ImgSize/const.ts:
+--------------------------------------------------------------------------------
+1 | import {PluginKey} from 'prosemirror-state';
+2 |
+3 | export {ImgSizeAttr} from './ImgSizeSpecs';
+4 | export {imageNodeName, addImageAction} from '../../markdown/Image/const';
+5 |
+6 | export const IMG_MAX_HEIGHT = 600; //px
+7 | export type ImageRendererState = {linkAdded: boolean};
+8 | export const imageRendererKey = new PluginKey<ImageRendererState>('imageRenderer');
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/ImgSize/plugins/ImgSizeNodeView/ImageForm/ImageForm.scss:
+--------------------------------------------------------------------------------
+ 1 | .g-md-image-tooltip-form {
+ 2 |     &__input {
+ 3 |         &_type_width,
+ 4 |         &_type_height {
+ 5 |             max-width: 112px;
+ 6 |         }
+ 7 |     }
+ 8 |
+ 9 |     &__size-controls {
+10 |         display: flex;
+11 |         align-items: center;
+12 |         gap: 0 16px;
+13 |     }
+14 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/ImgSize/plugins/ImgSizeNodeView/ImageForm/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './ImageForm';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/ImgSize/plugins/ImgSizeNodeView/ImgNodeView.scss:
+--------------------------------------------------------------------------------
+1 | .g-md-img-size-node-view {
+2 |     &__wrapper {
+3 |         position: relative;
+4 |
+5 |         display: inline-block;
+6 |     }
+7 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/ImgSize/plugins/ImgSizeNodeView/ImgSettingsButton.scss:
+--------------------------------------------------------------------------------
+1 | .g-md-img-settings-button {
+2 |     position: absolute;
+3 |     z-index: 2;
+4 |     top: 3px;
+5 |     right: 3px;
+6 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Video/VideoSpecs/const.ts:
+--------------------------------------------------------------------------------
+1 | export const videoNodeName = 'video';
+2 |
+3 | export enum VideoAttr {
+4 |     Service = 'service',
+5 |     VideoID = 'videoid',
+6 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/Video/const.ts:
+--------------------------------------------------------------------------------
+1 | export * from './VideoSpecs/const';
+3 | export const vAction = 'video';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmCut/const.ts:
+--------------------------------------------------------------------------------
+1 | export {CutNode, cutType, cutTitleType, cutContentType} from './YfmCutSpecs';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmFile/YfmFilePaste/skeleton.scss:
+--------------------------------------------------------------------------------
+ 1 | .g-md-file-skeleton {
+ 2 |     display: inline-flex;
+ 3 |     align-items: center;
+ 4 |
+ 5 |     &__skeleton {
+ 6 |         width: 120px;
+ 7 |         height: 20px;
+ 8 |     }
+ 9 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmFile/YfmFileWidget/view.scss:
+--------------------------------------------------------------------------------
+ 1 | .g-md-file-placeholder {
+ 2 |     margin: 0 4px;
+ 3 |
+ 4 |     pointer-events: none;
+ 5 |
+ 6 |     .yfm-file__icon {
+ 7 |         margin-right: 8px;
+ 8 |     }
+ 9 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmFile/index.scss:
+--------------------------------------------------------------------------------
+1 | .yfm-editor .yfm-file {
+2 |     pointer-events: none;
+3 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmHeading/const.ts:
+--------------------------------------------------------------------------------
+1 | export * from './YfmHeadingSpecs/const';
+2 | export {HeadingAction} from '../../markdown/Heading/const';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmNote/YfmNoteSpecs/const.ts:
+--------------------------------------------------------------------------------
+ 1 | export enum NoteNode {
+ 2 |     Note = 'yfm_note',
+ 3 |     NoteTitle = 'yfm_note_title',
+ 4 |     NoteContent = 'yfm_note_content',
+ 5 | }
+ 6 |
+ 7 | export enum NoteAttrs {
+ 8 |     Class = 'class',
+ 9 |     Type = 'note-type',
+10 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmNote/YfmNoteSpecs/utils.ts:
+--------------------------------------------------------------------------------
+1 | import {nodeTypeFactory} from '../../../../utils/schema';
+3 | import {NoteNode} from './const';
+4 |
+5 | export const noteType = nodeTypeFactory(NoteNode.Note);
+6 | export const noteTitleType = nodeTypeFactory(NoteNode.NoteTitle);
+7 | export const noteContentType = nodeTypeFactory(NoteNode.NoteContent);
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmNote/const.ts:
+--------------------------------------------------------------------------------
+1 | export * from './YfmNoteSpecs/const';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmNote/index.scss:
+--------------------------------------------------------------------------------
+1 | .yfm-editor p[yfm_block='yfm-note-title'] {
+2 |     font-weight: 700;
+3 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmNote/utils.ts:
+--------------------------------------------------------------------------------
+1 | export * from './YfmNoteSpecs/utils';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmTable/YfmTableSpecs/const.ts:
+--------------------------------------------------------------------------------
+ 1 | export enum YfmTableNode {
+ 2 |     Table = 'yfm_table',
+ 3 |     Body = 'yfm_tbody',
+ 4 |     Row = 'yfm_tr',
+ 5 |     Cell = 'yfm_td',
+ 6 | }
+ 7 |
+ 8 | export enum YfmTableAttr {
+ 9 |     Colspan = 'colspan',
+10 |     Rowspan = 'rowspan',
+11 |     CellAlign = 'data-cell-align',
+12 | }
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmTable/const.ts:
+--------------------------------------------------------------------------------
+1 | export * from './YfmTableSpecs/const';
+
+--------------------------------------------------------------------------------
+/src/extensions/yfm/YfmTable/utils.ts:
+--------------------------------------------------------------------------------
+1 | export * from './YfmTableSpecs/utils';
+
+--------------------------------------------------------------------------------
+/src/forms/ImageForm.scss:
+--------------------------------------------------------------------------------
+ 1 | .g-md-image-form {
+ 2 |     &__input {
+ 3 |         &_type_width,
+ 4 |         &_type_height {
+ 5 |             max-width: 112px;
+ 6 |         }
+ 7 |     }
+ 8 |
+ 9 |     &__size-controls {
+10 |         display: flex;
+11 |         align-items: center;
+12 |         gap: 0 16px;
+13 |     }
+14 | }
+
+--------------------------------------------------------------------------------
+/src/forms/UrlInputRow.scss:
+--------------------------------------------------------------------------------
+1 | .g-md-url-input-row {
+2 |     display: flex;
+3 |
+4 |     &__button {
+5 |         margin-left: 4px;
+6 |     }
+7 | }
+
+--------------------------------------------------------------------------------
+/src/forms/base/Form.scss:
+--------------------------------------------------------------------------------
+1 | .g-md-form {
+2 |     display: flex;
+3 |     flex-direction: column;
+4 |     gap: 20px 0;
+5 |
+6 |     padding: 12px 12px 20px;
+7 | }
+
+--------------------------------------------------------------------------------
+/src/forms/base/Form.tsx:
+--------------------------------------------------------------------------------
+ 1 | import {type ClassNameProps, cn} from '../../classname';
+ 2 |
+ 3 | import './Form.scss';
+ 4 |
+ 5 | const b = cn('form');
+ 6 |
+ 7 | export type FormProps = ClassNameProps & {
+ 8 |     children?: React.ReactNode;
+ 9 | };
+10 |
+11 | export const Form: React.FC<FormProps> = ({className, children}) => {
+12 |     return <div className={b(null, [className])}>{children}</div>;
+13 | };
+
+--------------------------------------------------------------------------------
+/src/forms/base/FormFooter.scss:
+--------------------------------------------------------------------------------
+1 | .g-md-form-footer {
+2 |     display: flex;
+3 |     justify-content: flex-end;
+4 |     gap: 0 8px;
+5 | }
+
+--------------------------------------------------------------------------------
+/src/forms/base/FormLayout.scss:
+--------------------------------------------------------------------------------
+1 | .g-md-form-layout {
+2 |     display: flex;
+3 |     flex-direction: column;
+4 |     gap: 8px 0;
+5 | }
+
+--------------------------------------------------------------------------------
+/src/forms/base/index.ts:
+--------------------------------------------------------------------------------
+ 1 | export * from './Form';
+ 2 | export * from './FormLayout';
+ 3 | export * from './FormRow';
+ 4 | export * from './FormFooter';
+ 5 |
+ 6 | import {Form} from './Form';
+ 7 | import {FormFooter as Footer} from './FormFooter';
+ 8 | import {FormLayout as Layout} from './FormLayout';
+ 9 | import {FormRow as Row} from './FormRow';
+10 |
+11 | export default {Form, Layout, Row, Footer};
+
+--------------------------------------------------------------------------------
+/src/forms/components/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './ButtonAttach';
+2 | export * from './NumberInput';
+
+--------------------------------------------------------------------------------
+/src/forms/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './base';
+2 | export * from './components';
+
+--------------------------------------------------------------------------------
+/src/forms/utils.ts:
+--------------------------------------------------------------------------------
+1 | export {enterKeyHandler} from '../utils/handlers';
+
+--------------------------------------------------------------------------------
+/src/i18n/action-previews/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'action-previews';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+--------------------------------------------------------------------------------
+/src/i18n/bundle/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'bundle';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+
+--------------------------------------------------------------------------------
+/src/i18n/codeblock/en.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "remove": "Remove",
+3 |   "empty_option": "No matches found"
+4 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/codeblock/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'codeblock';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+--------------------------------------------------------------------------------
+/src/i18n/codeblock/ru.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "remove": "Удалить",
+3 |   "empty_option": "Ничего не найдено"
+4 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/common/en.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "cancel": "Cancel",
+ 3 |   "delete": "Delete",
+ 4 |   "edit": "Edit",
+ 5 |   "preview": "Preview",
+ 6 |   "remove": "Remove",
+ 7 |   "save": "Save",
+ 8 |   "toolbar_action_disabled": "Incompatible markup element"
+ 9 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/common/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'common';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+--------------------------------------------------------------------------------
+/src/i18n/common/ru.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "cancel": "Отмена",
+ 3 |   "delete": "Удалить",
+ 4 |   "edit": "Редактировать",
+ 5 |   "preview": "Предпросмотр",
+ 6 |   "remove": "Удалить",
+ 7 |   "save": "Сохранить",
+ 8 |   "toolbar_action_disabled": "Несовместимый элемент разметки"
+ 9 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/empty-row/en.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "snippet.text": "Empty row"
+3 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/empty-row/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'empty-row';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+--------------------------------------------------------------------------------
+/src/i18n/empty-row/ru.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "snippet.text": "Пустая строка"
+3 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/forms/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'forms';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+--------------------------------------------------------------------------------
+/src/i18n/gpt/dialog/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | export const i18n = registerKeyset('gpt-dialog', {en, ru});
+8 | export type I18nKey = Parameters<typeof i18n>[0];
+
+--------------------------------------------------------------------------------
+/src/i18n/gpt/errors/en.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "error-text": "An error occurred while generating a reply, please retry the request",
+3 |   "retry-button": "Try again",
+4 |   "start-again-button": "To the beginning"
+5 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/gpt/errors/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | export const i18n = registerKeyset('gpt-dialog-error-screen', {en, ru});
+8 | export type I18nKey = Parameters<typeof i18n>[0];
+
+--------------------------------------------------------------------------------
+/src/i18n/gpt/errors/ru.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "error-text": "Ошибка при генерации ответа, попробуйте повторить запрос",
+3 |   "retry-button": "Повторить",
+4 |   "start-again-button": "В начало"
+5 | }
+
+
+--------------------------------------------------------------------------------
+/src/i18n/gpt/extension/en.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "confirm-cancel": "Cancel",
+3 |   "confirm-ok": "Close",
+4 |   "confirm-title": "Do you want to close the GPT editor?",
+5 |   "help-with-text": "Help with text"
+6 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/gpt/extension/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | export const i18n = registerKeyset('gpt', {en, ru});
+8 | export type I18nKey = Parameters<typeof i18n>[0];
+
+--------------------------------------------------------------------------------
+/src/i18n/gpt/extension/ru.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "confirm-cancel": "Отменить",
+3 |   "confirm-ok": "Закрыть",
+4 |   "confirm-title": "Хотите закрыть помощника GPT?",
+5 |   "help-with-text": "Помощь с текстом"
+6 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/gpt/loading/en.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "loading-text": "GPT is generating a response..."
+3 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/gpt/loading/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | export const i18n = registerKeyset('gpt-dialog-loading-screen', {en, ru});
+8 | export type I18nKey = Parameters<typeof i18n>[0];
+
+
+--------------------------------------------------------------------------------
+/src/i18n/gpt/loading/ru.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "loading-text": "GPT генерирует ответ..."
+3 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/hints/en.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "math_hint": "Math uses",
+3 |   "math_hint_katex": "Katex syntax"
+4 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/hints/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'hints';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+
+--------------------------------------------------------------------------------
+/src/i18n/hints/ru.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "math_hint": "При создании формул используется",
+3 |   "math_hint_katex": "синтаксис Katex"
+4 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/math-hint/en.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "math_hint": "Math uses",
+3 |   "math_hint_katex": "Katex syntax"
+4 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/math-hint/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'math-hint';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+--------------------------------------------------------------------------------
+/src/i18n/math-hint/ru.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "math_hint": "При создании формул используется",
+3 |   "math_hint_katex": "синтаксис Katex"
+4 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/md-hints/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'md-hints';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+--------------------------------------------------------------------------------
+/src/i18n/menubar/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'menubar';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+--------------------------------------------------------------------------------
+/src/i18n/placeholder/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'placeholder';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+--------------------------------------------------------------------------------
+/src/i18n/search/en.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "label_case-sensitive": "Case sensitive",
+3 |   "label_whole-word": "Whole word",
+4 |   "title": "Search in code"
+5 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/search/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'search';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+--------------------------------------------------------------------------------
+/src/i18n/search/ru.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "label_case-sensitive": "С учетом регистра",
+3 |   "label_whole-word": "Слово целиком",
+4 |   "title": "Найти в коде"
+5 | }
+6 |
+
+
+--------------------------------------------------------------------------------
+/src/i18n/suggest/en.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "error-title": "Error",
+3 |   "error-desc": "Error loading",
+4 |   "empty-msg": "Not found"
+5 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/suggest/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'suggest';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+
+--------------------------------------------------------------------------------
+/src/i18n/suggest/ru.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "error-title": "Ошибка",
+3 |   "error-desc": "Ошибка при загрузке",
+4 |   "empty-msg": "Не найдено"
+5 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/widgets/en.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "iframe": "Add a frame",
+3 |   "image": "Add an image",
+4 |   "link": "Add a link",
+5 |   "file": "Add a file"
+6 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/widgets/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'widgets';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+
+--------------------------------------------------------------------------------
+/src/i18n/widgets/ru.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "iframe": "Добавить фрейм",
+3 |   "image": "Добавить изображение",
+4 |   "link": "Добавить ссылку",
+5 |   "file": "Добавить файл"
+6 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/yfm-block/en.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "align": "Alignment",
+ 3 |   "width": "Width (px)",
+ 4 |   "padding": "Paddings",
+ 5 |   "border": "Border type",
+ 6 |   "border-size": "Border size",
+ 7 |   "border-color": "Border color",
+ 8 |   "remove": "Remove block"
+ 9 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/yfm-block/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'yfm-block';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+
+--------------------------------------------------------------------------------
+/src/i18n/yfm-block/ru.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "align": "Выравнивание",
+ 3 |   "width": "Ширина (px)",
+ 4 |   "padding": "Отступы",
+ 5 |   "border": "Тип рамки",
+ 6 |   "border-size": "Размер рамки",
+ 7 |   "border-color": "Цвет рамки",
+ 8 |   "remove": "Удалить блок"
+ 9 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/yfm-layout/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'yfm-layout';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+--------------------------------------------------------------------------------
+/src/i18n/yfm-note/en.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "info": "Note",
+3 |   "tip": "Tip",
+4 |   "warning": "Warning",
+5 |   "alert": "Alert",
+6 |   "remove": "Remove"
+7 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/yfm-note/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'yfm-note';
+7 |
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+
+--------------------------------------------------------------------------------
+/src/i18n/yfm-note/ru.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "info": "Примечание",
+3 |   "tip": "Совет",
+4 |   "warning": "Важно",
+5 |   "alert": "Внимание",
+6 |   "remove": "Удалить"
+7 | }
+
+--------------------------------------------------------------------------------
+/src/i18n/yfm-table/index.ts:
+--------------------------------------------------------------------------------
+1 | import {registerKeyset} from '../i18n';
+3 | import en from './en.json';
+4 | import ru from './ru.json';
+5 |
+6 | const KEYSET = 'yfm-table';
+8 | export const i18n = registerKeyset(KEYSET, {en, ru});
+
+
+--------------------------------------------------------------------------------
+/src/markdown-it/color.ts:
+--------------------------------------------------------------------------------
+1 | import {colorPlugin} from '@diplodoc/color-extension';
+3 | export default colorPlugin;
+
+--------------------------------------------------------------------------------
+/src/markdown-it/emoji.ts:
+--------------------------------------------------------------------------------
+1 | import emoji from 'markdown-it-emoji';
+2 | import bare from 'markdown-it-emoji/bare.js';
+3 | import light from 'markdown-it-emoji/light.js';
+4 |
+5 | export default emoji;
+7 | export {bare, light};
+
+--------------------------------------------------------------------------------
+/src/markdown-it/ins.ts:
+--------------------------------------------------------------------------------
+1 | import ins from 'markdown-it-ins';
+3 | export default ins;
+
+--------------------------------------------------------------------------------
+/src/markdown-it/mark.ts:
+--------------------------------------------------------------------------------
+1 | import mark from 'markdown-it-mark';
+3 | export default mark;
+
+--------------------------------------------------------------------------------
+/src/markdown-it/readme.md:
+--------------------------------------------------------------------------------
+1 | ## Markdown-it submodule
+2 |
+3 | ### Re-exports Markdown-it plugins:
+4 |
+5 | - [@diplodoc/color-extension](https://github.com/diplodoc-platform/color-extension)
+6 | - [markdown-it-ins](https://github.com/markdown-it/markdown-it-ins)
+7 | - [markdown-it-mark](https://github.com/markdown-it/markdown-it-mark)
+8 | - [markdown-it-sub](https://github.com/markdown-it/markdown-it-sub)
+
+--------------------------------------------------------------------------------
+/src/markdown-it/sub.ts:
+--------------------------------------------------------------------------------
+1 | import sub from 'markdown-it-sub';
+2 |
+3 | export default sub;
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/directive-facet.ts:
+--------------------------------------------------------------------------------
+ 1 | import {Facet} from '@codemirror/state';
+ 2 |
+ 3 | import type {DirectiveSyntaxContext} from '../../utils/directive';
+ 4 |
+ 5 | export const DirectiveSyntaxFacet = Facet.define<
+ 6 |     DirectiveSyntaxContext,
+ 7 |     Omit<DirectiveSyntaxContext, 'shouldSerializeToDirective'>
+ 8 | >({
+ 9 |     combine: ([context]) => context,
+10 |     static: true,
+11 | });
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/files-upload-plugin/const.ts:
+--------------------------------------------------------------------------------
+1 | export const IMG_MAX_HEIGHT = 600; // px
+2 | export const SUCCESS_UPLOAD_REMOVE_TIMEOUT = 1000; // 1 sec
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/files-upload-plugin/effects.ts:
+--------------------------------------------------------------------------------
+1 | import {StateEffect} from '@codemirror/state';
+3 | export const AddUploadWidgetEffect = StateEffect.define<{files: ArrayLike<File>; pos: number}>();
+4 | export const RemoveUploadWidgetEffect = StateEffect.define<{id: string; markup?: string}>();
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/files-upload-plugin/index.ts:
+--------------------------------------------------------------------------------
+1 | export {FilesUploadPlugin} from './plugin';
+2 | export {getImageDimensions} from './utils';
+3 | export {IMG_MAX_HEIGHT} from './const';
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/basic-text/input.html:
+--------------------------------------------------------------------------------
+1 | <p>This is a simple paragraph.</p>
+2 | <p>This is another paragraph with some text.</p>
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/basic-text/output.md:
+--------------------------------------------------------------------------------
+1 | This is a simple paragraph.
+3 | This is another paragraph with some text.
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/formatting/input.html:
+--------------------------------------------------------------------------------
+1 | <p>This text has <strong>bold</strong> and <em>italic</em> formatting.</p>
+2 | <p>This text uses <b>bold</b> and <i>italic</i> tags.</p>
+3 | <p>This text uses <span style="font-weight: 600;">CSS bold</span> and <span style="font-style: italic;">CSS italic</span>.</p>
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/formatting/output.md:
+--------------------------------------------------------------------------------
+1 | This text has **bold** and *italic* formatting.
+3 | This text uses **bold** and *italic* tags.
+5 | This text uses **CSS bold** and *CSS italic*.
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/header-and-link/input.html:
+--------------------------------------------------------------------------------
+1 | <h1>Main Title</h1><a href="https://example.com">Link</a>
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/header-and-link/output.md:
+--------------------------------------------------------------------------------
+1 | # Main Title
+2 | [Link](https://example.com/ "Link")
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/headers/input.html:
+--------------------------------------------------------------------------------
+1 | <h1>Main Title</h1>
+2 | <p>Some content.</p>
+3 | <h2>Subtitle</h2>
+4 | <p>More content.</p>
+5 | <h3>Section 3</h3>
+6 | <h4>Section 4</h4>
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/headers/output.md:
+--------------------------------------------------------------------------------
+1 | # Main Title
+2 | Some content.
+3 |
+4 | ## Subtitle
+5 | More content.
+6 |
+7 | ### Section 3
+8 | #### Section 4
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/image/input.html:
+--------------------------------------------------------------------------------
+1 | <img src="https://github.com/user-attachments/assets/e2cdda03-fa1d-48fd-91e7-88d935f8bb9b" alt="nature">
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/image/output.md:
+--------------------------------------------------------------------------------
+1 | ![nature](https://github.com/user-attachments/assets/e2cdda03-fa1d-48fd-91e7-88d935f8bb9b)
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/links-with-formatting/output.md:
+--------------------------------------------------------------------------------
+1 | A link inside the *[span](https://example.com/ "span")*.
+3 | [*Price markdown*](https://en.wikipedia.org/wiki/Price_markdown "Price markdown")
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/links/input.html:
+--------------------------------------------------------------------------------
+1 | <p>Here's a <a href="https://example.com">simple link</a>.</p>
+2 | <p>This link has <a href="https://example.com"><b>bold text</b></a>.</p>
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/links/output.md:
+--------------------------------------------------------------------------------
+1 | Here's a [simple link](https://example.com/ "simple link").
+3 | This link has [**bold text**](https://example.com/ "bold text").
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/lists/input.html:
+--------------------------------------------------------------------------------
+ 1 | <ol>
+ 2 |     <li>First item</li>
+ 3 |     <li>Second item</li>
+ 4 |     <li>Third item</li>
+ 5 | </ol>
+ 6 | <ul>
+ 7 |     <li>Item A</li>
+ 8 |     <li>Item B</li>
+ 9 |     <li>Item C</li>
+10 | </ul>
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/lists/output.md:
+--------------------------------------------------------------------------------
+1 | 1. First item
+2 | 2. Second item
+3 | 3. Third item
+4 | - Item A
+5 | - Item B
+6 | - Item C
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/newline/input.html:
+--------------------------------------------------------------------------------
+1 | <div>This is a div.</div>
+2 | <div>This is another div.</div>
+3 | <br>
+4 | <div>Div with a line break.</div>
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/newline/output.md:
+--------------------------------------------------------------------------------
+1 | This is a div.
+2 | This is another div.
+3 |
+4 | Div with a line break.
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/html-to-markdown/__tests__/fixtures/tables/output.md:
+--------------------------------------------------------------------------------
+ 1 | #|
+ 2 | ||
+ 3 | Formatting
+ 4 | |
+ 5 | Windows Shortcut
+ 6 | |
+ 7 | Mac OS Shortcut
+ 8 | ||
+ 9 | ||
+10 | Bold text
+11 | |
+12 | Ctrl + B
+13 | |
+14 | ⌘ + B
+15 | ||
+16 | ||
+17 | Italic
+18 | |
+19 | Ctrl + I
+20 | |
+21 | ⌘ + I
+22 | ||
+23 | |#
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/index.ts:
+--------------------------------------------------------------------------------
+1 | export type {CreateCodemirrorParams} from './create';
+2 | export {createCodemirror} from './create';
+3 | export {ReactRendererFacet} from './react-facet';
+4 | export {DirectiveSyntaxFacet} from './directive-facet';
+5 | export {getImageDimensions, IMG_MAX_HEIGHT} from './files-upload-plugin';
+6 | export type {YfmLangOptions} from './yfm';
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/logger-facet.ts:
+--------------------------------------------------------------------------------
+1 | import {Facet} from '@codemirror/state';
+2 |
+3 | import type {Logger2} from '../../logger';
+4 |
+5 | export const LoggerFacet = Facet.define<Logger2.ILogger, Logger2.ILogger>({
+6 |     combine: (value) => value[0],
+7 |     static: true,
+8 | });
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/react-facet.ts:
+--------------------------------------------------------------------------------
+1 | import {Facet} from '@codemirror/state';
+2 |
+3 | import type {ReactRenderStorage} from '../../extensions';
+4 |
+5 | export const ReactRendererFacet = Facet.define<ReactRenderStorage, ReactRenderStorage>({
+6 |     combine: (value) => value[0],
+7 |     static: true,
+8 | });
+
+--------------------------------------------------------------------------------
+/src/markup/codemirror/search-plugin/view/SearchPopup.scss:
+--------------------------------------------------------------------------------
+ 1 | .g-md-search-card {
+ 2 |     padding: var(--g-spacing-2) var(--g-spacing-2) var(--g-spacing-3) var(--g-spacing-4);
+ 3 |
+ 4 |     &__header {
+ 5 |         display: flex;
+ 6 |         justify-content: space-between;
+ 7 |         align-items: center;
+ 8 |
+ 9 |         margin-bottom: var(--g-spacing-1);
+10 |     }
+11 | }
+
+--------------------------------------------------------------------------------
+/src/markup/commands/index.ts:
+--------------------------------------------------------------------------------
+ 1 | export {redo, redoDepth, undo, undoDepth} from '@codemirror/commands';
+ 2 |
+ 3 | export * from './blocks';
+ 4 | export * from './code';
+ 5 | export * from './heading';
+ 6 | export * from './inline';
+ 7 | export * from './lists';
+ 8 | export * from './marks';
+ 9 | export * from './math';
+10 | export * from './yfm';
+11 | export * from './emptyRow';
+
+--------------------------------------------------------------------------------
+/src/markup/commands/math.ts:
+--------------------------------------------------------------------------------
+1 | import {inlineWrapTo, wrapToBlock} from './helpers';
+2 |
+3 | export const wrapToMathInline = inlineWrapTo('$');
+4 | export const wrapToMathBlock = wrapToBlock(
+5 |     ({lineBreak}) => '$$' + lineBreak,
+6 |     ({lineBreak}) => lineBreak + '$$',
+7 | );
+
+--------------------------------------------------------------------------------
+/src/markup/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './codemirror';
+2 | export * from './commands';
+3 | export * from './editor';
+
+--------------------------------------------------------------------------------
+/src/plugins/index.ts:
+--------------------------------------------------------------------------------
+1 | export * as BaseTooltipPlugin from './BaseTooltip';
+2 | /** @deprecated */
+3 | export * as TooltipButtonPlugin from './TooltipButton';
+4 | /** @deprecated */
+5 | export * as TooltipSelectPlugin from './TooltipSelect';
+
+--------------------------------------------------------------------------------
+/src/pm/commands.ts:
+--------------------------------------------------------------------------------
+1 | export * from 'prosemirror-commands';
+
+--------------------------------------------------------------------------------
+/src/pm/history.ts:
+--------------------------------------------------------------------------------
+1 | export * from 'prosemirror-history';
+
+--------------------------------------------------------------------------------
+/src/pm/inputrules.ts:
+--------------------------------------------------------------------------------
+1 | export * from 'prosemirror-inputrules';
+
+--------------------------------------------------------------------------------
+/src/pm/keymap.ts:
+--------------------------------------------------------------------------------
+1 | export * from 'prosemirror-keymap';
+
+--------------------------------------------------------------------------------
+/src/pm/model.ts:
+--------------------------------------------------------------------------------
+1 | export * from 'prosemirror-model';
+
+--------------------------------------------------------------------------------
+/src/pm/state.ts:
+--------------------------------------------------------------------------------
+1 | export * from 'prosemirror-state';
+
+--------------------------------------------------------------------------------
+/src/pm/test-builder.ts:
+--------------------------------------------------------------------------------
+1 | export * from 'prosemirror-test-builder';
+
+--------------------------------------------------------------------------------
+/src/pm/transform.ts:
+--------------------------------------------------------------------------------
+1 | export * from 'prosemirror-transform';
+
+--------------------------------------------------------------------------------
+/src/pm/utils.ts:
+--------------------------------------------------------------------------------
+1 | // @ts-ignore // TODO: fix cjs build
+2 | export * from 'prosemirror-utils';
+
+--------------------------------------------------------------------------------
+/src/pm/view.ts:
+--------------------------------------------------------------------------------
+1 | export * from 'prosemirror-view';
+
+--------------------------------------------------------------------------------
+/src/react-utils/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './ErrorBoundary';
+2 | export * from './hooks';
+3 | export * from './react-node-view';
+4 | export * from './useNodeEditing';
+5 | export * from './useNodeHovered';
+6 | export * from './useSharedEditingState';
+7 | export * from './useSticky';
+
+--------------------------------------------------------------------------------
+/src/shortcuts/index.ts:
+--------------------------------------------------------------------------------
+1 | import './default';
+2 |
+3 | export * from './const';
+4 | export * from './formatter';
+
+--------------------------------------------------------------------------------
+/src/shortcuts/types.ts:
+--------------------------------------------------------------------------------
+1 | export type Chars = Partial<Record<string, string>>;
+2 |
+3 | export type Defs = string[];
+4 |
+5 | export type PlatfrormDefs = {
+6 |     pc?: Defs;
+7 |     mac?: Defs;
+8 | };
+
+--------------------------------------------------------------------------------
+/src/styles/_zindex.scss:
+--------------------------------------------------------------------------------
+1 | // so that cursor is always cursor:grabbing
+2 | $dnd-cursor-back: 100500;
+3 | // ghost for drag and drop. has to be always above other elements
+4 | $dnd-ghost: 100499;
+5 |
+6 | $sticky-toolbar: 2000; // more than has popup
+
+--------------------------------------------------------------------------------
+/src/styles/markdown.scss:
+--------------------------------------------------------------------------------
+1 | @use '../extensions/yfm/Color/colors';
+2 | @use './yc-file.scss';
+3 | @use './yc-colors.scss';
+
+--------------------------------------------------------------------------------
+/src/styles/mixins.scss:
+--------------------------------------------------------------------------------
+1 | @mixin block-border-hover() {
+2 |     border: 1px dashed transparent;
+3 |     border-radius: var(--g-border-radius-s);
+4 |
+5 |     &:hover {
+6 |         border-color: var(--g-color-line-generic);
+7 |     }
+8 | }
+
+--------------------------------------------------------------------------------
+/src/styles/styles.scss:
+--------------------------------------------------------------------------------
+1 | @use './yc-file.scss';
+2 | @use './yc-colors.scss';
+3 | @use './list.scss';
+
+--------------------------------------------------------------------------------
+/src/styles/yc-file.scss:
+--------------------------------------------------------------------------------
+1 | // styles rewriting from '~@diplodoc/transform/dist/css/yfm.css'
+2 |
+3 | .g-root .yfm:not(.yfm_only-light) {
+4 |     --yfm-file-icon-color: var(--g-color-text-primary);
+5 | }
+
+--------------------------------------------------------------------------------
+/src/table-utils/const.ts:
+--------------------------------------------------------------------------------
+1 | export enum TableRole {
+2 |     Table = 'table',
+3 |     Body = 'tableBody',
+4 |     Row = 'tableRow',
+5 |     Cell = 'tableCell',
+6 | }
+
+--------------------------------------------------------------------------------
+/src/table-utils/helpers.ts:
+--------------------------------------------------------------------------------
+ 1 | import type {Node} from 'prosemirror-model';
+ 2 |
+ 3 | export const findChildIndex = (parentNode: Node, targetNode: Node): number => {
+ 4 |     let targetIndex = -1;
+ 5 |     parentNode.forEach((node, _, index) => {
+ 6 |         if (node === targetNode) {
+ 7 |             targetIndex = index;
+ 8 |         }
+ 9 |     });
+10 |     return targetIndex;
+11 | };
+
+--------------------------------------------------------------------------------
+/src/table-utils/index.ts:
+--------------------------------------------------------------------------------
+ 1 | export * from './commands';
+ 2 | export * from './const';
+ 3 | export * from './utils';
+ 4 |
+ 5 | import type {TableRole} from './const';
+ 6 |
+ 7 | declare module 'prosemirror-model' {
+ 8 |     interface NodeSpec {
+ 9 |         tableRole?: TableRole;
+10 |     }
+11 | }
+
+--------------------------------------------------------------------------------
+/src/toolbar/FlexToolbar.scss:
+--------------------------------------------------------------------------------
+ 1 | .g-md-flex-toolbar {
+ 2 |     position: relative;
+ 3 |
+ 4 |     height: 28px;
+ 5 |
+ 6 |     &__container {
+ 7 |         position: absolute;
+ 8 |         inset: 0;
+ 9 |
+10 |         display: flex;
+11 |         gap: 0 8px;
+12 |     }
+13 | }
+
+--------------------------------------------------------------------------------
+/src/toolbar/PreviewTooltip.scss:
+--------------------------------------------------------------------------------
+ 1 | .g-md-preview-tooltip {
+ 2 |     padding: var(--g-spacing-3);
+ 3 |
+ 4 |     border-radius: var(--g-border-radius-s);
+ 5 |     background-color: var(--g-color-base-float-heavy);
+ 6 |
+ 7 |     &__content {
+ 8 |         padding: 0 0 0 var(--g-spacing-2);
+ 9 |
+10 |         background-color: var(--g-color-base-float);
+11 |     }
+12 | }
+
+--------------------------------------------------------------------------------
+/src/toolbar/Toolbar.scss:
+--------------------------------------------------------------------------------
+ 1 | .g-md-toolbar {
+ 2 |     display: flex;
+ 3 |
+ 4 |     &__group-separator {
+ 5 |         margin: 6px 8px;
+ 6 |
+ 7 |         border-left: 1px solid var(--g-color-line-generic);
+ 8 |     }
+ 9 | }
+
+--------------------------------------------------------------------------------
+/src/toolbar/ToolbarButton.scss:
+--------------------------------------------------------------------------------
+1 | .g-md-toolbar-button {
+2 |     &__action-disabled-tooltip {
+3 |         min-height: fit-content;
+4 |         padding: 6px 12px;
+5 |     }
+6 | }
+
+--------------------------------------------------------------------------------
+/src/toolbar/ToolbarGroup.scss:
+--------------------------------------------------------------------------------
+1 | .g-md-toolbar-group {
+2 |     display: flex;
+3 |     gap: 0 2px;
+4 | }
+
+--------------------------------------------------------------------------------
+/src/toolbar/const.ts:
+--------------------------------------------------------------------------------
+1 | export enum ToolbarTooltipDelay {
+2 |     Open = 250,
+3 |     Close = 150,
+4 | }
+
+--------------------------------------------------------------------------------
+/src/toolbar/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './const';
+2 | export * from './types';
+3 | export * from './Toolbar';
+4 | export * from './ToolbarButton';
+5 | export * from './ToolbarGroup';
+6 | export * from './ToolbarListButton';
+7 | export * from './FlexToolbar';
+
+--------------------------------------------------------------------------------
+/src/utils/carousel/index.ts:
+--------------------------------------------------------------------------------
+1 | export {IndexCarousel} from './IndexCarousel';
+2 | export {ArrayCarousel} from './ArrayCarousel';
+
+--------------------------------------------------------------------------------
+/src/utils/input-state.ts:
+--------------------------------------------------------------------------------
+ 1 | export class InputState {
+ 2 |     #shiftKey = false;
+ 3 |
+ 4 |     get shiftKey() {
+ 5 |         return this.#shiftKey;
+ 6 |     }
+ 7 |
+ 8 |     keydown(e: KeyboardEvent) {
+ 9 |         this.#shiftKey = e.code.startsWith('Shift') || e.shiftKey;
+10 |     }
+11 |
+12 |     keyup(e: KeyboardEvent) {
+13 |         if (e.code.startsWith('Shift')) this.#shiftKey = false;
+14 |     }
+15 | }
+
+--------------------------------------------------------------------------------
+/src/utils/platform.ts:
+--------------------------------------------------------------------------------
+1 | export const isMac = (): boolean =>
+2 |     typeof navigator === 'undefined' ? false : /Mac/.test(navigator.platform);
+
+--------------------------------------------------------------------------------
+/src/utils/remove-node.ts:
+--------------------------------------------------------------------------------
+ 1 | import type {Node} from 'prosemirror-model';
+ 2 | import type {Transaction} from 'prosemirror-state';
+ 3 |
+ 4 | export const removeNode: (params: {
+ 5 |     node: Node;
+ 6 |     pos: number;
+ 7 |     tr: Transaction;
+ 8 |     dispatch: (tr: Transaction) => void;
+ 9 | }) => void = ({node, pos, tr, dispatch}) => {
+10 |     dispatch(tr.delete(pos, pos + node.nodeSize));
+11 | };
+
+--------------------------------------------------------------------------------
+/src/version.ts:
+--------------------------------------------------------------------------------
+1 | /** During build process, the current version will be injected here */
+2 | export const VERSION = typeof __VERSION__ !== 'undefined' ? __VERSION__ : 'unknown';
+
+--------------------------------------------------------------------------------
+/src/view/README.md:
+--------------------------------------------------------------------------------
+1 | # `@doc-tools/yfm-editor/view` sub-module
+
+--------------------------------------------------------------------------------
+/src/view/components/YfmHtml/index.ts:
+--------------------------------------------------------------------------------
+1 | export type {YfmStaticViewProps} from './YfmStaticView';
+2 | export {YfmStaticView} from './YfmStaticView';
+
+--------------------------------------------------------------------------------
+/src/view/components/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './YfmHtml';
+
+--------------------------------------------------------------------------------
+/src/view/hocs/withLatex/types.ts:
+--------------------------------------------------------------------------------
+ 1 | export type {TransformMeta} from '../../types';
+ 2 |
+ 3 | // TODO: import runtime type from @diplodoc/latex-extension
+ 4 | export type PluginRuntime =
+ 5 |     | string
+ 6 |     | {
+ 7 |           script: string;
+ 8 |           style: string;
+ 9 |       };
+
+--------------------------------------------------------------------------------
+/src/view/hocs/withMermaid/types.ts:
+--------------------------------------------------------------------------------
+1 | export type {TransformMeta} from '../../types';
+3 | export type PluginRuntime = string; // TODO: import runtime type from @diplodoc/mermaid-extension
+
+--------------------------------------------------------------------------------
+/src/view/hocs/withYfmHtml/types.ts:
+--------------------------------------------------------------------------------
+1 | import type {PluginOptions} from '@diplodoc/html-extension';
+3 | export type {TransformMeta} from '../../types';
+5 | export type PluginRuntime = PluginOptions['runtimeJsPath'];
+
+--------------------------------------------------------------------------------
+/src/view/hooks/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './useYfmShowElemWithId';
+2 | export * from './useFilesGallery';
+
+--------------------------------------------------------------------------------
+/src/view/hooks/useFilesGallery/constants.ts:
+--------------------------------------------------------------------------------
+1 | export const supportedImageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'avif', 'bmp'];
+3 | export const supportedVideoExtensions = ['mp4', 'webm', 'ogg'];
+5 | export const supportedExtensions = [...supportedImageExtensions, ...supportedVideoExtensions];
+7 | export const extensionRegex = /\w+?$/;
+
+--------------------------------------------------------------------------------
+/src/view/hooks/useFilesGallery/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './useFilesGallery';
+2 | export * from './types';
+
+--------------------------------------------------------------------------------
+/src/view/hooks/useFilesGallery/types.ts:
+--------------------------------------------------------------------------------
+1 | import type {GalleryItemProps} from '@gravity-ui/components';
+2 |
+3 | export type GalleryItemPropsWithUrl = GalleryItemProps & {
+4 |     // pass the url to be able to exclude the items from content if they are found in the custom files
+5 |     url?: string;
+6 | };
+
+--------------------------------------------------------------------------------
+/src/view/hooks/useYfmShowElemWithId/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './useYfmShowElemWithId';
+
+--------------------------------------------------------------------------------
+/src/view/index.ts:
+--------------------------------------------------------------------------------
+1 | export * from './components';
+2 | export * from './hooks';
+3 | export * from './types';
+
+--------------------------------------------------------------------------------
+/src/view/types/index.ts:
+--------------------------------------------------------------------------------
+1 | export type TransformMeta = {script?: string[]; style?: string[]} | undefined;
+
+--------------------------------------------------------------------------------
+/tests/esbuild-test/esbuild-to-test.mjs:
+--------------------------------------------------------------------------------
+1 | const module = await import('../../src');
+3 | export default Object.keys(module).join(', ');
+
+--------------------------------------------------------------------------------
+/tests/esbuild-test/node-module-alias-fallback.js:
+--------------------------------------------------------------------------------
+1 | export default null;
+
+--------------------------------------------------------------------------------
+/tests/setup.ts:
+--------------------------------------------------------------------------------
+1 | import './pollyfills';
+2 | import './toMatchNode';
+
+--------------------------------------------------------------------------------
+/tests/visual-tests/MarkdownExtensions.helpers.tsx:
+--------------------------------------------------------------------------------
+ 1 | import {composeStories} from '@storybook/react';
+ 2 |
+ 3 | import * as DefaultMarkdownStories from '../../demo/stories/markdown/Markdown.stories';
+ 4 |
+ 5 | export const MarkdownStories = composeStories(DefaultMarkdownStories, {
+ 6 |     argsEnhancers: [
+ 7 |         () => ({
+ 8 |             stickyToolbar: false,
+ 9 |         }),
+10 |     ],
+11 | });
+
+--------------------------------------------------------------------------------
+/tests/visual-tests/Presets.helpers.tsx:
+--------------------------------------------------------------------------------
+ 1 | import {composeStories} from '@storybook/react';
+ 2 |
+ 3 | import * as DefaultPresetsStories from '../../demo/stories/presets/Presets.stories';
+ 4 |
+ 5 | export const PresetsStories = composeStories(DefaultPresetsStories, {
+ 6 |     argsEnhancers: [
+ 7 |         () => ({
+ 8 |             stickyToolbar: false,
+ 9 |         }),
+10 |     ],
+11 | });
+
+--------------------------------------------------------------------------------
+/tests/visual-tests/YfmExtensions.helpers.tsx:
+--------------------------------------------------------------------------------
+ 1 | import {composeStories} from '@storybook/react';
+ 2 |
+ 3 | import * as DefaultYFMStories from '../../demo/stories/yfm/YFM.stories';
+ 4 |
+ 5 | export const YFMStories = composeStories(DefaultYFMStories, {
+ 6 |     argsEnhancers: [
+ 7 |         () => ({
+ 8 |             stickyToolbar: false,
+ 9 |         }),
+10 |     ],
+11 | });

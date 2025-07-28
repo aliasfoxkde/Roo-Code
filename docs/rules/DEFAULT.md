@@ -76,3 +76,114 @@ Next:
 - Advanced parameters per Model config.
 
 github vs uithub
+
+
+Hivemind Improvements
+- Remote Management (manage extension from mobile). Allow one so to handle multiple sessions/extensions.
+- Recommended setup:
+   - Sign up for Openrouter API Key (add $10)
+   - Sign up for Google AI Studio (Gemma 3n 27B 128K for Prompt Enhancer/Conservator, Vision, etc. and text-embedding)
+   - Hugging Face for Image Generation
+
+Notes:
+- Grab prior context and validate that steps were done.
+
+Roo Code Improvements/Integrate:
+- Documentation and Knowledge Cleanup/append
+- Build in Browser automation tools (without configuration)
+- Add "RAG" section to "Settings" to handle
+- Improve base prompts (refine, research, enhance and test)
+- Expand "Knowledge" section to:
+  - Cleanup history, "ah-hah", and research into cleaned up documents.
+  - Ability to add sources (news, arxiv, uithub, github, etc.)
+  - Manage knowledge base, files, and cache, etc.
+- Derive process for getting "clean" markdown data for KB:
+  - Get README.md from Github
+  - Get structure from Uithub
+- Export session/task list (or continue in new chat)
+- Add help documentation to each tab...
+- Agents: Agents and Sub-Agent Management
+- Add "Commands" to Settings: Manage Claude Commands
+- Other/TBD
+  - Checkpoint Manager
+  - Deep Research Options
+  - Manage API Keys?
+  - Crash recovery
+  - Spell Checking
+  - Truncate, Consolidate and Summarize History.
+  - Enhance/Improve openrouter error handling & timeout with options, etc.
+  - Add Execution flag with # in chat window. Example: #Export, etc.
+  - Fix "Proceed While Running" issues caused by commands that do not end.
+  - Allow Hivemind to control Opencode from the terminal?
+  - Better documentation
+  - Scrum/project/planning board
+- Notes: Figure out best methodology for handing project, session, or global settings.
+
+Research
+- Boomerange Tasks?
+- Modes: Like "Code Reviewer"
+- Task/Session recovery
+
+Augment Features:
+- Tools
+  - Select default Terminal
+  - Enable sound Effects
+- Rules and User Guidelines
+  - Create new rule file
+  - Import Rules
+  - User Guidelines block
+- Context
+  - Source Folders
+  - Files
+- Account
+- Chat Window
+  - Attachments
+  - Use @ to load a file.
+  - Show selected/loaded files as context
+  - Auto context selected text.
+- Top bar
+  - Run
+  - Show Edits
+  - Next Edits
+  - Split View
+  - ... Close All, Close Saved,
+- Advanced Context Engine
+
+Kilo Code has:
+- Icons in Settings instead of "..." more
+- Inline Assist Options*
+- Display Options*
+- Enable System Notifications
+- Terminal:
+  - Terminal Character Limit
+  - Other
+- Experimental: Use "Autocomplete" feature
+- Prompts:
+  - Commit Message Generation*
+
+Cline Features:
+- OpenAI Reasoning Effort: Low|Medium|High
+- Enable aggressive terminal reuse?
+
+Cursor, Windsurf, etc.
+
+
+
+App Template
+- App Code (Clean: Needs strict instructions on how to code)
+- Styles (TailWind CSS with rules)
+- Servers
+- Documentation
+- Authentication
+- Source Control
+- Database
+- Routes (including API endpoints per app, etc.)
+- Framework: Python, Vite+React, NextJS
+- Support
+  - PWA, Cloudflare Pages/Workers, Vercel, etc.
+  - GitHub integrated out of the box
+- No Errors/Bugs/Warnings
+  - 100% Code Coverage
+  - No Console, Build, NPM, Jest, Strict Linting, or Unit Test errors/warnings
+  - Built in Puppeteer for reading Console & Routes testing
+  - Build in Playwright for Browser Automation Testing

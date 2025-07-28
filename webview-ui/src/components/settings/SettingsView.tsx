@@ -87,7 +87,7 @@ const sectionNames = [
 	"contextManagement",
 	"terminal",
 	"prompts",
-	"experimental",
+	"advanced",
 	"language",
 	"about",
 ] as const
@@ -420,7 +420,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 			{ id: "contextManagement", icon: Database },
 			{ id: "terminal", icon: SquareTerminal },
 			{ id: "prompts", icon: MessageSquare },
-			{ id: "experimental", icon: FlaskConical },
+			{ id: "advanced", icon: FlaskConical },
 			{ id: "language", icon: Globe },
 			{ id: "about", icon: Info },
 		],
@@ -666,9 +666,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 					{/* Context Management Section */}
 					{activeTab === "contextManagement" && (
 						<ContextManagementSettings
-							autoCondenseContext={autoCondenseContext}
-							autoCondenseContextPercent={autoCondenseContextPercent}
-							listApiConfigMeta={listApiConfigMeta ?? []}
 							maxOpenTabsContext={maxOpenTabsContext}
 							maxWorkspaceFiles={maxWorkspaceFiles ?? 200}
 							showRooIgnoredFiles={showRooIgnoredFiles}
@@ -717,6 +714,10 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 							setEventTriggersEnabled={(value) => setCachedStateField("eventTriggersEnabled", value)}
 							eventTriggers={eventTriggers}
 							setEventTriggers={(value) => setCachedStateField("eventTriggers", value)}
+							autoCondenseContext={autoCondenseContext}
+							setAutoCondenseContext={(value) => setCachedStateField("autoCondenseContext", value)}
+							autoCondenseContextPercent={autoCondenseContextPercent}
+							setAutoCondenseContextPercent={(value) => setCachedStateField("autoCondenseContextPercent", value)}
 						/>
 					)}
 

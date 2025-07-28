@@ -99,7 +99,7 @@ describe("HttpClientWithProxy", () => {
 	describe("createProxyAxios", () => {
 		it("should create an axios instance with request interceptor", () => {
 			const providerSettings: ProviderSettings = {
-				proxyEnabled: true,
+				proxyRoutingEnabled: true,
 				proxyUrl: "http://proxy.example.com:8080",
 			}
 
@@ -113,7 +113,7 @@ describe("HttpClientWithProxy", () => {
 	describe("HTTP methods with proxy settings", () => {
 		const testUrl = "https://api.example.com/test"
 		const providerSettings: ProviderSettings = {
-			proxyEnabled: true,
+			proxyRoutingEnabled: true,
 			proxyUrl: "http://proxy.example.com:8080",
 		}
 
@@ -158,7 +158,7 @@ describe("HttpClientWithProxy", () => {
 	describe("testProxyConnectivity", () => {
 		const testUrl = "https://api.example.com/test"
 		const providerSettings: ProviderSettings = {
-			proxyEnabled: true,
+			proxyRoutingEnabled: true,
 			proxyUrl: "http://proxy.example.com:8080",
 		}
 

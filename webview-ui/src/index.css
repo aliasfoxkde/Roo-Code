@@ -189,6 +189,12 @@
 		background-color: var(--vscode-textCodeBlock-background);
 	}
 
+	/* Reduce margins/padding between section headings and descriptive subtext */
+	.section-header-description {
+		margin-top: 0.25rem !important;
+		margin-bottom: 0.5rem !important;
+	}
+
 	/* Search result highlighting */
 	.history-item-highlight {
 		@apply underline;

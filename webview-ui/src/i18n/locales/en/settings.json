@@ -29,7 +29,7 @@
 		"contextManagement": "Context",
 		"terminal": "Terminal",
 		"prompts": "Prompts",
-		"experimental": "Experimental",
+		"experimental": "Advanced",
 		"language": "Language",
 		"about": "About Roo Code"
 	},
@@ -46,6 +46,11 @@
 			"batchDelayDescription": "Time to wait before sending a batch of prompts, allowing more prompts to accumulate.",
 			"maxQueueSize": "Maximum queue size",
 			"maxQueueSizeDescription": "Maximum number of prompts that can be queued for batching. When exceeded, older prompts will be discarded."
+		},
+		"contextCondensing": {
+			"title": "Context Condensing",
+			"description": "Configure automatic context condensing to manage token usage and improve performance.",
+			"autoTriggerDescription": "Automatically trigger intelligent context condensing when the context window reaches the specified threshold."
 		},
 		"eventTriggers": {
 			"title": "Event Triggers",
@@ -71,6 +76,9 @@
 				"eventNamePlaceholder": "Enter event name",
 				"triggerPrompt": "Trigger Prompt",
 				"triggerPromptPlaceholder": "Enter the prompt to trigger when this event occurs",
+				"executionLanguage": "Execution Language",
+				"executionCode": "Execution Code",
+				"executionCodePlaceholder": "Enter code to execute when this event occurs",
 				"addTrigger": "Add Trigger",
 				"removeTrigger": "Remove Trigger"
 			}
@@ -451,23 +459,24 @@
 			"maxTokensDescription": "Maximum number of output tokens for Claude Code responses. Default is 8000."
 		},
 		"proxy": {
-			"enableProxy": "Enable proxy",
+			"enableProxy": "Enable Proxy Routing",
 			"url": "Proxy URL",
 			"urlPlaceholder": "Enter proxy URL (e.g., http://proxy.example.com:8080)",
 			"urlDescription": "The proxy server URL including protocol and port",
-			"enableAuthentication": "Enable proxy authentication",
+			"enableAuthentication": "Proxy Authentication",
 			"username": "Username",
 			"usernamePlaceholder": "Enter proxy username",
 			"password": "Password",
 			"passwordPlaceholder": "Enter proxy password",
-			"bypassLocal": "Bypass proxy for local addresses",
+			"bypassLocal": "Bypass Local Routing",
 			"bypassLocalDescription": "Do not use the proxy for local (intranet) addresses"
 		},
 		"vpn": {
-			"enableVpn": "Enable VPN",
+			"enableVpn": "Enable VPN Routing",
 			"server": "VPN Server",
 			"serverPlaceholder": "Enter VPN server address",
 			"serverDescription": "The VPN server address including protocol and port",
+			"enableAuthentication": "VPN Authentication",
 			"username": "Username",
 			"usernamePlaceholder": "Enter VPN username",
 			"password": "Password",
@@ -475,7 +484,7 @@
 			"certificatePath": "Certificate Path",
 			"certificatePathPlaceholder": "Enter path to VPN certificate file",
 			"certificatePathDescription": "Path to the VPN certificate file for authentication",
-			"bypassLocal": "Bypass VPN for local addresses",
+			"bypassLocal": "Bypass Local Routing",
 			"bypassLocalDescription": "Do not route local (intranet) addresses through the VPN"
 		}
 	},
@@ -722,7 +731,7 @@
 		"description": "When checked, Roo will not use prompt caching for this model."
 	},
 	"temperature": {
-		"useCustom": "Use custom temperature",
+		"useCustom": "Use custom parameters",
 		"description": "Controls randomness in the model's responses.",
 		"rangeDescription": "Higher values make output more random, lower values make it more deterministic."
 	},

@@ -45,7 +45,7 @@ export const globalSettingsSchema = z.object({
 	condensingApiConfigId: z.string().optional(),
 	customCondensingPrompt: z.string().optional(),
 
-	autoApprovalEnabled: z.boolean().optional(),
+	autoApprovalEnabled: z.boolean().optional().default(true),
 	alwaysAllowReadOnly: z.boolean().optional(),
 	alwaysAllowReadOnlyOutsideWorkspace: z.boolean().optional(),
 	alwaysAllowWrite: z.boolean().optional(),
@@ -69,7 +69,7 @@ export const globalSettingsSchema = z.object({
 	preventCompletionWithOpenTodos: z.boolean().optional(),
 	allowedMaxRequests: z.number().nullish(),
 	autoCondenseContext: z.boolean().optional(),
-	autoCondenseContextPercent: z.number().optional(),
+	autoCondenseContextPercent: z.number().optional().default(60),
 	maxConcurrentFileReads: z.number().optional(),
 	
 	// Prompt batching settings
@@ -84,6 +84,8 @@ export const globalSettingsSchema = z.object({
 		eventName: z.string(),
 		triggerPrompt: z.string(),
 		enabled: z.boolean().optional(),
+		executionLanguage: z.enum(["shell", "powershell", "batch"]).optional(),
+		executionCode: z.string().optional(),
 	})).optional(),
 
 	/**

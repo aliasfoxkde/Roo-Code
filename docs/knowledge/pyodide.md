@@ -1,0 +1,8268 @@
+# Pyodide
+<div align="center">
+  <a href="https://github.com/pyodide/pyodide">
+  <img src="./docs/_static/img/pyodide-logo-readme.png" alt="Pyodide">
+  </a>
+</div>
+
+[![NPM Latest Release](https://img.shields.io/npm/v/pyodide)](https://www.npmjs.com/package/pyodide)
+[![PyPI Latest Release](https://img.shields.io/pypi/v/pyodide-py.svg)](https://pypi.org/project/pyodide-py/)
+[![Build Status](https://circleci.com/gh/pyodide/pyodide.png)](https://circleci.com/gh/pyodide/pyodide)
+[![Documentation Status](https://readthedocs.org/projects/pyodide/badge/?version=stable)](https://pyodide.readthedocs.io/?badge=stable)
+
+Pyodide is a Python distribution for the browser and Node.js based on WebAssembly.
+
+## What is Pyodide?
+
+Pyodide is a port of CPython to WebAssembly/[Emscripten](https://emscripten.org/).
+
+Pyodide makes it possible to install and run Python packages in the browser with
+[micropip](https://micropip.pyodide.org/). Any pure Python package with a wheel
+available on PyPi is supported. Many packages with C, C++, and Rust extensions
+have also been ported for use with Pyodide. These include many general-purpose
+packages such as regex, PyYAML, and cryptography, and scientific Python packages
+including NumPy, pandas, SciPy, Matplotlib, and scikit-learn.
+
+Pyodide comes with a robust Javascript ⟺ Python foreign function interface so
+that you can freely mix these two languages in your code with minimal friction.
+This includes full support for error handling, async/await, and much more.
+
+When used inside a browser, Python has full access to the Web APIs.
+
+## Try Pyodide (no installation needed)
+
+Try Pyodide in a
+[REPL](https://pyodide.org/en/stable/console.html) directly in
+your browser. For further information, see the
+[documentation](https://pyodide.org/en/stable/).
+
+## Getting Started
+
+- If you wish to use a hosted distribution of Pyodide: see the [Getting
+  Started](https://pyodide.org/en/stable/usage/quickstart.html) documentation.
+- If you wish to host Pyodide yourself, you can download Pyodide from the [releases
+  page](https://github.com/pyodide/pyodide/releases/) and serve it with a web server.
+- If you wish to use Pyodide with a bundler, see [the documentation on Working with
+  Bundlers](https://pyodide.org/en/stable/usage/working-with-bundlers.html)
+- If you are a Python package maintainer, see [the documentation on building and testing Python
+  packages](https://pyodide.org/en/stable/development/building-and-testing-packages.html).
+- If you want to add a package to the Pyodide distribution, [see the documentation on adding
+  a package to the Pyodide distribution](https://pyodide.org/en/stable/development/new-packages.html)
+- If you wish to experiment or contribute back to the Pyodide runtime, see the documentation on
+  [building Pyodide from source](https://pyodide.org/en/stable/development/building-from-sources.html)
+
+## History
+
+Pyodide was created in 2018 by [Michael Droettboom](https://github.com/mdboom)
+at Mozilla as part of the [Iodide
+project](https://github.com/iodide-project/iodide). Iodide is an experimental
+web-based notebook environment for literate scientific computing and
+communication.
+
+Iodide is no longer maintained. If you want to use Pyodide in an interactive
+client-side notebook, see [Pyodide notebook
+environments](https://pyodide.org/en/stable/project/related-projects.html#notebook-environments-ides-repls).
+
+## Contributing
+
+Please view the [contributing
+guide](https://pyodide.org/en/stable/development/contributing.html) for tips
+on filing issues, making changes, and submitting pull requests. Pyodide is an
+independent and community-driven open-source project. The decision-making
+process is outlined in the [Project
+governance](https://pyodide.org/en/stable/project/governance.html).
+
+## Communication
+
+- Blog: [blog.pyodide.org](https://blog.pyodide.org/)
+- Mailing list: [mail.python.org/mailman3/lists/pyodide.python.org/](https://mail.python.org/mailman3/lists/pyodide.python.org/)
+- Twitter: [twitter.com/pyodide](https://twitter.com/pyodide)
+- Stack Overflow: [stackoverflow.com/questions/tagged/pyodide](https://stackoverflow.com/questions/tagged/pyodide)
+- Discord: [Pyodide Discord](https://dsc.gg/pyodide)
+
+## Sponsors
+
+For a full list of current and historical sponsors, please see the [Funding](https://pyodide.org/en/stable/project/about.html#funding) section of our About page.
+
+Pyodide also has a large number of small donors. If you’re interested in supporting Pyodide, check out our [OpenCollective](https://opencollective.com/pyodide) and [GitHub Sponsors](https://github.com/sponsors/pyodide) pages.
+
+### Special thanks
+
+- [BrowserStack](https://www.browserstack.com/): This project is tested with BrowserStack
+
+## License
+
+Pyodide uses the [Mozilla Public License Version
+2.0](https://choosealicense.com/licenses/mpl-2.0/).
+
+## Structure
+├── .circleci
+    ├── config.yml
+    └── s3-website-config.json
+├── .clang-format
+├── .codecov.yml
+├── .devcontainer
+    ├── conda
+    │   └── devcontainer.json
+    ├── devcontainer.json
+    ├── onCreate-conda.sh
+    └── onCreate-docker.sh
+├── .dockerignore
+├── .editorconfig
+├── .github
+    ├── FUNDING.yml
+    ├── ISSUE_TEMPLATE
+    │   ├── bug_report.md
+    │   ├── config.yml
+    │   ├── documentation.md
+    │   ├── feature_request.md
+    │   └── improvement.md
+    ├── PULL_REQUEST_TEMPLATE.md
+    ├── codecov.yml
+    ├── dependabot.yml
+    └── workflows
+    │   ├── deploy_release.yml
+    │   ├── docker_image.yml
+    │   ├── main.yml
+    │   ├── pages.yml
+    │   └── update_cross_build_releases.yml
+├── .gitignore
+├── .gitmodules
+├── .gitpod.yml
+├── .pre-commit-config.yaml
+├── .prettierignore
+├── .readthedocs.yml
+├── CODE-OF-CONDUCT.md
+├── Dockerfile
+├── LICENSE
+├── Makefile
+├── Makefile.envs
+├── README.md
+├── benchmark
+    ├── benchmark.py
+    ├── benchmarks
+    │   ├── README.md
+    │   ├── matplotlib_benchmarks
+    │   │   ├── canvas_custom_font.py
+    │   │   ├── canvas_image.py
+    │   │   ├── canvas_image_affine.py
+    │   │   ├── canvas_rendering.py
+    │   │   ├── canvas_text_rotated.py
+    │   │   ├── wasm_custom_font.py
+    │   │   ├── wasm_image.py
+    │   │   ├── wasm_image_affine.py
+    │   │   ├── wasm_rendering.py
+    │   │   └── wasm_text_rotated.py
+    │   ├── numpy_benchmarks
+    │   │   ├── allpairs_distances.py
+    │   │   ├── allpairs_distances_loops.py
+    │   │   ├── arc_distance.py
+    │   │   ├── check_mask.py
+    │   │   ├── create_grid.py
+    │   │   ├── cronbach.py
+    │   │   ├── diffusion.py
+    │   │   ├── evolve.py
+    │   │   ├── fdtd.py
+    │   │   ├── fft.py
+    │   │   ├── grayscott.py
+    │   │   ├── grouping.py
+    │   │   ├── growcut.py
+    │   │   ├── harris.py
+    │   │   ├── hasting.py
+    │   │   ├── hyantes.py
+    │   │   ├── julia.py
+    │   │   ├── l2norm.py
+    │   │   ├── large_decimal_list.py
+    │   │   ├── local_maxima.py
+    │   │   ├── log_likelihood.py
+    │   │   ├── lstsqr.py
+    │   │   ├── mandel.py
+    │   │   ├── multiple_sum.py
+    │   │   ├── pairwise_loop.py
+    │   │   ├── periodic_dist.py
+    │   │   ├── repeating.py
+    │   │   ├── reverse_cumsum.py
+    │   │   ├── rosen.py
+    │   │   ├── slowparts.py
+    │   │   ├── smoothing.py
+    │   │   ├── specialconvolve.py
+    │   │   ├── vibr_energy.py
+    │   │   └── wave.py
+    │   ├── pandas_benchmarks
+    │   │   ├── join_df.py
+    │   │   └── read_csv.py
+    │   └── pystone_benchmarks
+    │   │   └── pystone.py
+    ├── plot_benchmark.py
+    └── stack_usage.py
+├── codecov.yml
+├── conftest.py
+├── cpython
+    ├── Makefile
+    ├── README.md
+    ├── Setup.local
+    ├── adjust_sysconfig.py
+    └── patches
+    │   ├── 0001-Public-pymain_run_python.patch
+    │   ├── 0002-Add-emscripten-platform-support-to-ctypes.util.find_.patch
+    │   ├── 0003-Fix-LONG_BIT-constant-to-be-always-32bit.patch
+    │   ├── 0004-Warn-if-ZoneInfo-is-imported-without-tzdata.patch
+    │   ├── 0005-Add-call-to-JsProxy_GetMethod-to-help-remove-tempora.patch
+    │   ├── 0006-Make-from-x-import-aware-of-jsproxy-modules.patch
+    │   ├── 0007-Use-wasm-gc-based-call-adaptor-if-available.patch
+    │   ├── 0008-Fix-Emscripten-call-trampoline-compatibility-with-Em.patch
+    │   └── 0009-Fix-iPad-detection-in-wasm-gc.patch
+├── docs
+    ├── Makefile
+    ├── _static
+    │   ├── css
+    │   │   └── pyodide.css
+    │   └── img
+    │   │   ├── pyodide-logo-raw.png
+    │   │   ├── pyodide-logo-readme.png
+    │   │   └── pyodide-logo.png
+    ├── _templates
+    │   └── layout.html
+    ├── conf.py
+    ├── development
+    │   ├── abi.md
+    │   ├── adding-packages-into-pyodide-distribution.md
+    │   ├── building-from-sources.md
+    │   ├── building-packages-from-source.md
+    │   ├── building-packages-using-recipe.md
+    │   ├── building-packages.md
+    │   ├── contributing.md
+    │   ├── core.md
+    │   ├── debugging.md
+    │   ├── maintainers.md
+    │   ├── meta-yaml.md
+    │   ├── signature-mismatch1.png
+    │   ├── signature-mismatch2.png
+    │   ├── signature-mismatch3.png
+    │   ├── signature-mismatch4.png
+    │   └── testing.md
+    ├── expected_js_docs.txt
+    ├── index.rst
+    ├── make.bat
+    ├── project
+    │   ├── about.md
+    │   ├── changelog.md
+    │   ├── code-of-conduct.md
+    │   ├── deprecation-timeline.md
+    │   ├── governance.md
+    │   ├── related-projects.md
+    │   ├── release-notes
+    │   │   └── v0.17.0.md
+    │   └── roadmap.md
+    ├── requirements-doc.txt
+    ├── sphinx_pyodide
+    │   ├── README.md
+    │   └── sphinx_pyodide
+    │   │   ├── __init__.py
+    │   │   ├── jsdoc.py
+    │   │   ├── lexers.py
+    │   │   ├── mdn_xrefs.py
+    │   │   ├── packages.py
+    │   │   ├── sphinxJsConfig.ts
+    │   │   └── util.py
+    └── usage
+    │   ├── accessing-files.md
+    │   ├── api-reference.md
+    │   ├── api
+    │       ├── js-api.md
+    │       ├── micropip-api.md
+    │       ├── pyodide-cli.md
+    │       ├── python-api.md
+    │       └── python-api
+    │       │   ├── code.md
+    │       │   ├── console.md
+    │       │   ├── ffi.md
+    │       │   ├── http.md
+    │       │   └── webloop.md
+    │   ├── downloading-and-deploying.md
+    │   ├── examples.md
+    │   ├── examples
+    │       ├── black.html
+    │       ├── console_webworker.html
+    │       ├── console_webworker.js
+    │       └── examples.html.tmpl
+    │   ├── faq.md
+    │   ├── file-system.md
+    │   ├── index.md
+    │   ├── keyboard-interrupts.md
+    │   ├── loading-custom-python-code.md
+    │   ├── loading-packages.md
+    │   ├── packages-in-pyodide.md
+    │   ├── quickstart.md
+    │   ├── sdl.md
+    │   ├── service-worker.md
+    │   ├── streams.md
+    │   ├── type-conversions.md
+    │   ├── wasm-constraints.md
+    │   ├── webworker.md
+    │   └── working-with-bundlers.md
+├── emsdk
+    ├── Makefile
+    └── patches
+    │   ├── 0001-Add-useful-error-when-symbol-resolution-fails.patch
+    │   ├── 0002-Don-t-check-exports-for-being-valid-C-C-identifiers-.patch
+    │   ├── 0003-dylink-Fix-rpath-calculation-in-nested-dependencies.patch
+    │   └── 0004-Fix-promise-order.patch
+├── environment.yml
+├── packages
+    ├── Makefile
+    ├── MarkupSafe
+    │   └── meta.yaml
+    ├── README.md
+    ├── _tests
+    │   └── test_packages_common.py
+    ├── atomicwrites
+    │   └── meta.yaml
+    ├── attrs
+    │   └── meta.yaml
+    ├── cffi
+    │   ├── meta.yaml
+    │   └── test_cffi.py
+    ├── coverage
+    │   └── meta.yaml
+    ├── exceptiongroup
+    │   └── meta.yaml
+    ├── hashlib
+    │   ├── meta.yaml
+    │   ├── src
+    │   │   └── pyproject.toml
+    │   └── test_hashlib.py
+    ├── iniconfig
+    │   └── meta.yaml
+    ├── libboost
+    │   └── meta.yaml
+    ├── libf2c
+    │   ├── extras
+    │   │   └── make.inc
+    │   ├── meta.yaml
+    │   └── patches
+    │   │   ├── 0001-fix-arith.h.patch
+    │   │   ├── 0002-fix-f2clibs-build.patch
+    │   │   ├── 0003-remove-redundant-symbols.patch
+    │   │   ├── 0004-correct-return-types.patch
+    │   │   ├── 0005-Remove-symbols-defined-in-OpenBLAS.patch
+    │   │   ├── 0006-adjust-ld-ar-ranlib.patch
+    │   │   └── 0007-add-singlecomplex.patch
+    ├── liblzma
+    │   └── meta.yaml
+    ├── libopenblas
+    │   ├── meta.yaml
+    │   └── patches
+    │   │   ├── 0001-Add-Wno-return-type-flag.patch
+    │   │   ├── 0002-Align-xerbla_array-signature-with-scipy-expectation.patch
+    │   │   └── 0003-Skip-linktest.patch
+    ├── libopenssl
+    │   └── meta.yaml
+    ├── lzma
+    │   ├── meta.yaml
+    │   ├── src
+    │   │   └── pyproject.toml
+    │   └── test_lzma.py
+    ├── micropip
+    │   ├── meta.yaml
+    │   ├── test
+    │   │   └── snowballstemmer-2.0.0-py2.py3-none-any.whl
+    │   └── test_micropip.py
+    ├── more-itertools
+    │   └── meta.yaml
+    ├── numpy
+    │   ├── meta.yaml
+    │   ├── patches
+    │   │   └── 0001-TST-Prevent-import-error-when-tests-are-not-included.patch
+    │   └── test_numpy.py
+    ├── packaging
+    │   ├── meta.yaml
+    │   └── patches
+    │   │   └── 0001-Add-Pyodide-compatibility.patch
+    ├── pluggy
+    │   └── meta.yaml
+    ├── py
+    │   └── meta.yaml
+    ├── pycparser
+    │   └── meta.yaml
+    ├── pydecimal
+    │   ├── meta.yaml
+    │   ├── src
+    │   │   └── pyproject.toml
+    │   └── test_pydecimal.py
+    ├── pydoc_data
+    │   ├── meta.yaml
+    │   ├── src
+    │   │   └── pyproject.toml
+    │   └── test_pydoc.py
+    ├── pyparsing
+    │   └── meta.yaml
+    ├── pytest-asyncio
+    │   ├── inner_test_pytest_asyncio.py
+    │   ├── meta.yaml
+    │   └── test_pytest_asyncio.py
+    ├── pytest
+    │   ├── meta.yaml
+    │   └── test_pytest.py
+    ├── pytz
+    │   └── meta.yaml
+    ├── scipy
+    │   ├── cmdline_test_file.py
+    │   ├── info.md
+    │   ├── meta.yaml
+    │   ├── patches
+    │   │   ├── 0001-Fix-dstevr-in-special-lapack_defs.h.patch
+    │   │   ├── 0002-int-to-string.patch
+    │   │   ├── 0003-gemm_-no-const.patch
+    │   │   ├── 0004-make-int-return-values.patch
+    │   │   ├── 0005-Fix-fitpack.patch
+    │   │   ├── 0006-Fix-gees-calls.patch
+    │   │   ├── 0007-MAINT-linalg-Remove-id_dist-Fortran-files.patch
+    │   │   ├── 0008-Mark-mvndst-functions-recursive.patch
+    │   │   ├── 0009-Make-sreorth-recursive.patch
+    │   │   ├── 0010-Link-openblas-with-modules-that-require-f2c.patch
+    │   │   ├── 0011-Remove-fpchec-inline-if-then-endif-constructs.patch
+    │   │   ├── 0012-Remove-chla_transtype.patch
+    │   │   ├── 0013-Set-wrapper-return-type-to-int.patch
+    │   │   ├── 0014-Skip-svd_gesdd-test.patch
+    │   │   ├── 0015-Remove-f2py-generators.patch
+    │   │   ├── 0016-Make-sf_error_state_lib-a-static-library.patch
+    │   │   ├── 0017-Remove-test-modules-that-fail-to-build.patch
+    │   │   └── 0018-Fix-lapack-larfg-function-signature.patch
+    │   ├── scipy-conftest.py
+    │   ├── scipy-pytest.js
+    │   └── test_scipy.py
+    ├── setuptools
+    │   └── meta.yaml
+    ├── six
+    │   └── meta.yaml
+    ├── sqlite3
+    │   ├── meta.yaml
+    │   ├── src
+    │   │   └── pyproject.toml
+    │   └── test_sqlite3.py
+    ├── ssl
+    │   ├── meta.yaml
+    │   ├── src
+    │   │   └── pyproject.toml
+    │   └── test_ssl.py
+    ├── tblib
+    │   └── meta.yaml
+    ├── test-buffer
+    │   ├── buffer-test
+    │   │   ├── buffer-test.c
+    │   │   └── setup.py
+    │   ├── meta.yaml
+    │   └── test_buffer.py
+    ├── test-cpp-exceptions
+    │   ├── meta.yaml
+    │   ├── src
+    │   │   ├── catch.cpp
+    │   │   └── throw.cpp
+    │   └── test_cpp_exceptions.py
+    ├── test-cpp-exceptions2
+    │   ├── meta.yaml
+    │   └── src
+    │   │   ├── cpp_exceptions_test2.cpp
+    │   │   ├── cpp_exceptions_test2
+    │   │       └── __init__.py
+    │   │   └── setup.py
+    ├── test-dummy-nonpure
+    │   ├── meta.yaml
+    │   └── src
+    │   │   ├── dummy_nonpure.c
+    │   │   └── setup.py
+    ├── test-dummy-unNormalized
+    │   ├── meta.yaml
+    │   └── src
+    │   │   ├── dummy_unnormalized
+    │   │       └── __init__.py
+    │   │   └── pyproject.toml
+    ├── test-dummy-unvendoring
+    │   ├── meta.yaml
+    │   └── src
+    │   │   ├── dummy_unvendoring
+    │   │       ├── __init__.py
+    │   │       └── test_dummy_unvendoring.py
+    │   │   └── pyproject.toml
+    ├── test-dummy
+    │   ├── meta.yaml
+    │   └── src
+    │   │   ├── dummy
+    │   │       └── __init__.py
+    │   │   └── pyproject.toml
+    ├── test-fpcast
+    │   ├── fpcast-test
+    │   │   ├── fpcast-test.c
+    │   │   └── setup.py
+    │   ├── meta.yaml
+    │   └── test_fpcast_test.py
+    ├── test-rust-abi
+    │   ├── meta.yaml
+    │   ├── src
+    │   │   ├── Cargo.toml
+    │   │   ├── pyproject.toml
+    │   │   ├── setup.py
+    │   │   └── src
+    │   │   │   └── lib.rs
+    │   └── test_rust_abi.py
+    ├── test-rust-panic
+    │   ├── meta.yaml
+    │   ├── src
+    │   │   ├── Cargo.toml
+    │   │   ├── pyproject.toml
+    │   │   ├── setup.py
+    │   │   └── src
+    │   │   │   └── lib.rs
+    │   └── test_rust_panic.py
+    ├── test-sharedlib-py
+    │   ├── meta.yaml
+    │   ├── src
+    │   │   ├── setup.py
+    │   │   └── sharedlib-test.c
+    │   └── test_sharedlib.py
+    ├── test-sharedlib
+    │   ├── meta.yaml
+    │   └── src
+    │   │   ├── dep.c
+    │   │   ├── dep2.c
+    │   │   ├── include
+    │   │       └── sharedlibtest.h
+    │   │   └── main.c
+    └── test
+    │   ├── meta.yaml
+    │   ├── src
+    │       └── pyproject.toml
+    │   └── test_test.py
+├── pyodide-cross-build-environments.json
+├── pyodide_env.sh
+├── pyproject.toml
+├── repository-structure.md
+├── requirements-deploy.txt
+├── requirements.txt
+├── run_docker
+├── src
+    ├── core
+    │   ├── README.md
+    │   ├── _pyodide_core.c
+    │   ├── docstring.c
+    │   ├── docstring.h
+    │   ├── error_handling.c
+    │   ├── error_handling.h
+    │   ├── error_handling.ts
+    │   ├── hiwire.c
+    │   ├── js2python.c
+    │   ├── js2python.h
+    │   ├── js2python.js
+    │   ├── jsbind.c
+    │   ├── jsbind.h
+    │   ├── jslib.c
+    │   ├── jslib.h
+    │   ├── jsmemops.h
+    │   ├── jsproxy.c
+    │   ├── jsproxy.h
+    │   ├── jsproxy_call.c
+    │   ├── jsproxy_call.h
+    │   ├── main.c
+    │   ├── pre.js
+    │   ├── print.c
+    │   ├── print.h
+    │   ├── pyodide_pre.c
+    │   ├── pyproxy.c
+    │   ├── pyproxy.h
+    │   ├── pyproxy.ts
+    │   ├── python2js.c
+    │   ├── python2js.h
+    │   ├── python2js_buffer.c
+    │   ├── python2js_buffer.h
+    │   ├── python2js_buffer.js
+    │   ├── python_unexposed.h
+    │   ├── sentinel.ts
+    │   ├── sentinel.wat
+    │   ├── stack_switching
+    │   │   ├── esbuild.config.mjs
+    │   │   ├── pystate.c
+    │   │   ├── stack_state.mjs
+    │   │   ├── stack_switching.mjs
+    │   │   ├── suspenders.c
+    │   │   └── suspenders.mjs
+    │   ├── tsconfig.json
+    │   └── types.h
+    ├── js
+    │   ├── README.md
+    │   ├── api.ts
+    │   ├── canvas.ts
+    │   ├── common
+    │   │   ├── abortSignalAny.ts
+    │   │   ├── contextManager.ts
+    │   │   ├── literal-map.js
+    │   │   ├── lock.ts
+    │   │   ├── resolveable.ts
+    │   │   └── warning.ts
+    │   ├── compat.ts
+    │   ├── constants.ts
+    │   ├── dynload.ts
+    │   ├── emscripten-settings.ts
+    │   ├── environments.ts
+    │   ├── esbuild.config.inner.mjs
+    │   ├── esbuild.config.outer.mjs
+    │   ├── esbuild.config.shared.mjs
+    │   ├── ffi.ts
+    │   ├── generated_struct_info32.json.d.ts
+    │   ├── installer.ts
+    │   ├── load-package.ts
+    │   ├── nativefs.ts
+    │   ├── package-lock.json
+    │   ├── package.json
+    │   ├── packaging-utils.ts
+    │   ├── pyodide.ts
+    │   ├── pyodide.umd.ts
+    │   ├── scheduler.ts
+    │   ├── snapshot.ts
+    │   ├── streams.ts
+    │   ├── struct_info_generated.json
+    │   ├── test
+    │   │   ├── conftest.js
+    │   │   ├── integration
+    │   │   │   ├── filesystem.test.js
+    │   │   │   ├── pyodide.test.js
+    │   │   │   └── sanity.test.ts
+    │   │   ├── loader.mjs
+    │   │   └── unit
+    │   │   │   ├── common
+    │   │   │       ├── abortSignalAny.test.ts
+    │   │   │       ├── contextManager.test.ts
+    │   │   │       ├── lock.test.ts
+    │   │   │       ├── resolveable.test.ts
+    │   │   │       └── warning.test.ts
+    │   │   │   ├── compat.test.ts
+    │   │   │   ├── installer.test.ts
+    │   │   │   ├── package-manager.test.ts
+    │   │   │   ├── packaging-utils.test.ts
+    │   │   │   ├── scheduler.test.ts
+    │   │   │   └── test-helper.ts
+    │   ├── tsconfig.json
+    │   ├── tsconfig.test.json
+    │   ├── tsdoc.json
+    │   ├── types.ts
+    │   ├── vendor
+    │   │   └── stackframe
+    │   │   │   ├── LICENSE
+    │   │   │   ├── error-stack-parser.ts
+    │   │   │   └── stackframe.ts
+    │   └── version.ts
+    ├── py
+    │   ├── README.md
+    │   ├── _pyodide
+    │   │   ├── __init__.py
+    │   │   ├── _base.py
+    │   │   ├── _core_docs.py
+    │   │   ├── _future_helper.py
+    │   │   ├── _importhook.py
+    │   │   ├── docs_argspec.py
+    │   │   ├── docstring.py
+    │   │   ├── jsbind.py
+    │   │   └── py.typed
+    │   ├── js.pyi
+    │   ├── pyodide
+    │   │   ├── __init__.py
+    │   │   ├── _core.py
+    │   │   ├── _package_loader.py
+    │   │   ├── _run_js.py
+    │   │   ├── _state.py
+    │   │   ├── code.py
+    │   │   ├── common.py
+    │   │   ├── console.py
+    │   │   ├── ffi
+    │   │   │   ├── __init__.py
+    │   │   │   └── wrappers.py
+    │   │   ├── http.py
+    │   │   ├── py.typed
+    │   │   └── webloop.py
+    │   ├── pyproject.toml
+    │   ├── setup.py
+    │   └── webbrowser.py
+    ├── templates
+    │   ├── console.html
+    │   ├── makesnap.mjs
+    │   ├── module_static_import_test.html
+    │   ├── module_test.html
+    │   ├── python
+    │   ├── python_cli_entry.mjs
+    │   ├── test.html
+    │   └── test_csp.html
+    ├── test-bun
+    │   ├── package.json
+    │   └── smoke-test.js
+    ├── test-deno
+    │   ├── README.md
+    │   ├── deno.json
+    │   ├── deno.lock
+    │   └── smoke-test.ts
+    ├── test-js
+    │   ├── index.d.ts
+    │   ├── index.test-d.ts
+    │   ├── package-lock.json
+    │   ├── package.json
+    │   └── tsconfig.json
+    └── tests
+    │   ├── __init__.py
+    │   ├── blns.base64.json
+    │   ├── html_templates
+    │       └── test_commonjs.html
+    │   ├── python_tests.yaml
+    │   ├── test_asyncio.py
+    │   ├── test_browser_apis.py
+    │   ├── test_bz2.py
+    │   ├── test_canvas.py
+    │   ├── test_cmdline_runner.py
+    │   ├── test_common.py
+    │   ├── test_compat.py
+    │   ├── test_console.py
+    │   ├── test_core_python.py
+    │   ├── test_filesystem.py
+    │   ├── test_jsproxy.py
+    │   ├── test_package_loading.py
+    │   ├── test_pkg
+    │       ├── __init__.py
+    │       └── some_module.py
+    │   ├── test_pyodide.py
+    │   ├── test_pyodide_http.py
+    │   ├── test_pyproxy.py
+    │   ├── test_pytest_wrapper.py
+    │   ├── test_python.py
+    │   ├── test_python_esm.py
+    │   ├── test_snapshots.py
+    │   ├── test_stack_switching.py
+    │   ├── test_static_typing.py
+    │   ├── test_stdlib_fixes.py
+    │   ├── test_streams.py
+    │   ├── test_typeconversions.py
+    │   ├── test_webloop.py
+    │   ├── test_webloop_webworker.py
+    │   ├── test_webworker.py
+    │   └── wheels
+    │       └── dummy_pkg-0.1.0-py3-none-any.whl
+└── tools
+    ├── backport.py
+    ├── buildf2c
+    ├── bump_version.py
+    ├── calculate_build_cache_key.py
+    ├── check_build_trigger.sh
+    ├── check_ccache.py
+    ├── check_compressed_size.py
+    ├── check_documented_functions.py
+    ├── cmdline-runner-test.sh
+    ├── codespell_ignore_words.txt
+    ├── common.py
+    ├── constraints.txt
+    ├── create_lockfile_diff.py
+    ├── create_xbuildenv.py
+    ├── d8-test.mjs
+    ├── d8-test.sh
+    ├── dependency-check.sh
+    ├── deploy_s3.py
+    ├── deploy_to_npm.sh
+    ├── docker_image_tag.py
+    ├── fixup-type-definitions.py
+    ├── make_test_list.py
+    ├── pytest_wrapper.py
+    ├── tests
+        ├── test_backport.py
+        ├── test_create_lockfile_diff.py
+        ├── test_create_xbuildenv.py
+        ├── test_cross_build_environments_metadata.py
+        ├── test_deploy_s3.py
+        ├── test_run_docker.py
+        ├── test_update_cross_build_releases.py
+        └── testdata
+        │   ├── pyodide-lock-0.27.7.json
+        │   └── pyodide-lock-0.28.0a3.json
+    ├── update_cross_build_releases.py
+    └── update_emscripten.py
+
+
+/.circleci/s3-website-config.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "Bucket": "pyodide-cdn2.iodide.io",
+3 |   "WebsiteConfiguration": {
+4 |     "IndexDocument": {
+5 |       "Suffix": "index.html"
+6 |     }
+7 |   }
+8 | }
+9 |
+
+
+--------------------------------------------------------------------------------
+/.codecov.yml:
+--------------------------------------------------------------------------------
+ 1 | comment: false
+ 2 |
+ 3 | coverage:
+ 4 |   status:
+ 5 |     project:
+ 6 |       default:
+ 7 |         # Commits pushed to main should not make the overall
+ 8 |         # project coverage decrease by more than 1%:
+ 9 |         target: auto
+10 |         threshold: 1%
+11 |     patch:
+12 |       default:
+13 |         # Be tolerant on slight code coverage diff on PRs to limit
+14 |         # noisy red coverage status on github PRs.
+15 |         # Note: The coverage stats are still uploaded
+16 |         # to codecov so that PR reviewers can see uncovered lines
+17 |         target: auto
+18 |         threshold: 1%
+19 |
+20 | codecov:
+21 |   notify:
+22 |     # Prevent coverage status to upload multiple times for parallel and long
+23 |     # running CI pipelines. This configuration is particularly useful on PRs
+24 |     # to avoid confusion.
+25 |     after_n_builds: 1
+26 |
+
+
+--------------------------------------------------------------------------------
+/.devcontainer/conda/devcontainer.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "name": "Conda",
+ 3 |   "image": "mcr.microsoft.com/devcontainers/base:bullseye",
+ 4 |
+ 5 |   // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+ 6 |   "remoteUser": "vscode",
+ 7 |
+ 8 |   // Setup conda environment
+ 9 |   "onCreateCommand": ".devcontainer/onCreate-conda.sh",
+10 |
+11 |   // Install additional features.
+12 |   "features": {
+13 |     // For config options, see https://github.com/devcontainers/features/tree/main/src/conda
+14 |     "ghcr.io/devcontainers/features/conda": {
+15 |       "version": "latest",
+16 |       "addCondaForge": "true"
+17 |     }
+18 |   }
+19 | }
+20 |
+
+
+--------------------------------------------------------------------------------
+/.devcontainer/devcontainer.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "name": "Docker",
+3 |   // keep in sync with "run_docker"
+4 |   "image": "pyodide/pyodide-env:20250311-chrome134-firefox136-py313",
+5 |   "remoteUser": "root",
+6 |   "initializeCommand": "git submodule update --init",
+7 |   "onCreateCommand": ".devcontainer/onCreate-docker.sh"
+8 | }
+9 |
+
+
+--------------------------------------------------------------------------------
+/.devcontainer/onCreate-docker.sh:
+--------------------------------------------------------------------------------
+ 1 | #!/usr/bin/env bash
+ 2 |
+ 3 | # Do not keep running on errors
+ 4 | set -e
+ 5 |
+ 6 | export PYODIDE_RECIPE_BUILD_DIR=/tmp/pyodide-build
+ 7 | mkdir -p "$PYODIDE_RECIPE_BUILD_DIR"
+ 8 | echo "export PYODIDE_RECIPE_BUILD_DIR=$PYODIDE_RECIPE_BUILD_DIR" >> ~/.bashrc
+ 9 | ln -sf "$PYODIDE_RECIPE_BUILD_DIR" packages/.build || echo "Note: Could not create convenience symlink packages/.build"
+10 |
+11 | # https://pyodide.org/en/stable/development/new-packages.html#prerequisites
+12 | make pyodide_build
+13 |
+14 | # Building emsdk and cpython takes a few minutes to run, so we do not run it here.
+15 | #
+16 | # make -C emsdk
+17 | # make -C cpython
+18 |
+
+
+--------------------------------------------------------------------------------
+/.dockerignore:
+--------------------------------------------------------------------------------
+1 | emsdk/emsdk/
+2 | cpython/installs/
+3 | cpython/build/
+4 | packages/*/build/
+5 |
+
+
+--------------------------------------------------------------------------------
+/.editorconfig:
+--------------------------------------------------------------------------------
+ 1 | root = true
+ 2 |
+ 3 | [*]
+ 4 | end_of_line = lf
+ 5 | insert_final_newline = true
+ 6 | charset = utf-8
+ 7 | indent_size = 2
+ 8 | indent_style = space
+ 9 | trim_trailing_whitespace = true
+10 |
+11 | [**.py]
+12 | indent_size = 4
+13 |
+14 | [tools/*]
+15 | indent_size = 4
+16 |
+17 | [Makefile]
+18 | indent_style = tab
+19 |
+20 | [**.patch]
+21 | trim_trailing_whitespace = false
+22 |
+
+
+--------------------------------------------------------------------------------
+/.github/FUNDING.yml:
+--------------------------------------------------------------------------------
+1 | github: pyodide
+2 | open_collective: pyodide
+3 |
+
+
+--------------------------------------------------------------------------------
+/.github/ISSUE_TEMPLATE/bug_report.md:
+--------------------------------------------------------------------------------
+ 1 | ---
+ 2 | name: Bug report
+ 3 | about: Create a report to help us improve
+ 4 | title: ""
+ 5 | labels: bug
+ 6 | assignees: ""
+ 7 | ---
+ 8 |
+ 9 | ## 🐛 Bug
+10 |
+11 | <!-- A clear and concise description of what the bug is. -->
+12 |
+13 | ### To Reproduce
+14 |
+15 | <!-- Minimal code example to reproduce the bug. -->
+16 |
+17 | ### Expected behavior
+18 |
+19 | <!-- FILL IN -->
+20 |
+21 | ### Environment
+22 |
+23 | - Pyodide Version<!-- (e.g. 0.25.0) -->:
+24 | - Browser version<!-- (e.g. Chrome 122.0.4638.54) -->:
+25 | - Any other relevant information:
+26 |
+27 | <!-- If you are building Pyodide by yourself, please also include these information: -->
+28 |
+29 | <!--
+30 | - Commit hash of Pyodide git repository:
+31 | - Build environment<!--(e.g. Ubuntu 22.04)- ->:
+32 | -->
+33 |
+34 | ### Additional context
+35 |
+36 | <!-- Add any other context about the problem here. -->
+37 |
+
+
+--------------------------------------------------------------------------------
+/.github/ISSUE_TEMPLATE/config.yml:
+--------------------------------------------------------------------------------
+ 1 | blank_issues_enabled: true
+ 2 | contact_links:
+ 3 |   - name: Package request
+ 4 |     url: https://github.com/pyodide/pyodide-recipes/issues/new?template=package_request.md
+ 5 |     about: Request a new Python package or a version update
+ 6 |   - name: Ask a Question
+ 7 |     url: https://github.com/pyodide/pyodide/discussions
+ 8 |     about: Ask and answer Pyodide related questions
+ 9 |   - name: 💬 Discord
+10 |     url: https://dsc.gg/pyodide
+11 |     about: Chat with Pyodide community
+12 |
+
+
+--------------------------------------------------------------------------------
+/.github/ISSUE_TEMPLATE/documentation.md:
+--------------------------------------------------------------------------------
+ 1 | ---
+ 2 | name: Documentation improvement
+ 3 | about: Improve or fix the documentation
+ 4 | title: ""
+ 5 | labels: documentation
+ 6 | assignees: ""
+ 7 | ---
+ 8 |
+ 9 | ## 📚 Documentation
+10 |
+11 | <!--
+12 | For typos and doc fixes, please go ahead and:
+13 |
+14 | 1. Create an issue (You can skip this if it is a very simple fix).
+15 | 1. Fix the documentation.
+16 | 1. Submit a PR.
+17 |
+18 | Note: If there are no changes in code, we recommend you to append `[skip ci]` in your commit message to avoid starting the build CI.
+19 |
+20 | Thanks!
+21 | -->
+22 |
+
+
+--------------------------------------------------------------------------------
+/.github/ISSUE_TEMPLATE/feature_request.md:
+--------------------------------------------------------------------------------
+ 1 | ---
+ 2 | name: Feature request
+ 3 | about: Suggest an idea for Pyodide
+ 4 | title: ""
+ 5 | labels: enhancement
+ 6 | assignees: ""
+ 7 | ---
+ 8 |
+ 9 | ## 🚀 Feature
+10 |
+11 | <!-- A clear and concise description of the feature proposal -->
+12 |
+13 | ### Motivation
+14 |
+15 | <!-- Please outline the motivation for the proposal. Is your feature request related to a problem? e.g., I'm always frustrated when [...]. If this is related to another GitHub issue, please link here too -->
+16 |
+17 | ### Pitch
+18 |
+19 | <!-- A clear and concise description of what you want to happen. -->
+20 |
+21 | ### Alternatives
+22 |
+23 | <!-- A clear and concise description of any alternative solutions or features you've considered, if any. -->
+24 |
+25 | ### Additional context
+26 |
+27 | <!-- Add any other context or screenshots about the feature request here. -->
+28 |
+
+
+--------------------------------------------------------------------------------
+/.github/ISSUE_TEMPLATE/improvement.md:
+--------------------------------------------------------------------------------
+ 1 | ---
+ 2 | name: Code improvement
+ 3 | about: Suggest a code improvement, i.e. refactoring, deprecation, etc.
+ 4 | title: ""
+ 5 | labels:
+ 6 | assignees: ""
+ 7 | ---
+ 8 |
+ 9 | ## Proposed refactoring or deprecation
+10 |
+11 | <!-- A clear and concise description of the code improvement -->
+12 |
+13 | ### Motivation
+14 |
+15 | <!-- Please outline the motivation for the proposal. If this is related to another GitHub issue, please link here too -->
+16 |
+17 | ### Pitch
+18 |
+19 | <!-- A clear and concise description of what you want to happen. -->
+20 |
+21 | ### Additional context
+22 |
+23 | <!-- Add any other context or screenshots here. -->
+24 |
+
+
+--------------------------------------------------------------------------------
+/.github/PULL_REQUEST_TEMPLATE.md:
+--------------------------------------------------------------------------------
+ 1 | <!-- Thank you for contributing to Pyodide! All improvements are welcome,
+ 2 |      so don't be afraid to make a PR. -->
+ 3 |
+ 4 | ### Description
+ 5 |
+ 6 | <!-- Please explain what your PR is about:
+ 7 |      - reasoning for the change
+ 8 |      - some details of updated code
+ 9 |      - any noteworthy choices to be aware of
+10 | 	Please refer to any related issues by #<issue_id> -->
+11 |
+12 | ### Checklist
+13 |
+14 | <!-- Note:
+15 |      If you think some of these steps are not necessary for your PR,
+16 |      remove those checkboxes or check them. If you keep unchecked checkboxes,
+17 |      we will assume that your PR is not ready to be merged  -->
+18 |
+19 | - [ ] Add a [CHANGELOG](https://github.com/pyodide/pyodide/blob/main/docs/project/changelog.md) entry
+20 | - [ ] Add / update tests
+21 | - [ ] Add new / update outdated documentation
+22 |
+
+
+--------------------------------------------------------------------------------
+/.github/codecov.yml:
+--------------------------------------------------------------------------------
+1 | comment: false
+2 | codecov:
+3 |   branch: main
+4 |   require_ci_to_pass: false
+5 |   notify:
+6 |     wait_for_ci: false
+7 |
+
+
+--------------------------------------------------------------------------------
+/.github/dependabot.yml:
+--------------------------------------------------------------------------------
+ 1 | # Keep GitHub Actions up to date with GitHub's Dependabot...
+ 2 | # https://docs.github.com/en/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot
+ 3 | # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem
+ 4 | version: 2
+ 5 | updates:
+ 6 |   - package-ecosystem: github-actions
+ 7 |     directory: /
+ 8 |     groups:
+ 9 |       github-actions:
+10 |         patterns:
+11 |           - "*" # Group all Actions updates into a single larger pull request
+12 |     schedule:
+13 |       interval: weekly
+14 |
+
+
+--------------------------------------------------------------------------------
+/.github/workflows/deploy_release.yml:
+--------------------------------------------------------------------------------
+ 1 | name: deploy-release
+ 2 | on:
+ 3 |   workflow_dispatch:
+ 4 |   release:
+ 5 |     types: [published]
+ 6 | jobs:
+ 7 |   deploy-pyodide-py-pypi:
+ 8 |     runs-on: ubuntu-latest
+ 9 |     environment: PyPi
+10 |     steps:
+11 |       - name: Checkout
+12 |         uses: actions/checkout@v4
+13 |
+14 |       - name: Setup Python
+15 |         uses: actions/setup-python@v5
+16 |         with:
+17 |           python-version: "3.11"
+18 |
+19 |       - name: Install dependencies
+20 |         run: python -m pip install build twine
+21 |
+22 |       - name: Build wheel
+23 |         run: |
+24 |           cd src/py/
+25 |           python -m build .
+26 |
+27 |       - name: Check wheel
+28 |         run: |
+29 |           twine check src/py/dist/*
+30 |
+31 |       - name: Publish to PyPI
+32 |         uses: pypa/gh-action-pypi-publish@release/v1
+33 |         with:
+34 |           user: __token__
+35 |           password: ${{ secrets.PYPI_API_TOKEN_PYODIDE_PY }}
+36 |           packages_dir: src/py/dist/
+37 |
+
+
+--------------------------------------------------------------------------------
+/.gitignore:
+--------------------------------------------------------------------------------
+ 1 | *.a
+ 2 | *.o
+ 3 | *.pyc
+ 4 | *.gen.*
+ 5 | src/js/generated
+ 6 | *.out.*
+ 7 | *.wasm
+ 8 |
+ 9 | *.egg-info/
+10 |
+11 | __pycache__
+12 |
+13 | .docker_home
+14 | .hypothesis
+15 | .idea
+16 | .mozilla
+17 | .mypy_cache/
+18 | .pytest_cache/
+19 | .vscode
+20 | .venv*
+21 | tsconfig.tsbuildinfo
+22 |
+23 | build
+24 | ccache
+25 | cpython/downloads
+26 | cpython/installs
+27 | cpython/build.log
+28 | dist*/
+29 | !packages/distro/
+30 | docs/_build/
+31 | emsdk/emsdk
+32 | emsdk/emscripten
+33 | geckodriver.log
+34 | node_modules
+35 | packages/.artifacts
+36 | packages/.build
+37 | packages/.libs
+38 | packages/*/build.log*
+39 | packages/build-logs
+40 | dist/
+41 | xbuildenv/
+42 | pytest-pyodide
+43 | tools/symlinks
+44 | xbuildenv/
+45 | .pyodide-xbuildenv*
+46 | DS_Store
+47 | .pyodide_build_installed
+48 |
+
+
+--------------------------------------------------------------------------------
+/.gitmodules:
+--------------------------------------------------------------------------------
+1 | [submodule "pyodide-build"]
+2 | 	path = pyodide-build
+3 | 	url = https://github.com/pyodide/pyodide-build
+4 |
+
+
+--------------------------------------------------------------------------------
+/.gitpod.yml:
+--------------------------------------------------------------------------------
+ 1 | github:
+ 2 |   prebuilds:
+ 3 |     master: true
+ 4 |     pullRequests: true
+ 5 |     pullRequestsFromForks: true
+ 6 |     addCheck: false
+ 7 |     addComment: false
+ 8 |     addBadge: false
+ 9 |     addLabel: false
+10 | tasks:
+11 |   - name: Setup the environment
+12 |     init: |
+13 |       PYTHON_VERSION=3.13.1
+14 |       pyenv install $PYTHON_VERSION
+15 |       pyenv global $PYTHON_VERSION
+16 |       python -m pip install -r requirements.txt
+17 |
+
+
+--------------------------------------------------------------------------------
+/.prettierignore:
+--------------------------------------------------------------------------------
+ 1 | *.gen.*
+ 2 | _build
+ 3 | build
+ 4 | .artifacts
+ 5 | .docker_home
+ 6 | .mypy_cache
+ 7 | emsdk
+ 8 | cpython
+ 9 | .vscode
+10 | .pytest_cache
+11 | .clang-format
+12 | packages/libf2c/extras/make.inc
+13 | src/js/struct_info_generated.json
+14 |
+
+
+--------------------------------------------------------------------------------
+/.readthedocs.yml:
+--------------------------------------------------------------------------------
+ 1 | # .readthedocs.yml
+ 2 | # Read the Docs configuration file
+ 3 | # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+ 4 |
+ 5 | # Required
+ 6 | version: 2
+ 7 |
+ 8 | sphinx:
+ 9 |   configuration: docs/conf.py
+10 |   fail_on_warning: true
+11 |
+12 | formats:
+13 |   - htmlzip
+14 |   # we can't build epub / pdf
+15 |
+16 | python:
+17 |   install:
+18 |     - requirements: docs/requirements-doc.txt
+19 |
+20 | submodules:
+21 |   include:
+22 |     - pyodide-build
+23 |
+24 | build:
+25 |   os: ubuntu-22.04
+26 |   tools:
+27 |     python: "3.13"
+28 |     nodejs: "20"
+29 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/README.md:
+--------------------------------------------------------------------------------
+1 | From https: // github.com / serge - sans - paille / numpy - benchmarks
+2 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/matplotlib_benchmarks/canvas_custom_font.py:
+--------------------------------------------------------------------------------
+ 1 | # non-native
+ 2 | # setup: import matplotlib ; import numpy as np ; matplotlib.use('module://matplotlib_pyodide.html5_canvas_backend') ; from matplotlib import pyplot as plt ;
+ 3 | # run: canvas_custom_font()
+ 4 |
+ 5 | # pythran export canvas_custom_font()
+ 6 | import matplotlib
+ 7 | import numpy as np
+ 8 |
+ 9 | matplotlib.use("module://matplotlib_pyodide.html5_canvas_backend")
+10 | from matplotlib import pyplot as plt  # noqa: E402
+11 |
+12 |
+13 | def canvas_custom_font():
+14 |     f = {"fontname": "cmsy10"}
+15 |     t = np.arange(0.0, 2.0, 0.01)
+16 |     s = 1 + np.sin(2 * np.pi * t)
+17 |     plt.figure()
+18 |     plt.title("A simple Sine Curve", **f)
+19 |     plt.plot(t, s, linewidth=1.0, marker=11)
+20 |     plt.plot(t, t)
+21 |     plt.grid(True)
+22 |     plt.show()
+23 |     plt.close("all")
+24 |     plt.clf()
+25 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/matplotlib_benchmarks/canvas_image.py:
+--------------------------------------------------------------------------------
+ 1 | # non-native
+ 2 | # setup: import matplotlib ; import numpy as np ;  matplotlib.use('module://matplotlib_pyodide.html5_canvas_backend') ; from matplotlib import pyplot as plt ; import matplotlib.cm as cm
+ 3 | # run: canvas_image()
+ 4 |
+ 5 | # pythran export canvas_image()
+ 6 | import matplotlib
+ 7 | import numpy as np
+ 8 |
+ 9 | matplotlib.use("module://matplotlib_pyodide.html5_canvas_backend")
+10 |
+11 | from matplotlib import cm  # noqa: E402
+12 | from matplotlib import pyplot as plt  # noqa: E402
+13 |
+14 |
+15 | def canvas_image():
+16 |     delta = 0.025
+17 |     x = y = np.arange(-3.0, 3.0, delta)
+18 |     X, Y = np.meshgrid(x, y)
+19 |     Z1 = np.exp(-(X**2) - Y**2)
+20 |     Z2 = np.exp(-((X - 1) ** 2) - (Y - 1) ** 2)
+21 |     Z = (Z1 - Z2) * 2
+22 |     plt.figure()
+23 |     plt.imshow(
+24 |         Z,
+25 |         interpolation="bilinear",
+26 |         cmap=cm.RdYlGn,
+27 |         origin="lower",
+28 |         extent=[-3, 3, -3, 3],
+29 |         vmax=abs(Z).max(),
+30 |         vmin=-abs(Z).max(),
+31 |     )
+32 |     plt.show()
+33 |     plt.close("all")
+34 |     plt.clf()
+35 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/matplotlib_benchmarks/canvas_rendering.py:
+--------------------------------------------------------------------------------
+ 1 | # non-native
+ 2 | # setup: import matplotlib ; import numpy as np ; matplotlib.use('module://matplotlib_pyodide.html5_canvas_backend') ; from matplotlib import pyplot as plt
+ 3 | # run: canvas_rendering()
+ 4 |
+ 5 | # pythran export canvas_rendering()
+ 6 | import matplotlib
+ 7 | import numpy as np
+ 8 |
+ 9 | matplotlib.use("module://matplotlib_pyodide.html5_canvas_backend")
+10 | from matplotlib import pyplot as plt  # noqa: E402
+11 |
+12 |
+13 | def canvas_rendering():
+14 |     t = np.arange(0.0, 2.0, 0.01)
+15 |     s = 1 + np.sin(2 * np.pi * t)
+16 |     plt.figure()
+17 |     plt.plot(t, s, linewidth=1.0, marker=11)
+18 |     plt.plot(t, t)
+19 |     plt.grid(True)
+20 |     plt.show()
+21 |     plt.close("all")
+22 |     plt.clf()
+23 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/matplotlib_benchmarks/wasm_custom_font.py:
+--------------------------------------------------------------------------------
+ 1 | # non-native
+ 2 | # setup: import matplotlib ; import numpy as np ; matplotlib.use('module://matplotlib_pyodide.wasm_backend') ; from matplotlib import pyplot as plt ;
+ 3 | # run: wasm_custom_font()
+ 4 |
+ 5 | # pythran export wasm_custom_font()
+ 6 | import matplotlib
+ 7 | import numpy as np
+ 8 |
+ 9 | matplotlib.use("module://matplotlib_pyodide.wasm_backend")
+10 | from matplotlib import pyplot as plt  # noqa: E402
+11 |
+12 |
+13 | def wasm_custom_font():
+14 |     f = {"fontname": "cmsy10"}
+15 |     t = np.arange(0.0, 2.0, 0.01)
+16 |     s = 1 + np.sin(2 * np.pi * t)
+17 |     plt.figure()
+18 |     plt.title("A simple Sine Curve", **f)
+19 |     plt.plot(t, s, linewidth=1.0, marker=11)
+20 |     plt.plot(t, t)
+21 |     plt.grid(True)
+22 |     plt.show()
+23 |     plt.close("all")
+24 |     plt.clf()
+25 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/matplotlib_benchmarks/wasm_image.py:
+--------------------------------------------------------------------------------
+ 1 | # non-native
+ 2 | # setup: import matplotlib ; import numpy as np ;  matplotlib.use('module://matplotlib_pyodide.wasm_backend') ; from matplotlib import pyplot as plt ; import matplotlib.cm as cm
+ 3 | # run: wasm_image()
+ 4 |
+ 5 | # pythran export wasm_image()
+ 6 | import matplotlib
+ 7 | import numpy as np
+ 8 |
+ 9 | matplotlib.use("module://matplotlib_pyodide.wasm_backend")
+10 |
+11 | from matplotlib import cm  # noqa: E402
+12 | from matplotlib import pyplot as plt  # noqa: E402
+13 |
+14 |
+15 | def wasm_image():
+16 |     delta = 0.025
+17 |     x = y = np.arange(-3.0, 3.0, delta)
+18 |     X, Y = np.meshgrid(x, y)
+19 |     Z1 = np.exp(-(X**2) - Y**2)
+20 |     Z2 = np.exp(-((X - 1) ** 2) - (Y - 1) ** 2)
+21 |     Z = (Z1 - Z2) * 2
+22 |     plt.figure()
+23 |     plt.imshow(
+24 |         Z,
+25 |         interpolation="bilinear",
+26 |         cmap=cm.RdYlGn,
+27 |         origin="lower",
+28 |         extent=[-3, 3, -3, 3],
+29 |         vmax=abs(Z).max(),
+30 |         vmin=-abs(Z).max(),
+31 |     )
+32 |     plt.show()
+33 |     plt.close("all")
+34 |     plt.clf()
+35 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/matplotlib_benchmarks/wasm_rendering.py:
+--------------------------------------------------------------------------------
+ 1 | # non-native
+ 2 | # setup: import matplotlib ; import numpy as np ; matplotlib.use('module://matplotlib_pyodide.wasm_backend') ; from matplotlib import pyplot as plt
+ 3 | # run: wasm_rendering()
+ 4 |
+ 5 | # pythran export wasm_rendering()
+ 6 | import matplotlib
+ 7 | import numpy as np
+ 8 |
+ 9 | matplotlib.use("module://matplotlib_pyodide.wasm_backend")
+10 | from matplotlib import pyplot as plt  # noqa: E402
+11 |
+12 |
+13 | def wasm_rendering():
+14 |     t = np.arange(0.0, 2.0, 0.01)
+15 |     s = 1 + np.sin(2 * np.pi * t)
+16 |     plt.figure()
+17 |     plt.plot(t, s, linewidth=1.0, marker=11)
+18 |     plt.plot(t, t)
+19 |     plt.grid(True)
+20 |     plt.show()
+21 |     plt.close("all")
+22 |     plt.clf()
+23 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/allpairs_distances.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import numpy as np ; N = 50 ; X, Y = np.random.randn(100,N), np.random.randn(40,N)
+ 2 | # run: allpairs_distances(X, Y)
+ 3 |
+ 4 | # pythran export allpairs_distances(float64[][], float64[][])
+ 5 | import numpy as np
+ 6 |
+ 7 |
+ 8 | def allpairs_distances(A, B):
+ 9 |     """This returns the euclidean distances squared
+10 |     dist2(x, y) = dot(x, x) - 2 * dot(x, y) + dot(y, y)
+11 |     """
+12 |     A2 = np.einsum("ij,ij->i", A, A)
+13 |     B2 = np.einsum("ij,ij->i", B, B)
+14 |     return A2[:, None] + B2[None, :] - 2 * np.dot(A, B.T)
+15 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/allpairs_distances_loops.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import numpy as np ; N = 50 ; X, Y = np.random.randn(30,N), np.random.randn(20,N)
+ 2 | # run: allpairs_distances_loops(X, Y)
+ 3 |
+ 4 | # pythran export allpairs_distances_loops(float64[][], float64[][])
+ 5 | import numpy as np
+ 6 |
+ 7 |
+ 8 | def allpairs_distances_loops(X, Y):
+ 9 |     result = np.zeros((X.shape[0], Y.shape[0]), X.dtype)
+10 |     for i in range(X.shape[0]):
+11 |         for j in range(Y.shape[0]):
+12 |             result[i, j] = np.sum((X[i, :] - Y[j, :]) ** 2)
+13 |     return result
+14 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/arc_distance.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: N = 5000 ; import numpy as np ; t0, p0, t1, p1 = np.random.randn(N), np.random.randn(N), np.random.randn(N), np.random.randn(N)
+ 2 | # run: arc_distance(t0, p0, t1, p1)
+ 3 |
+ 4 | # pythran export arc_distance(float64 [], float64[], float64[], float64[])
+ 5 |
+ 6 | import numpy as np
+ 7 |
+ 8 |
+ 9 | def arc_distance(theta_1, phi_1, theta_2, phi_2):
+10 |     """
+11 |     Calculates the pairwise arc distance between all points in vector a and b.
+12 |     """
+13 |     temp = (
+14 |         np.sin((theta_2 - theta_1) / 2) ** 2
+15 |         + np.cos(theta_1) * np.cos(theta_2) * np.sin((phi_2 - phi_1) / 2) ** 2
+16 |     )
+17 |     distance_matrix = 2 * (np.arctan2(np.sqrt(temp), np.sqrt(1 - temp)))
+18 |     return distance_matrix
+19 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/check_mask.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: n=100 ; import numpy; db = numpy.random.randint(2, size=(n, 4), dtype='bool')
+ 2 | # run: check_mask(db)
+ 3 | # from:
+ 4 | # http://stackoverflow.com/questions/34500913/numba-slower-for-numpy-bitwise-and-on-boolean-arrays
+ 5 |
+ 6 | # pythran export check_mask(bool[][])
+ 7 | import numpy as np
+ 8 |
+ 9 |
+10 | def check_mask(db, mask=(1, 0, 1)):
+11 |     out = np.zeros(db.shape[0], dtype=bool)
+12 |     for idx, line in enumerate(db):
+13 |         target, vector = line[0], line[1:]
+14 |         if (mask == np.bitwise_and(mask, vector)).all():
+15 |             if target == 1:
+16 |                 out[idx] = 1
+17 |     return out
+18 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/create_grid.py:
+--------------------------------------------------------------------------------
+ 1 | # http://stackoverflow.com/questions/13815719/creating-grid-with-numpy-performance
+ 2 | # pythran export create_grid(float [])
+ 3 | # setup: import numpy as np ; N = 800 ; x = np.arange(0,1,1./N)
+ 4 | # run: create_grid(x)
+ 5 | import numpy as np
+ 6 |
+ 7 |
+ 8 | def create_grid(x):
+ 9 |     N = x.shape[0]
+10 |     z = np.zeros((N, N, 3))
+11 |     z[:, :, 0] = x.reshape(-1, 1)
+12 |     z[:, :, 1] = x
+13 |     fast_grid = z.reshape(N * N, 3)
+14 |     return fast_grid
+15 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/cronbach.py:
+--------------------------------------------------------------------------------
+ 1 | # http://stackoverflow.com/questions/20799403/improving-performance-of-cronbach-alpha-code-python-numpy
+ 2 | # pythran export cronbach(float [][])
+ 3 | # setup: import numpy as np ; N = 600 ; items = np.random.rand(N,N)
+ 4 | # run: cronbach(items)
+ 5 |
+ 6 |
+ 7 | def cronbach(itemscores):
+ 8 |     itemvars = itemscores.var(axis=1, ddof=1)
+ 9 |     tscores = itemscores.sum(axis=0)
+10 |     nitems = len(itemscores)
+11 |     return nitems / (nitems - 1) * (1 - itemvars.sum() / tscores.var(ddof=1))
+12 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/diffusion.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import numpy as np;lx,ly=(2**6,2**6);u=np.zeros([lx,ly],dtype=np.double);u[lx//2,ly//2]=1000.0;tempU=np.zeros([lx,ly],dtype=np.double)
+ 2 | # run: diffusion(u,tempU,100)
+ 3 |
+ 4 | # pythran export diffusion(float [][], float [][], int)
+ 5 |
+ 6 |
+ 7 | def diffusion(u, tempU, iterNum):
+ 8 |     """
+ 9 |     Apply Numpy matrix for the Forward-Euler Approximation
+10 |     """
+11 |     mu = 0.1
+12 |
+13 |     for _ in range(iterNum):
+14 |         tempU[1:-1, 1:-1] = u[1:-1, 1:-1] + mu * (
+15 |             u[2:, 1:-1]
+16 |             - 2 * u[1:-1, 1:-1]
+17 |             + u[0:-2, 1:-1]
+18 |             + u[1:-1, 2:]
+19 |             - 2 * u[1:-1, 1:-1]
+20 |             + u[1:-1, 0:-2]
+21 |         )
+22 |         u[:, :] = tempU[:, :]
+23 |         tempU[:, :] = 0.0
+24 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/evolve.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import numpy as np ; grid_shape = (512, 512) ; grid = np.zeros(grid_shape) ; block_low = int(grid_shape[0] * .4) ; block_high = int(grid_shape[0] * .5) ; grid[block_low:block_high, block_low:block_high] = 0.005
+ 2 | # run: evolve(grid, 0.1)
+ 3 | # from: High Performance Python by Micha Gorelick and Ian Ozsvald,
+ 4 | # http://shop.oreilly.com/product/0636920028963.do
+ 5 |
+ 6 | # pythran export evolve(float64[][], float)
+ 7 |
+ 8 | import numpy as np
+ 9 |
+10 |
+11 | def laplacian(grid):
+12 |     return (
+13 |         np.roll(grid, +1, 0)
+14 |         + np.roll(grid, -1, 0)
+15 |         + np.roll(grid, +1, 1)
+16 |         + np.roll(grid, -1, 1)
+17 |         - 4 * grid
+18 |     )
+19 |
+20 |
+21 | def evolve(grid, dt, D=1):
+22 |     return grid + dt * D * laplacian(grid)
+23 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/fdtd.py:
+--------------------------------------------------------------------------------
+ 1 | # http://stackoverflow.com/questions/19367488/converting-function-to-numbapro-cuda
+ 2 | # setup: N = 10 ; import numpy ; a = numpy.random.rand(N,N)
+ 3 | # run: fdtd(a,10)
+ 4 |
+ 5 | # pythran export fdtd(float[][], int)
+ 6 | import numpy as np
+ 7 |
+ 8 |
+ 9 | def fdtd(input_grid, steps):
+10 |     grid = input_grid.copy()
+11 |     old_grid = np.zeros_like(input_grid)
+12 |     previous_grid = np.zeros_like(input_grid)
+13 |
+14 |     l_x = grid.shape[0]
+15 |     l_y = grid.shape[1]
+16 |
+17 |     for _ in range(steps):
+18 |         np.copyto(previous_grid, old_grid)
+19 |         np.copyto(old_grid, grid)
+20 |
+21 |         for x in range(l_x):
+22 |             for y in range(l_y):
+23 |                 grid[x, y] = 0.0
+24 |                 if 0 < x + 1 < l_x:
+25 |                     grid[x, y] += old_grid[x + 1, y]
+26 |                 if 0 < x - 1 < l_x:
+27 |                     grid[x, y] += old_grid[x - 1, y]
+28 |                 if 0 < y + 1 < l_y:
+29 |                     grid[x, y] += old_grid[x, y + 1]
+30 |                 if 0 < y - 1 < l_y:
+31 |                     grid[x, y] += old_grid[x, y - 1]
+32 |
+33 |                 grid[x, y] /= 2.0
+34 |                 grid[x, y] -= previous_grid[x, y]
+35 |
+36 |     return grid
+37 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/fft.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: N = 2**11 ; import numpy ; a = numpy.array(numpy.random.rand(N), dtype=complex)
+ 2 | # run: fft(a)
+ 3 |
+ 4 | # pythran export fft(complex [])
+ 5 |
+ 6 | import numpy as np
+ 7 |
+ 8 |
+ 9 | def fft(x):
+10 |     return np.fft(x)
+11 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/grayscott.py:
+--------------------------------------------------------------------------------
+ 1 | # http://stackoverflow.com/questions/26823312/numba-or-cython-acceleration-in-reaction-diffusion-algorithm
+ 2 | # setup: pass
+ 3 | # run: grayscott(40, 0.16, 0.08, 0.04, 0.06)
+ 4 |
+ 5 | # pythran export grayscott(int, float, float, float, float)
+ 6 | import numpy as np
+ 7 |
+ 8 |
+ 9 | def grayscott(counts, Du, Dv, F, k):
+10 |     n = 100
+11 |     U = np.zeros((n + 2, n + 2), dtype=np.float32)
+12 |     V = np.zeros((n + 2, n + 2), dtype=np.float32)
+13 |     u, v = U[1:-1, 1:-1], V[1:-1, 1:-1]
+14 |
+15 |     r = 20
+16 |     u[:] = 1.0
+17 |     U[n // 2 - r : n // 2 + r, n // 2 - r : n // 2 + r] = 0.50
+18 |     V[n // 2 - r : n // 2 + r, n // 2 - r : n // 2 + r] = 0.25
+19 |     u += 0.15 * np.random.random((n, n))
+20 |     v += 0.15 * np.random.random((n, n))
+21 |
+22 |     for _ in range(counts):
+23 |         Lu = (
+24 |             U[0:-2, 1:-1]
+25 |             + U[1:-1, 0:-2]
+26 |             - 4 * U[1:-1, 1:-1]
+27 |             + U[1:-1, 2:]
+28 |             + U[2:, 1:-1]
+29 |         )
+30 |         Lv = (
+31 |             V[0:-2, 1:-1]
+32 |             + V[1:-1, 0:-2]
+33 |             - 4 * V[1:-1, 1:-1]
+34 |             + V[1:-1, 2:]
+35 |             + V[2:, 1:-1]
+36 |         )
+37 |         uvv = u * v * v
+38 |         u += Du * Lu - uvv + F * (1 - u)
+39 |         v += Dv * Lv + uvv - (F + k) * v
+40 |
+41 |     return V
+42 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/grouping.py:
+--------------------------------------------------------------------------------
+ 1 | # http://stackoverflow.com/questions/4651683/numpy-grouping-using-itertools-groupby-performance
+ 2 | # setup: import numpy as np ; N = 350000 ; values = np.array(np.random.randint(0,3298,size=N),dtype='u4') ; values.sort()
+ 3 | # run: grouping(values)
+ 4 |
+ 5 | # pythran export grouping(uint32 [])
+ 6 |
+ 7 |
+ 8 | def grouping(values):
+ 9 |     import numpy as np
+10 |
+11 |     diff = np.concatenate(([1], np.diff(values)))
+12 |     idx = np.concatenate((np.where(diff)[0], [len(values)]))
+13 |     return values[idx[:-1]], np.diff(idx)
+14 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/harris.py:
+--------------------------------------------------------------------------------
+ 1 | # from: parakeet testbed
+ 2 | # setup: import numpy as np ; M, N = 512, 512 ; X = np.random.randn(M,N)
+ 3 | # run: harris(X)
+ 4 |
+ 5 | # pythran export harris(float64[][])
+ 6 |
+ 7 |
+ 8 | def harris(X):
+ 9 |     m, n = X.shape
+10 |     dx = (X[1:, :] - X[: m - 1, :])[:, 1:]
+11 |     dy = (X[:, 1:] - X[:, : n - 1])[1:, :]
+12 |
+13 |     #
+14 |     #   At each point we build a matrix
+15 |     #   of derivative products
+16 |     #   M =
+17 |     #   | A = dx^2     C = dx * dy |
+18 |     #   | C = dy * dx  B = dy * dy |
+19 |     #
+20 |     #   and the score at that point is:
+21 |     #      det(M) - k*trace(M)^2
+22 |     #
+23 |     A = dx * dx
+24 |     B = dy * dy
+25 |     C = dx * dy
+26 |     tr = A + B
+27 |     det = A * B - C * C
+28 |     k = 0.05
+29 |     return det - k * tr * tr
+30 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/hasting.py:
+--------------------------------------------------------------------------------
+ 1 | # from: http://wiki.scipy.org/Cookbook/Theoretical_Ecology/Hastings_and_Powell
+ 2 | # setup: import numpy as np ; y = np.random.rand(3) ; args = np.random.rand(7)
+ 3 | # run: hasting(y, *args)
+ 4 |
+ 5 | # pythran export hasting(float [], float, float, float, float, float,
+ 6 | # float, float)
+ 7 | import numpy as np
+ 8 |
+ 9 |
+10 | def hasting(y, t, a1, a2, b1, b2, d1, d2):
+11 |     yprime = np.empty((3,))
+12 |     yprime[0] = y[0] * (1.0 - y[0]) - a1 * y[0] * y[1] / (1.0 + b1 * y[0])
+13 |     yprime[1] = (
+14 |         a1 * y[0] * y[1] / (1.0 + b1 * y[0])
+15 |         - a2 * y[1] * y[2] / (1.0 + b2 * y[1])
+16 |         - d1 * y[1]
+17 |     )
+18 |     yprime[2] = a2 * y[1] * y[2] / (1.0 + b2 * y[1]) - d2 * y[2]
+19 |     return yprime
+20 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/hyantes.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import numpy ; a = numpy.array([ [i/10., i/10., i/20.] for i in range(44440)], dtype=numpy.double)
+ 2 | # run: hyantes(0, 0, 90, 90, 1, 100, 80, 80, a)
+ 3 |
+ 4 | # pythran export hyantes(float, float, float, float, float, float, int,
+ 5 | # int, float[][])
+ 6 | import numpy as np
+ 7 |
+ 8 |
+ 9 | def hyantes(xmin, ymin, xmax, ymax, step, range_, range_x, range_y, t):
+10 |     X, Y = t.shape
+11 |     pt = np.zeros((X, Y))
+12 |     for i in range(X):
+13 |         for j in range(Y):
+14 |             for k in t:
+15 |                 tmp = 6368.0 * np.arccos(
+16 |                     np.cos(xmin + step * i)
+17 |                     * np.cos(k[0])
+18 |                     * np.cos((ymin + step * j) - k[1])
+19 |                     + np.sin(xmin + step * i) * np.sin(k[0])
+20 |                 )
+21 |                 if tmp < range_:
+22 |                     pt[i, j] += k[2] / (1 + tmp)
+23 |     return pt
+24 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/julia.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: N=10
+ 2 | # run: julia(1., 1., N, 1.5, 10., 1e4)
+ 3 |
+ 4 | # pythran export julia(float, float, int, float, float, float)
+ 5 | import numpy as np
+ 6 |
+ 7 |
+ 8 | def kernel(zr, zi, cr, ci, lim, cutoff):
+ 9 |     """Computes the number of iterations `n` such that
+10 |     |z_n| > `lim`, where `z_n = z_{n-1}**2 + c`.
+11 |     """
+12 |     count = 0
+13 |     while ((zr * zr + zi * zi) < (lim * lim)) and count < cutoff:
+14 |         zr, zi = zr * zr - zi * zi + cr, 2 * zr * zi + ci
+15 |         count += 1
+16 |     return count
+17 |
+18 |
+19 | def julia(cr, ci, N, bound=1.5, lim=1000.0, cutoff=1e6):
+20 |     """Pure Python calculation of the Julia set for a given `c`.  No NumPy
+21 |     array operations are used.
+22 |     """
+23 |     julia = np.empty((N, N), np.uint32)
+24 |     grid_x = np.linspace(-bound, bound, N)
+25 |     for i, x in enumerate(grid_x):
+26 |         for j, y in enumerate(grid_x):
+27 |             julia[i, j] = kernel(x, y, cr, ci, lim, cutoff)
+28 |     return julia
+29 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/l2norm.py:
+--------------------------------------------------------------------------------
+ 1 | # http://stackoverflow.com/questions/7741878/how-to-apply-numpy-linalg-norm-to-each-row-of-a-matrix/7741976#7741976
+ 2 | # setup: import numpy as np ; N = 1000; x = np.random.rand(N,N)
+ 3 | # run: l2norm(x)
+ 4 |
+ 5 | # pythran export l2norm(float64[][])
+ 6 | import numpy as np
+ 7 |
+ 8 |
+ 9 | def l2norm(x):
+10 |     return np.sqrt(np.einsum("ij,ij->i", x, x))
+11 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/large_decimal_list.py:
+--------------------------------------------------------------------------------
+1 | # setup: from decimal import Decimal ; A = [Decimal('2.1') for i in range(1000)] ; B = [Decimal('3.2') for i in range(1000)]
+2 | # run: large_decimal_list(A, B)
+3 |
+4 |
+5 | def large_decimal_list(A, B):
+6 |     return [a * b for a, b in zip(A, B, strict=True)]
+7 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/local_maxima.py:
+--------------------------------------------------------------------------------
+ 1 | # https://github.com/iskandr/parakeet/blob/master/benchmarks/nd_local_maxima.py
+ 2 | # setup: import numpy as np ; shape = (3,2,3,2) ; x = np.arange(36, dtype=np.float64).reshape(*shape)
+ 3 | # run: local_maxima(x)
+ 4 |
+ 5 | # pythran export local_maxima(float [][][][])
+ 6 | import numpy as np
+ 7 |
+ 8 |
+ 9 | def wrap(pos, offset, bound):
+10 |     return (pos + offset) % bound
+11 |
+12 |
+13 | def clamp(pos, offset, bound):
+14 |     return min(bound - 1, max(0, pos + offset))
+15 |
+16 |
+17 | def reflect(pos, offset, bound):
+18 |     idx = pos + offset
+19 |     return min(2 * (bound - 1) - idx, max(idx, -idx))
+20 |
+21 |
+22 | def local_maxima(data, mode=wrap):
+23 |     wsize = data.shape
+24 |     result = np.ones(data.shape, bool)
+25 |     for pos in np.ndindex(data.shape):
+26 |         myval = data[pos]
+27 |         for offset in np.ndindex(wsize):
+28 |             neighbor_idx = tuple(
+29 |                 mode(p, o - w // 2, w)
+30 |                 for (p, o, w) in zip(pos, offset, wsize, strict=True)
+31 |             )
+32 |             result[pos] &= data[neighbor_idx] <= myval
+33 |     return result
+34 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/log_likelihood.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import numpy as np ; N = 100000 ; a = np.random.random(N); b = 0.1; c =1.1
+ 2 | # run: log_likelihood(a, b, c)
+ 3 | # from: http://arogozhnikov.github.io/2015/09/08/SpeedBenchmarks.html
+ 4 | import numpy
+ 5 |
+ 6 | # pythran export log_likelihood(float64[], float64, float64)
+ 7 |
+ 8 |
+ 9 | def log_likelihood(data, mean, sigma):
+10 |     s = (data - mean) ** 2 / (2 * (sigma**2))
+11 |     pdfs = numpy.exp(-s)
+12 |     pdfs /= numpy.sqrt(2 * numpy.pi) * sigma
+13 |     return numpy.log(pdfs).sum()
+14 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/lstsqr.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import numpy as np ; N = 500000 ; X, Y = np.random.rand(N), np.random.rand(N)
+ 2 | # run: lstsqr(X, Y)
+ 3 | # from:
+ 4 | # http://nbviewer.ipython.org/github/rasbt/One-Python-benchmark-per-day/blob/master/ipython_nbs/day10_fortran_lstsqr.ipynb
+ 5 |
+ 6 | # pythran export lstsqr(float[], float[])
+ 7 | import numpy as np
+ 8 |
+ 9 |
+10 | def lstsqr(x, y):
+11 |     """Computes the least-squares solution to a linear matrix equation."""
+12 |     x_avg = np.average(x)
+13 |     y_avg = np.average(y)
+14 |     dx = x - x_avg
+15 |     var_x = np.sum(dx**2)
+16 |     cov_xy = np.sum(dx * (y - y_avg))
+17 |     slope = cov_xy / var_x
+18 |     y_interc = y_avg - slope * x_avg
+19 |     return (slope, y_interc)
+20 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/mandel.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import numpy as np; image = np.zeros((64, 32), dtype = np.uint8)
+ 2 | # run: mandel(-2.0, 1.0, -1.0, 1.0, image, 20)
+ 3 |
+ 4 | # pythran export mandel(float, float, float, float, uint8[][], int)
+ 5 |
+ 6 |
+ 7 | def kernel(x, y, max_iters):
+ 8 |     """
+ 9 |     Given the real and imaginary parts of a complex number,
+10 |     determine if it is a candidate for membership in the Mandelbrot
+11 |     set given a fixed number of iterations.
+12 |     """
+13 |     c = complex(x, y)
+14 |     z = 0.0j
+15 |     for i in range(max_iters):
+16 |         z = z * z + c
+17 |         if (z.real * z.real + z.imag * z.imag) >= 4:
+18 |             return i
+19 |
+20 |     return max_iters
+21 |
+22 |
+23 | def mandel(min_x, max_x, min_y, max_y, image, iters):
+24 |     height = image.shape[0]
+25 |     width = image.shape[1]
+26 |
+27 |     pixel_size_x = (max_x - min_x) / width
+28 |     pixel_size_y = (max_y - min_y) / height
+29 |
+30 |     for x in range(width):
+31 |         real = min_x + x * pixel_size_x
+32 |         for y in range(height):
+33 |             imag = min_y + y * pixel_size_y
+34 |             color = kernel(real, imag, iters)
+35 |             image[y, x] = color
+36 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/multiple_sum.py:
+--------------------------------------------------------------------------------
+ 1 | # from http://stackoverflow.com/questions/77999777799977/numpy-vs-cython-speed
+ 2 | # pythran export multiple_sum(float[][])
+ 3 | # setup: import numpy as np ; r = np.random.rand(100,100)
+ 4 | # run: multiple_sum(r)
+ 5 | import numpy as np
+ 6 |
+ 7 |
+ 8 | def multiple_sum(array):
+ 9 |     rows = array.shape[0]
+10 |     cols = array.shape[1]
+11 |
+12 |     out = np.zeros((rows, cols))
+13 |
+14 |     for row in range(0, rows):
+15 |         out[row, :] = np.sum(array - array[row, :], 0)
+16 |
+17 |     return out
+18 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/pairwise_loop.py:
+--------------------------------------------------------------------------------
+ 1 | # from: http://jakevdp.github.com/blog/2012/08/24/numba-vs-cython/
+ 2 | # setup: import numpy as np ; X = np.linspace(0,10,200).reshape(20,10)
+ 3 | # run: pairwise_loop(X)
+ 4 |
+ 5 | # pythran export pairwise_loop(float [][])
+ 6 |
+ 7 | import numpy as np
+ 8 |
+ 9 |
+10 | def pairwise_loop(X):
+11 |     M, N = X.shape
+12 |     D = np.empty((M, M))
+13 |     for i in range(M):
+14 |         for j in range(M):
+15 |             d = 0.0
+16 |             for k in range(N):
+17 |                 tmp = X[i, k] - X[j, k]
+18 |                 d += tmp * tmp
+19 |             D[i, j] = np.sqrt(d)
+20 |     return D
+21 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/periodic_dist.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import numpy as np ; N = 20 ; x = y = z = np.arange(0., N, 0.1) ; L = 4 ; periodic = True
+ 2 | # run: periodic_dist(x, x, x, L,periodic, periodic, periodic)
+ 3 |
+ 4 | # pythran export periodic_dist(float [], float[], float[], int, bool,
+ 5 | # bool, bool)
+ 6 | import numpy as np
+ 7 |
+ 8 |
+ 9 | def periodic_dist(x, y, z, L, periodicX, periodicY, periodicZ):
+10 |     """Computes distances between all particles and places the result
+11 |     in a matrix such that the ij th matrix entry corresponds to the
+12 |     distance between particle i and j"""
+13 |     N = len(x)
+14 |     xtemp = np.tile(x, (N, 1))
+15 |     dx = xtemp - xtemp.T
+16 |     ytemp = np.tile(y, (N, 1))
+17 |     dy = ytemp - ytemp.T
+18 |     ztemp = np.tile(z, (N, 1))
+19 |     dz = ztemp - ztemp.T
+20 |
+21 |     # Particles 'feel' each other across the periodic boundaries
+22 |     if periodicX:
+23 |         dx[dx > L / 2] = dx[dx > L / 2] - L
+24 |         dx[dx < -L / 2] = dx[dx < -L / 2] + L
+25 |
+26 |     if periodicY:
+27 |         dy[dy > L / 2] = dy[dy > L / 2] - L
+28 |         dy[dy < -L / 2] = dy[dy < -L / 2] + L
+29 |
+30 |     if periodicZ:
+31 |         dz[dz > L / 2] = dz[dz > L / 2] - L
+32 |         dz[dz < -L / 2] = dz[dz < -L / 2] + L
+33 |
+34 |     # Total Distances
+35 |     d = np.sqrt(dx**2 + dy**2 + dz**2)
+36 |
+37 |     # Mark zero entries with negative 1 to avoid divergences
+38 |     d[d == 0] = -1
+39 |
+40 |     return d, dx, dy, dz
+41 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/repeating.py:
+--------------------------------------------------------------------------------
+ 1 | # http://stackoverflow.com/questions/14553331/how-to-improve-numpy-performance-in-this-short-code
+ 2 | # pythran export repeating(float[], int)
+ 3 | # setup: import numpy as np ; a = np.random.rand(10000)
+ 4 | # run: repeating(a, 20)
+ 5 |
+ 6 | import numpy as np
+ 7 |
+ 8 |
+ 9 | def repeating(x, nvar_y):
+10 |     nvar_x = x.shape[0]
+11 |     y = np.empty(nvar_x * (1 + nvar_y))
+12 |     y[0:nvar_x] = x[0:nvar_x]
+13 |     y[nvar_x:] = np.repeat(x, nvar_y)
+14 |     return y
+15 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/reverse_cumsum.py:
+--------------------------------------------------------------------------------
+ 1 | # http://stackoverflow.com/questions/16541618/perform-a-reverse-cumulative-sum-on-a-numpy-array
+ 2 | # pythran export reverse_cumsum(float[])
+ 3 | # setup: import numpy as np ; r = np.random.rand(1000000)
+ 4 | # run: reverse_cumsum(r)
+ 5 | import numpy as np
+ 6 |
+ 7 |
+ 8 | def reverse_cumsum(x):
+ 9 |     return np.cumsum(x[::-1])[::-1]
+10 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/rosen.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import numpy as np; r = np.arange(1000000, dtype=float)
+ 2 | # run: rosen(r)
+ 3 | import numpy as np
+ 4 |
+ 5 | # pythran export rosen(float[])
+ 6 |
+ 7 |
+ 8 | def rosen(x):
+ 9 |     t0 = 100 * (x[1:] - x[:-1] ** 2) ** 2
+10 |     t1 = (1 - x[:-1]) ** 2
+11 |     return np.sum(t0 + t1)
+12 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/slowparts.py:
+--------------------------------------------------------------------------------
+ 1 | # from: https://groups.google.com/forum/#!topic/parakeet-python/p-flp2kdE4U
+ 2 | # setup: import numpy as np ;d = 10 ;re = 5 ;params = (d, re, np.ones((2*d, d+1, re)), np.ones((d, d+1, re)),  np.ones((d, 2*d)), np.ones((d, 2*d)), np.ones((d+1, re, d)), np.ones((d+1, re, d)), 1)
+ 3 | # run: slowparts(*params)
+ 4 |
+ 5 | # pythran export slowparts(int, int, float [][][], float [][][], float
+ 6 | # [][], float [][], float [][][], float [][][], int)
+ 7 | from numpy import power, tanh, zeros
+ 8 |
+ 9 |
+10 | def slowparts(d, re, preDz, preWz, SRW, RSW, yxV, xyU, resid):
+11 |     """computes the linear algebra intensive part of the gradients of the grae"""
+12 |
+13 |     def fprime(x):
+14 |         return 1 - power(tanh(x), 2)
+15 |
+16 |     partialDU = zeros((d + 1, re, 2 * d, d))
+17 |     for k in range(2 * d):
+18 |         for i in range(d):
+19 |             partialDU[:, :, k, i] = (
+20 |                 fprime(preDz[k])
+21 |                 * fprime(preWz[i])
+22 |                 * (SRW[i, k] + RSW[i, k])
+23 |                 * yxV[:, :, i]
+24 |             )
+25 |
+26 |     return partialDU
+27 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/smoothing.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import numpy as np ; N = 1000 ; a = np.arange(0,1,N)
+ 2 | # run: smoothing(a, .4)
+ 3 | # from: http://www.parakeetpython.com/
+ 4 |
+ 5 | # pythran export smoothing(float[], float)
+ 6 |
+ 7 |
+ 8 | def smoothing(x, alpha):
+ 9 |     """
+10 |     Exponential smoothing of a time series
+11 |     For x = 10**6 floats
+12 |     - Python runtime: 9 seconds
+13 |     - Parakeet runtime: .01 seconds
+14 |     """
+15 |     s = x.copy()
+16 |     for i in range(1, len(x)):
+17 |         s[i] = alpha * x[i] + (1 - alpha) * s[i - 1]
+18 |     return s
+19 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/specialconvolve.py:
+--------------------------------------------------------------------------------
+ 1 | # from: http://stackoverflow.com/questions/2196693/improving-numpy-performance
+ 2 | # pythran export specialconvolve(uint32 [][])
+ 3 | # setup: import numpy as np ; r = np.arange(100*10000, dtype=np.uint32).reshape(1000,1000)
+ 4 | # run: specialconvolve(r)
+ 5 |
+ 6 |
+ 7 | def specialconvolve(a):
+ 8 |     # sorry, you must pad the input yourself
+ 9 |     rowconvol = a[1:-1, :] + a[:-2, :] + a[2:, :]
+10 |     colconvol = (
+11 |         rowconvol[:, 1:-1] + rowconvol[:, :-2] + rowconvol[:, 2:] - 9 * a[1:-1, 1:-1]
+12 |     )
+13 |     return colconvol
+14 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/numpy_benchmarks/vibr_energy.py:
+--------------------------------------------------------------------------------
+ 1 | # from: http://stackoverflow.com/questions/17112550/python-and-numba-for-vectorized-functions
+ 2 | # setup: import numpy as np ; N = 100000 ; a, b, c = np.random.rand(N), np.random.rand(N), np.random.rand(N)
+ 3 | # run: vibr_energy(a, b, c)
+ 4 |
+ 5 | # pythran export vibr_energy(float64[], float64[], float64[])
+ 6 | import numpy
+ 7 |
+ 8 |
+ 9 | def vibr_energy(harmonic, anharmonic, i):
+10 |     return numpy.exp(-harmonic * i - anharmonic * (i**2))
+11 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/pandas_benchmarks/join_df.py:
+--------------------------------------------------------------------------------
+1 | # setup: import pandas as pd ; import numpy ; N = 1000000 ; df1 = pd.DataFrame(numpy.random.randint(0, 10, size=(N, 3)), columns=["col1", "col2", "col3"]) ; df2 = pd.DataFrame(numpy.random.randint(0, 10, size=(N, 3)), columns=["col4", "col5", "col6"])  # noqa: E501
+2 | # run: join_df(df1, df2)
+3 |
+4 |
+5 | def join_df(df1, df2):
+6 |     return df1.join(df2, how="outer")
+7 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/benchmarks/pandas_benchmarks/read_csv.py:
+--------------------------------------------------------------------------------
+ 1 | # setup: import random ; TESTDATA = "col1;col2;col3\n" + "\n".join(";".join(map(str, [random.randint(0, 1) for _ in range(3)])) + "\n" for _ in range(10000))
+ 2 | # run: read_csv(TESTDATA)
+ 3 |
+ 4 | from io import StringIO
+ 5 |
+ 6 | import pandas as pd
+ 7 |
+ 8 |
+ 9 | def read_csv(data):
+10 |     return pd.read_csv(StringIO(data), sep=";")
+11 |
+
+
+--------------------------------------------------------------------------------
+/benchmark/plot_benchmark.py:
+--------------------------------------------------------------------------------
+ 1 | import json
+ 2 | import sys
+ 3 |
+ 4 | import matplotlib.pyplot as plt
+ 5 | import numpy as np
+ 6 |
+ 7 | plt.rcdefaults()
+ 8 | fig, ax = plt.subplots(constrained_layout=True, figsize=(8, 8))
+ 9 |
+10 | with open(sys.argv[-2]) as fp:
+11 |     content = json.load(fp)
+12 |
+13 | results = []
+14 | for k, v in content.items():
+15 |     results.append((k, v["firefox"] / v["native"], v["chrome"] / v["native"]))
+16 | results.sort(key=lambda x: x[1], reverse=True)
+17 |
+18 | names = [x[0] for x in results]
+19 | firefox = [x[1] for x in results]
+20 | chrome = [x[2] for x in results]
+21 |
+22 | width = 0.35
+23 | y_pos = np.arange(len(results))
+24 | ax.barh(y_pos, firefox, width, color="#ff9400", label="firefox")
+25 | ax.barh(y_pos + width, chrome, width, color="#45a1ff", label="chrome")
+26 | ax.set_yticks(y_pos + width / 2)
+27 | ax.set_yticklabels(names)
+28 | ax.invert_yaxis()
+29 | ax.set_xlabel("Slowdown factor (WebAssembly:Native)")
+30 | ax.set_title("Python benchmarks")
+31 | ax.axvline(1.0, color="red")
+32 | ax.grid(axis="x")
+33 | ax.legend(loc="lower right")
+34 |
+35 | plt.savefig(sys.argv[-1])
+36 |
+
+
+--------------------------------------------------------------------------------
+/codecov.yml:
+--------------------------------------------------------------------------------
+1 | github_checks:
+2 |   annotations: false
+3 |
+
+
+--------------------------------------------------------------------------------
+/cpython/README.md:
+--------------------------------------------------------------------------------
+1 | # Credits
+2 |
+3 | Based on the hard work of [@dgym](https://github.com/dgym) on
+4 | [cpython-emscripten](https://github.com/dgym/cpython-emscripten).
+5 |
+
+
+--------------------------------------------------------------------------------
+/cpython/Setup.local:
+--------------------------------------------------------------------------------
+ 1 | # This file gets copied into the Modules/ folder when building
+ 2 | # newlib configurations which do not support dynamic library
+ 3 | # loading.
+ 4 | #
+ 5 | # See build/Python-*/Modules/Setup for more details
+ 6 |
+ 7 | *static*
+ 8 |
+ 9 | CTYPES_FLAGS=-DHAVE_FFI_PREP_CIF_VAR=1 -DHAVE_FFI_PREP_CLOSURE_LOC=1 -DHAVE_FFI_CLOSURE_ALLOC=1 -I ../libffi/include
+10 | _ctypes _ctypes/_ctypes.c _ctypes/callbacks.c _ctypes/callproc.c _ctypes/cfield.c _ctypes/stgdict.c $(CTYPES_FLAGS)
+11 |
+12 | _posixsubprocess _posixsubprocess.c
+13 |
+14 | _bz2 _bz2module.c -lbz2
+15 | zlib zlibmodule.c
+16 |
+17 |
+18 | *disabled*
+19 | pwd
+20 | _sqlite3
+21 | _ssl
+22 | _lzma
+23 | _hashlib
+24 | _uuid
+25 |
+
+
+--------------------------------------------------------------------------------
+/cpython/patches/0001-Public-pymain_run_python.patch:
+--------------------------------------------------------------------------------
+ 1 | From cefd199c4434444faad9dab7846369bc5e4462e6 Mon Sep 17 00:00:00 2001
+ 2 | From: Hood Chatham <roberthoodchatham@gmail.com>
+ 3 | Date: Sun, 17 Jul 2022 14:40:39 +0100
+ 4 | Subject: [PATCH 1/8] Public pymain_run_python
+ 5 |
+ 6 | Discussion here:
+ 7 | https://discuss.python.org/t/unstable-api-for-pymain-run-python-run-python-cli-but-dont-finalize-interpreter/44675
+ 8 | ---
+ 9 |  Modules/main.c | 2 +-
+10 |  1 file changed, 1 insertion(+), 1 deletion(-)
+11 |
+12 | diff --git a/Modules/main.c b/Modules/main.c
+13 | index 3bf2241f283..54f2141fb8c 100644
+14 | --- a/Modules/main.c
+15 | +++ b/Modules/main.c
+16 | @@ -612,7 +612,7 @@ pymain_repl(PyConfig *config, int *exitcode)
+17 |  }
+18 |
+19 |
+20 | -static void
+21 | +void
+22 |  pymain_run_python(int *exitcode)
+23 |  {
+24 |      PyObject *main_importer_path = NULL;
+25 | --
+26 | 2.34.1
+27 |
+28 |
+
+
+--------------------------------------------------------------------------------
+/cpython/patches/0003-Fix-LONG_BIT-constant-to-be-always-32bit.patch:
+--------------------------------------------------------------------------------
+ 1 | From 86b3f8718157b48de0f04bed5c795f4e6c2b80d5 Mon Sep 17 00:00:00 2001
+ 2 | From: ryanking13 <def6488@gmail.com>
+ 3 | Date: Fri, 12 Jan 2024 00:52:57 +0900
+ 4 | Subject: [PATCH 3/8] Fix LONG_BIT constant to be always 32bit
+ 5 |
+ 6 | Starting from Emscripten 3.1.50, there is an issue where LONG_BIT is
+ 7 | calculated to 64 for some reason. This is very strange because LONG_MAX
+ 8 | becomes 2^64-1 when calculating LONG_BIT (in limits.h), but it then
+ 9 | becomes 2^32-1 when it is accessed in other places.
+10 |
+11 | I wasn't able to make a minimal code to reproduce a bug. Probably
+12 | something is messed up while importing pyconfig.h, etc.
+13 |
+14 | Related: https://github.com/emscripten-core/emscripten/pull/20752
+15 | ---
+16 |  Include/pyport.h | 1 +
+17 |  1 file changed, 1 insertion(+)
+18 |
+19 | diff --git a/Include/pyport.h b/Include/pyport.h
+20 | index 2ba81a4be42..292583196b9 100644
+21 | --- a/Include/pyport.h
+22 | +++ b/Include/pyport.h
+23 | @@ -386,6 +386,7 @@ extern "C" {
+24 |  #define LONG_MIN (-LONG_MAX-1)
+25 |  #endif
+26 |
+27 | +#undef LONG_BIT
+28 |  #ifndef LONG_BIT
+29 |  #define LONG_BIT (8 * SIZEOF_LONG)
+30 |  #endif
+31 | --
+32 | 2.34.1
+33 |
+34 |
+
+
+--------------------------------------------------------------------------------
+/cpython/patches/0004-Warn-if-ZoneInfo-is-imported-without-tzdata.patch:
+--------------------------------------------------------------------------------
+ 1 | From bc204c2e93cd9daa272f539781626bed9e70962e Mon Sep 17 00:00:00 2001
+ 2 | From: Hood Chatham <roberthoodchatham@gmail.com>
+ 3 | Date: Thu, 25 Jul 2024 14:28:57 +0200
+ 4 | Subject: [PATCH 4/8] Warn if ZoneInfo is imported without tzdata
+ 5 |
+ 6 | ---
+ 7 |  Lib/zoneinfo/_common.py | 6 ++++++
+ 8 |  1 file changed, 6 insertions(+)
+ 9 |
+10 | diff --git a/Lib/zoneinfo/_common.py b/Lib/zoneinfo/_common.py
+11 | index 98cdfe37ca6..35d19eae9f0 100644
+12 | --- a/Lib/zoneinfo/_common.py
+13 | +++ b/Lib/zoneinfo/_common.py
+14 | @@ -11,6 +11,12 @@ def load_tzdata(key):
+15 |      try:
+16 |          return resources.files(package_name).joinpath(resource_name).open("rb")
+17 |      except (ImportError, FileNotFoundError, UnicodeEncodeError):
+18 | +        import sys
+19 | +        if "tzdata" not in sys.modules:
+20 | +            raise ZoneInfoNotFoundError(
+21 | +                f"No time zone found with key {key}. \n"
+22 | +                " On Pyodide you must do pyodide.loadPackage('tzdata')"
+23 | +                " package before you use zoneinfo.")
+24 |          # There are three types of exception that can be raised that all amount
+25 |          # to "we cannot find this key":
+26 |          #
+27 | --
+28 | 2.34.1
+29 |
+30 |
+
+
+--------------------------------------------------------------------------------
+/cpython/patches/0006-Make-from-x-import-aware-of-jsproxy-modules.patch:
+--------------------------------------------------------------------------------
+ 1 | From 9e58f06e7502ff57943ef38d60b1f31761f9b7f0 Mon Sep 17 00:00:00 2001
+ 2 | From: Hood Chatham <roberthoodchatham@gmail.com>
+ 3 | Date: Sat, 22 Feb 2025 13:18:18 +0100
+ 4 | Subject: [PATCH 6/8] Make `from x import *` aware of jsproxy modules
+ 5 |
+ 6 | ---
+ 7 |  Python/intrinsics.c | 8 ++++++++
+ 8 |  1 file changed, 8 insertions(+)
+ 9 |
+10 | diff --git a/Python/intrinsics.c b/Python/intrinsics.c
+11 | index a6b2c108b67..c44e329b1c7 100644
+12 | --- a/Python/intrinsics.c
+13 | +++ b/Python/intrinsics.c
+14 | @@ -35,6 +35,11 @@ print_expr(PyThreadState* tstate, PyObject *value)
+15 |      return PyObject_CallOneArg(hook, value);
+16 |  }
+17 |
+18 | +int __attribute__((weak))
+19 | +JsModule_GetAll(PyObject* self, PyObject** all) {
+20 | +    return 0;
+21 | +}
+22 | +
+23 |  static int
+24 |  import_all_from(PyThreadState *tstate, PyObject *locals, PyObject *v)
+25 |  {
+26 | @@ -45,6 +50,9 @@ import_all_from(PyThreadState *tstate, PyObject *locals, PyObject *v)
+27 |      if (PyObject_GetOptionalAttr(v, &_Py_ID(__all__), &all) < 0) {
+28 |          return -1; /* Unexpected error */
+29 |      }
+30 | +    if (all == NULL && JsModule_GetAll(v, &all) == -1) {
+31 | +        return -1; /* Unexpected error */
+32 | +    }
+33 |      if (all == NULL) {
+34 |          if (PyObject_GetOptionalAttr(v, &_Py_ID(__dict__), &dict) < 0) {
+35 |              return -1;
+36 | --
+37 | 2.34.1
+38 |
+39 |
+
+
+--------------------------------------------------------------------------------
+/cpython/patches/0009-Fix-iPad-detection-in-wasm-gc.patch:
+--------------------------------------------------------------------------------
+ 1 | From 738e25376b23611b6077c71f5ef55eefa66dd217 Mon Sep 17 00:00:00 2001
+ 2 | From: ryanking13 <def6488@gmail.com>
+ 3 | Date: Wed, 11 Jun 2025 08:54:37 +0000
+ 4 | Subject: [PATCH 9/9] Fix iPad detection in wasm-gc
+ 5 |
+ 6 | Fixes iPad detection logic in wasm-gc, which was malfunctioning in recent iPadOS + safari.
+ 7 |
+ 8 | ---
+ 9 |  Python/emscripten_trampoline.c | 9 ++++++++-
+10 |  1 file changed, 8 insertions(+), 1 deletion(-)
+11 |
+12 | diff --git a/Python/emscripten_trampoline.c b/Python/emscripten_trampoline.c
+13 | index cc5047d6bd..64315ad5e9 100644
+14 | --- a/Python/emscripten_trampoline.c
+15 | +++ b/Python/emscripten_trampoline.c
+16 | @@ -71,7 +71,14 @@ EM_JS(CountArgsFunc, _PyEM_GetCountArgsPtr, (), {
+17 |  // )
+18 |
+19 |  function getPyEMCountArgsPtr() {
+20 | -    let isIOS = globalThis.navigator && /iPad|iPhone|iPod/.test(navigator.platform);
+21 | +    // Starting with iPadOS 13, iPads might send a platform string that looks like a desktop Mac.
+22 | +    // To differentiate, we check if the platform is 'MacIntel' (common for Macs and newer iPads)
+23 | +    // AND if the device has multi-touch capabilities (navigator.maxTouchPoints > 1)
+24 | +    let isIOS = globalThis.navigator && (
+25 | +        /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+26 | +        (navigator.platform === 'MacIntel' && typeof navigator.maxTouchPoints !== 'undefined' && navigator.maxTouchPoints > 1)
+27 | +    );
+28 | +
+29 |      if (isIOS) {
+30 |          return 0;
+31 |      }
+32 | --
+33 | 2.49.0
+34 |
+35 |
+
+
+--------------------------------------------------------------------------------
+/docs/Makefile:
+--------------------------------------------------------------------------------
+ 1 | # Minimal makefile for Sphinx documentation
+ 2 | #
+ 3 |
+ 4 | # You can set these variables from the command line.
+ 5 | SPHINXOPTS    =
+ 6 | SPHINXBUILD   = python -m sphinx
+ 7 | SOURCEDIR     = .
+ 8 | BUILDDIR      = _build
+ 9 |
+10 | # Put it first so that "make" without argument is like "make help".
+11 | help:
+12 | 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+13 |
+14 | .PHONY: help Makefile
+15 |
+16 | # Catch-all target: route all unknown targets to Sphinx using the new
+17 | # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
+18 | %: Makefile
+19 | 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) -T
+20 |
+
+
+--------------------------------------------------------------------------------
+/docs/_static/img/pyodide-logo-raw.png:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/docs/_static/img/pyodide-logo-raw.png
+
+
+--------------------------------------------------------------------------------
+/docs/_static/img/pyodide-logo-readme.png:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/docs/_static/img/pyodide-logo-readme.png
+
+
+--------------------------------------------------------------------------------
+/docs/_static/img/pyodide-logo.png:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/docs/_static/img/pyodide-logo.png
+
+
+--------------------------------------------------------------------------------
+/docs/_templates/layout.html:
+--------------------------------------------------------------------------------
+1 | {% extends '!layout.html' %} {%- block extrahead %} {{ super() }}
+2 | <script
+3 |   defer
+4 |   src="https://static.cloudflareinsights.com/beacon.min.js"
+5 |   data-cf-beacon='{"token": "4405a86c36a84efca5dbde1b25edd153"}'
+6 | ></script>
+7 | {%- endblock %}
+8 |
+
+
+--------------------------------------------------------------------------------
+/docs/development/signature-mismatch1.png:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/docs/development/signature-mismatch1.png
+
+
+--------------------------------------------------------------------------------
+/docs/development/signature-mismatch2.png:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/docs/development/signature-mismatch2.png
+
+
+--------------------------------------------------------------------------------
+/docs/development/signature-mismatch3.png:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/docs/development/signature-mismatch3.png
+
+
+--------------------------------------------------------------------------------
+/docs/development/signature-mismatch4.png:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/docs/development/signature-mismatch4.png
+
+
+--------------------------------------------------------------------------------
+/docs/make.bat:
+--------------------------------------------------------------------------------
+ 1 | @ECHO OFF
+ 2 |
+ 3 | pushd %~dp0
+ 4 |
+ 5 | REM Command file for Sphinx documentation
+ 6 |
+ 7 | if "%SPHINXBUILD%" == "" (
+ 8 | 	set SPHINXBUILD=sphinx-build
+ 9 | )
+10 | set SOURCEDIR=.
+11 | set BUILDDIR=_build
+12 |
+13 | if "%1" == "" goto help
+14 |
+15 | %SPHINXBUILD% >NUL 2>NUL
+16 | if errorlevel 9009 (
+17 | 	echo.
+18 | 	echo.The 'sphinx-build' command was not found. Make sure you have Sphinx
+19 | 	echo.installed, then set the SPHINXBUILD environment variable to point
+20 | 	echo.to the full path of the 'sphinx-build' executable. Alternatively you
+21 | 	echo.may add the Sphinx directory to PATH.
+22 | 	echo.
+23 | 	echo.If you don't have Sphinx installed, grab it from
+24 | 	echo.http://sphinx-doc.org/
+25 | 	exit /b 1
+26 | )
+27 |
+28 | %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
+29 | goto end
+30 |
+31 | :help
+32 | %SPHINXBUILD% -M help %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
+33 |
+34 | :end
+35 | popd
+36 |
+
+
+--------------------------------------------------------------------------------
+/docs/project/code-of-conduct.md:
+--------------------------------------------------------------------------------
+1 | (code-of-conduct)=
+2 |
+3 | ```{include} ../../CODE-OF-CONDUCT.md
+4 |
+5 | ```
+6 |
+
+
+--------------------------------------------------------------------------------
+/docs/requirements-doc.txt:
+--------------------------------------------------------------------------------
+ 1 | autodocsumm
+ 2 | docutils>=0.21.2
+ 3 | myst-parser>=4.0
+ 4 | packaging   # required by micropip at import time
+ 5 | # 8.2.0 has build issue: https://github.com/pyodide/pyodide/issues/5443
+ 6 | sphinx>=5.3.0,<8.2.0
+ 7 | sphinx-argparse-cli>=1.6.0
+ 8 | sphinx_book_theme
+ 9 | sphinx-issues
+10 | # Use my branch of sphinx-click with fix for warnings:
+11 | # CRITICAL: Unexpected section title or transition
+12 | # https://github.com/click-contrib/sphinx-click/pull/137
+13 | # https://github.com/click-contrib/sphinx-click/pull/138
+14 | sphinx-click @ git+https://github.com/hoodmane/sphinx-click@271ebdb3e5855f2901f5dd4390f26381a353224e
+15 | click < 8.2
+16 | sphinx-autodoc-typehints>=1.21.7
+17 | sphinx-design>=0.3.0
+18 | pydantic
+19 | # TODO: separate document for pyodide-build?
+20 | -e ./pyodide-build
+21 | jinja2>=3.0
+22 | ruamel.yaml
+23 | sphinx-js @ git+https://github.com/pyodide/sphinx-js-fork@781dc61870a802222051bcc8f6b2a592cd5eec7b
+24 | # In 25.1.0, we get the error "cattrs.errors.StructureHandlerNotFoundError: Unsupported type: 'Attribute'. Register a structure hook for it."
+25 | cattrs < 25.1.0
+26 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/api-reference.md:
+--------------------------------------------------------------------------------
+ 1 | # API Reference
+ 2 |
+ 3 | ```{eval-rst}
+ 4 | .. toctree::
+ 5 |    :maxdepth: 2
+ 6 |
+ 7 |    api/js-api.md
+ 8 |    api/python-api.md
+ 9 |    Micropip API <https://micropip.pyodide.org/en/stable/project/api.html>
+10 |    api/pyodide-cli.md
+11 | ```
+12 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/api/js-api.md:
+--------------------------------------------------------------------------------
+ 1 | # JavaScript API
+ 2 |
+ 3 | Backward compatibility of the API is not guaranteed at this point.
+ 4 |
+ 5 | ## Globals
+ 6 |
+ 7 | ```{eval-rst}
+ 8 | .. js:autosummary:: globalThis
+ 9 |
+10 | .. js:automodule:: globalThis
+11 | ```
+12 |
+13 | (js-api-pyodide)=
+14 |
+15 | ## pyodide
+16 |
+17 | ```{eval-rst}
+18 | .. js:autosummary:: pyodide
+19 |
+20 | .. js:automodule:: pyodide
+21 | ```
+22 |
+23 | (js-api-pyodide-ffi)=
+24 |
+25 | ## pyodide.ffi
+26 |
+27 | Foreign function interface classes. Can be used for typescript type annotations
+28 | or at runtime for `instanceof` checks.
+29 |
+30 | To import types from `pyodide.ffi` you can use for example
+31 |
+32 | ```ts
+33 | import type { PyProxy } from "pyodide/ffi";
+34 | ```
+35 |
+36 | If you want to do an instance check, you'll need to access the type via the
+37 | Pyodide API returned from {js:func}`~globalThis.loadPyodide`:
+38 |
+39 | ```js
+40 | const pyodide = loadPyodide();
+41 | const result = pyodide.runPython("... code here");
+42 | if (result instanceof pyodide.ffi.PyProxy) {
+43 |   // Do something
+44 | }
+45 | ```
+46 |
+47 | ```{eval-rst}
+48 | .. js:autosummary:: pyodide.ffi
+49 |
+50 | .. js:automodule:: pyodide.ffi
+51 | ```
+52 |
+53 | (js-api-pyodide-canvas)=
+54 |
+55 | ## pyodide.canvas
+56 |
+57 | This provides APIs to set a canvas for rendering graphics.
+58 |
+59 | For example, you need to set a canvas if you want to use the SDL library. See
+60 | {ref}`using-sdl` for more information.
+61 |
+62 | ```{eval-rst}
+63 | .. js:autosummary:: pyodide.canvas
+64 |
+65 | .. js:automodule:: pyodide.canvas
+66 | ```
+67 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/api/micropip-api.md:
+--------------------------------------------------------------------------------
+1 | ```{eval-rst}
+2 | :orphan:
+3 | ```
+4 |
+5 | # Micropip API
+6 |
+7 | The Micropip API documentation was moved to [micropip.pyodide.org](https://micropip.pyodide.org/en/stable/project/api.html).
+8 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/api/pyodide-cli.md:
+--------------------------------------------------------------------------------
+ 1 | (pyodide-cli)=
+ 2 |
+ 3 | # pyodide CLI
+ 4 |
+ 5 | This page documents the Pyodide Command Line Interface (CLI) interface. In addition to the commands defined by `pyodide-build`, documented below, other subcommands are defined in external packages (which can be installed with pip):
+ 6 |
+ 7 | - `pyodide pack`, defined in [pyodide-pack](https://github.com/pyodide/pyodide-pack) is a package bundler for Pyodide
+ 8 |
+ 9 | ```{eval-rst}
+10 | .. click:: pyodide_cli.app:typer_click_object
+11 |    :prog: pyodide
+12 |    :nested: full
+13 | ```
+14 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/api/python-api/code.md:
+--------------------------------------------------------------------------------
+ 1 | # pyodide.code
+ 2 |
+ 3 | ```{eval-rst}
+ 4 | .. currentmodule:: pyodide.code
+ 5 |
+ 6 | .. automodule:: pyodide.code
+ 7 |    :members:
+ 8 |    :autosummary:
+ 9 |    :autosummary-no-nesting:
+10 | ```
+11 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/api/python-api/console.md:
+--------------------------------------------------------------------------------
+ 1 | # pyodide.console
+ 2 |
+ 3 | ```{eval-rst}
+ 4 | .. currentmodule:: pyodide.console
+ 5 |
+ 6 | .. automodule:: pyodide.console
+ 7 |    :members:
+ 8 |    :autosummary:
+ 9 |    :autosummary-no-nesting:
+10 | ```
+11 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/api/python-api/ffi.md:
+--------------------------------------------------------------------------------
+ 1 | # pyodide.ffi
+ 2 |
+ 3 | ```{eval-rst}
+ 4 | .. currentmodule:: pyodide.ffi
+ 5 |
+ 6 | .. automodule:: pyodide.ffi
+ 7 |    :members:
+ 8 |    :autosummary:
+ 9 |    :autosummary-no-nesting:
+10 |    :show-inheritance:
+11 |
+12 | .. automodule:: pyodide.ffi.wrappers
+13 |    :members:
+14 |    :autosummary:
+15 |    :autosummary-no-nesting:
+16 | ```
+17 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/api/python-api/http.md:
+--------------------------------------------------------------------------------
+ 1 | # pyodide.http
+ 2 |
+ 3 | ```{eval-rst}
+ 4 | .. currentmodule:: pyodide.http
+ 5 |
+ 6 | .. automodule:: pyodide.http
+ 7 |    :members:
+ 8 |    :autosummary:
+ 9 |    :autosummary-no-nesting:
+10 | ```
+11 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/api/python-api/webloop.md:
+--------------------------------------------------------------------------------
+ 1 | # pyodide.webloop
+ 2 |
+ 3 | ```{eval-rst}
+ 4 | .. currentmodule:: pyodide.webloop
+ 5 |
+ 6 | .. automodule:: pyodide.webloop
+ 7 |    :members:
+ 8 |    :autosummary:
+ 9 |    :autosummary-no-nesting:
+10 | ```
+11 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/examples.md:
+--------------------------------------------------------------------------------
+ 1 | # Community Examples
+ 2 |
+ 3 | (examples)=
+ 4 |
+ 5 | This section contains a collection of examples using Pyodide, contributed by the community.
+ 6 |
+ 7 | ## Examples
+ 8 |
+ 9 | - [Black formatter](../examples/black.html){.external} - by [@ryanking13](https://github.com/ryanking13)
+10 |
+11 | - [Run a console which communicates with pyodide in a WebWorker](../examples/console_webworker.html){.external} - by [@joemarshall](https://github.com/joemarshall)
+12 |
+13 | <!-- Contribution Guide -->
+14 | <!--
+15 | We welcome contributions to this section.
+16 | If you have an example you would like to share, please submit a pull request in the Pyodide repository.
+17 |
+18 | To add an example, create a new file in the `examples` directory, we expect the example is a single HTML file
+19 | that contains everything needed to run the example, so people can easily download and run it locally. If it needs a web-worker, put that in a file with the same name but extension .js
+20 |
+21 | You can start with copying the template file (`examples/examples.html.tmpl`). Note that the template file contains
+22 | a placeholder URL {{ PYODIDE_BASE_URL }} that will be replaced by the actual URL when the documentation is built.
+23 | So please do not remove it.
+24 |
+25 | After you have added the example, please add a link to it in the list above.
+26 | Feel free to add some description to the example if you like and add your name as the author.
+27 | -->
+28 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/examples/examples.html.tmpl:
+--------------------------------------------------------------------------------
+ 1 | <!doctype html>
+ 2 | <html>
+ 3 |
+ 4 | <head>
+ 5 |     <meta charset="UTF-8" />
+ 6 |     <script src="{{ PYODIDE_BASE_URL }}pyodide.js"></script>
+ 7 | </head>
+ 8 |
+ 9 | <body>
+10 |     <h1>TITLE GOES HERE</h1>
+11 |     <script type="text/javascript">
+12 |         async function init() {
+13 |             const pyodide = await loadPyodide();
+14 |             pyodide.runPython(`
+15 |                 print("Hello from Python!");
+16 |             `);
+17 |         }
+18 |
+19 |         init();
+20 |     </script>
+21 | </body>
+22 |
+23 | </html>
+24 |
+
+
+--------------------------------------------------------------------------------
+/docs/usage/packages-in-pyodide.md:
+--------------------------------------------------------------------------------
+ 1 | (packages-in-pyodide)=
+ 2 |
+ 3 | # Packages built in Pyodide
+ 4 |
+ 5 | This is the list of Python packages included with the current version of
+ 6 | Pyodide. These packages can be loaded with {js:func}`pyodide.loadPackage` or
+ 7 | {py:func}`micropip.install`. See {ref}`loading_packages` for information about
+ 8 | loading packages. Pure Python packages with wheels on PyPI can be loaded
+ 9 | directly from PyPI with {py:func}`micropip.install`.
+10 |
+11 | ```{eval-rst}
+12 | .. pyodide-package-list :: packages
+13 | ```
+14 |
+
+
+--------------------------------------------------------------------------------
+/emsdk/Makefile:
+--------------------------------------------------------------------------------
+ 1 | PYODIDE_ROOT=$(abspath ..)
+ 2 | include ../Makefile.envs
+ 3 |
+ 4 | all: emsdk/.complete
+ 5 |
+ 6 | emsdk/.complete: ../Makefile.envs $(wildcard patches/*.patch)
+ 7 | 	if [ -d emsdk ]; then rm -rf emsdk; fi
+ 8 | 	git clone --depth 1 https://github.com/emscripten-core/emsdk.git
+ 9 | 	cd emsdk && ./emsdk install --build=Release $(PYODIDE_EMSCRIPTEN_VERSION)
+10 | 	cd emsdk/upstream/emscripten/ && cat ../../../patches/*.patch | patch -p1 --verbose
+11 | 	cd emsdk && ./emsdk install --build=Release $(PYODIDE_EMSCRIPTEN_VERSION) ccache-git-emscripten-64bit
+12 | 	cd emsdk && ./emsdk activate --embedded --build=Release $(PYODIDE_EMSCRIPTEN_VERSION)
+13 |
+14 | 	# Check that generated_struct_info is up to date.
+15 | 	git diff --no-index --ignore-all-space emsdk/upstream/emscripten/src/struct_info_generated.json ../src/js/struct_info_generated.json > /dev/null || \
+16 | 		( \
+17 | 			echo "" && \
+18 | 			echo "The vendored copy of struct_info_generated.json does not match the copy in Emscripten" && \
+19 | 			exit 1 \
+20 | 		)
+21 |
+22 | 	touch emsdk/.complete
+23 |
+24 |
+25 | update_struct_info:
+26 | 	rm -f ../src/js/struct_info_generated.json
+27 | 	cd ../src/js && wget "https://raw.githubusercontent.com/emscripten-core/emscripten/$(PYODIDE_EMSCRIPTEN_VERSION)/src/struct_info_generated.json"
+28 |
+29 |
+30 | clean:
+31 | 	rm -rf emsdk
+32 |
+
+
+--------------------------------------------------------------------------------
+/emsdk/patches/0001-Add-useful-error-when-symbol-resolution-fails.patch:
+--------------------------------------------------------------------------------
+ 1 | From 4aa8434d294dea2c98225a6a36f4300f279ec2bd Mon Sep 17 00:00:00 2001
+ 2 | From: Hood Chatham <roberthoodchatham@gmail.com>
+ 3 | Date: Fri, 19 May 2023 12:19:00 -0700
+ 4 | Subject: [PATCH 1/4] Add useful error when symbol resolution fails
+ 5 |
+ 6 | Currently if symbol resolution fails, we get:
+ 7 | ```js
+ 8 | TypeError: Cannot read properties of undefined (reading 'apply')
+ 9 | ```
+10 | It is very hard for newcomers to Emscripten to recognize this as a
+11 | symbol resolution error. Even for people experienced with this message,
+12 | it has the annoyance that it doesn't give any hint as to which symbol
+13 | went missing.
+14 |
+15 | This adds a descriptive error message with the name of the missing
+16 | symbol.
+17 | ---
+18 |  src/lib/libdylink.js | 3 +++
+19 |  1 file changed, 3 insertions(+)
+20 |
+21 | diff --git a/src/lib/libdylink.js b/src/lib/libdylink.js
+22 | index 491b62735..3e6839be9 100644
+23 | --- a/src/lib/libdylink.js
+24 | +++ b/src/lib/libdylink.js
+25 | @@ -736,6 +736,9 @@ var LibraryDylink = {
+26 |              var resolved;
+27 |              stubs[prop] = (...args) => {
+28 |                resolved ||= resolveSymbol(prop);
+29 | +              if (!resolved) {
+30 | +                throw new Error(`Dynamic linking error: cannot resolve symbol ${prop}`);
+31 | +              }
+32 |                return resolved(...args);
+33 |              };
+34 |            }
+35 | --
+36 | 2.34.1
+37 |
+38 |
+
+
+--------------------------------------------------------------------------------
+/emsdk/patches/0004-Fix-promise-order.patch:
+--------------------------------------------------------------------------------
+ 1 | From 6bdf3f17b844b82f785e3aaa6dc93455c2b661a4 Mon Sep 17 00:00:00 2001
+ 2 | From: Gyeongjae Choi <def6488@gmail.com>
+ 3 | Date: Sun, 1 Jun 2025 15:35:17 +0000
+ 4 | Subject: [PATCH 4/4] Fix promise order
+ 5 |
+ 6 | Upstream PR:
+ 7 | * https://github.com/emscripten-core/emscripten/pull/24461
+ 8 |
+ 9 | ---
+10 |  system/lib/libc/dynlink.c | 6 ++++--
+11 |  1 file changed, 4 insertions(+), 2 deletions(-)
+12 |
+13 | diff --git a/system/lib/libc/dynlink.c b/system/lib/libc/dynlink.c
+14 | index 71d9e14b9..51563fb78 100644
+15 | --- a/system/lib/libc/dynlink.c
+16 | +++ b/system/lib/libc/dynlink.c
+17 | @@ -656,12 +656,14 @@ em_promise_t emscripten_dlopen_promise(const char* filename, int flags) {
+18 |    // Create a promise that is resolved (and destroyed) once the operation
+19 |    // succeeds.
+20 |    em_promise_t p = emscripten_promise_create();
+21 | -  emscripten_dlopen(filename, flags, p, promise_onsuccess, promise_onerror);
+22 | -
+23 |    // Create a second promise bound the first one to return the caller.  It's
+24 |    // then up to the caller to destroy this promise.
+25 |    em_promise_t ret = emscripten_promise_create();
+26 | +
+27 | +  // The order matters here. Calling emscripten_dlopen before resolving the second promise
+28 | +  // may destroy the first promise before resolving the value.
+29 |    emscripten_promise_resolve(ret, EM_PROMISE_MATCH, p);
+30 | +  emscripten_dlopen(filename, flags, p, promise_onsuccess, promise_onerror);
+31 |    return ret;
+32 |  }
+33 |
+34 | --
+35 | 2.29.2.windows.2
+36 |
+37 |
+
+
+--------------------------------------------------------------------------------
+/environment.yml:
+--------------------------------------------------------------------------------
+ 1 | name: pyodide-env
+ 2 | channels:
+ 3 |   - conda-forge
+ 4 | dependencies:
+ 5 |   - python=3.13
+ 6 |   - nodejs>=18,<22.5 # Node.js 22.5 has some issues with installing packages https://github.com/nodejs/node/issues/53902
+ 7 |   - ccache
+ 8 |   - f2c
+ 9 |   - swig
+10 |   - make
+11 |   - cmake<4.0
+12 |   # pkg-config in conda-forge has a bug that it overwrites PKG_CONFIG_LIBDIR set by user.
+13 |   # there was a fix (https://github.com/conda-forge/pkg-config-feedstock/pull/31), but it is not released.
+14 |   # - pkg-config
+15 |   - texinfo
+16 |   # Not sure but it looks like the autoconf version should not be greater than the one used in the configure.ac file in cpython.
+17 |   - autoconf<2.72
+18 |   - automake
+19 |   - libtool
+20 |   - wget
+21 |   - patch # only needed on MacOS
+22 |   - sed # only needed on MacOS
+23 |
+
+
+--------------------------------------------------------------------------------
+/packages/Makefile:
+--------------------------------------------------------------------------------
+ 1 | .PHONY=pyodide-build
+ 2 |
+ 3 | export PYODIDE_ROOT=$(abspath ..)
+ 4 | include ../Makefile.envs
+ 5 |
+ 6 | all:
+ 7 | ifeq ($(ENABLE_PREBUILT_PACKAGES),1)
+ 8 | 	@date +"[%F %T] using prebuilt packages..."
+ 9 | 	wget -q -O - $(PYODIDE_PREBUILT_PACKAGES_URL) | tar -xz -C $(PYODIDE_ROOT)/dist
+10 | else
+11 | 	pyodide build-recipes "$(PYODIDE_PACKAGES)" \
+12 | 		--install \
+13 | 		--metadata-files \
+14 | 		--n-jobs $${PYODIDE_JOBS:-4} \
+15 | 		--log-dir=./build-logs \
+16 | 		--compression-level "$(PYODIDE_ZIP_COMPRESSION_LEVEL)"
+17 | endif
+18 |
+19 |
+20 | update-all:
+21 | 	for pkg in $$(find . -maxdepth 1 ! -name ".*" -type d -exec basename {} \; | tail -n +2); do \
+22 | 		PYODIDE_ROOT=$(PYODIDE_ROOT) pyodide skeleton pypi "$${pkg}" --update-patched; \
+23 | 	done
+24 |
+25 | clean:
+26 | 	rm -rf ./*/build ./*/build.log ./*/dist
+27 | 	rm -rf ./.artifacts ./.libs
+28 |
+
+
+--------------------------------------------------------------------------------
+/packages/MarkupSafe/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: MarkupSafe
+ 3 |   version: 3.0.2
+ 4 |   tag:
+ 5 |     # Remove tag after removing MarkupSafe from the test suite
+ 6 |     - pyodide.test
+ 7 |     - core
+ 8 |   top-level:
+ 9 |     - markupsafe
+10 | source:
+11 |   sha256: ee55d3edf80167e48ea11a923c7386f4669df67d7994554387f84e7d8b0a2bf0
+12 |   url: https://files.pythonhosted.org/packages/b2/97/5d42485e71dfc078108a86d6de8fa46db44a1a9295e89c5d6d4a06e23a62/markupsafe-3.0.2.tar.gz
+13 | about:
+14 |   home: https://palletsprojects.com/p/markupsafe/
+15 |   PyPI: https://pypi.org/project/MarkupSafe
+16 |   summary: Safely add untrusted strings to HTML/XML markup.
+17 |   license: BSD-3-Clause
+18 |
+
+
+--------------------------------------------------------------------------------
+/packages/README.md:
+--------------------------------------------------------------------------------
+1 | # Pyodide packages
+2 |
+3 | This folder contains the minimum set of packages necessary to run the core test suite.
+4 |
+5 | The full list of packages built in Pyodide can be found in the [pyodide-recipes](https://github.com/pyodide/pyodide-recipes) repository.
+6 |
+
+
+--------------------------------------------------------------------------------
+/packages/atomicwrites/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: atomicwrites
+ 3 |   version: 1.4.1
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |   top-level:
+ 8 |     - atomicwrites
+ 9 | source:
+10 |   sha256: 81b2c9071a49367a7f770170e5eec8cb66567cfbbc8c73d20ce5ca4a8d71cf11
+11 |   url: https://files.pythonhosted.org/packages/87/c6/53da25344e3e3a9c01095a89f16dbcda021c609ddb42dd6d7c0528236fb2/atomicwrites-1.4.1.tar.gz
+12 | about:
+13 |   home: https://github.com/untitaker/python-atomicwrites
+14 |   PyPI: https://pypi.org/project/atomicwrites
+15 |   summary: Atomic file writes.
+16 |   license: MIT
+17 |
+
+
+--------------------------------------------------------------------------------
+/packages/attrs/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: attrs
+ 3 |   version: 25.2.0
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |   top-level:
+ 8 |     - attr
+ 9 |     - attrs
+10 | source:
+11 |   sha256: 611344ff0a5fed735d86d7784610c84f8126b95e549bcad9ff61b4242f2d386b
+12 |   url: https://files.pythonhosted.org/packages/03/33/7a7388b9ef94aab40539939d94461ec682afbd895458945ed25be07f03f6/attrs-25.2.0-py3-none-any.whl
+13 | requirements:
+14 |   run:
+15 |     - six
+16 | about:
+17 |   home: https://www.attrs.org/
+18 |   PyPI: https://pypi.org/project/attrs
+19 |   summary: Classes Without Boilerplate
+20 |   license: MIT
+21 |
+
+
+--------------------------------------------------------------------------------
+/packages/cffi/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: cffi
+ 3 |   version: 1.17.1
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - cross-build
+ 7 |   top-level:
+ 8 |     - cffi
+ 9 | requirements:
+10 |   run:
+11 |     - pycparser
+12 | source:
+13 |   url: https://files.pythonhosted.org/packages/fc/97/c783634659c2920c3fc70419e3af40972dbaf758daa229a7d6ea6135c90d/cffi-1.17.1.tar.gz
+14 |   sha256: 1c39c6016c32bc48dd54561950ebd6836e1670f2ae46128f67cf49e789c52824
+15 | build:
+16 |   cross-build-env: true
+17 | about:
+18 |   home: http://cffi.readthedocs.org
+19 |   PyPI: https://pypi.org/project/cffi
+20 |   summary: Foreign Function Interface for Python calling C code.
+21 |   license: MIT
+22 |
+
+
+--------------------------------------------------------------------------------
+/packages/cffi/test_cffi.py:
+--------------------------------------------------------------------------------
+ 1 | from pytest_pyodide import run_in_pyodide
+ 2 |
+ 3 |
+ 4 | @run_in_pyodide(packages=["cffi"])
+ 5 | def test_cffi_asprintf(selenium):
+ 6 |     from cffi import FFI
+ 7 |
+ 8 |     ffi = FFI()
+ 9 |     ffi.cdef(
+10 |         """int asprintf(char** buf, const char *format, ...);   // copy-pasted from the man page"""
+11 |     )
+12 |     C = ffi.dlopen(None)  # loads the entire C namespace
+13 |     buf = ffi.new("char**")
+14 |     arg1 = ffi.new("char[]", b"wo")
+15 |     arg2 = ffi.new("char[]", b"ld")
+16 |     C.asprintf(buf, b"hello %sr%s", arg1, arg2)
+17 |     assert ffi.string(buf[0]).decode() == "hello world"
+18 |
+
+
+--------------------------------------------------------------------------------
+/packages/coverage/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: coverage
+ 3 |   version: 7.6.12
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |   top-level:
+ 8 |     - coverage
+ 9 | source:
+10 |   url: https://files.pythonhosted.org/packages/0c/d6/2b53ab3ee99f2262e6f0b8369a43f6d66658eab45510331c0b3d5c8c4272/coverage-7.6.12.tar.gz
+11 |   sha256: 48cfc4641d95d34766ad41d9573cc0f22a48aa88d22657a1fe01dca0dbae4de2
+12 | requirements:
+13 |   run:
+14 |     - sqlite3
+15 | about:
+16 |   home: https://github.com/nedbat/coveragepy
+17 |   PyPI: https://pypi.org/project/coverage
+18 |   summary: Code coverage measurement for Python
+19 |   license: Apache-2.0
+20 |
+
+
+--------------------------------------------------------------------------------
+/packages/exceptiongroup/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: exceptiongroup
+ 3 |   version: 1.2.2
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |   top-level:
+ 8 |     - exceptiongroup
+ 9 | source:
+10 |   url: https://files.pythonhosted.org/packages/02/cc/b7e31358aac6ed1ef2bb790a9746ac2c69bcb3c8588b41616914eb106eaf/exceptiongroup-1.2.2-py3-none-any.whl
+11 |   sha256: 3111b9d131c238bec2f8f516e123e14ba243563fb135d3fe885990585aa7795b
+12 | about:
+13 |   home: https://github.com/agronholm/exceptiongroup
+14 |   PyPI: https://pypi.org/project/exceptiongroup
+15 |   summary: Backport of PEP 654 (exception groups)
+16 |   license: MIT
+17 |
+
+
+--------------------------------------------------------------------------------
+/packages/hashlib/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: hashlib
+ 3 |   version: 1.0.0 # Nonsense
+ 4 |   tag:
+ 5 |     - always
+ 6 |   top-level:
+ 7 |     - _hashlib
+ 8 | source:
+ 9 |   path: src
+10 | build:
+11 |   type: cpython_module
+12 |   script: |
+13 |     wget ${PYTHON_ARCHIVE_URL} -O Python-${PYVERSION}.tgz
+14 |     tar -xf Python-${PYVERSION}.tgz
+15 |     cd Python-${PYVERSION}
+16 |
+17 |     emcc $STDLIB_MODULE_CFLAGS -c Modules/_hashopenssl.c -o _hashlib.o \
+18 |       $(pkg-config --cflags --dont-define-prefix libcrypto) -DOPENSSL_THREADS
+19 |
+20 |     emcc _hashlib.o -o _hashlib.so $SIDE_MODULE_LDFLAGS \
+21 |       $(pkg-config --libs --dont-define-prefix libcrypto) -DOPENSSL_THREADS
+22 |
+23 |     cp _hashlib.so ${PKG_BUILD_DIR}/_hashlib.so
+24 |
+25 | requirements:
+26 |   run:
+27 |     - libopenssl
+28 |   host:
+29 |     - libopenssl
+30 | about:
+31 |   license: PSF
+32 |
+
+
+--------------------------------------------------------------------------------
+/packages/hashlib/src/pyproject.toml:
+--------------------------------------------------------------------------------
+ 1 | [project]
+ 2 | name = "hashlib"
+ 3 | authors = [
+ 4 |   { name="Pyodide"},
+ 5 | ]
+ 6 | description = "Unvendored hashlib for Pyodide"
+ 7 | version = "1.0.0"
+ 8 |
+ 9 | [build-system]
+10 | requires = ["hatchling"]
+11 | build-backend = "hatchling.build"
+12 |
+13 | [tool.hatch.build.targets.sdist]
+14 | ignore-vcs = true
+15 |
+16 | [tool.hatch.build.targets.wheel]
+17 | ignore-vcs = true
+18 | include = [
+19 |   "_hashlib.so",
+20 | ]
+21 | exclude = [
+22 |   "Python-*",
+23 | ]
+24 |
+
+
+--------------------------------------------------------------------------------
+/packages/iniconfig/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: iniconfig
+ 3 |   version: 2.0.0
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |   top-level:
+ 8 |     - iniconfig
+ 9 | source:
+10 |   sha256: b6a85871a79d2e3b22d2d1b94ac2824226a63c6b741c88f7ae975f18b6778374
+11 |   url: https://files.pythonhosted.org/packages/ef/a6/62565a6e1cf69e10f5727360368e451d4b7f58beeac6173dc9db836a5b46/iniconfig-2.0.0-py3-none-any.whl
+12 | about:
+13 |   home: http://github.com/RonnyPfannschmidt/iniconfig
+14 |   PyPI: https://pypi.org/project/iniconfig
+15 |   summary: "iniconfig: brain-dead simple config-ini parsing"
+16 |   license: MIT
+17 |
+
+
+--------------------------------------------------------------------------------
+/packages/libf2c/patches/0001-fix-arith.h.patch:
+--------------------------------------------------------------------------------
+ 1 | From 01990867ee7a641078505efba367a413a97f7802 Mon Sep 17 00:00:00 2001
+ 2 | From: Michael Droettboom <mdboom@gmail.com>
+ 3 | Date: Fri, 18 Mar 2022 19:59:25 -0700
+ 4 | Subject: [PATCH 1/5] fix arith.h
+ 5 |
+ 6 | arith.h is a file generated at build time by compiling and running a C program.
+ 7 | Since we use emscripten to build throughout, the C program becomes a wasm file
+ 8 | and we call it differently.
+ 9 | ---
+10 |  F2CLIBS/libf2c/Makefile | 4 ++--
+11 |  1 file changed, 2 insertions(+), 2 deletions(-)
+12 |
+13 | diff --git a/F2CLIBS/libf2c/Makefile b/F2CLIBS/libf2c/Makefile
+14 | index 0a3ed0d..a473ed8 100644
+15 | --- a/F2CLIBS/libf2c/Makefile
+16 | +++ b/F2CLIBS/libf2c/Makefile
+17 | @@ -173,8 +173,8 @@ xwsne.o:	fmt.h
+18 |  arith.h: arithchk.c
+19 |  	$(CC) $(CFLAGS) -DNO_FPINIT arithchk.c -lm ||\
+20 |  	 $(CC) -DNO_LONG_LONG $(CFLAGS) -DNO_FPINIT arithchk.c -lm
+21 | -	./a.out >arith.h
+22 | -	rm -f a.out arithchk.o
+23 | +	node a.out.js >arith.h
+24 | +	rm -f a.out.js a.out.wasm
+25 |
+26 |  check:
+27 |  	xsum Notice README abort_.c arithchk.c backspac.c c_abs.c c_cos.c \
+28 | --
+29 | 2.25.1
+30 |
+31 |
+
+
+--------------------------------------------------------------------------------
+/packages/libf2c/patches/0002-fix-f2clibs-build.patch:
+--------------------------------------------------------------------------------
+ 1 | From d88133066f9f6312145c1186116fdb6446d3f7a5 Mon Sep 17 00:00:00 2001
+ 2 | From: Michael Droettboom <mdboom@gmail.com>
+ 3 | Date: Fri, 18 Mar 2022 20:00:51 -0700
+ 4 | Subject: [PATCH 2/5] fix f2clibs build
+ 5 |
+ 6 | emscripten produces LLVM bitcode here, not genuine object files, so it doesn't
+ 7 | make sense to strip symbols.
+ 8 |
+ 9 | (It would also fail because emcc uses the file extension to determine what kind
+10 | of object to output, and .xxx is not a recognized extension; this is the error
+11 | message you would receive if you try to run the commands)
+12 | ---
+13 |  F2CLIBS/libf2c/Makefile | 2 --
+14 |  1 file changed, 2 deletions(-)
+15 |
+16 | diff --git a/F2CLIBS/libf2c/Makefile b/F2CLIBS/libf2c/Makefile
+17 | index a473ed8..e51d826 100644
+18 | --- a/F2CLIBS/libf2c/Makefile
+19 | +++ b/F2CLIBS/libf2c/Makefile
+20 | @@ -19,8 +19,6 @@ include ../../make.inc
+21 |  # compile, then strip unnecessary symbols
+22 |  .c.o:
+23 |  	$(CC) -c -DSkip_f2c_Undefs $(CFLAGS) $*.c
+24 | -	ld -r -x -o $*.xxx $*.o
+25 | -	mv $*.xxx $*.o
+26 |  ## Under Solaris (and other systems that do not understand ld -x),
+27 |  ## omit -x in the ld line above.
+28 |  ## If your system does not have the ld command, comment out
+29 | --
+30 | 2.25.1
+31 |
+32 |
+
+
+--------------------------------------------------------------------------------
+/packages/libf2c/patches/0003-remove-redundant-symbols.patch:
+--------------------------------------------------------------------------------
+ 1 | From 78ff0cec961d9eb4e94193995fe151e1ecdae9df Mon Sep 17 00:00:00 2001
+ 2 | From: Roman Yurchak <rth.yurchak@gmail.com>
+ 3 | Date: Fri, 18 Mar 2022 20:01:39 -0700
+ 4 | Subject: [PATCH 3/5] remove redundant symbols
+ 5 |
+ 6 | Remove a few symbols from LAPACK that are redundantly defined with BLAS or are
+ 7 | ported in scipy. It wouldn't be an issue if we were linking dynamically, but
+ 8 | because of static linking otherwise we get errors at link time about symbols
+ 9 | defined twice.
+10 |
+11 |  - Roman Yurchak (https://github.com/pyodide/pyodide/pull/238)
+12 | ---
+13 |  SRC/Makefile | 4 ++--
+14 |  1 file changed, 2 insertions(+), 2 deletions(-)
+15 |
+16 | diff --git a/SRC/Makefile b/SRC/Makefile
+17 | index 5f1eb22..32e669b 100644
+18 | --- a/SRC/Makefile
+19 | +++ b/SRC/Makefile
+20 | @@ -48,9 +48,9 @@ include ../make.inc
+21 |  #
+22 |  #######################################################################
+23 |
+24 | -ALLAUX = maxloc.o ilaenv.o ieeeck.o lsamen.o xerbla.o xerbla_array.o iparmq.o	\
+25 | +ALLAUX = maxloc.o ilaenv.o ieeeck.o lsamen.o iparmq.o	\
+26 |      ilaprec.o ilatrans.o ilauplo.o iladiag.o chla_transtype.o \
+27 | -    ../INSTALL/ilaver.o ../INSTALL/lsame.o
+28 | +    ../INSTALL/ilaver.o
+29 |
+30 |  ALLXAUX =
+31 |
+32 | --
+33 | 2.25.1
+34 |
+35 |
+
+
+--------------------------------------------------------------------------------
+/packages/libf2c/patches/0005-Remove-symbols-defined-in-OpenBLAS.patch:
+--------------------------------------------------------------------------------
+ 1 | From eaf5c5db6e956036869255cb51831e720474d01d Mon Sep 17 00:00:00 2001
+ 2 | From: =?UTF-8?q?Lo=C3=AFc=20Est=C3=A8ve?= <loic.esteve@ymail.com>
+ 3 | Date: Fri, 7 Apr 2023 15:20:18 +0200
+ 4 | Subject: [PATCH 5/5] Remove symbols defined in OpenBLAS
+ 5 |
+ 6 | ---
+ 7 |  F2CLIBS/libf2c/Makefile | 4 ++--
+ 8 |  1 file changed, 2 insertions(+), 2 deletions(-)
+ 9 |
+10 | diff --git a/F2CLIBS/libf2c/Makefile b/F2CLIBS/libf2c/Makefile
+11 | index 57eff0d..136050f 100644
+12 | --- a/F2CLIBS/libf2c/Makefile
+13 | +++ b/F2CLIBS/libf2c/Makefile
+14 | @@ -31,8 +31,8 @@ MISC =	f77vers.o i77vers.o main.o s_rnge.o abort_.o exit_.o getarg_.o iargc_.o\
+15 |  	getenv_.o signal_.o s_stop.o s_paus.o system_.o cabs.o ctype.o\
+16 |  	derf_.o derfc_.o erf_.o erfc_.o sig_die.o uninit.o
+17 |  POW =	pow_ci.o pow_dd.o pow_di.o pow_hh.o pow_ii.o pow_ri.o pow_zi.o pow_zz.o
+18 | -CX =	c_abs.o c_cos.o c_div.o c_exp.o c_log.o c_sin.o c_sqrt.o
+19 | -DCX =	z_abs.o z_cos.o z_div.o z_exp.o z_log.o z_sin.o z_sqrt.o
+20 | +CX =	c_cos.o c_div.o c_exp.o c_log.o c_sin.o c_sqrt.o
+21 | +DCX =	z_cos.o z_div.o z_exp.o z_log.o z_sin.o z_sqrt.o
+22 |  REAL =	r_abs.o r_acos.o r_asin.o r_atan.o r_atn2.o r_cnjg.o r_cos.o\
+23 |  	r_cosh.o r_dim.o r_exp.o r_imag.o r_int.o\
+24 |  	r_lg10.o r_log.o r_mod.o r_nint.o r_sign.o\
+25 | --
+26 | 2.34.1
+27 |
+28 |
+
+
+--------------------------------------------------------------------------------
+/packages/libf2c/patches/0006-adjust-ld-ar-ranlib.patch:
+--------------------------------------------------------------------------------
+ 1 | Index: CLAPACK-3.2.1/F2CLIBS/libf2c/Makefile
+ 2 | ===================================================================
+ 3 | --- CLAPACK-3.2.1.orig/F2CLIBS/libf2c/Makefile
+ 4 | +++ CLAPACK-3.2.1/F2CLIBS/libf2c/Makefile
+ 5 | @@ -70,8 +70,8 @@ OFILES = $(MISC) $(POW) $(CX) $(DCX) $(R
+ 6 |  all: f2c.h signal1.h sysdep1.h libf2c.a clapack_install
+ 7 |
+ 8 |  libf2c.a: $(OFILES)
+ 9 | -	ar r libf2c.a $?
+10 | -	-ranlib libf2c.a
+11 | +	$(ARCH) r libf2c.a $?
+12 | +	$(RANLIB) libf2c.a
+13 |
+14 |  ## Shared-library variant: the following rule works on Linux
+15 |  ## systems.  Details are system-dependent.  Under Linux, -fPIC
+16 | @@ -80,7 +80,7 @@ libf2c.a: $(OFILES)
+17 |  ## of "cc -shared".
+18 |
+19 |  libf2c.so: $(OFILES)
+20 | -	cc -shared -o libf2c.so $(OFILES)
+21 | +	$(CC) -shared -o libf2c.so $(OFILES)
+22 |
+23 |  ### If your system lacks ranlib, you don't need it; see README.
+24 |
+25 | @@ -117,7 +117,7 @@ sysdep1.h: sysdep1.h0
+26 |
+27 |  install: libf2c.a
+28 |  	cp libf2c.a $(LIBDIR)
+29 | -	-ranlib $(LIBDIR)/libf2c.a
+30 | +	$(RANLIB) $(LIBDIR)/libf2c.a
+31 |
+32 |  clapack_install: libf2c.a
+33 |  	mv libf2c.a ..
+34 |
+
+
+--------------------------------------------------------------------------------
+/packages/libf2c/patches/0007-add-singlecomplex.patch:
+--------------------------------------------------------------------------------
+ 1 | --- a/INCLUDE/f2c.h
+ 2 | +++ b/INCLUDE/f2c.h
+ 3 | @@ -14,6 +14,7 @@ typedef short int shortint;
+ 4 |  typedef float real;
+ 5 |  typedef double doublereal;
+ 6 |  typedef struct { real r, i; } complex;
+ 7 | +typedef struct { real r, i; } singlecomplex;
+ 8 |  typedef struct { doublereal r, i; } doublecomplex;
+ 9 |  typedef long int logical;
+10 |  typedef short int shortlogical;
+11 |
+
+
+--------------------------------------------------------------------------------
+/packages/liblzma/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: liblzma
+ 3 |   version: 5.2.2
+ 4 |   tag:
+ 5 |     - always
+ 6 |     - library
+ 7 |     - static_library
+ 8 | source:
+ 9 |   url: https://github.com/xz-mirror/xz/releases/download/v5.2.2/xz-5.2.2.tar.gz
+10 |   sha256: 73df4d5d34f0468bd57d09f2d8af363e95ed6cc3a4a86129d2f2c366259902a2
+11 |
+12 | build:
+13 |   type: static_library
+14 |   script: |
+15 |     emconfigure ./configure \
+16 |         CFLAGS="-fPIC" \
+17 |         --disable-xz \
+18 |         --disable-xzdec \
+19 |         --disable-lzmadec \
+20 |         --disable-lzmainfo \
+21 |         --disable-lzma-links \
+22 |         --disable-scripts \
+23 |         --disable-doc \
+24 |         --enable-shared=no \
+25 |         --disable-dependency-tracking \
+26 |         --prefix=${WASM_LIBRARY_DIR}
+27 |
+28 |     emmake make -j ${PYODIDE_JOBS:-3}
+29 |     emmake make install
+30 | about:
+31 |   home: https://github.com/tukaani-project/xz
+32 |   license: BSD-0-Clause
+33 |
+
+
+--------------------------------------------------------------------------------
+/packages/libopenblas/patches/0001-Add-Wno-return-type-flag.patch:
+--------------------------------------------------------------------------------
+ 1 | From 3111f04db010f53a2634db4f4e8e35a2d9a2957b Mon Sep 17 00:00:00 2001
+ 2 | From: =?UTF-8?q?Lo=C3=AFc=20Est=C3=A8ve?= <loic.esteve@ymail.com>
+ 3 | Date: Fri, 9 Dec 2022 16:40:13 +0100
+ 4 | Subject: [PATCH 1/3] Add -Wno-return-type flag
+ 5 |
+ 6 | This is needed because we are changing many signatures to return int instead of
+ 7 | void with some regex expressions but we are not modifying the returned value
+ 8 |  which would potentially be a lot more tricky.
+ 9 | ---
+10 |  Makefile.rule | 2 +-
+11 |  1 file changed, 1 insertion(+), 1 deletion(-)
+12 |
+13 | diff --git a/Makefile.rule b/Makefile.rule
+14 | index daf2d958d..6595d4271 100644
+15 | --- a/Makefile.rule
+16 | +++ b/Makefile.rule
+17 | @@ -231,7 +231,7 @@ NO_AFFINITY = 1
+18 |  # Common Optimization Flag;
+19 |  # The default -O2 is enough.
+20 |  # Flags for POWER8 are defined in Makefile.power. Don't modify COMMON_OPT
+21 | -# COMMON_OPT = -O2
+22 | +COMMON_OPT = -O2 -Wno-return-type
+23 |
+24 |  # gfortran option for LAPACK to improve thread-safety
+25 |  # It is enabled by default in Makefile.system for gfortran
+26 | --
+27 | 2.34.1
+28 |
+29 |
+
+
+--------------------------------------------------------------------------------
+/packages/libopenblas/patches/0002-Align-xerbla_array-signature-with-scipy-expectation.patch:
+--------------------------------------------------------------------------------
+ 1 | From 8ce75f14b82ed67eaf0eaceea0c8092851af00c2 Mon Sep 17 00:00:00 2001
+ 2 | From: =?UTF-8?q?Lo=C3=AFc=20Est=C3=A8ve?= <loic.esteve@ymail.com>
+ 3 | Date: Fri, 7 Apr 2023 10:27:59 +0200
+ 4 | Subject: [PATCH 2/3] Align xerbla_array signature with scipy expectation
+ 5 |
+ 6 | ---
+ 7 |  lapack-netlib/SRC/xerbla_array.c | 2 +-
+ 8 |  1 file changed, 1 insertion(+), 1 deletion(-)
+ 9 |
+10 | diff --git a/lapack-netlib/SRC/xerbla_array.c b/lapack-netlib/SRC/xerbla_array.c
+11 | index fe7d6d898..74d3ca96a 100644
+12 | --- a/lapack-netlib/SRC/xerbla_array.c
+13 | +++ b/lapack-netlib/SRC/xerbla_array.c
+14 | @@ -600,7 +600,7 @@ array.f"> */
+15 |
+16 |  /*  ===================================================================== */
+17 |  /* Subroutine */ void xerbla_array_(char *srname_array__, integer *
+18 | -	srname_len__, integer *info, integer srname_array_len)
+19 | +	srname_len__, integer *info)
+20 |  {
+21 |      /* System generated locals */
+22 |      integer i__1, i__2, i__3;
+23 | --
+24 | 2.34.1
+25 |
+26 |
+
+
+--------------------------------------------------------------------------------
+/packages/libopenssl/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: libopenssl
+ 3 |   version: 1.1.1w
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - library
+ 7 |     - shared_library
+ 8 | source:
+ 9 |   url: https://www.openssl.org/source/openssl-1.1.1w.tar.gz
+10 |   sha256: cf3098950cb4d853ad95c0841f1f9c6d3dc102dccfcacd521d93925208b76ac8
+11 | build:
+12 |   type: shared_library
+13 |   script: |
+14 |     emconfigure ./Configure \
+15 |       gcc \
+16 |       -no-ui-console \
+17 |       -no-tests \
+18 |       -DHAVE_FORK=0 \
+19 |       -DOPENSSL_NO_SECURE_MEMORY \
+20 |       -DNO_SYSLOG \
+21 |       ${SIDE_MODULE_CFLAGS} \
+22 |       --prefix=${WASM_LIBRARY_DIR}
+23 |
+24 |     sed -i 's!^CROSS_COMPILE=.*!!g' Makefile
+25 |     make build_generated
+26 |     make -j ${PYODIDE_JOBS:-3} libcrypto.a
+27 |     make -j ${PYODIDE_JOBS:-3} libssl.a
+28 |     emar -d libcrypto.a liblegacy-lib-bn_asm.o liblegacy-lib-des_enc.o liblegacy-lib-fcrypt_b.o
+29 |     emcc ${SIDE_MODULE_LDFLAGS} libcrypto.a -o libcrypto.so
+30 |     emcc ${SIDE_MODULE_LDFLAGS} libssl.a libcrypto.so -o libssl.so
+31 |
+32 |     make install_dev install_engines
+33 |     mkdir -p ${WASM_LIBRARY_DIR}/lib
+34 |     # remove static libraries, we will use shared one
+35 |     rm -f ${WASM_LIBRARY_DIR}/lib/{libcrypto.a,libssl.a}
+36 |     cp libcrypto.so libssl.so ${WASM_LIBRARY_DIR}/lib
+37 |     cp libcrypto.so libssl.so ${DISTDIR}
+38 | about:
+39 |   home: https://www.openssl.org
+40 |   license: Apache-2.0
+41 |
+
+
+--------------------------------------------------------------------------------
+/packages/lzma/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: lzma
+ 3 |   version: 1.0.0 # Nonsense
+ 4 |   tag:
+ 5 |     - always
+ 6 |   top-level:
+ 7 |     - lzma
+ 8 |     - _lzma
+ 9 | source:
+10 |   path: src
+11 | build:
+12 |   type: cpython_module
+13 |   script: |
+14 |     wget ${PYTHON_ARCHIVE_URL} -O Python-${PYVERSION}.tgz
+15 |     tar -xf Python-${PYVERSION}.tgz
+16 |     cd Python-${PYVERSION}
+17 |
+18 |     emcc $STDLIB_MODULE_CFLAGS -c Modules/_lzmamodule.c -o _lzmamodule.o \
+19 |       $(pkg-config --cflags --dont-define-prefix liblzma)
+20 |
+21 |     emcc _lzmamodule.o -o _lzma.so $SIDE_MODULE_LDFLAGS \
+22 |       $(pkg-config --libs --dont-define-prefix liblzma)
+23 |
+24 |     cp _lzma.so ${PKG_BUILD_DIR}/_lzma.so
+25 |     cp Lib/lzma.py ${PKG_BUILD_DIR}/lzma.py
+26 |
+27 | requirements:
+28 |   host:
+29 |     - liblzma
+30 | about:
+31 |   license: PSF
+32 |
+
+
+--------------------------------------------------------------------------------
+/packages/lzma/src/pyproject.toml:
+--------------------------------------------------------------------------------
+ 1 | [project]
+ 2 | name = "lzma"
+ 3 | authors = [
+ 4 |   { name="Pyodide"},
+ 5 | ]
+ 6 | description = "Unvendored lzma for Pyodide"
+ 7 | version = "1.0.0"
+ 8 |
+ 9 | [build-system]
+10 | requires = ["hatchling"]
+11 | build-backend = "hatchling.build"
+12 |
+13 | [tool.hatch.build.targets.sdist]
+14 | ignore-vcs = true
+15 |
+16 | [tool.hatch.build.targets.wheel]
+17 | ignore-vcs = true
+18 | include = [
+19 |   "lzma.py",
+20 |   "_lzma.so",
+21 | ]
+22 | exclude = [
+23 |   "Python-*",
+24 | ]
+25 |
+
+
+--------------------------------------------------------------------------------
+/packages/lzma/test_lzma.py:
+--------------------------------------------------------------------------------
+ 1 | from pytest_pyodide import run_in_pyodide
+ 2 |
+ 3 |
+ 4 | @run_in_pyodide(packages=["test", "lzma"], pytest_assert_rewrites=False)
+ 5 | def test_lzma(selenium):
+ 6 |     # TODO: libregrtest.main(["test_lzma"]) doesn't collect any tests for some unknown reason.
+ 7 |
+ 8 |     import unittest
+ 9 |
+10 |     import test.test_lzma
+11 |
+12 |     suite = unittest.TestSuite(
+13 |         [unittest.TestLoader().loadTestsFromModule(test.test_lzma)]
+14 |     )
+15 |
+16 |     runner = unittest.TextTestRunner(verbosity=2)
+17 |     result = runner.run(suite)
+18 |     assert result.wasSuccessful()
+19 |
+
+
+--------------------------------------------------------------------------------
+/packages/micropip/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: micropip
+ 3 |   version: 0.10.1
+ 4 |   tag:
+ 5 |     - always
+ 6 |   top-level:
+ 7 |     - micropip
+ 8 |
+ 9 | source:
+10 |   sha256: 126a501fecb40fc87f7edb67974a45f32db87e8ff3d932452aefbbcde27e53f5
+11 |   url: https://files.pythonhosted.org/packages/py3/m/micropip/micropip-0.10.1-py3-none-any.whl
+12 |
+13 | about:
+14 |   home: https://github.com/pyodide/micropip
+15 |   PyPI: https://pypi.org/project/micropip
+16 |   license: MPL-2.0
+17 |
+
+
+--------------------------------------------------------------------------------
+/packages/micropip/test/snowballstemmer-2.0.0-py2.py3-none-any.whl:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/packages/micropip/test/snowballstemmer-2.0.0-py2.py3-none-any.whl
+
+
+--------------------------------------------------------------------------------
+/packages/more-itertools/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: more-itertools
+ 3 |   version: 10.6.0
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |   top-level:
+ 8 |     - more_itertools
+ 9 | source:
+10 |   sha256: 6eb054cb4b6db1473f6e15fcc676a08e4732548acd47c708f0e179c2c7c01e89
+11 |   url: https://files.pythonhosted.org/packages/23/62/0fe302c6d1be1c777cab0616e6302478251dfbf9055ad426f5d0def75c89/more_itertools-10.6.0-py3-none-any.whl
+12 | about:
+13 |   home: https://github.com/more-itertools/more-itertools
+14 |   PyPI: https://pypi.org/project/more-itertools
+15 |   summary: More routines for operating on iterables, beyond itertools
+16 |   license: MIT
+17 |
+
+
+--------------------------------------------------------------------------------
+/packages/numpy/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: numpy
+ 3 |   version: 2.2.5
+ 4 |   tag:
+ 5 |     - cross-build
+ 6 |     - min-scipy-stack
+ 7 |   top-level:
+ 8 |     - numpy
+ 9 | source:
+10 |   url: https://files.pythonhosted.org/packages/source/n/numpy/numpy-2.2.5.tar.gz
+11 |   sha256: a9c0d994680cd991b1cb772e8b297340085466a6fe964bc9d4e80f5e2f43c291
+12 |   patches:
+13 |     - patches/0001-TST-Prevent-import-error-when-tests-are-not-included.patch
+14 |
+15 | build:
+16 |   unvendor-tests: false # we do this on our own using Meson's install tags
+17 |   # numpy uses vendored meson, so we need to pass the cross file manually
+18 |   backend-flags: |
+19 |     setup-args=-Dallow-noblas=true
+20 |     setup-args=--cross-file=${MESON_CROSS_FILE}
+21 |     install-args=--tags=runtime,python-runtime,devel
+22 |   # numpy creates numpy/distutils/__pycache__ directory during the build.
+23 |   # It breaks our test because there is a .pyc in the directory.
+24 |   post: |
+25 |     rm -rf numpy/distutils/__pycache__
+26 |   cflags: |
+27 |     -Wno-return-type
+28 |   cross-build-env: true
+29 |   cross-build-files:
+30 |     - numpy/_core/include/numpy/numpyconfig.h
+31 |     - numpy/_core/include/numpy/_numpyconfig.h
+32 |     - numpy/_core/lib/libnpymath.a
+33 |     - numpy/random/lib/libnpyrandom.a
+34 | about:
+35 |   home: https://www.numpy.org
+36 |   PyPI: https://pypi.org/project/numpy
+37 |   summary: NumPy is the fundamental package for array computing with Python.
+38 |   license: BSD-3-Clause
+39 | extra:
+40 |   recipe-maintainers:
+41 |     - agriyakhetarpal
+42 |
+
+
+--------------------------------------------------------------------------------
+/packages/packaging/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: packaging
+ 3 |   version: "24.2"
+ 4 |   tag:
+ 5 |     - core
+ 6 |   top-level:
+ 7 |     - packaging
+ 8 | source:
+ 9 |   sha256: c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f
+10 |   url: https://files.pythonhosted.org/packages/d0/63/68dbb6eb2de9cb10ee4c9c14a0148804425e13c4fb20d61cce69f53106da/packaging-24.2.tar.gz
+11 |   patches:
+12 |     - patches/0001-Add-Pyodide-compatibility.patch
+13 | about:
+14 |   home: https://github.com/pypa/packaging
+15 |   PyPI: https://pypi.org/project/packaging
+16 |   summary: Core utilities for Python packages
+17 |   license: BSD-2-Clause or Apache-2.0
+18 |
+
+
+--------------------------------------------------------------------------------
+/packages/packaging/patches/0001-Add-Pyodide-compatibility.patch:
+--------------------------------------------------------------------------------
+ 1 | From cf62f7f89a6a96321b07e1646b0d757848e10ea4 Mon Sep 17 00:00:00 2001
+ 2 | From: Hood Chatham <roberthoodchatham@gmail.com>
+ 3 | Date: Tue, 21 May 2024 07:48:46 -0400
+ 4 | Subject: [PATCH] Add Pyodide compatibility
+ 5 |
+ 6 | We are changing our wheel platform tag to pyodide_2024_0 so we need to teach
+ 7 | packaging to map Emscripten platform to this.
+ 8 | ---
+ 9 |  src/packaging/tags.py | 9 +++++++++
+10 |  1 file changed, 9 insertions(+)
+11 |
+12 | diff --git a/src/packaging/tags.py b/src/packaging/tags.py
+13 | index 6667d29..1c6d07a 100644
+14 | --- a/src/packaging/tags.py
+15 | +++ b/src/packaging/tags.py
+16 | @@ -502,6 +502,13 @@ def _linux_platforms(is_32bit: bool = _32_BIT_INTERPRETER) -> Iterator[str]:
+17 |          yield f"linux_{arch}"
+18 |
+19 |
+20 | +def _emscripten_platforms() -> Iterator[str]:
+21 | +    pyodide_abi_version = sysconfig.get_config_var("PYODIDE_ABI_VERSION")
+22 | +    if pyodide_abi_version:
+23 | +        yield f"pyodide_{pyodide_abi_version}_wasm32"
+24 | +    yield from _generic_platforms()
+25 | +
+26 | +
+27 |  def _generic_platforms() -> Iterator[str]:
+28 |      yield _normalize_string(sysconfig.get_platform())
+29 |
+30 | @@ -514,6 +521,8 @@ def platform_tags() -> Iterator[str]:
+31 |          return mac_platforms()
+32 |      elif platform.system() == "Linux":
+33 |          return _linux_platforms()
+34 | +    elif platform.system() == "Emscripten":
+35 | +        return _emscripten_platforms()
+36 |      else:
+37 |          return _generic_platforms()
+38 |
+39 | --
+40 | 2.34.1
+41 |
+42 |
+
+
+--------------------------------------------------------------------------------
+/packages/pluggy/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: pluggy
+ 3 |   version: 1.5.0
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |   top-level:
+ 8 |     - pluggy
+ 9 | source:
+10 |   sha256: 44e1ad92c8ca002de6377e165f3e0f1be63266ab4d554740532335b9d75ea669
+11 |   url: https://files.pythonhosted.org/packages/88/5f/e351af9a41f866ac3f1fac4ca0613908d9a41741cfcf2228f4ad853b697d/pluggy-1.5.0-py3-none-any.whl
+12 | about:
+13 |   home: https://github.com/pytest-dev/pluggy
+14 |   PyPI: https://pypi.org/project/pluggy
+15 |   summary: plugin and hook calling mechanisms for python
+16 |   license: MIT
+17 |
+
+
+--------------------------------------------------------------------------------
+/packages/py/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: py
+ 3 |   version: 1.11.0
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |   top-level:
+ 8 |     - py
+ 9 | source:
+10 |   sha256: 607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378
+11 |   url: https://files.pythonhosted.org/packages/f6/f0/10642828a8dfb741e5f3fbaac830550a518a775c7fff6f04a007259b0548/py-1.11.0-py2.py3-none-any.whl
+12 | test:
+13 |   imports:
+14 |     - py
+15 |     - py.code
+16 | about:
+17 |   home: https://py.readthedocs.io/
+18 |   PyPI: https://pypi.org/project/py
+19 |   summary: library with cross-python path, ini-parsing, io, code, log facilities
+20 |   license: MIT
+21 |
+
+
+--------------------------------------------------------------------------------
+/packages/pycparser/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: pycparser
+ 3 |   version: "2.22"
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - cross-build
+ 7 |   top-level:
+ 8 |     - pycparser
+ 9 | source:
+10 |   url: https://files.pythonhosted.org/packages/13/a3/a812df4e2dd5696d1f351d58b8fe16a405b234ad2886a0dab9183fb78109/pycparser-2.22-py3-none-any.whl
+11 |   sha256: c3702b6d3dd8c7abc1afa565d7e63d53a1d0bd86cdc24edd75470f4de499cfcc
+12 | build:
+13 |   cross-build-env: true
+14 | about:
+15 |   home: https://github.com/eliben/pycparser
+16 |   PyPI: https://pypi.org/project/pycparser
+17 |   summary: C parser in Python
+18 |   license: BSD-3-Clause
+19 |
+
+
+--------------------------------------------------------------------------------
+/packages/pydecimal/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: pydecimal
+ 3 |   version: 1.0.0 # Nonsense
+ 4 |   tag:
+ 5 |     - always
+ 6 |   top-level:
+ 7 |     - _pydecimal
+ 8 | source:
+ 9 |   path: src
+10 | build:
+11 |   type: cpython_module
+12 |   script: |
+13 |     wget ${PYTHON_ARCHIVE_URL} -O Python-${PYVERSION}.tgz
+14 |     tar -xf Python-${PYVERSION}.tgz
+15 |     cd Python-${PYVERSION}
+16 |
+17 |     cp Lib/_pydecimal.py ${PKG_BUILD_DIR}/_pydecimal.py
+18 | about:
+19 |   license: PSF
+20 |
+
+
+--------------------------------------------------------------------------------
+/packages/pydecimal/src/pyproject.toml:
+--------------------------------------------------------------------------------
+ 1 | [project]
+ 2 | name = "pydecimal"
+ 3 | authors = [
+ 4 |   { name="Pyodide"},
+ 5 | ]
+ 6 | description = "Unvendored pydecimal for Pyodide"
+ 7 | version = "1.0.0"
+ 8 |
+ 9 | [build-system]
+10 | requires = ["hatchling"]
+11 | build-backend = "hatchling.build"
+12 |
+13 | [tool.hatch.build.targets.sdist]
+14 | ignore-vcs = true
+15 |
+16 | [tool.hatch.build.targets.wheel]
+17 | ignore-vcs = true
+18 | include = [
+19 |   "_pydecimal.py",
+20 | ]
+21 | exclude = [
+22 |   "Python-*",
+23 | ]
+24 |
+
+
+--------------------------------------------------------------------------------
+/packages/pydecimal/test_pydecimal.py:
+--------------------------------------------------------------------------------
+ 1 | from pytest_pyodide import run_in_pyodide
+ 2 |
+ 3 |
+ 4 | @run_in_pyodide(packages=["test", "pydecimal"], pytest_assert_rewrites=False)
+ 5 | def test_pydecimal(selenium):
+ 6 |     from test.libregrtest.main import main
+ 7 |
+ 8 |     name = "test_decimal"
+ 9 |
+10 |     ignore_tests = [
+11 |         "test_context_subclassing",  # floating point
+12 |         "test_none_args",  # Some context issue?
+13 |         "test_threading",
+14 |     ]
+15 |     match_tests = [[pat, False] for pat in ignore_tests]
+16 |
+17 |     try:
+18 |         main([name], match_tests=match_tests, verbose=True, verbose3=True)
+19 |     except SystemExit as e:
+20 |         if e.code != 0:
+21 |             raise RuntimeError(f"Failed with code: {e.code}") from None
+22 |
+
+
+--------------------------------------------------------------------------------
+/packages/pydoc_data/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: pydoc_data
+ 3 |   version: 1.0.0 # Nonsense
+ 4 |   tag:
+ 5 |     - always
+ 6 |   top-level:
+ 7 |     - pydoc_data
+ 8 | source:
+ 9 |   path: src
+10 | build:
+11 |   type: cpython_module
+12 |   script: |
+13 |     wget ${PYTHON_ARCHIVE_URL} -O Python-${PYVERSION}.tgz
+14 |     tar -xf Python-${PYVERSION}.tgz
+15 |     cd Python-${PYVERSION}/Lib
+16 |
+17 |     tar --exclude=__pycache__ -cf - pydoc_data | tar -C ${PKG_BUILD_DIR} -xf -
+18 | about:
+19 |   license: PSF
+20 |
+
+
+--------------------------------------------------------------------------------
+/packages/pydoc_data/src/pyproject.toml:
+--------------------------------------------------------------------------------
+ 1 | [project]
+ 2 | name = "pydoc_data"
+ 3 | authors = [
+ 4 |   { name="Pyodide"},
+ 5 | ]
+ 6 | description = "Unvendored pydoc_data for Pyodide"
+ 7 | version = "1.0.0"
+ 8 |
+ 9 | [build-system]
+10 | requires = ["hatchling"]
+11 | build-backend = "hatchling.build"
+12 |
+13 | [tool.hatch.build.targets.sdist]
+14 | ignore-vcs = true
+15 |
+16 | [tool.hatch.build.targets.wheel]
+17 | ignore-vcs = true
+18 | include = [
+19 |   "pydoc_data/",
+20 | ]
+21 | exclude = [
+22 |   "Python-*",
+23 | ]
+24 |
+
+
+--------------------------------------------------------------------------------
+/packages/pydoc_data/test_pydoc.py:
+--------------------------------------------------------------------------------
+ 1 | from pytest_pyodide import run_in_pyodide
+ 2 |
+ 3 |
+ 4 | @run_in_pyodide(packages=["test", "pydoc_data"], pytest_assert_rewrites=False)
+ 5 | def test_pydoc(selenium):
+ 6 |     from test.libregrtest.main import main
+ 7 |
+ 8 |     name = "test_pydoc"
+ 9 |
+10 |     ignore_tests = [
+11 |         "test_server",  # fork
+12 |         "test_synopsis_sourceless",  # expects __pycache__
+13 |         "test_mixed_case_module_names_are_lower_cased",  # incompatible with zipimport
+14 |         "test_importfile",  # incompatible with zipimport
+15 |     ]
+16 |     match_tests = [[pat, False] for pat in ignore_tests]
+17 |     try:
+18 |         main([name], match_tests=match_tests, verbose=True, verbose3=True)
+19 |     except SystemExit as e:
+20 |         if e.code != 0:
+21 |             raise RuntimeError(f"Failed with code: {e.code}") from None
+22 |
+
+
+--------------------------------------------------------------------------------
+/packages/pyparsing/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: pyparsing
+ 3 |   version: 3.2.1
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |   top-level:
+ 8 |     - pyparsing
+ 9 | source:
+10 |   sha256: 506ff4f4386c4cec0590ec19e6302d3aedb992fdc02c761e90416f158dacf8e1
+11 |   url: https://files.pythonhosted.org/packages/1c/a7/c8a2d361bf89c0d9577c934ebb7421b25dc84bf3a8e3ac0a40aed9acc547/pyparsing-3.2.1-py3-none-any.whl
+12 | about:
+13 |   home: https://github.com/pyparsing/pyparsing/
+14 |   license: MIT
+15 |
+
+
+--------------------------------------------------------------------------------
+/packages/pytest-asyncio/inner_test_pytest_asyncio.py:
+--------------------------------------------------------------------------------
+ 1 | # mypy: disable-error-code="no-untyped-def"
+ 2 |
+ 3 | """Taken from test_simple.py in pytest-asyncio"""
+ 4 |
+ 5 | import asyncio
+ 6 | from textwrap import dedent
+ 7 |
+ 8 | import pytest
+ 9 | from pytest import Pytester
+10 |
+11 | pytest_plugins = "pytester"
+12 |
+13 |
+14 | async def async_coro():
+15 |     await asyncio.sleep(0)
+16 |     return "ok"
+17 |
+18 |
+19 | def test_event_loop_fixture(event_loop):
+20 |     """Test the injection of the event_loop fixture."""
+21 |     assert event_loop
+22 |     ret = event_loop.run_until_complete(async_coro())
+23 |     assert ret == "ok"
+24 |
+25 |
+26 | @pytest.mark.asyncio
+27 | async def test_asyncio_marker():
+28 |     """Test the asyncio pytest marker."""
+29 |     await asyncio.sleep(0)
+30 |
+31 |
+32 | def test_asyncio_marker_compatibility_with_xfail(pytester: Pytester):
+33 |     pytester.makepyfile(
+34 |         dedent(
+35 |             """\
+36 |                 import pytest
+37 |
+38 |                 pytest_plugins = "pytest_asyncio"
+39 |
+40 |
+41 |                 @pytest.mark.xfail(reason="need a failure", strict=True)
+42 |                 @pytest.mark.asyncio
+43 |                 async def test_asyncio_marker_fail():
+44 |                     raise AssertionError
+45 |             """
+46 |         )
+47 |     )
+48 |     result = pytester.runpytest("--asyncio-mode=strict")
+49 |     result.assert_outcomes(xfailed=1)
+50 |
+51 |
+52 | @pytest.mark.asyncio
+53 | async def test_asyncio_marker_with_default_param(a_param=None):
+54 |     """Test the asyncio pytest marker."""
+55 |     await asyncio.sleep(0)
+56 |
+
+
+--------------------------------------------------------------------------------
+/packages/pytest-asyncio/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: pytest-asyncio
+ 3 |   version: 0.25.3
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |     - min-scipy-stack
+ 8 |   top-level:
+ 9 |     - pytest_asyncio
+10 | source:
+11 |   url: https://files.pythonhosted.org/packages/67/17/3493c5624e48fd97156ebaec380dcaafee9506d7e2c46218ceebbb57d7de/pytest_asyncio-0.25.3-py3-none-any.whl
+12 |   sha256: 9e89518e0f9bd08928f97a3482fdc4e244df17529460bc038291ccaf8f85c7c3
+13 | requirements:
+14 |   run:
+15 |     - pytest
+16 | about:
+17 |   home: https://github.com/pytest-dev/pytest-asyncio
+18 |   PyPI: https://pypi.org/project/pytest-asyncio
+19 |   summary: Pytest support for asyncio
+20 |   license: Apache-2.0
+21 | extra:
+22 |   recipe-maintainers:
+23 |     - agriyakhetarpal
+24 |
+
+
+--------------------------------------------------------------------------------
+/packages/pytest-asyncio/test_pytest_asyncio.py:
+--------------------------------------------------------------------------------
+ 1 | from pytest_pyodide import run_in_pyodide
+ 2 |
+ 3 | from conftest import requires_jspi
+ 4 |
+ 5 |
+ 6 | @run_in_pyodide(packages=["pytest-asyncio"])
+ 7 | def do_test(selenium, contents):
+ 8 |     from pathlib import Path
+ 9 |
+10 |     Path("test_pytest_asyncio.py").write_text(contents)
+11 |     import pytest
+12 |
+13 |     assert pytest.main(["test_pytest_asyncio.py"]) == 0
+14 |
+15 |
+16 | @requires_jspi
+17 | def test_pytest_asyncio(selenium):
+18 |     from pathlib import Path
+19 |
+20 |     contents = (Path(__file__).parent / "inner_test_pytest_asyncio.py").read_text()
+21 |     do_test(selenium, contents)
+22 |
+
+
+--------------------------------------------------------------------------------
+/packages/pytest/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: pytest
+ 3 |   version: 8.3.5
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |     - min-scipy-stack
+ 8 |   top-level:
+ 9 |     - _pytest
+10 |     - pytest
+11 | source:
+12 |   url: https://files.pythonhosted.org/packages/30/3d/64ad57c803f1fa1e963a7946b6e0fea4a70df53c1a7fed304586539c2bac/pytest-8.3.5-py3-none-any.whl
+13 |   sha256: c69214aa47deac29fad6c2a4f590b9c4a9fdb16a403176fe154b79c0b4d4d820
+14 | requirements:
+15 |   run:
+16 |     - atomicwrites
+17 |     - attrs
+18 |     - more-itertools
+19 |     - pluggy
+20 |     - py
+21 |     - setuptools
+22 |     - six
+23 |     - iniconfig
+24 |     - exceptiongroup
+25 | about:
+26 |   home: https://docs.pytest.org/en/latest/
+27 |   PyPI: https://pypi.org/project/pytest
+28 |   summary: "pytest: simple powerful testing with Python"
+29 |   license: MIT
+30 |
+
+
+--------------------------------------------------------------------------------
+/packages/pytest/test_pytest.py:
+--------------------------------------------------------------------------------
+ 1 | from pytest_pyodide import run_in_pyodide
+ 2 |
+ 3 |
+ 4 | @run_in_pyodide(packages=["pytest"])
+ 5 | def do_test(selenium, contents):
+ 6 |     from contextlib import redirect_stdout
+ 7 |     from io import StringIO
+ 8 |     from pathlib import Path
+ 9 |
+10 |     import pytest
+11 |
+12 |     Path("test_pytest.py").write_text(contents)
+13 |
+14 |     out = StringIO()
+15 |     with redirect_stdout(out):
+16 |         result = pytest.main(["test_pytest.py"])
+17 |
+18 |         assert result == 1
+19 |
+20 |         out.seek(0)
+21 |         output = out.read()
+22 |         assert "2 passed" in output, output
+23 |         assert "1 failed" in output, output
+24 |         assert "1 warning" in output, output
+25 |         assert "This is a warning" in output, output
+26 |
+27 |
+28 | def test_pytest(selenium):
+29 |     contents = """
+30 | def test_success():
+31 |     assert 1 == 1
+32 |
+33 | def test_warning():
+34 |     import warnings
+35 |     warnings.warn("This is a warning")
+36 |
+37 | def test_fail():
+38 |     assert 1 == 2
+39 | """
+40 |
+41 |     do_test(selenium, contents)
+42 |
+
+
+--------------------------------------------------------------------------------
+/packages/pytz/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: pytz
+ 3 |   version: "2025.1"
+ 4 |   tag:
+ 5 |     # Remove tag after removing pytz from the test suite
+ 6 |     - pyodide.test
+ 7 |     - core
+ 8 |     - min-scipy-stack
+ 9 |   top-level:
+10 |     - pytz
+11 | source:
+12 |   sha256: 89dd22dca55b46eac6eda23b2d72721bf1bdfef212645d81513ef5d03038de57
+13 |   url: https://files.pythonhosted.org/packages/eb/38/ac33370d784287baa1c3d538978b5e2ea064d4c1b93ffbd12826c190dd10/pytz-2025.1-py2.py3-none-any.whl
+14 | about:
+15 |   home: http://pythonhosted.org/pytz
+16 |   PyPI: https://pypi.org/project/pytz
+17 |   summary: World timezone definitions, modern and historical
+18 |   license: MIT
+19 |
+
+
+--------------------------------------------------------------------------------
+/packages/scipy/cmdline_test_file.py:
+--------------------------------------------------------------------------------
+1 | import numpy as np
+2 | from scipy.sparse.linalg import svds
+3 |
+4 | rng = np.random.default_rng(0)
+5 | A = rng.random((10, 10))
+6 |
+7 | res = svds(A, k=3, which="LM", random_state=0)
+8 | print("res", res)
+9 |
+
+
+--------------------------------------------------------------------------------
+/packages/scipy/patches/0002-int-to-string.patch:
+--------------------------------------------------------------------------------
+ 1 | From d53ade3f03ba3557fd50fb38990d605f4ae7f8f1 Mon Sep 17 00:00:00 2001
+ 2 | From: Hood Chatham <roberthoodchatham@gmail.com>
+ 3 | Date: Sat, 25 Dec 2021 18:04:18 -0800
+ 4 | Subject: [PATCH 2/18] int to string
+ 5 |
+ 6 | f2c does not handle implicit casts of function arguments correctly. The msg
+ 7 | argument of `xerrwv` is defined to be an `int *`, and then implicitly cast
+ 8 | from a string at the call site. This doesn't work correctly.
+ 9 |
+10 | We redefine the type of the first argument to be string to fix the problem.
+11 | ---
+12 |  scipy/integrate/odepack/xerrwv.f | 3 ++-
+13 |  1 file changed, 2 insertions(+), 1 deletion(-)
+14 |
+15 | diff --git a/scipy/integrate/odepack/xerrwv.f b/scipy/integrate/odepack/xerrwv.f
+16 | index 7e180e4f8..b940bb702 100644
+17 | --- a/scipy/integrate/odepack/xerrwv.f
+18 | +++ b/scipy/integrate/odepack/xerrwv.f
+19 | @@ -1,5 +1,6 @@
+20 |        subroutine xerrwv (msg, nmes, nerr, level, ni, i1, i2, nr, r1, r2)
+21 | -      integer msg, nmes, nerr, level, ni, i1, i2, nr,
+22 | +      character  msg*1
+23 | +      integer nmes, nerr, level, ni, i1, i2, nr,
+24 |       1   i, lun, lunit, mesflg, ncpw, nch, nwds
+25 |        double precision r1, r2
+26 |        dimension msg(nmes)
+27 | --
+28 | 2.34.1
+29 |
+30 |
+
+
+--------------------------------------------------------------------------------
+/packages/scipy/patches/0008-Mark-mvndst-functions-recursive.patch:
+--------------------------------------------------------------------------------
+ 1 | From c11745d763407d9a2bb195a21e2a8afaf7635248 Mon Sep 17 00:00:00 2001
+ 2 | From: Hood Chatham <roberthoodchatham@gmail.com>
+ 3 | Date: Sat, 6 Jul 2024 22:38:55 +0200
+ 4 | Subject: [PATCH 8/18] Mark mvndst functions recursive
+ 5 |
+ 6 | ---
+ 7 |  scipy/stats/mvndst.f | 8 ++++----
+ 8 |  1 file changed, 4 insertions(+), 4 deletions(-)
+ 9 |
+10 | diff --git a/scipy/stats/mvndst.f b/scipy/stats/mvndst.f
+11 | index 41afa7e74..5065a15ff 100644
+12 | --- a/scipy/stats/mvndst.f
+13 | +++ b/scipy/stats/mvndst.f
+14 | @@ -21,8 +21,8 @@
+15 |  *          Pullman, WA 99164-3113
+16 |  *          Email : alangenz@wsu.edu
+17 |  *
+18 | -      SUBROUTINE mvnun(d, n, lower, upper, means, covar, maxpts,
+19 | -     &                   abseps, releps, value, inform)
+20 | +      RECURSIVE SUBROUTINE mvnun(d, n, lower, upper, means, covar,
+21 | +     &                   maxpts, abseps, releps, value, inform)
+22 |  *  Parameters
+23 |  *
+24 |  *   d       integer, dimensionality of the data
+25 | @@ -88,8 +88,8 @@
+26 |        END
+27 |
+28 |
+29 | -      SUBROUTINE mvnun_weighted(d, n, lower, upper, means, weights,
+30 | -     &                          covar, maxpts, abseps, releps,
+31 | +      recursive SUBROUTINE mvnun_weighted(d, n, lower, upper, means,
+32 | +     &                          weights, covar, maxpts, abseps, releps,
+33 |       &                           value, inform)
+34 |  *  Parameters
+35 |  *
+36 | --
+37 | 2.34.1
+38 |
+39 |
+
+
+--------------------------------------------------------------------------------
+/packages/scipy/patches/0013-Set-wrapper-return-type-to-int.patch:
+--------------------------------------------------------------------------------
+ 1 | From b5d05197de084ab3cab52241f163bae7519b6027 Mon Sep 17 00:00:00 2001
+ 2 | From: Hood Chatham <roberthoodchatham@gmail.com>
+ 3 | Date: Wed, 31 Jul 2024 11:48:12 +0200
+ 4 | Subject: [PATCH 13/18] Set wrapper return type to int
+ 5 |
+ 6 | ---
+ 7 |  scipy/linalg/_generate_pyx.py | 2 +-
+ 8 |  1 file changed, 1 insertion(+), 1 deletion(-)
+ 9 |
+10 | diff --git a/scipy/linalg/_generate_pyx.py b/scipy/linalg/_generate_pyx.py
+11 | index 8a00f5d279..aeb86e8926 100644
+12 | --- a/scipy/linalg/_generate_pyx.py
+13 | +++ b/scipy/linalg/_generate_pyx.py
+14 | @@ -520,7 +520,7 @@ def generate_decl_c(name, return_type, argnames, argtypes, accelerate):
+15 |      if name in WRAPPED_FUNCS:
+16 |          argnames = ['out'] + argnames
+17 |          c_argtypes = [c_return_type] + c_argtypes
+18 | -        c_return_type = 'void'
+19 | +        c_return_type = 'int'
+20 |      blas_macro, blas_name = get_blas_macro_and_name(name, accelerate)
+21 |      c_args = ', '.join(f'{t} *{n}' for t, n in zip(c_argtypes, argnames))
+22 |      return f"{c_return_type} {blas_macro}({blas_name})({c_args});\n"
+23 | --
+24 | 2.39.3 (Apple Git-146)
+25 |
+26 |
+
+
+--------------------------------------------------------------------------------
+/packages/scipy/patches/0016-Make-sf_error_state_lib-a-static-library.patch:
+--------------------------------------------------------------------------------
+ 1 | From 9d93ca19f4ad0ca327964b6234316547d774b17f Mon Sep 17 00:00:00 2001
+ 2 | From: Agriya Khetarpal <74401230+agriyakhetarpal@users.noreply.github.com>
+ 3 | Date: Sat, 17 Aug 2024 01:12:28 +0530
+ 4 | Subject: [PATCH 16/18] Make `sf_error_state_lib` a static library
+ 5 |
+ 6 | wasm.ld does not support linkage with shared libraries. This patch
+ 7 | changes `sf_error_state_lib` to a static one.
+ 8 |
+ 9 | ---
+10 |  scipy/special/meson.build | 2 +-
+11 |  1 file changed, 1 insertion(+), 1 deletion(-)
+12 |
+13 | diff --git a/scipy/special/meson.build b/scipy/special/meson.build
+14 | index 82b813ea85..24bee0a21c 100644
+15 | --- a/scipy/special/meson.build
+16 | +++ b/scipy/special/meson.build
+17 | @@ -33,7 +33,7 @@ else
+18 |    scipy_import_dll_args = []
+19 |  endif
+20 |
+21 | -sf_error_state_lib = shared_library('sf_error_state',
+22 | +sf_error_state_lib = static_library('sf_error_state',
+23 |    ['sf_error_state.c'],
+24 |    include_directories: ['../_lib', '../_build_utils/src'],
+25 |    c_args: scipy_export_dll_args,
+26 | --
+27 | 2.39.3 (Apple Git-146)
+28 |
+29 |
+
+
+--------------------------------------------------------------------------------
+/packages/setuptools/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: setuptools
+ 3 |   version: 76.0.0
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |   top-level:
+ 8 |     - _distutils_hack
+ 9 |     - pkg_resources
+10 |     - setuptools
+11 | source:
+12 |   url: https://files.pythonhosted.org/packages/py3/s/setuptools/setuptools-76.0.0-py3-none-any.whl
+13 |   sha256: 199466a166ff664970d0ee145839f5582cb9bca7a0a3a2e795b6a9cb2308e9c6
+14 | build:
+15 |   post: |
+16 |     find . -name '*.exe' -delete
+17 | requirements:
+18 |   run:
+19 |     - pyparsing
+20 | about:
+21 |   home: https://github.com/pypa/setuptools
+22 |   PyPI: https://pypi.org/project/setuptools
+23 |   summary: Easily download, build, install, upgrade, and uninstall Python packages
+24 |   license: MIT
+25 |
+
+
+--------------------------------------------------------------------------------
+/packages/six/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: six
+ 3 |   version: 1.17.0
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pytest
+ 7 |   top-level:
+ 8 |     - six
+ 9 | source:
+10 |   url: https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl
+11 |   sha256: 4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274
+12 | about:
+13 |   home: https://github.com/benjaminp/six
+14 |   PyPI: https://pypi.org/project/six
+15 |   summary: Python 2 and 3 compatibility utilities
+16 |   license: MIT
+17 |
+
+
+--------------------------------------------------------------------------------
+/packages/sqlite3/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: sqlite3
+ 3 |   version: 1.0.0 # Nonsense
+ 4 |   tag:
+ 5 |     - always
+ 6 |   top-level:
+ 7 |     - sqlite3
+ 8 |     - _sqlite3
+ 9 | source:
+10 |   path: src
+11 | build:
+12 |   type: cpython_module
+13 |   script: |
+14 |     wget ${PYTHON_ARCHIVE_URL} -O Python-${PYVERSION}.tgz
+15 |     tar -xf Python-${PYVERSION}.tgz
+16 |     cd Python-${PYVERSION}
+17 |
+18 |     export FILES=(
+19 |       "Modules/_sqlite/blob.c"
+20 |       "Modules/_sqlite/connection.c"
+21 |       "Modules/_sqlite/cursor.c"
+22 |       "Modules/_sqlite/microprotocols.c"
+23 |       "Modules/_sqlite/module.c"
+24 |       "Modules/_sqlite/prepare_protocol.c"
+25 |       "Modules/_sqlite/row.c"
+26 |       "Modules/_sqlite/statement.c"
+27 |       "Modules/_sqlite/util.c"
+28 |     )
+29 |
+30 |     embuilder build sqlite3 --pic
+31 |
+32 |     for file in "${FILES[@]}"; do
+33 |       emcc $STDLIB_MODULE_CFLAGS -c "${file}" -o "${file/.c/.o}"  \
+34 |         -sUSE_SQLITE3 -DMODULENAME=sqlite
+35 |     done
+36 |
+37 |     OBJECT_FILES=$(find Modules/_sqlite/ -name "*.o")
+38 |     emcc $OBJECT_FILES -o ${PKG_BUILD_DIR}/_sqlite3.so $SIDE_MODULE_LDFLAGS \
+39 |        -sUSE_SQLITE3 -lsqlite3
+40 |
+41 |     cd Lib && tar --exclude=test -cf - sqlite3 | tar -C ${PKG_BUILD_DIR} -xf -
+42 | about:
+43 |   license: PSF
+44 |
+
+
+--------------------------------------------------------------------------------
+/packages/sqlite3/src/pyproject.toml:
+--------------------------------------------------------------------------------
+ 1 | [project]
+ 2 | name = "sqlite3"
+ 3 | authors = [
+ 4 |   { name="Pyodide"},
+ 5 | ]
+ 6 | description = "Unvendored sqlite3 for Pyodide"
+ 7 | version = "1.0.0"
+ 8 |
+ 9 | [build-system]
+10 | requires = ["hatchling"]
+11 | build-backend = "hatchling.build"
+12 |
+13 | [tool.hatch.build.targets.sdist]
+14 | ignore-vcs = true
+15 |
+16 | [tool.hatch.build.targets.wheel]
+17 | ignore-vcs = true
+18 | include = [
+19 |   "_sqlite3.so",
+20 |   "sqlite3/",
+21 | ]
+22 | exclude = [
+23 |   "Python-*",
+24 | ]
+25 |
+
+
+--------------------------------------------------------------------------------
+/packages/sqlite3/test_sqlite3.py:
+--------------------------------------------------------------------------------
+ 1 | from pytest_pyodide import run_in_pyodide
+ 2 |
+ 3 |
+ 4 | @run_in_pyodide(packages=["test", "sqlite3"], pytest_assert_rewrites=False)
+ 5 | def test_sqlite3(selenium):
+ 6 |     import unittest
+ 7 |
+ 8 |     import test.test_sqlite3
+ 9 |
+10 |     suite = unittest.TestSuite(
+11 |         [unittest.TestLoader().loadTestsFromModule(test.test_sqlite3)]
+12 |     )
+13 |
+14 |     runner = unittest.TextTestRunner(verbosity=2)
+15 |     result = runner.run(suite)
+16 |     assert result.wasSuccessful()
+17 |
+18 |
+19 | @run_in_pyodide(packages=["sqlite3"])
+20 | def test_sqlite3_basic(selenium):
+21 |     import sqlite3
+22 |
+23 |     with sqlite3.connect(":memory:") as conn:
+24 |         c = conn.cursor()
+25 |         c.execute(
+26 |             """
+27 |             CREATE TABLE people (
+28 |                 first_name VARCHAR,
+29 |                 last_name VARCHAR
+30 |             )
+31 |         """
+32 |         )
+33 |         c.execute("INSERT INTO people VALUES ('John', 'Doe')")
+34 |         c.execute("INSERT INTO people VALUES ('Jane', 'Smith')")
+35 |         c.execute("INSERT INTO people VALUES ('Michael', 'Jordan')")
+36 |         c.execute("SELECT * FROM people")
+37 |
+38 |     content = c.fetchall()
+39 |     assert len(content) == 3
+40 |     assert content[0][0] == "John"
+41 |     assert content[1][0] == "Jane"
+42 |     assert content[2][0] == "Michael"
+43 |
+
+
+--------------------------------------------------------------------------------
+/packages/ssl/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: ssl
+ 3 |   version: 1.0.0 # Nonsense
+ 4 |   tag:
+ 5 |     - always
+ 6 |   top-level:
+ 7 |     - ssl
+ 8 |     - _ssl
+ 9 | source:
+10 |   path: src
+11 | build:
+12 |   type: cpython_module
+13 |   script: |
+14 |     export PKG_CONFIG_PATH="${WASM_LIBRARY_DIR}/lib/pkgconfig"
+15 |     wget ${PYTHON_ARCHIVE_URL} -O Python-${PYVERSION}.tgz
+16 |     tar -xf Python-${PYVERSION}.tgz
+17 |     cd Python-${PYVERSION}
+18 |
+19 |     # OPENSSL_THREADS declares that OPENSSL is threadsafe. We are single threaded so everything is threadsafe.
+20 |     emcc $STDLIB_MODULE_CFLAGS -c Modules/_ssl.c -o _ssl.o \
+21 |       $(pkg-config --cflags --dont-define-prefix openssl) \
+22 |       -DOPENSSL_THREADS
+23 |
+24 |     emcc _ssl.o $(pkg-config --libs --dont-define-prefix openssl) $SIDE_MODULE_LDFLAGS -o ${PKG_BUILD_DIR}/_ssl.so
+25 |     cp Lib/ssl.py ${PKG_BUILD_DIR}/ssl.py
+26 |
+27 | requirements:
+28 |   host:
+29 |     - libopenssl
+30 |   run:
+31 |     - libopenssl
+32 | about:
+33 |   license: PSF
+34 |
+
+
+--------------------------------------------------------------------------------
+/packages/ssl/src/pyproject.toml:
+--------------------------------------------------------------------------------
+ 1 | [project]
+ 2 | name = "ssl"
+ 3 | authors = [
+ 4 |   { name="Pyodide"},
+ 5 | ]
+ 6 | description = "Unvendored ssl for Pyodide"
+ 7 | version = "1.0.0"
+ 8 |
+ 9 | [build-system]
+10 | requires = ["hatchling"]
+11 | build-backend = "hatchling.build"
+12 |
+13 | [tool.hatch.build.targets.sdist]
+14 | ignore-vcs = true
+15 |
+16 | [tool.hatch.build.targets.wheel]
+17 | ignore-vcs = true
+18 | include = [
+19 |   "_ssl.so",
+20 |   "ssl.py",
+21 | ]
+22 | exclude = [
+23 |   "Python-*",
+24 | ]
+25 |
+
+
+--------------------------------------------------------------------------------
+/packages/ssl/test_ssl.py:
+--------------------------------------------------------------------------------
+ 1 | from pytest_pyodide import run_in_pyodide
+ 2 |
+ 3 |
+ 4 | @run_in_pyodide(packages=["test", "ssl"], pytest_assert_rewrites=False)
+ 5 | def test_ssl(selenium):
+ 6 |     import platform
+ 7 |     import unittest
+ 8 |     import unittest.mock
+ 9 |
+10 |     from test.libregrtest.main import main
+11 |
+12 |     platform.platform(aliased=True)
+13 |     name = "test_ssl"
+14 |     ignore_tests = [
+15 |         "*test_context_custom_class*",
+16 |         "*ThreadedTests*",
+17 |         "*ocket*",
+18 |         "test_verify_flags",
+19 |         "test_subclass",
+20 |         "test_lib_reason",
+21 |         "test_unwrap",
+22 |     ]
+23 |     match_tests = [[pat, False] for pat in ignore_tests]
+24 |
+25 |     try:
+26 |         with unittest.mock.patch(
+27 |             "test.support.socket_helper.bind_port",
+28 |             side_effect=unittest.SkipTest("nope!"),
+29 |         ):
+30 |             main([name], match_tests=match_tests, verbose=True, verbose3=True)
+31 |     except SystemExit as e:
+32 |         if e.code != 0:
+33 |             raise RuntimeError(f"Failed with code: {e.code}") from None
+34 |
+
+
+--------------------------------------------------------------------------------
+/packages/tblib/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: tblib
+ 3 |   version: 3.0.0
+ 4 |   top-level:
+ 5 |     - tblib
+ 6 |   tag:
+ 7 |     - core
+ 8 |     - pytest
+ 9 |     - min-scipy-stack
+10 | source:
+11 |   url: https://files.pythonhosted.org/packages/9b/87/ce70db7cae60e67851eb94e1a2127d4abb573d3866d2efd302ceb0d4d2a5/tblib-3.0.0-py3-none-any.whl
+12 |   sha256: 80a6c77e59b55e83911e1e607c649836a69c103963c5f28a46cbeef44acf8129
+13 | about:
+14 |   home: https://github.com/ionelmc/python-tblib
+15 |   PyPI: https://pypi.org/project/tblib
+16 |   summary: Traceback serialization library.
+17 |   license: BSD-2-Clause
+18 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-buffer/buffer-test/setup.py:
+--------------------------------------------------------------------------------
+ 1 | from setuptools import Extension, setup
+ 2 |
+ 3 | setup(
+ 4 |     name="test-buffer",
+ 5 |     version="0.1.1",
+ 6 |     author="Hood Chatham",
+ 7 |     author_email="roberthoodchatham@gmail.com",
+ 8 |     description="Test Python buffers",
+ 9 |     long_description_content_type="text/markdown",
+10 |     classifiers=[
+11 |         "Programming Language :: Python :: 3",
+12 |         "License :: OSI Approved :: MIT License",
+13 |         "Operating System :: OS Independent",
+14 |     ],
+15 |     ext_modules=[Extension("buffer_test", ["buffer-test.c"])],
+16 | )
+17 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-buffer/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-buffer
+ 3 |   version: "0.1.1"
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pyodide.test
+ 7 |   top-level:
+ 8 |     - buffer_test
+ 9 | source:
+10 |   path: buffer-test
+11 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-cpp-exceptions/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-cpp-exceptions
+ 3 |   version: "0.1"
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pyodide.test
+ 7 |     - library
+ 8 |     - shared_library
+ 9 | source:
+10 |   path: src
+11 | build:
+12 |   type: shared_library
+13 |   script: |
+14 |     em++ ${SIDE_MODULE_CFLAGS} -fwasm-exceptions -I${PYTHONINCLUDE} -flto -fno-lto -std=c++20 -c throw.cpp -o throw.o
+15 |     em++ ${SIDE_MODULE_CFLAGS} -fwasm-exceptions -I${PYTHONINCLUDE} -flto -fno-lto -std=c++20 -c catch.cpp -o catch.o -mreference-types
+16 |     em++ ${SIDE_MODULE_LDFLAGS} -fwasm-exceptions -sSIDE_MODULE=1 -o ${DISTDIR}/cpp-exceptions-test-throw.so throw.o
+17 |     em++ ${SIDE_MODULE_LDFLAGS} -fwasm-exceptions  -sSIDE_MODULE=1 ${DISTDIR}/cpp-exceptions-test-throw.so -o ${DISTDIR}/cpp-exceptions-test-catch.so catch.o
+18 | about:
+19 |   license: MPL-2.0
+20 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-cpp-exceptions2/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-cpp-exceptions2
+ 3 |   version: "1.0"
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pyodide.test
+ 7 | source:
+ 8 |   path: src
+ 9 | build:
+10 |   cxxflags: -fwasm-exceptions
+11 |   ldflags: -fwasm-exceptions
+12 | about:
+13 |   license: MPL-2.0
+14 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-cpp-exceptions2/src/cpp_exceptions_test2.cpp:
+--------------------------------------------------------------------------------
+ 1 | #include "Python.h"
+ 2 | #include <stdexcept>
+ 3 |
+ 4 | extern "C" __attribute__((visibility("default"))) PyObject*
+ 5 | PyInit_cpp_exceptions_test2()
+ 6 | {
+ 7 |   try {
+ 8 |     throw std::runtime_error("something bad?");
+ 9 |   } catch (const std::exception& e) {
+10 |     PyErr_SetString(PyExc_ImportError, "oops");
+11 |   }
+12 |   return nullptr;
+13 | }
+14 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-cpp-exceptions2/src/cpp_exceptions_test2/__init__.py:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/packages/test-cpp-exceptions2/src/cpp_exceptions_test2/__init__.py
+
+
+--------------------------------------------------------------------------------
+/packages/test-cpp-exceptions2/src/setup.py:
+--------------------------------------------------------------------------------
+ 1 | from setuptools import Extension, setup
+ 2 |
+ 3 | setup(
+ 4 |     name="test-cpp-exceptions2",
+ 5 |     version="1.0",
+ 6 |     ext_modules=[
+ 7 |         Extension(
+ 8 |             name="cpp_exceptions_test2",  # as it would be imported
+ 9 |             # may include packages/namespaces separated by `.`
+10 |             language="c++",
+11 |             sources=[
+12 |                 "cpp_exceptions_test2.cpp"
+13 |             ],  # all sources are compiled into a single binary file
+14 |         ),
+15 |     ],
+16 | )
+17 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy-nonpure/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-dummy-nonpure
+ 3 |   version: 1.0.0
+ 4 |   tag:
+ 5 |     - pyodide.test
+ 6 |   top-level:
+ 7 |     - dummy_nonpure
+ 8 | source:
+ 9 |   path: src
+10 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy-nonpure/src/dummy_nonpure.c:
+--------------------------------------------------------------------------------
+ 1 | #include <Python.h>
+ 2 |
+ 3 | // Dummy function implementation
+ 4 | static PyObject*
+ 5 | dummy(PyObject* self, PyObject* args)
+ 6 | {
+ 7 |   return PyUnicode_FromString("dummy");
+ 8 | }
+ 9 |
+10 | // Method definition table
+11 | static PyMethodDef DummyMethods[] = {
+12 |   { "dummy", dummy, METH_NOARGS, "Return a dummy string" },
+13 |   { NULL, NULL, 0, NULL } // Sentinel
+14 | };
+15 |
+16 | static PyModuleDef simplemodule = {
+17 |   PyModuleDef_HEAD_INIT,
+18 |   "dummy_nonpure", // name of module
+19 |   NULL,            // module documentation, may be NULL
+20 |   -1,              // size of per-interpreter state of the module,
+21 |                    // or -1 if the module keeps state in global variables.
+22 |   DummyMethods     // methods table
+23 | };
+24 |
+25 | PyMODINIT_FUNC
+26 | PyInit_dummy_nonpure(void)
+27 | {
+28 |   return PyModule_Create(&simplemodule);
+29 | }
+30 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy-nonpure/src/setup.py:
+--------------------------------------------------------------------------------
+ 1 | from setuptools import Extension, setup
+ 2 |
+ 3 | setup(
+ 4 |     name="test-dummy-nonpure",
+ 5 |     version="1.0.0",
+ 6 |     author="Pyodide",
+ 7 |     author_email="pyodide@gmail.com",
+ 8 |     description="Just a dummy package with c-extension for testing Pyodide package loading logics",
+ 9 |     long_description_content_type="text/markdown",
+10 |     classifiers=[
+11 |         "Programming Language :: Python :: 3",
+12 |     ],
+13 |     ext_modules=[Extension("dummy_nonpure", ["dummy_nonpure.c"])],
+14 | )
+15 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy-unNormalized/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-dummy-unNormalized
+ 3 |   version: 1.0.0
+ 4 |   tag:
+ 5 |     - pyodide.test
+ 6 |   top-level:
+ 7 |     - dummy_unnormalized
+ 8 | source:
+ 9 |   path: src
+10 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy-unNormalized/src/dummy_unnormalized/__init__.py:
+--------------------------------------------------------------------------------
+1 | def dummy():
+2 |     return "dummy"
+3 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy-unNormalized/src/pyproject.toml:
+--------------------------------------------------------------------------------
+ 1 | [project]
+ 2 | name = "test-dummy-unNormalized"
+ 3 | authors = [
+ 4 |   { name="Pyodide"},
+ 5 | ]
+ 6 | description = "Just a dummy package for testing Pyodide package loading logics"
+ 7 | version = "1.0.0"
+ 8 |
+ 9 | [build-system]
+10 | requires = ["hatchling"]
+11 | build-backend = "hatchling.build"
+12 |
+13 | [tool.hatch.build.targets.sdist]
+14 | ignore-vcs = true
+15 |
+16 | [tool.hatch.build.targets.wheel]
+17 | ignore-vcs = true
+18 | include = [
+19 |   "dummy_unnormalized/",
+20 | ]
+21 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy-unvendoring/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-dummy-unvendoring
+ 3 |   version: 1.0.0
+ 4 |   tag:
+ 5 |     - pyodide.test
+ 6 |   top-level:
+ 7 |     - dummy_unvendoring
+ 8 | source:
+ 9 |   path: src
+10 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy-unvendoring/src/dummy_unvendoring/__init__.py:
+--------------------------------------------------------------------------------
+1 | def dummy():
+2 |     return "dummy"
+3 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy-unvendoring/src/dummy_unvendoring/test_dummy_unvendoring.py:
+--------------------------------------------------------------------------------
+1 | # This file should be unvendored
+2 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy-unvendoring/src/pyproject.toml:
+--------------------------------------------------------------------------------
+ 1 | [project]
+ 2 | name = "test-dummy-unvendoring"
+ 3 | authors = [
+ 4 |   { name="Pyodide"},
+ 5 | ]
+ 6 | description = "Just a dummy package for testing Pyodide package loading logics"
+ 7 | version = "1.0.0"
+ 8 |
+ 9 | [build-system]
+10 | requires = ["hatchling"]
+11 | build-backend = "hatchling.build"
+12 |
+13 | [tool.hatch.build.targets.sdist]
+14 | ignore-vcs = true
+15 |
+16 | [tool.hatch.build.targets.wheel]
+17 | ignore-vcs = true
+18 | include = [
+19 |   "dummy_unvendoring/",
+20 | ]
+21 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-dummy
+ 3 |   version: 1.0.0
+ 4 |   tag:
+ 5 |     - pyodide.test
+ 6 |   top-level:
+ 7 |     - dummy
+ 8 | source:
+ 9 |   path: src
+10 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy/src/dummy/__init__.py:
+--------------------------------------------------------------------------------
+1 | def dummy():
+2 |     return "dummy"
+3 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-dummy/src/pyproject.toml:
+--------------------------------------------------------------------------------
+ 1 | [project]
+ 2 | name = "test-dummy"
+ 3 | authors = [
+ 4 |   { name="Pyodide"},
+ 5 | ]
+ 6 | description = "Just a dummy package for testing Pyodide package loading logics"
+ 7 | version = "1.0.0"
+ 8 |
+ 9 | [build-system]
+10 | requires = ["hatchling"]
+11 | build-backend = "hatchling.build"
+12 |
+13 | [tool.hatch.build.targets.sdist]
+14 | ignore-vcs = true
+15 |
+16 | [tool.hatch.build.targets.wheel]
+17 | ignore-vcs = true
+18 | include = [
+19 |   "dummy/",
+20 | ]
+21 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-fpcast/fpcast-test/setup.py:
+--------------------------------------------------------------------------------
+ 1 | from sysconfig import get_config_var
+ 2 |
+ 3 | from setuptools import Extension, setup
+ 4 |
+ 5 | if get_config_var("SIZEOF_VOID_P") != 4:
+ 6 |     # pyodide_build.pypabuild will run this three times, the first time it fails
+ 7 |     # and the exception is caught but the second and third times it must
+ 8 |     # succeed.
+ 9 |     raise Exception(
+10 |         """
+11 | This should appear in the log exactly one time. If it appears more than once,
+12 | the Pyodide build system has misconfigured sysconfigdata (and also the build
+13 | will fail).
+14 | """
+15 |     )
+16 |
+17 | setup(
+18 |     name="test-fpcast",
+19 |     version="0.1.1",
+20 |     author="Hood Chatham",
+21 |     author_email="roberthoodchatham@gmail.com",
+22 |     description="Test function pointer casts.",
+23 |     long_description_content_type="text/markdown",
+24 |     classifiers=[
+25 |         "Programming Language :: Python :: 3",
+26 |         "License :: OSI Approved :: MIT License",
+27 |         "Operating System :: OS Independent",
+28 |     ],
+29 |     # packages=["fpcast_test"],
+30 |     ext_modules=[Extension("fpcast_test", ["fpcast-test.c"])],
+31 |     # python_requires='>=3.6',
+32 | )
+33 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-fpcast/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-fpcast
+ 3 |   version: "0.1.1"
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pyodide.test
+ 7 |   top-level:
+ 8 |     - fpcast_test
+ 9 | source:
+10 |   path: fpcast-test
+11 | about:
+12 |   license: MPL-2.0
+13 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-fpcast/test_fpcast_test.py:
+--------------------------------------------------------------------------------
+ 1 | import pytest
+ 2 | from pytest_pyodide import run_in_pyodide
+ 3 |
+ 4 |
+ 5 | @pytest.mark.requires_dynamic_linking
+ 6 | @run_in_pyodide(packages=["test-fpcast"])
+ 7 | def test_fpcasts(selenium):
+ 8 |     import fpcast_test
+ 9 |
+10 |     fpcast_test.noargs0()
+11 |     fpcast_test.noargs1()
+12 |     fpcast_test.noargs2()
+13 |     fpcast_test.noargs3()
+14 |
+15 |     fpcast_test.varargs0()
+16 |     fpcast_test.varargs1()
+17 |     fpcast_test.varargs2()
+18 |     fpcast_test.varargs3()
+19 |
+20 |     fpcast_test.kwargs0()
+21 |     fpcast_test.kwargs1()
+22 |     fpcast_test.kwargs2()
+23 |     fpcast_test.kwargs3()
+24 |
+25 |     fpcast_test.Callable0()()
+26 |     fpcast_test.Callable1()()
+27 |     fpcast_test.Callable2()()
+28 |     fpcast_test.Callable3()()
+29 |
+30 |     t = fpcast_test.TestType()
+31 |     t.noargs0()
+32 |     t.noargs1()
+33 |     t.noargs2()
+34 |     t.noargs3()
+35 |
+36 |     t.varargs0()
+37 |     t.varargs1()
+38 |     t.varargs2()
+39 |     t.varargs3()
+40 |
+41 |     t.kwargs0()
+42 |     t.kwargs1()
+43 |     t.kwargs2()
+44 |     t.kwargs3()
+45 |
+46 |     t.getset0  # noqa: B018
+47 |     t.getset1  # noqa: B018
+48 |     t.getset1 = 5
+49 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-abi/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-rust-abi
+ 3 |   version: "1.0"
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - rust
+ 7 |     - pyodide.test
+ 8 |   top-level:
+ 9 |     - rust_abi_test
+10 | source:
+11 |   path: src
+12 | requirements:
+13 |   executable:
+14 |     - rustup
+15 | about:
+16 |   license: MPL-2.0
+17 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-abi/src/Cargo.toml:
+--------------------------------------------------------------------------------
+ 1 | [package]
+ 2 | name = "test-rust-abi"
+ 3 | version = "0.1.0"
+ 4 | edition = "2018"
+ 5 | publish = false
+ 6 |
+ 7 | [dependencies]
+ 8 | pyo3 = { version = "0.24.0" }
+ 9 |
+10 | [features]
+11 | extension-module = ["pyo3/extension-module"]
+12 | default = ["extension-module"]
+13 |
+14 | [lib]
+15 | crate-type = ["cdylib"]
+16 |
+17 | [profile.release]
+18 | lto = "thin"
+19 | overflow-checks = true
+20 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-abi/src/pyproject.toml:
+--------------------------------------------------------------------------------
+1 | [build-system]
+2 | requires = ["setuptools", "wheel", "setuptools-rust"]
+3 | build-backend = "setuptools.build_meta"
+4 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-abi/src/setup.py:
+--------------------------------------------------------------------------------
+ 1 | from setuptools import setup
+ 2 | from setuptools_rust import Binding, RustExtension
+ 3 |
+ 4 | setup(
+ 5 |     name="test_rust_abi",
+ 6 |     version="1.0",
+ 7 |     rust_extensions=[
+ 8 |         RustExtension("rust_abi_test", "Cargo.toml", binding=Binding.PyO3)
+ 9 |     ],
+10 |     # rust extensions are not zip safe, just like C-extensions.
+11 |     zip_safe=False,
+12 | )
+13 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-abi/src/src/lib.rs:
+--------------------------------------------------------------------------------
+ 1 | use std::fs;
+ 2 | use pyo3::prelude::*;
+ 3 |
+ 4 |
+ 5 | #[pyfunction]
+ 6 | fn get_file_length(data: &str) ->  PyResult<u64> {
+ 7 |     let metadata = fs::metadata(data)?;
+ 8 |     Ok(metadata.len())
+ 9 | }
+10 |
+11 |
+12 |
+13 | #[pymodule]
+14 | fn rust_abi_test(m: &Bound<'_, PyModule>) -> pyo3::PyResult<()> {
+15 |     m.add_function(wrap_pyfunction!(get_file_length, m)?)?;
+16 |     Ok(())
+17 | }
+18 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-abi/test_rust_abi.py:
+--------------------------------------------------------------------------------
+ 1 | import pytest
+ 2 | from pytest_pyodide import run_in_pyodide
+ 3 |
+ 4 |
+ 5 | @pytest.mark.xfail(reason="TODO: Fix me")
+ 6 | @run_in_pyodide(packages=["test-rust-abi"])
+ 7 | def test_rust_abi(selenium):
+ 8 |     from pathlib import Path
+ 9 |
+10 |     from rust_abi_test import get_file_length
+11 |
+12 |     contents = "this is the contents of the file\n" * 4
+13 |     Path("/test.txt").write_text(contents)
+14 |     assert get_file_length("/test.txt") == len(contents)
+15 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-panic/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-rust-panic
+ 3 |   version: "1.0"
+ 4 |   tag:
+ 5 |     - rust
+ 6 |     - core
+ 7 |     - pyodide.test
+ 8 |   top-level:
+ 9 |     - rust_panic_test
+10 | source:
+11 |   path: src
+12 | requirements:
+13 |   executable:
+14 |     - rustup
+15 | about:
+16 |   license: MPL-2.0
+17 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-panic/src/Cargo.toml:
+--------------------------------------------------------------------------------
+ 1 | [package]
+ 2 | name = "test-rust-panic"
+ 3 | version = "0.1.0"
+ 4 | edition = "2018"
+ 5 | publish = false
+ 6 |
+ 7 | [dependencies]
+ 8 | pyo3 = { version = "0.24.0" }
+ 9 |
+10 | [features]
+11 | extension-module = ["pyo3/extension-module"]
+12 | default = ["extension-module"]
+13 |
+14 | [lib]
+15 | crate-type = ["cdylib"]
+16 |
+17 | [profile.release]
+18 | lto = "thin"
+19 | overflow-checks = true
+20 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-panic/src/pyproject.toml:
+--------------------------------------------------------------------------------
+1 | [build-system]
+2 | requires = ["setuptools", "wheel", "setuptools-rust"]
+3 | build-backend = "setuptools.build_meta"
+4 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-panic/src/setup.py:
+--------------------------------------------------------------------------------
+ 1 | from setuptools import setup
+ 2 | from setuptools_rust import Binding, RustExtension
+ 3 |
+ 4 | setup(
+ 5 |     name="test_rust_panic",
+ 6 |     version="1.0",
+ 7 |     rust_extensions=[
+ 8 |         RustExtension("rust_panic_test", "Cargo.toml", binding=Binding.PyO3)
+ 9 |     ],
+10 |     # rust extensions are not zip safe, just like C-extensions.
+11 |     zip_safe=False,
+12 | )
+13 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-panic/src/src/lib.rs:
+--------------------------------------------------------------------------------
+ 1 | use pyo3::prelude::*;
+ 2 |
+ 3 | #[pyfunction]
+ 4 | fn panic_test(data: &[u8]) -> bool {
+ 5 |     if data[0] < 6 {
+ 6 |         panic!("this is a {} {message:?}", "fancy", message = data);
+ 7 |     }
+ 8 |     data[0] < 20
+ 9 | }
+10 |
+11 |
+12 |
+13 | #[pymodule]
+14 | fn rust_panic_test(m: &Bound<'_, PyModule>) -> pyo3::PyResult<()> {
+15 |     m.add_function(pyo3::wrap_pyfunction!(panic_test, m)?)?;
+16 |     m.add("PanicException", m.py().get_type::<pyo3::panic::PanicException>())?;
+17 |     Ok(())
+18 | }
+19 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-rust-panic/test_rust_panic.py:
+--------------------------------------------------------------------------------
+ 1 | from pytest_pyodide import run_in_pyodide
+ 2 |
+ 3 |
+ 4 | @run_in_pyodide(packages=["test-rust-panic"])
+ 5 | def test_rust_panic(selenium):
+ 6 |     from pytest import raises
+ 7 |     from rust_panic_test import PanicException, panic_test
+ 8 |
+ 9 |     assert not panic_test(bytes([20]))
+10 |     assert panic_test(bytes([10]))
+11 |     with raises(PanicException):
+12 |         panic_test(bytes([1]))
+13 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-sharedlib-py/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-sharedlib-py
+ 3 |   version: "1.0"
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pyodide.test
+ 7 |   top-level:
+ 8 |     - sharedlib_test
+ 9 | requirements:
+10 |   run:
+11 |     - test-sharedlib
+12 |   host:
+13 |     - test-sharedlib
+14 | source:
+15 |   path: src
+16 | build:
+17 |   cflags: |
+18 |     -I$(PKGDIR)/../test-sharedlib/src/include
+19 |   ldflags: |
+20 |     $(PKGDIR)/../test-sharedlib/build/test-sharedlib-1.0/dist/sharedlib-test.so
+21 | about:
+22 |   license: MPL-2.0
+23 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-sharedlib-py/src/setup.py:
+--------------------------------------------------------------------------------
+ 1 | #!/usr/bin/env python
+ 2 |
+ 3 | from setuptools import Extension, setup
+ 4 |
+ 5 | setup(
+ 6 |     name="test-sharedlib-py",
+ 7 |     version="1.0",
+ 8 |     description="A package to test Pyodide shared libraries",
+ 9 |     author="Pyodide team",
+10 |     url="https://github.com/pyodide/pyodide",
+11 |     ext_modules=[Extension("sharedlib_test", ["sharedlib-test.c"])],
+12 | )
+13 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-sharedlib-py/src/sharedlib-test.c:
+--------------------------------------------------------------------------------
+ 1 | #define PY_SSIZE_T_CLEAN
+ 2 | #include "sharedlibtest.h"
+ 3 | #include <Python.h>
+ 4 |
+ 5 | static PyObject*
+ 6 | one(PyObject* self)
+ 7 | {
+ 8 |   Py_RETURN_NONE;
+ 9 | }
+10 |
+11 | static PyObject*
+12 | do_the_thing_pywrapper(PyObject* self, PyObject* args)
+13 | {
+14 |   int a, b;
+15 |   if (!PyArg_ParseTuple(args, "ii:do_the_thing", &a, &b)) {
+16 |     return NULL;
+17 |   }
+18 |   int res = do_the_thing(a, b);
+19 |   return PyLong_FromLong(res);
+20 | }
+21 |
+22 | // These two structs are the same but it's important that they have to be
+23 | // duplicated here or else we miss test coverage.
+24 | static PyMethodDef Test_Functions[] = {
+25 |   { "do_the_thing", do_the_thing_pywrapper, METH_VARARGS },
+26 |   { 0 },
+27 | };
+28 |
+29 | static struct PyModuleDef module = {
+30 |   PyModuleDef_HEAD_INIT,
+31 |   "sharedlib_test",                   /* name of module */
+32 |   "Tests for shared library loading", /* module documentation, may be NULL */
+33 |   -1, /* size of per-interpreter state of the module,
+34 |          or -1 if the module keeps state in global variables. */
+35 |   Test_Functions
+36 | };
+37 |
+38 | PyMODINIT_FUNC
+39 | PyInit_sharedlib_test(void)
+40 | {
+41 |   return PyModule_Create(&module);
+42 | }
+43 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-sharedlib-py/test_sharedlib.py:
+--------------------------------------------------------------------------------
+ 1 | import pytest
+ 2 | from pytest_pyodide import run_in_pyodide
+ 3 |
+ 4 |
+ 5 | @pytest.mark.requires_dynamic_linking
+ 6 | @run_in_pyodide(packages=["test-sharedlib-py"])
+ 7 | def test_sharedlib(selenium):
+ 8 |     from sharedlib_test import do_the_thing
+ 9 |
+10 |     assert do_the_thing(4, 5) == 29
+11 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-sharedlib/meta.yaml:
+--------------------------------------------------------------------------------
+ 1 | package:
+ 2 |   name: test-sharedlib
+ 3 |   version: "1.0"
+ 4 |   tag:
+ 5 |     - core
+ 6 |     - pyodide.test
+ 7 |     - library
+ 8 |     - shared_library
+ 9 | source:
+10 |   path: src
+11 |
+12 | build:
+13 |   type: shared_library
+14 |   script: |
+15 |     emcc -c main.c -o main.o ${SIDE_MODULE_CFLAGS}
+16 |     emcc -c dep.c -o dep.o ${SIDE_MODULE_CFLAGS}
+17 |     emcc -c dep2.c -o dep2.o ${SIDE_MODULE_CFLAGS}
+18 |
+19 |     emcc dep2.o ${SIDE_MODULE_LDFLAGS} -o ${DISTDIR}/sharedlib-test-dep2.so
+20 |     emcc dep.o ${SIDE_MODULE_LDFLAGS} ${DISTDIR}/sharedlib-test-dep2.so -o ${DISTDIR}/sharedlib-test-dep.so
+21 |     emcc main.o ${SIDE_MODULE_LDFLAGS} ${DISTDIR}/sharedlib-test-dep.so -o ${DISTDIR}/sharedlib-test.so
+22 | about:
+23 |   license: MPL-2.0
+24 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-sharedlib/src/dep.c:
+--------------------------------------------------------------------------------
+1 | #include "include/sharedlibtest.h"
+2 |
+3 | int
+4 | dep_do_the_thing(int a, int b)
+5 | {
+6 |   return dep_dep_do_the_thing(a);
+7 | }
+8 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-sharedlib/src/dep2.c:
+--------------------------------------------------------------------------------
+1 | #include "include/sharedlibtest.h"
+2 |
+3 | int
+4 | dep_dep_do_the_thing(int a)
+5 | {
+6 |   return a;
+7 | }
+8 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-sharedlib/src/include/sharedlibtest.h:
+--------------------------------------------------------------------------------
+1 | int
+2 | do_the_thing(int a, int b);
+3 |
+4 | int
+5 | dep_do_the_thing(int a, int b);
+6 |
+7 | int
+8 | dep_dep_do_the_thing(int a);
+9 |
+
+
+--------------------------------------------------------------------------------
+/packages/test-sharedlib/src/main.c:
+--------------------------------------------------------------------------------
+1 | #include "include/sharedlibtest.h"
+2 |
+3 | int
+4 | do_the_thing(int a, int b)
+5 | {
+6 |   return dep_do_the_thing(a, b) + b + a * b;
+7 | }
+8 |
+
+
+--------------------------------------------------------------------------------
+/packages/test/src/pyproject.toml:
+--------------------------------------------------------------------------------
+ 1 | [project]
+ 2 | name = "test"
+ 3 | authors = [
+ 4 |   { name="Pyodide"},
+ 5 | ]
+ 6 | description = "Unvendored test module for Pyodide"
+ 7 | version = "1.0.0"
+ 8 |
+ 9 | [build-system]
+10 | requires = ["hatchling"]
+11 | build-backend = "hatchling.build"
+12 |
+13 | [tool.hatch.build.targets.sdist]
+14 | ignore-vcs = true
+15 |
+16 | [tool.hatch.build.targets.wheel]
+17 | ignore-vcs = true
+18 | include = [
+19 |   "_test*.so",
+20 |   "_ctypes_test.so",
+21 |   "test/",
+22 | ]
+23 | exclude = [
+24 |   "Python-*",
+25 | ]
+26 |
+
+
+--------------------------------------------------------------------------------
+/packages/test/test_test.py:
+--------------------------------------------------------------------------------
+1 | from pytest_pyodide import run_in_pyodide
+2 |
+3 |
+4 | @run_in_pyodide(packages=["test"], pytest_assert_rewrites=False)
+5 | def test_test(selenium):
+6 |     # this is tested in test_core_python.py instead
+7 |     pass
+8 |
+
+
+--------------------------------------------------------------------------------
+/pyodide_env.sh:
+--------------------------------------------------------------------------------
+ 1 | #!/usr/bin/env bash
+ 2 |
+ 3 | # get the absolute path of the root folder
+ 4 | # shellcheck disable=SC2164
+ 5 | ROOT=$(cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 ; pwd -P)
+ 6 |
+ 7 | # emsdk_env.sh is fairly noisy, and suppress error message if the file doesn't
+ 8 | # exist yet (i.e. before building emsdk)
+ 9 | # shellcheck source=/dev/null
+10 | source "$ROOT/emsdk/emsdk/emsdk_env.sh" 2> /dev/null || true
+11 | export PATH="$ROOT/node_modules/.bin/:$ROOT/emsdk/emsdk/ccache/git-emscripten_64bit/bin:$PATH:$ROOT/packages/.artifacts/bin/"
+12 | EMCC_PATH=$(which emcc.py 2>/dev/null || echo ".")
+13 | EM_DIR=$(dirname "$EMCC_PATH")
+14 | export EM_DIR
+15 |
+16 | # Following two variables are set by emsdk activated otherwise
+17 | export _EMCC_CCACHE=1
+18 | # mtime of this file is checked by ccache, we set it to avoid cache misses.
+19 | export EM_CONFIG="$ROOT/emsdk/emsdk/.emscripten"
+20 |
+
+
+--------------------------------------------------------------------------------
+/repository-structure.md:
+--------------------------------------------------------------------------------
+ 1 | The Pyodide runtime consists of the following components, sorted in terms of
+ 2 | initialization-time (or import-time) dependencies.
+ 3 |
+ 4 | 1. CPython
+ 5 | 2. The py/\_pyodide package which is a Python package with pure Python code
+ 6 |    available in the inner stage of the Pyodide bootstrap process.
+ 7 | 3. The core/pyodide code, implemented in a mix of C and JavaScript, which embeds
+ 8 |    the CPython interpreter in an emscripten application. This relies on
+ 9 |    py/pyodide and js/pyodide at runtime. The final stage of initialization is to
+10 |    import py/pyodide.
+11 | 4. The py/pyodide package which has Python code that is needed for the outer
+12 |    stage of the Pyodide bootstrap process. py/pyodide relies on core/pyodide at
+13 |    import time and relies on js/pyodide at runtime.
+14 | 5. The js/pyodide package which defines the JavaScript public API, sets up the
+15 |    process of loading the core/pyodide emscripten application + CPython
+16 |    interpreter, and then completes the bootstrap by injecting the js/pyodide
+17 |    API into the Python `sys.modules`.
+18 | 6. The packages directory, which contains a large number of CPython packages
+19 |    built to run in Pyodide.
+20 |
+21 | One of our long-term organizational goals is to carefully organize core/pyodide,
+22 | py/\_pyodide, py/pyodide, and js/pyodide to clarify which functionality is not part of
+23 | runtime dependencies that define Pyodide's core behavior.
+24 |
+
+
+--------------------------------------------------------------------------------
+/requirements-deploy.txt:
+--------------------------------------------------------------------------------
+1 | # used to deploy files to s3
+2 | boto3
+3 | moto
+4 | typer
+5 |
+
+
+--------------------------------------------------------------------------------
+/requirements.txt:
+--------------------------------------------------------------------------------
+ 1 | argcomplete
+ 2 | # lint
+ 3 | pre-commit
+ 4 | # testing
+ 5 | build~=1.2.0
+ 6 | sphinx-click
+ 7 | click < 8.2
+ 8 | hypothesis
+ 9 | mypy==1.11.0
+10 | # (FIXME: 2024/01/28) The latest pytest-asyncio 0.23.3 is not compatible with pytest 8.0.0
+11 | pytest<8.0.0
+12 | pytest-asyncio
+13 | pytest-cov
+14 | pytest-httpserver
+15 | pytest-benchmark
+16 | pytest-pyodide==0.58.6
+17 | setuptools; python_version >= '3.12'
+18 |
+
+
+--------------------------------------------------------------------------------
+/src/core/docstring.h:
+--------------------------------------------------------------------------------
+ 1 | #ifndef DOCSTRING_H
+ 2 | #define DOCSTRING_H
+ 3 |
+ 4 | int
+ 5 | set_method_docstring(PyMethodDef* method, PyObject* parent);
+ 6 |
+ 7 | int
+ 8 | add_methods_and_set_docstrings(PyObject* module,
+ 9 |                                PyMethodDef* methods,
+10 |                                PyObject* docstring_source);
+11 |
+12 | int
+13 | docstring_init();
+14 |
+15 | #endif /* DOCSTRING_H */
+16 |
+
+
+--------------------------------------------------------------------------------
+/src/core/js2python.h:
+--------------------------------------------------------------------------------
+ 1 | #ifndef JS2PYTHON_H
+ 2 | #define JS2PYTHON_H
+ 3 |
+ 4 | /**
+ 5 |  * Translate JavaScript objects to Python objects.
+ 6 |  */
+ 7 | #define PY_SSIZE_T_CLEAN
+ 8 | #include "Python.h"
+ 9 | #include "jslib.h"
+10 |
+11 | /**
+12 |  * Convert a JavaScript object to a Python object.
+13 |  *  \param x The JavaScript object.
+14 |  *  \return The Python object resulting from the conversion. Returns NULL and
+15 |  *    sets the Python error indicator if a conversion error occurs.
+16 |  */
+17 | PyObject*
+18 | js2python(JsVal x);
+19 |
+20 | PyObject*
+21 | js2python_immutable(JsVal x);
+22 |
+23 | PyObject*
+24 | js2python_convert(JsVal x, int depth, JsVal defaultConverter);
+25 |
+26 | /** Initialize any global variables used by this module. */
+27 | int
+28 | js2python_init();
+29 |
+30 | extern int compat_null_to_none;
+31 |
+32 | #endif /* JS2PYTHON_H */
+33 |
+
+
+--------------------------------------------------------------------------------
+/src/core/jsbind.h:
+--------------------------------------------------------------------------------
+ 1 | #include "Python.h"
+ 2 | #include "jslib.h"
+ 3 |
+ 4 | JsVal
+ 5 | Py2JsConverter_convert(PyObject* converter, PyObject* pyval, JsVal proxies);
+ 6 |
+ 7 | PyObject*
+ 8 | Js2PyConverter_convert(PyObject* converter, JsVal jsval, JsVal proxies);
+ 9 |
+10 | extern PyObject* jsbind;
+11 | extern PyObject* default_signature;
+12 | extern PyObject* no_default;
+13 |
+
+
+--------------------------------------------------------------------------------
+/src/core/jsproxy_call.h:
+--------------------------------------------------------------------------------
+ 1 | #include "Python.h"
+ 2 | #include "jslib.h"
+ 3 |
+ 4 | PyObject*
+ 5 | JsMethod_Vectorcall_impl(JsVal func,
+ 6 |                          JsVal receiver,
+ 7 |                          PyObject* sig,
+ 8 |                          PyObject* const* pyargs,
+ 9 |                          size_t nargsf,
+10 |                          PyObject* kwnames);
+11 |
+12 | PyObject*
+13 | JsMethod_Construct_impl(JsVal func,
+14 |                         PyObject* sig,
+15 |                         PyObject* const* pyargs,
+16 |                         size_t nargs,
+17 |                         PyObject* kwnames);
+18 |
+
+
+--------------------------------------------------------------------------------
+/src/core/print.c:
+--------------------------------------------------------------------------------
+ 1 | #include <emscripten.h>
+ 2 | #include <stdio.h>
+ 3 |
+ 4 | EMSCRIPTEN_KEEPALIVE int
+ 5 | print_stdout(const char* msg)
+ 6 | {
+ 7 |   fprintf(stdout, "%s\n", msg);
+ 8 |   return 0;
+ 9 | }
+10 |
+11 | EMSCRIPTEN_KEEPALIVE int
+12 | print_stderr(const char* msg)
+13 | {
+14 |   fprintf(stderr, "%s\n", msg);
+15 |   return 0;
+16 | }
+17 |
+
+
+--------------------------------------------------------------------------------
+/src/core/print.h:
+--------------------------------------------------------------------------------
+1 | int
+2 | print_stdout(const char* msg);
+3 | int
+4 | print_stderr(const char* msg);
+5 |
+
+
+--------------------------------------------------------------------------------
+/src/core/pyodide_pre.c:
+--------------------------------------------------------------------------------
+ 1 | #include <emscripten.h>
+ 2 |
+ 3 | __attribute__((used))
+ 4 | __attribute__((section("em_js"),
+ 5 |                aligned(1))) char __em_js__pyodide_js_init[] = {
+ 6 | #embed "pyodide_pre.gen.dat" suffix(, 0)
+ 7 | };
+ 8 |
+ 9 | void
+10 | pyodide_js_init(void) EM_IMPORT(pyodide_js_init);
+11 |
+12 | EMSCRIPTEN_KEEPALIVE void
+13 | pyodide_export(void)
+14 | {
+15 |   pyodide_js_init();
+16 | }
+17 |
+
+
+--------------------------------------------------------------------------------
+/src/core/python2js_buffer.h:
+--------------------------------------------------------------------------------
+ 1 | #ifndef PYTHON2JS_BUFFER_H
+ 2 | #define PYTHON2JS_BUFFER_H
+ 3 |
+ 4 | /** Utilities to convert Python buffer objects to JavaScript.
+ 5 |  */
+ 6 | // clang-format off
+ 7 | #define PY_SSIZE_T_CLEAN
+ 8 | #include "Python.h"
+ 9 | // clang-format on
+10 | #include "jslib.h"
+11 |
+12 | /** Convert a Python buffer object to a JavaScript object.
+13 |  *
+14 |  *  \param The Python object
+15 |  *  \return The JavaScript object -- might be an Error object in the case of an
+16 |  *     exception.
+17 |  */
+18 | JsVal
+19 | _python2js_buffer(PyObject* x);
+20 |
+21 | errcode WARN_UNUSED
+22 | python2js_buffer_init();
+23 |
+24 | #endif /* PYTHON2JS_BUFFER_H */
+25 |
+
+
+--------------------------------------------------------------------------------
+/src/core/sentinel.wat:
+--------------------------------------------------------------------------------
+ 1 | ;; This module is needed for two reasons:
+ 2 | ;; 1. Clang/llvm is unable to generate the wasm GC instructions and types we need.
+ 3 | ;; 2. wasm-gc has only been supported in Safari since December 2024 and since
+ 4 | ;; NodeJS 22 in April 2024.
+ 5 | ;;
+ 6 | ;; In another year or so, reason 2 will go away. To address reason 1 my pipe dream
+ 7 | ;; is to implement the needed primitives into llvm. But that will be a lot of work.
+ 8 | ;;
+ 9 | ;; Once it works in Safari, we can use wasm-merge to merge this module with the
+10 | ;; main module which will allow better optimization.
+11 | (module
+12 |   (type $empty_struct (struct))
+13 |
+14 |   (func (export "create_sentinel") (result externref)
+15 |     struct.new $empty_struct
+16 |     extern.convert_any
+17 |   )
+18 |
+19 |   (func (export "is_sentinel") (param $input externref) (result i32)
+20 |     local.get $input
+21 |     any.convert_extern
+22 |     ref.test (ref $empty_struct)
+23 |   )
+24 | )
+25 |
+
+
+--------------------------------------------------------------------------------
+/src/core/stack_switching/stack_switching.mjs:
+--------------------------------------------------------------------------------
+ 1 | /**
+ 2 |  * Files exported from here are copied into the Emscripten namespace.
+ 3 |  * See esbuild.config.mjs.
+ 4 |  */
+ 5 |
+ 6 | import { initSuspenders } from "./suspenders.mjs";
+ 7 |
+ 8 | export {
+ 9 |   promisingApply,
+10 |   promisingRunMain,
+11 |   createPromising,
+12 |   validSuspender,
+13 |   suspenderGlobal,
+14 | } from "./suspenders.mjs";
+15 | export { StackState } from "./stack_state.mjs";
+16 |
+17 | let canConstructWasm = true;
+18 | try {
+19 |   // Check that WebAssembly.Module constructor works -- if dynamic eval is
+20 |   // disabled it might raise.
+21 |   // This is the smallest valid wasm module -- only the magic number and wasm
+22 |   // version.
+23 |   new WebAssembly.Module(new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0]));
+24 | } catch (e) {
+25 |   canConstructWasm = false;
+26 | }
+27 |
+28 | // wasm-feature-detect uses `"Suspender" in WebAssembly` feature detect JSPI. It
+29 | // is not 100% clear based on the text of the JSPI proposal that this will
+30 | // actually work in the future, but if it breaks we can replace it with
+31 | // something else that does work.
+32 | export const newJspiSupported = canConstructWasm && "Suspending" in WebAssembly;
+33 | export const oldJspiSupported = canConstructWasm && "Suspender" in WebAssembly;
+34 | export const jspiSupported = newJspiSupported || oldJspiSupported;
+35 | Module.newJspiSupported = newJspiSupported;
+36 | Module.oldJspiSupported = oldJspiSupported;
+37 | Module.jspiSupported = jspiSupported;
+38 |
+39 | if (jspiSupported) {
+40 |   Module.preRun.push(initSuspenders);
+41 | }
+42 |
+
+
+--------------------------------------------------------------------------------
+/src/core/tsconfig.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "compilerOptions": {
+ 3 |     "esModuleInterop": true,
+ 4 |     "baseUrl": "..",
+ 5 |     "target": "ES2020",
+ 6 |     "module": "ES2022",
+ 7 |     "moduleResolution": "node",
+ 8 |     "paths": {
+ 9 |       "generated/*": ["./core/*"],
+10 |       "*": ["*", "js/*"]
+11 |     }
+12 |   }
+13 | }
+14 |
+
+
+--------------------------------------------------------------------------------
+/src/core/types.h:
+--------------------------------------------------------------------------------
+ 1 | #ifndef MY_TYPES_H
+ 2 | #define MY_TYPES_H
+ 3 | // https://elixir.bootlin.com/linux/latest/source/arch/powerpc/boot/types.h#L9
+ 4 | #define PY_SSIZE_T_CLEAN
+ 5 | #include "Python.h"
+ 6 |
+ 7 | #include "stdbool.h"
+ 8 | #include "stdint.h"
+ 9 |
+10 | typedef uint8_t u8;
+11 | typedef uint16_t u16;
+12 | typedef uint32_t u32;
+13 | typedef uint64_t u64;
+14 | typedef int8_t i8;
+15 | typedef int16_t i16;
+16 | typedef int32_t i32;
+17 | typedef int64_t i64;
+18 |
+19 | typedef float f32;
+20 | typedef double f64;
+21 |
+22 | #endif /* MY_LINUX_TYPES_H */
+23 |
+
+
+--------------------------------------------------------------------------------
+/src/js/common/lock.ts:
+--------------------------------------------------------------------------------
+ 1 | /**
+ 2 |  * @returns A new asynchronous lock
+ 3 |  * @private
+ 4 |  */
+ 5 | export function createLock() {
+ 6 |   // This is a promise that is resolved when the lock is open, not resolved when lock is held.
+ 7 |   let _lock = Promise.resolve();
+ 8 |
+ 9 |   /**
+10 |    * Acquire the async lock
+11 |    * @returns A zero argument function that releases the lock.
+12 |    * @private
+13 |    */
+14 |   async function acquireLock() {
+15 |     const old_lock = _lock;
+16 |     let releaseLock: () => void;
+17 |     _lock = new Promise((resolve) => (releaseLock = resolve));
+18 |     await old_lock;
+19 |     // @ts-ignore
+20 |     return releaseLock;
+21 |   }
+22 |   return acquireLock;
+23 | }
+24 |
+
+
+--------------------------------------------------------------------------------
+/src/js/common/resolveable.ts:
+--------------------------------------------------------------------------------
+ 1 | export interface ResolvablePromise extends Promise<void> {
+ 2 |   resolve: (value?: any) => void;
+ 3 |   reject: (err?: Error) => void;
+ 4 | }
+ 5 |
+ 6 | /**
+ 7 |  * Create a promise that can be resolved or rejected from the outside.
+ 8 |  */
+ 9 | export function createResolvable(): ResolvablePromise {
+10 |   let _resolve: (value: any) => void = () => {};
+11 |   let _reject: (err: Error) => void = () => {};
+12 |
+13 |   const p: any = new Promise<void>((resolve, reject) => {
+14 |     _resolve = resolve;
+15 |     _reject = reject;
+16 |   });
+17 |
+18 |   p.resolve = _resolve;
+19 |   p.reject = _reject;
+20 |   return p;
+21 | }
+22 |
+
+
+--------------------------------------------------------------------------------
+/src/js/common/warning.ts:
+--------------------------------------------------------------------------------
+ 1 | /** @private */
+ 2 | export function makeWarnOnce(warning: string) {
+ 3 |   let warned = false;
+ 4 |   return function () {
+ 5 |     if (!warned) {
+ 6 |       warned = true;
+ 7 |       console.warn(warning);
+ 8 |     }
+ 9 |   };
+10 | }
+11 |
+12 | /** @private */
+13 | export function warnOnce(warning: string): MethodDecorator {
+14 |   let warned = false;
+15 |   return function (
+16 |     _target: any,
+17 |     _key: string | symbol,
+18 |     descriptor: TypedPropertyDescriptor<any>,
+19 |   ): TypedPropertyDescriptor<any> {
+20 |     const key = descriptor.value ? "value" : "get";
+21 |     const original = descriptor[key];
+22 |     descriptor[key] = function (...args: any) {
+23 |       if (!warned) {
+24 |         warned = true;
+25 |         console.warn(warning);
+26 |       }
+27 |       return original.call(this, ...args);
+28 |     };
+29 |     return descriptor;
+30 |   };
+31 | }
+32 |
+
+
+--------------------------------------------------------------------------------
+/src/js/constants.ts:
+--------------------------------------------------------------------------------
+ 1 | import { defines } from "./generated_struct_info32.json";
+ 2 |
+ 3 | declare global {
+ 4 |   /** @private */
+ 5 |   export const cDefs: typeof defines;
+ 6 |   /** @private */
+ 7 |   export const DEBUG: boolean;
+ 8 |   /** @private */
+ 9 |   export const SOURCEMAP: boolean;
+10 | }
+11 |
+12 | /** @hidden */
+13 | export const unpackArchiveMetadata = new Map([
+14 |   ["INSTALLER", "pyodide.unpackArchive"],
+15 | ]);
+16 |
+
+
+--------------------------------------------------------------------------------
+/src/js/esbuild.config.inner.mjs:
+--------------------------------------------------------------------------------
+ 1 | import { build } from "esbuild";
+ 2 | import { config } from "./esbuild.config.shared.mjs";
+ 3 |
+ 4 | try {
+ 5 |   await build(
+ 6 |     config({
+ 7 |       input: "api",
+ 8 |       output: "src/js/generated/_pyodide.out.js",
+ 9 |       format: "iife",
+10 |     }),
+11 |   );
+12 | } catch ({ message }) {
+13 |   console.error(message);
+14 | }
+15 |
+
+
+--------------------------------------------------------------------------------
+/src/js/generated_struct_info32.json.d.ts:
+--------------------------------------------------------------------------------
+1 | // Trick dts-bundle-generator into behaving correctly
+2 |
+3 | /** @private */
+4 | export declare const defines: { [k: string]: number };
+5 |
+
+
+--------------------------------------------------------------------------------
+/src/js/pyodide.umd.ts:
+--------------------------------------------------------------------------------
+1 | import { loadPyodide, version } from "./pyodide";
+2 | import { type PackageData } from "./types";
+3 | export { loadPyodide, version, type PackageData };
+4 | (globalThis as any).loadPyodide = loadPyodide;
+5 |
+
+
+--------------------------------------------------------------------------------
+/src/js/test/integration/pyodide.test.js:
+--------------------------------------------------------------------------------
+ 1 | const chai = require("chai");
+ 2 |
+ 3 | describe("Pyodide", () => {
+ 4 |   it("runPython", async () => {
+ 5 |     const factory = async () => {
+ 6 |       return pyodide.runPython("1+1");
+ 7 |     };
+ 8 |     const result = await chai.assert.isFulfilled(page.evaluate(factory));
+ 9 |     chai.assert.equal(result, 2);
+10 |   });
+11 |   describe("micropip", () => {
+12 |     before(async () => {
+13 |       const factory = async () => {
+14 |         return pyodide.loadPackage(["micropip"]);
+15 |       };
+16 |       const installedPackages = await chai.assert.isFulfilled(
+17 |         page.evaluate(factory),
+18 |       );
+19 |       chai.assert.isNotEmpty(installedPackages);
+20 |       chai.assert.include(
+21 |         installedPackages.map((pkg) => pkg.name),
+22 |         "micropip",
+23 |       );
+24 |     });
+25 |
+26 |     it("install", async () => {
+27 |       const factory = async () => {
+28 |         await pyodide.runPythonAsync(
+29 |           'import micropip; await micropip.install("snowballstemmer")',
+30 |         );
+31 |         return pyodide.runPython(`
+32 |           import snowballstemmer
+33 |           len(snowballstemmer.stemmer('english').stemWords(['A', 'node', 'test']))
+34 |         `);
+35 |       };
+36 |       const result = await chai.assert.isFulfilled(page.evaluate(factory));
+37 |       chai.assert.equal(result, 3);
+38 |     });
+39 |   });
+40 | });
+41 |
+
+
+--------------------------------------------------------------------------------
+/src/js/test/integration/sanity.test.ts:
+--------------------------------------------------------------------------------
+ 1 | import chai from "chai";
+ 2 |
+ 3 | it("should pass a basic truthy sanity test (node)", async () => {
+ 4 |   await chai.assert.isFulfilled(Promise.resolve());
+ 5 | });
+ 6 |
+ 7 | it("should pass a basic sanity test in browser (puppeteer)", async () => {
+ 8 |   const title = await chai.assert.isFulfilled(page.title());
+ 9 |   chai.assert.isString(title);
+10 |   chai.assert.equal(title, "pyodide");
+11 | });
+12 |
+
+
+--------------------------------------------------------------------------------
+/src/js/test/loader.mjs:
+--------------------------------------------------------------------------------
+ 1 | /**
+ 2 |  *  An import hook to respond to .wat imports with something degenerate. We
+ 3 |  *  don't currently unit test the functions that use .wat imports. This is good
+ 4 |  *  enough for now to keep node from crashing.
+ 5 |  */
+ 6 | export function load(url, context, nextLoad) {
+ 7 |   if (url.endsWith(".wat")) {
+ 8 |     return {
+ 9 |       format: "json",
+10 |       source: "null",
+11 |       shortCircuit: true,
+12 |     };
+13 |   }
+14 |   return nextLoad(url);
+15 | }
+16 |
+
+
+--------------------------------------------------------------------------------
+/src/js/test/unit/common/abortSignalAny.test.ts:
+--------------------------------------------------------------------------------
+ 1 | import * as chai from "chai";
+ 2 | import abortSignalAny from "../../../common/abortSignalAny";
+ 3 |
+ 4 | describe("abortSignalAny", () => {
+ 5 |   it("should abort the signal", () => {
+ 6 |     const controller = new AbortController();
+ 7 |     const signal = controller.signal;
+ 8 |     controller.abort("reason");
+ 9 |
+10 |     const result = abortSignalAny([signal]);
+11 |     chai.assert.isTrue(result.aborted);
+12 |     chai.assert.equal(result.reason, "reason");
+13 |   });
+14 | });
+15 |
+
+
+--------------------------------------------------------------------------------
+/src/js/test/unit/common/lock.test.ts:
+--------------------------------------------------------------------------------
+ 1 | import * as chai from "chai";
+ 2 | import { createLock } from "../../../common/lock";
+ 3 |
+ 4 | describe("createLock", () => {
+ 5 |   it("should create a lock", () => {
+ 6 |     const lock = createLock();
+ 7 |     chai.assert.isFunction(lock);
+ 8 |   });
+ 9 |
+10 |   it("should acquire the lock", async () => {
+11 |     const lock = createLock();
+12 |     const release = await lock();
+13 |     chai.assert.isFunction(release);
+14 |   });
+15 |
+16 |   it("should release the lock", async () => {
+17 |     const lock = createLock();
+18 |     const release = await lock();
+19 |     release();
+20 |   });
+21 |
+22 |   it("should acquire the lock in order", async () => {
+23 |     const lock = createLock();
+24 |     let released = false;
+25 |     const release = await lock();
+26 |
+27 |     setTimeout(() => {
+28 |       chai.assert.isFalse(released);
+29 |       release();
+30 |       released = true;
+31 |     }, 100);
+32 |
+33 |     chai.assert.isFalse(released);
+34 |     const release2 = await lock();
+35 |     chai.assert.isTrue(released);
+36 |
+37 |     release2();
+38 |   });
+39 | });
+40 |
+
+
+--------------------------------------------------------------------------------
+/src/js/test/unit/common/resolveable.test.ts:
+--------------------------------------------------------------------------------
+ 1 | import * as chai from "chai";
+ 2 | import { createResolvable } from "../../../common/resolveable";
+ 3 |
+ 4 | describe("createResolvable", () => {
+ 5 |   it("should create a resolvable promise", () => {
+ 6 |     const resolvable = createResolvable();
+ 7 |     chai.assert.isFunction(resolvable.resolve);
+ 8 |     chai.assert.isFunction(resolvable.reject);
+ 9 |   });
+10 |
+11 |   it("should resolve the promise", async () => {
+12 |     const resolvable = createResolvable();
+13 |     resolvable.resolve();
+14 |     await resolvable;
+15 |   });
+16 |
+17 |   it("should reject the promise", async () => {
+18 |     const resolvable = createResolvable();
+19 |     resolvable.reject();
+20 |     try {
+21 |       await resolvable;
+22 |       chai.assert.fail("Promise should have been rejected");
+23 |     } catch (e) {
+24 |       chai.assert.isUndefined(e);
+25 |     }
+26 |   });
+27 | });
+28 |
+
+
+--------------------------------------------------------------------------------
+/src/js/test/unit/common/warning.test.ts:
+--------------------------------------------------------------------------------
+ 1 | import * as chai from "chai";
+ 2 | import sinon from "sinon";
+ 3 | import { makeWarnOnce } from "../../../common/warning";
+ 4 |
+ 5 | describe("makeWarnOnce", () => {
+ 6 |   it("should return a function", () => {
+ 7 |     const warn = makeWarnOnce("warning");
+ 8 |     chai.assert.isFunction(warn);
+ 9 |   });
+10 |
+11 |   it("should warn once", () => {
+12 |     const warn = makeWarnOnce("warning");
+13 |     const spy = sinon.spy(console, "warn");
+14 |     warn();
+15 |     warn();
+16 |
+17 |     chai.assert.isTrue(spy.calledOnce);
+18 |   });
+19 | });
+20 |
+
+
+--------------------------------------------------------------------------------
+/src/js/test/unit/compat.test.ts:
+--------------------------------------------------------------------------------
+ 1 | import * as chai from "chai";
+ 2 | import * as fs from "fs";
+ 3 | import * as path from "path";
+ 4 | import * as os from "os";
+ 5 |
+ 6 | import { ensureDirNode, initNodeModules } from "../../compat";
+ 7 |
+ 8 | describe("ensureDirNode", () => {
+ 9 |   it("Should create the dir if it does not exist", async () => {
+10 |     await initNodeModules();
+11 |
+12 |     const baseDir = fs.mkdtempSync(path.join(os.tmpdir(), "foo-"));
+13 |
+14 |     const notExistDir = path.join(baseDir, "notExistDir");
+15 |
+16 |     chai.assert.isFalse(fs.existsSync(notExistDir));
+17 |
+18 |     await ensureDirNode(notExistDir);
+19 |
+20 |     chai.assert.isTrue(fs.existsSync(notExistDir));
+21 |   });
+22 |
+23 |   it("Should not throw if the dir already exists", async () => {
+24 |     await initNodeModules();
+25 |
+26 |     const baseDir = fs.mkdtempSync(path.join(os.tmpdir(), "foo-"));
+27 |
+28 |     chai.assert.isTrue(fs.existsSync(baseDir));
+29 |
+30 |     await ensureDirNode(baseDir);
+31 |
+32 |     chai.assert.isTrue(fs.existsSync(baseDir));
+33 |   });
+34 | });
+35 |
+
+
+--------------------------------------------------------------------------------
+/src/js/test/unit/installer.test.ts:
+--------------------------------------------------------------------------------
+ 1 | import * as chai from "chai";
+ 2 | import sinon from "sinon";
+ 3 | import { genMockAPI, genMockModule } from "./test-helper.ts";
+ 4 | import { Installer } from "../../installer.ts";
+ 5 |
+ 6 | describe("Installer", () => {
+ 7 |   it("should initialize with API and Module", () => {
+ 8 |     const mockApi = genMockAPI();
+ 9 |     const mockMod = genMockModule();
+10 |     const _ = new Installer(mockApi, mockMod);
+11 |   });
+12 |
+13 |   it("should call package_loader.unpack_buffer.callKwargs", async () => {
+14 |     // @ts-ignore
+15 |     globalThis.DEBUG = false;
+16 |
+17 |     const mockApi = genMockAPI();
+18 |     const mockMod = genMockModule();
+19 |     const installer = new Installer(mockApi, mockMod);
+20 |
+21 |     const unpackBufferSpy = sinon
+22 |       .stub(mockApi.package_loader.unpack_buffer, "callKwargs")
+23 |       .returns([]);
+24 |
+25 |     const metadata = new Map<string, string>();
+26 |     metadata.set("key", "value");
+27 |     await installer.install(
+28 |       new Uint8Array(),
+29 |       "filename",
+30 |       "installDir",
+31 |       metadata,
+32 |     );
+33 |
+34 |     chai.assert.isTrue(unpackBufferSpy.calledOnce);
+35 |     chai.assert.isTrue(
+36 |       unpackBufferSpy.calledWith({
+37 |         buffer: new Uint8Array(),
+38 |         filename: "filename",
+39 |         extract_dir: "installDir",
+40 |         metadata,
+41 |         calculate_dynlibs: true,
+42 |       }),
+43 |     );
+44 |
+45 |     unpackBufferSpy.restore();
+46 |   });
+47 | });
+48 |
+
+
+--------------------------------------------------------------------------------
+/src/js/test/unit/scheduler.test.ts:
+--------------------------------------------------------------------------------
+ 1 | import * as chai from "chai";
+ 2 | import { scheduleCallback } from "../../scheduler";
+ 3 |
+ 4 | describe("scheduleCallback", () => {
+ 5 |   it("should call the callback immediately if timeout is 0", () => {
+ 6 |     const start = Date.now();
+ 7 |     scheduleCallback(() => {
+ 8 |       chai.assert.isAtMost(Date.now() - start, 4);
+ 9 |     });
+10 |   });
+11 |
+12 |   it("should call the callback after the given timeout", () => {
+13 |     const start = Date.now();
+14 |     scheduleCallback(() => {
+15 |       chai.assert.isAtLeast(Date.now() - start, 10);
+16 |     }, 11);
+17 |   });
+18 | });
+19 |
+
+
+--------------------------------------------------------------------------------
+/src/js/test/unit/test-helper.ts:
+--------------------------------------------------------------------------------
+ 1 | import { PackageManagerAPI, PackageManagerModule } from "../../types.ts";
+ 2 |
+ 3 | export const genMockAPI = (): PackageManagerAPI => {
+ 4 |   return {
+ 5 |     importlib: {
+ 6 |       invalidate_caches: () => {},
+ 7 |     },
+ 8 |     package_loader: {
+ 9 |       get_install_dir: () => "",
+10 |       init_loaded_packages: () => {},
+11 |       unpack_buffer: {
+12 |         callKwargs: () => {},
+13 |       },
+14 |     },
+15 |     config: {
+16 |       lockFileURL: "",
+17 |       packageCacheDir: "",
+18 |     },
+19 |     lockfile_packages: {},
+20 |     bootstrapFinalizedPromise: Promise.resolve(),
+21 |     sitepackages: "",
+22 |     defaultLdLibraryPath: [],
+23 |   };
+24 | };
+25 |
+26 | export const genMockModule = (): PackageManagerModule => {
+27 |   return {
+28 |     LDSO: {
+29 |       loadedLibsByName: {},
+30 |     },
+31 |     PATH: {},
+32 |     stringToNewUTF8: (str: string) => {
+33 |       return 0;
+34 |     },
+35 |     stringToUTF8OnStack: (str: string) => {
+36 |       return 0;
+37 |     },
+38 |     stackSave: () => 0,
+39 |     stackRestore: (ptr: number) => {},
+40 |     _print_stdout(ptr: number) {},
+41 |     _print_stderr(ptr: number) {},
+42 |     _emscripten_dlopen_promise: (libptr: number, flags: number) => {
+43 |       return 0;
+44 |     },
+45 |     getPromise: (pid: number) => {
+46 |       return Promise.resolve();
+47 |     },
+48 |     promiseMap: {
+49 |       free: (pid: number) => {},
+50 |     },
+51 |   };
+52 | };
+53 |
+
+
+--------------------------------------------------------------------------------
+/src/js/tsconfig.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "$schema": "http://json.schemastore.org/tsconfig",
+ 3 |   "compilerOptions": {
+ 4 |     "rootDir": "..",
+ 5 |     "outDir": "../../dist",
+ 6 |     "esModuleInterop": true,
+ 7 |     "target": "ES2020",
+ 8 |     "module": "ES2022",
+ 9 |     "moduleResolution": "node",
+10 |     "composite": true,
+11 |     "tsBuildInfoFile": "tsconfig.tsbuildinfo",
+12 |     "strict": true,
+13 |     "noUnusedLocals": false,
+14 |     "types": ["node"],
+15 |     "experimentalDecorators": true,
+16 |     "lib": ["ES2022", "DOM"],
+17 |     "resolveJsonModule": true,
+18 |     "baseUrl": "..",
+19 |     "paths": {
+20 |       "generated/*": ["js/generated/*", "core/*"],
+21 |       "*": ["*", "js/*"]
+22 |     }
+23 |   },
+24 |   "include": ["../**/*.ts", "*.json"],
+25 |   "exclude": ["../**/*test*/**/*"]
+26 | }
+27 |
+
+
+--------------------------------------------------------------------------------
+/src/js/tsconfig.test.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "$schema": "http://json.schemastore.org/tsconfig",
+ 3 |   "extends": "./tsconfig.json",
+ 4 |   "compilerOptions": {
+ 5 |     "module": "commonjs",
+ 6 |     "target": "ES2021"
+ 7 |   },
+ 8 |   "exclude": [""]
+ 9 | }
+10 |
+
+
+--------------------------------------------------------------------------------
+/src/js/tsdoc.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "$schema": "https://developer.microsoft.com/en-us/json-schemas/tsdoc/v0/tsdoc.schema.json",
+ 3 |   "extends": ["typedoc/tsdoc.json"],
+ 4 |   "noStandardTags": false,
+ 5 |   "tagDefinitions": [
+ 6 |     {
+ 7 |       "tagName": "@alias",
+ 8 |       "syntaxKind": "modifier"
+ 9 |     },
+10 |     {
+11 |       "tagName": "@hidetype",
+12 |       "syntaxKind": "modifier"
+13 |     },
+14 |     {
+15 |       "tagName": "@hideconstructor",
+16 |       "syntaxKind": "modifier"
+17 |     },
+18 |     {
+19 |       "tagName": "@dockind",
+20 |       "syntaxKind": "block"
+21 |     }
+22 |   ]
+23 | }
+24 |
+
+
+--------------------------------------------------------------------------------
+/src/js/vendor/stackframe/LICENSE:
+--------------------------------------------------------------------------------
+ 1 | Copyright (c) 2017 Eric Wendelin and other contributors
+ 2 |
+ 3 | Permission is hereby granted, free of charge, to any person obtaining a copy of
+ 4 | this software and associated documentation files (the "Software"), to deal in
+ 5 | the Software without restriction, including without limitation the rights to
+ 6 | use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+ 7 | of the Software, and to permit persons to whom the Software is furnished to do
+ 8 | so, subject to the following conditions:
+ 9 |
+10 | The above copyright notice and this permission notice shall be included in all
+11 | copies or substantial portions of the Software.
+12 |
+13 | THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+14 | IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+15 | FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+16 | AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+17 | LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+18 | OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+19 | SOFTWARE.
+20 |
+
+
+--------------------------------------------------------------------------------
+/src/js/version.ts:
+--------------------------------------------------------------------------------
+ 1 | /**
+ 2 |  *
+ 3 |  * The Pyodide version.
+ 4 |  *
+ 5 |  * The version here is a Python version, following :pep:`440`. This is different
+ 6 |  * from the version in ``package.json`` which follows the node package manager
+ 7 |  * version convention.
+ 8 |  */
+ 9 | export const version: string = "0.29.0.dev0";
+10 |
+
+
+--------------------------------------------------------------------------------
+/src/py/README.md:
+--------------------------------------------------------------------------------
+ 1 | # Pyodide Python package
+ 2 |
+ 3 | A Python package providing core interpreter functionality for Pyodide.
+ 4 |
+ 5 | This package is an integral part of the Pyodide runtime which cannot start
+ 6 | without it. Install in a native Python for type checking or testing purposes.
+ 7 | Some of the functionality is missing when imported in a native Python, but for
+ 8 | the APIs we either provide reimplementations or nonfunctional type stubs.
+ 9 |
+10 | ## License
+11 |
+12 | Pyodide uses the [Mozilla Public License Version
+13 | 2.0](https://choosealicense.com/licenses/mpl-2.0/).
+14 |
+15 | ## Design information for Pyodide contributors
+16 |
+17 | This directory consists of two Python packages py/\_pyodide and py/pyodide. The
+18 | difference between these packages is when they are imported. They are both
+19 | imported by core/pyodide as a part of setting up the Pyodide/javascript foreign
+20 | function interface.
+21 |
+22 | py/\_pyodide is imported as the first step after initializing
+23 | the CPython interpreter. py/\_pyodide cannot have any import time dependencies
+24 | other than the CPython stdlib.
+25 |
+26 | py/pyodide is imported as the final step of core/pyodide. It has an import time
+27 | dependency on `_pyodide_core` which is a Python C extension assembled by
+28 | core/pyodide to serve the needs of py/pyodide.
+29 |
+
+
+--------------------------------------------------------------------------------
+/src/py/_pyodide/__init__.py:
+--------------------------------------------------------------------------------
+ 1 | # _pyodide is imported at the very beginning of the initialization process so it
+ 2 | # cannot import from js, pyodide_js, or _pyodide_core.
+ 3 | #
+ 4 | # register_js_finder is called from pyodide.js after _pyodide_core is completely
+ 5 | # initialized.
+ 6 | #
+ 7 | # All pure Python code that doesn't require imports from js, pyodide_js, or
+ 8 | # _pyodide_core belongs in _pyodide. Code that requires such imports belongs in
+ 9 | # pyodide.
+10 | from . import _base, _importhook
+11 |
+12 | __all__ = ["_base", "_importhook"]
+13 |
+14 |
+15 | def set_excepthook():
+16 |     import sys
+17 |     import traceback
+18 |
+19 |     # We call sys.excepthook via PyErr_Print() in wrap_exception().
+20 |     # traceback.print_exception in most ways behaves the same as the default
+21 |     # sys.excepthook **except** traceback.print_exception uses the linecache
+22 |     # whereas sys.excepthook only uses the file system. If the user calls
+23 |     # `runPython` with a `file` argument, then we put this into the linecache
+24 |     # but not into the filesystem. This means that the default excepthook won't
+25 |     # print the lines, but `traceback.print_exception` will. I think this is the
+26 |     # only difference in their behavior.
+27 |     #
+28 |     # Python 3.13 seems to have switched to using `traceback.print_exception` as
+29 |     # the default excepthook.
+30 |     sys.excepthook = traceback.print_exception
+31 |
+
+
+--------------------------------------------------------------------------------
+/src/py/_pyodide/_future_helper.py:
+--------------------------------------------------------------------------------
+ 1 | def set_result(fut, val):
+ 2 |     if fut.done():
+ 3 |         return
+ 4 |     fut.set_result(val)
+ 5 |
+ 6 |
+ 7 | def set_exception(fut, val):
+ 8 |     if fut.done():
+ 9 |         return
+10 |     fut.set_exception(val)
+11 |
+12 |
+13 | def get_future_resolvers(fut):
+14 |     return (set_result.__get__(fut), set_exception.__get__(fut))
+15 |
+
+
+--------------------------------------------------------------------------------
+/src/py/_pyodide/docs_argspec.py:
+--------------------------------------------------------------------------------
+ 1 | from collections.abc import Callable
+ 2 | from typing import TypeVar
+ 3 |
+ 4 | T = TypeVar("T")
+ 5 |
+ 6 |
+ 7 | def docs_argspec(argspec: str) -> Callable[[T], T]:
+ 8 |     """Override the argspec of the function in the documentation.
+ 9 |
+10 |     This is defined as a no-op here, but is overridden when building the docs.
+11 |
+12 |     It is not easy to satisfy mypy so frequently we have to put something like
+13 |     *args: Any, **kwargs: Any as the type for the method itself. This makes the
+14 |     docs look bad because they ignore the overloads. This allows us to satisfy
+15 |     mypy but also render something better in the docs. See implementation in
+16 |     docs/conf.py.
+17 |     """
+18 |
+19 |     def dec(func):
+20 |         return func
+21 |
+22 |     return dec
+23 |
+24 |
+25 | import builtins
+26 |
+27 | # Evil method to override docs_argspec when building docs
+28 | globals()["docs_argspec"] = getattr(builtins, "--docs_argspec--", docs_argspec)
+29 |
+30 | __all__ = ["docs_argspec"]
+31 |
+
+
+--------------------------------------------------------------------------------
+/src/py/_pyodide/py.typed:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/src/py/_pyodide/py.typed
+
+
+--------------------------------------------------------------------------------
+/src/py/pyodide/__init__.py:
+--------------------------------------------------------------------------------
+ 1 | # When the pyodide package is imported, both the js and the pyodide_js modules
+ 2 | # will be available to import from. Not all functions in pyodide_js will work
+ 3 | # until after pyodide is first imported, imported functions from pyodide_js
+ 4 | # should not be used at import time. It is fine to use js functions at import
+ 5 | # time.
+ 6 | #
+ 7 | # All pure Python code that does not require js or pyodide_js should go in
+ 8 | # the _pyodide package.
+ 9 | #
+10 | # This package is imported by the test suite as well, and currently we don't use
+11 | # pytest mocks for js or pyodide_js, so make sure to test "if IN_BROWSER" before
+12 | # importing from these.
+13 | __version__ = "0.29.0.dev0"
+14 |
+15 | __all__ = ["__version__", "console", "code", "ffi", "http", "webloop"]
+16 |
+17 | from . import _state  # noqa: F401
+18 | from .webloop import _initialize_event_loop
+19 |
+20 | _initialize_event_loop()
+21 | del _initialize_event_loop
+22 |
+
+
+--------------------------------------------------------------------------------
+/src/py/pyodide/_core.py:
+--------------------------------------------------------------------------------
+1 | from .ffi import IN_BROWSER
+2 |
+3 | __all__ = ["IN_BROWSER"]
+4 |
+
+
+--------------------------------------------------------------------------------
+/src/py/pyodide/_run_js.py:
+--------------------------------------------------------------------------------
+ 1 | from typing import Any
+ 2 |
+ 3 |
+ 4 | def run_js(code: str, /) -> Any:
+ 5 |     """
+ 6 |     A wrapper for the JavaScript 'eval' function.
+ 7 |
+ 8 |     Runs 'code' as a Javascript code string and returns the result. Unlike
+ 9 |     JavaScript's 'eval', if 'code' is not a string we raise a TypeError.
+10 |     """
+11 |     from js import eval
+12 |
+13 |     if not isinstance(code, str):
+14 |         raise TypeError(
+15 |             f"argument should have type 'string' not type '{type(code).__name__}'"
+16 |         )
+17 |     return eval(code)
+18 |
+
+
+--------------------------------------------------------------------------------
+/src/py/pyodide/common.py:
+--------------------------------------------------------------------------------
+ 1 | import os
+ 2 | import shutil
+ 3 | from pathlib import Path
+ 4 |
+ 5 |
+ 6 | def install_files(src: str | Path, dst: str | Path) -> None:
+ 7 |     """
+ 8 |     Installs everything in src recursively to dst.
+ 9 |     This function is similar to shutil.copytree, but it does not raise an error if dst or any of its subdirectories
+10 |     already exist. Instead, it will copy the files from src to dst, overwriting any existing files with the same name.
+11 |     It mostly bahaves like `make install` in the sense it is used to install multiple files into a single directory.
+12 |
+13 |     Parameters
+14 |     ----------
+15 |     src
+16 |         The source directory to copy from.
+17 |     dst
+18 |         The destination directory to copy to.
+19 |     """
+20 |     src = Path(src).resolve()
+21 |     dst = Path(dst).resolve()
+22 |
+23 |     if not src.is_dir():
+24 |         raise ValueError(f"{src} is not a directory.")
+25 |
+26 |     if not dst.exists():
+27 |         dst.mkdir(parents=True)
+28 |
+29 |     if not dst.is_dir():
+30 |         raise ValueError(f"{dst} is not a directory.")
+31 |
+32 |     for root, _, files in os.walk(src):
+33 |         for file in files:
+34 |             src_file = Path(root) / file
+35 |             dst_file = dst / src_file.relative_to(src)
+36 |             dst_file.parent.mkdir(parents=True, exist_ok=True)
+37 |             shutil.copy2(src_file, dst_file)
+38 |
+
+
+--------------------------------------------------------------------------------
+/src/py/pyodide/py.typed:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/src/py/pyodide/py.typed
+
+
+--------------------------------------------------------------------------------
+/src/py/pyproject.toml:
+--------------------------------------------------------------------------------
+ 1 | [build-system]
+ 2 | requires = ["setuptools>=61.2"]
+ 3 | build-backend = "setuptools.build_meta"
+ 4 |
+ 5 | [project]
+ 6 | name = "pyodide-py"
+ 7 | version = "0.29.0.dev0"
+ 8 | authors = [{name = "Pyodide developers"}]
+ 9 | description = "A Python package providing core interpreter functionality for Pyodide"
+10 | classifiers = [
+11 |     "Programming Language :: Python :: 3",
+12 |     "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+13 |     "Operating System :: OS Independent",
+14 | ]
+15 | requires-python = ">=3.13"
+16 |
+17 | [project.readme]
+18 | file = "README.md"
+19 | content-type = "text/markdown"
+20 |
+21 | [project.urls]
+22 | Homepage = "https://github.com/pyodide/pyodide"
+23 | "Bug Tracker" = "https://github.com/pyodide/pyodide/issues"
+24 | Documentation = "https://pyodide.org/en/stable/"
+25 |
+26 | [tool.setuptools]
+27 | package-dir = {"" = "."}
+28 | py-modules = ["webbrowser"]
+29 | include-package-data = false
+30 |
+31 | [tool.setuptools.packages.find]
+32 | where = ["."]
+33 | namespaces = false
+34 |
+
+
+--------------------------------------------------------------------------------
+/src/py/setup.py:
+--------------------------------------------------------------------------------
+1 | # Needed for editable install
+2 | import setuptools
+3 |
+4 | if __name__ == "__main__":
+5 |     setuptools.setup()
+6 |
+
+
+--------------------------------------------------------------------------------
+/src/py/webbrowser.py:
+--------------------------------------------------------------------------------
+ 1 | #! /usr/bin/env python3
+ 2 |
+ 3 | """
+ 4 | An implementation of the standard library webbrowser module to open webpages.
+ 5 | Since we're already running a webbrowser, it's really simple...
+ 6 | """
+ 7 |
+ 8 |
+ 9 | def open(url: str, new: int = 0, autoraise: bool = True) -> None:
+10 |     from js import window
+11 |
+12 |     window.open(url, "_blank")
+13 |
+14 |
+15 | def open_new(url: str) -> None:
+16 |     return open(url, 1)
+17 |
+18 |
+19 | def open_new_tab(url: str) -> None:
+20 |     return open(url, 2)
+21 |
+
+
+--------------------------------------------------------------------------------
+/src/templates/makesnap.mjs:
+--------------------------------------------------------------------------------
+1 | import { loadPyodide } from "./pyodide.mjs";
+2 | import { writeFileSync } from "fs";
+3 | import { fileURLToPath } from "url";
+4 | import { dirname } from "path";
+5 |
+6 | const __dirname = dirname(fileURLToPath(import.meta.url));
+7 | const py = await loadPyodide({ _makeSnapshot: true });
+8 | writeFileSync(__dirname + "/snapshot.bin", py.makeMemorySnapshot());
+9 |
+
+
+--------------------------------------------------------------------------------
+/src/templates/module_static_import_test.html:
+--------------------------------------------------------------------------------
+ 1 | <!-- Bootstrap HTML for running the unit tests. -->
+ 2 | <!doctype html>
+ 3 | <html>
+ 4 |   <head>
+ 5 |     <script type="text/javascript">
+ 6 |       window.logs = [];
+ 7 |       console.log = function (message) {
+ 8 |         window.logs.push(message);
+ 9 |       };
+10 |       console.warn = function (message) {
+11 |         window.logs.push(message);
+12 |       };
+13 |       console.info = function (message) {
+14 |         window.logs.push(message);
+15 |       };
+16 |       console.error = function (message) {
+17 |         window.logs.push(message);
+18 |       };
+19 |     </script>
+20 |     <script type="module">
+21 |       import "./pyodide.asm.js";
+22 |       import { loadPyodide } from "./pyodide.mjs";
+23 |       window.loadPyodide = loadPyodide;
+24 |     </script>
+25 |   </head>
+26 |   <body></body>
+27 | </html>
+28 |
+
+
+--------------------------------------------------------------------------------
+/src/templates/module_test.html:
+--------------------------------------------------------------------------------
+ 1 | <!-- Bootstrap HTML for running the unit tests. -->
+ 2 | <!doctype html>
+ 3 | <html>
+ 4 |   <head>
+ 5 |     <script type="text/javascript">
+ 6 |       window.logs = [];
+ 7 |       console.log = function (message) {
+ 8 |         window.logs.push(message);
+ 9 |       };
+10 |       console.warn = function (message) {
+11 |         window.logs.push(message);
+12 |       };
+13 |       console.info = function (message) {
+14 |         window.logs.push(message);
+15 |       };
+16 |       console.error = function (message) {
+17 |         window.logs.push(message);
+18 |       };
+19 |     </script>
+20 |     <script type="module">
+21 |       import { loadPyodide } from "./pyodide.mjs";
+22 |       window.loadPyodide = loadPyodide;
+23 |     </script>
+24 |   </head>
+25 |   <body></body>
+26 | </html>
+27 |
+
+
+--------------------------------------------------------------------------------
+/src/templates/test.html:
+--------------------------------------------------------------------------------
+ 1 | <!-- Bootstrap HTML for running the unit tests. -->
+ 2 | <!doctype html>
+ 3 | <html>
+ 4 |   <head>
+ 5 |     <title>pyodide</title>
+ 6 |     <script type="text/javascript">
+ 7 |       window.logs = [];
+ 8 |       console.log = function (message) {
+ 9 |         window.logs.push(message);
+10 |       };
+11 |       console.warn = function (message) {
+12 |         window.logs.push(message);
+13 |       };
+14 |       console.info = function (message) {
+15 |         window.logs.push(message);
+16 |       };
+17 |       console.error = function (message) {
+18 |         window.logs.push(message);
+19 |       };
+20 |       console.debug = function (message) {
+21 |         window.logs.push(message);
+22 |       };
+23 |     </script>
+24 |     <script src="./pyodide.js"></script>
+25 |   </head>
+26 |   <body></body>
+27 | </html>
+28 |
+
+
+--------------------------------------------------------------------------------
+/src/templates/test_csp.html:
+--------------------------------------------------------------------------------
+ 1 | <!-- Bootstrap HTML for running the unit tests. -->
+ 2 | <!doctype html>
+ 3 | <html>
+ 4 |   <head>
+ 5 |     <title>pyodide</title>
+ 6 |     <meta
+ 7 |       http-equiv="Content-Security-Policy"
+ 8 |       content="default-src http: 'wasm-unsafe-eval'"
+ 9 |     />
+10 |     <script type="text/javascript">
+11 |       window.logs = [];
+12 |       console.log = function (message) {
+13 |         window.logs.push(message);
+14 |       };
+15 |       console.warn = function (message) {
+16 |         window.logs.push(message);
+17 |       };
+18 |       console.info = function (message) {
+19 |         window.logs.push(message);
+20 |       };
+21 |       console.error = function (message) {
+22 |         window.logs.push(message);
+23 |       };
+24 |     </script>
+25 |     <script src="./pyodide.js"></script>
+26 |   </head>
+27 |   <body></body>
+28 | </html>
+29 |
+
+
+--------------------------------------------------------------------------------
+/src/test-bun/package.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "name": "test-bun",
+ 3 |   "module": "smoke-test.js",
+ 4 |   "type": "module",
+ 5 |   "scripts": {
+ 6 |     "dev": "bun --watch smoke-test.js"
+ 7 |   },
+ 8 |   "devDependencies": {
+ 9 |     "@types/bun": "latest"
+10 |   },
+11 |   "peerDependencies": {
+12 |     "typescript": "^5.0.0"
+13 |   },
+14 |   "dependencies": {
+15 |     "pyodide": "../../dist/"
+16 |   }
+17 | }
+18 |
+
+
+--------------------------------------------------------------------------------
+/src/test-bun/smoke-test.js:
+--------------------------------------------------------------------------------
+ 1 | import { loadPyodide } from "pyodide";
+ 2 |
+ 3 | console.time("[load pyodide]");
+ 4 | const pyodide = await loadPyodide();
+ 5 | console.timeEnd("[load pyodide]");
+ 6 |
+ 7 | console.time("[run pyodide]");
+ 8 | const result = await pyodide.runPythonAsync(`
+ 9 | 3+4
+10 | `);
+11 | console.timeEnd("[run pyodide]");
+12 |
+13 | console.log("result:", result.toString());
+14 |
+
+
+--------------------------------------------------------------------------------
+/src/test-deno/README.md:
+--------------------------------------------------------------------------------
+ 1 | # Test Deno
+ 2 |
+ 3 | Tests for running pyodide under Deno
+ 4 |
+ 5 | ## Maintaining deno.lock
+ 6 |
+ 7 | The `deno.lock` file verifies the integrity of existing dependency resolutions.
+ 8 |
+ 9 | If the tests are updated to include new dependencies or update existing dependencies then the `cache:validate` check may fail unless the `deno.lock` is updated.
+10 |
+11 | To update `deno.lock`, run the `cache:update` task, i.e. `deno task cache:update`.
+12 |
+13 | ## Leveraging a local build
+14 |
+15 | Deno does not support local [file: packages](https://github.com/denoland/deno/issues/18474) or [workspace packages](https://github.com/denoland/deno/issues/18546).
+16 | To leverage the local build of pyodide the `test` task follows the [`--node-modules-dir` workflow](https://deno.com/manual@v1.33.3/node/npm_specifiers#--node-modules-dir-flag) discussed in Deno summarized as follows:
+17 |
+18 | 1. Use the `--node-modules-dir` flag so a local `node_modules` folder is created based on currently published npm packages.
+19 | 2. Replace the contents of the pyodide package in `node_modules` with the local build.
+20 | 3. Run the tests which should now use the local build.
+21 |
+
+
+--------------------------------------------------------------------------------
+/src/test-deno/deno.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "tasks": {
+ 3 |     "test": "deno task setup && deno task smoke-test",
+ 4 |     "setup": "deno task node-modules:clear && deno task node-modules:setup && deno task node-modules:setup-local-pyodide",
+ 5 |     "cache:validate": "deno cache --lock=/tmp/pyodide-deno.lock --lock-write smoke-test.ts && diff -u deno.lock /tmp/pyodide-deno.lock",
+ 6 |     "cache:update": "deno cache smoke-test.ts",
+ 7 |     "node-modules:clear": "rm -rf node_modules",
+ 8 |     "node-modules:setup": "deno cache --node-modules-dir smoke-test.ts",
+ 9 |     "node-modules:setup-local-pyodide": "sh -c \"cp -r ../../dist/. ./node_modules/pyodide/\"",
+10 |     "smoke-test": "deno run --node-modules-dir --allow-read=. smoke-test.ts"
+11 |   }
+12 | }
+13 |
+
+
+--------------------------------------------------------------------------------
+/src/test-deno/smoke-test.ts:
+--------------------------------------------------------------------------------
+ 1 | // A published pyodide package version is used as a placeholder and
+ 2 | // the contents are replaced with the local build before running.
+ 3 | // See README.md for details
+ 4 | import pyodideModule from "npm:pyodide@0.23.1/pyodide.js";
+ 5 | const { loadPyodide } = pyodideModule;
+ 6 |
+ 7 | console.time("[load pyodide]");
+ 8 | const pyodide = await loadPyodide();
+ 9 | console.timeEnd("[load pyodide]");
+10 |
+11 | console.time("[run pyodide]");
+12 | const result = await pyodide.runPythonAsync(`
+13 | 3+4
+14 | `);
+15 | console.timeEnd("[run pyodide]");
+16 |
+17 | console.log("result:", result.toString());
+18 |
+
+
+--------------------------------------------------------------------------------
+/src/test-js/index.d.ts:
+--------------------------------------------------------------------------------
+1 | // This file is just needed to make "npx tsd" work (otherwise it will quit with an error).
+2 |
+
+
+--------------------------------------------------------------------------------
+/src/test-js/package.json:
+--------------------------------------------------------------------------------
+ 1 | {
+ 2 |   "name": "test",
+ 3 |   "devDependencies": {
+ 4 |     "mocha": "^9.0.2",
+ 5 |     "ts-node": "^10.4.0"
+ 6 |   },
+ 7 |   "scripts": {
+ 8 |     "test": "mocha --loader node_modules/ts-node/dist/esm.js",
+ 9 |     "test-types": "tsd"
+10 |   },
+11 |   "mocha": {
+12 |     "timeout": 30000
+13 |   },
+14 |   "dependencies": {
+15 |     "tsd": "^0.20.0"
+16 |   }
+17 | }
+18 |
+
+
+--------------------------------------------------------------------------------
+/src/test-js/tsconfig.json:
+--------------------------------------------------------------------------------
+1 | {
+2 |   "compilerOptions": {
+3 |     "module": "NodeNext"
+4 |   }
+5 | }
+6 |
+
+
+--------------------------------------------------------------------------------
+/src/tests/__init__.py:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/src/tests/__init__.py
+
+
+--------------------------------------------------------------------------------
+/src/tests/html_templates/test_commonjs.html:
+--------------------------------------------------------------------------------
+ 1 | <!-- Bootstrap HTML for running the unit tests. -->
+ 2 | <!doctype html>
+ 3 | <html>
+ 4 |   <head>
+ 5 |     <title>Test commonjs</title>
+ 6 |     <script type="text/javascript">
+ 7 |       window.logs = [];
+ 8 |       console.log = function (message) {
+ 9 |         window.logs.push(message);
+10 |       };
+11 |       console.warn = function (message) {
+12 |         window.logs.push(message);
+13 |       };
+14 |       console.info = function (message) {
+15 |         window.logs.push(message);
+16 |       };
+17 |       console.error = function (message) {
+18 |         window.logs.push(message);
+19 |       };
+20 |       define = function (name, deps, callback) {
+21 |         window.logs.push("define: " + name);
+22 |         window.logs.push("deps: " + deps);
+23 |         window.logs.push("callback: " + callback);
+24 |         // callback();
+25 |       };
+26 |
+27 |       define.amd = { something: true };
+28 |     </script>
+29 |     <script src="./pyodide.js"></script>
+30 |   </head>
+31 |   <body></body>
+32 | </html>
+33 |
+
+
+--------------------------------------------------------------------------------
+/src/tests/test_bz2.py:
+--------------------------------------------------------------------------------
+ 1 | from pytest_pyodide import run_in_pyodide
+ 2 |
+ 3 |
+ 4 | @run_in_pyodide
+ 5 | def test_bz2(selenium):
+ 6 |     import bz2
+ 7 |
+ 8 |     text = "Hello test test test test this is a test test test"
+ 9 |     some_compressed_bytes = bz2.compress(text.encode("utf-8"))
+10 |     assert some_compressed_bytes != text.encode("utf-8")
+11 |     decompressed_bytes = bz2.decompress(some_compressed_bytes)
+12 |     assert decompressed_bytes.decode("utf-8") == text
+13 |
+
+
+--------------------------------------------------------------------------------
+/src/tests/test_canvas.py:
+--------------------------------------------------------------------------------
+ 1 | import pytest
+ 2 |
+ 3 |
+ 4 | @pytest.mark.xfail_browsers(node="No document object")
+ 5 | def test_canvas2D(selenium_standalone):
+ 6 |     selenium_standalone.run_js(
+ 7 |         """
+ 8 |         const canvas = document.createElement('canvas');
+ 9 |         canvas.id = "canvas";
+10 |
+11 |         // Temporary workaround for pyodide#3697
+12 |         pyodide._api._skip_unwind_fatal_error = true;
+13 |
+14 |         pyodide.canvas.setCanvas2D(canvas);
+15 |
+16 |         assert(() => pyodide._module.canvas === canvas);
+17 |         assert(() => pyodide.canvas.getCanvas2D() === canvas);
+18 |     """
+19 |     )
+20 |
+21 |
+22 | @pytest.mark.xfail_browsers(node="No document object")
+23 | def test_canvas3D(selenium_standalone):
+24 |     selenium_standalone.run_js(
+25 |         """
+26 |         const canvas = document.createElement('canvas');
+27 |         canvas.id = "canvas";
+28 |
+29 |         // Temporary workaround for pyodide#3697
+30 |         pyodide._api._skip_unwind_fatal_error = true;
+31 |
+32 |         pyodide.canvas.setCanvas3D(canvas);
+33 |
+34 |         assert(() => pyodide._module.canvas === canvas);
+35 |         assert(() => pyodide.canvas.getCanvas3D() === canvas);
+36 |     """
+37 |     )
+38 |
+
+
+--------------------------------------------------------------------------------
+/src/tests/test_compat.py:
+--------------------------------------------------------------------------------
+ 1 | import shutil
+ 2 | from pathlib import Path
+ 3 |
+ 4 | import pytest
+ 5 |
+ 6 | from conftest import DIST_PATH
+ 7 |
+ 8 | HTML_TEAMPLTE_DIR = Path(__file__).parent / "html_templates"
+ 9 |
+10 |
+11 | @pytest.mark.xfail_browsers(node="No goto")
+12 | def test_commonjs_define(selenium_standalone_noload):
+13 |     """
+14 |     ErrorStackParser behaves differently when "define", and "define.amd" are defined in the global scope (CommonJS),
+15 |     Related issues: #4863 #4577
+16 |     """
+17 |     selenium = selenium_standalone_noload
+18 |     src_path = HTML_TEAMPLTE_DIR / "test_commonjs.html"
+19 |     target_path = DIST_PATH / "test_commonjs.html"
+20 |     try:
+21 |         shutil.copy(src_path, target_path)
+22 |         selenium.goto(f"{selenium.base_url}/test_commonjs.html")
+23 |         selenium.javascript_setup()
+24 |         selenium.load_pyodide()
+25 |     finally:
+26 |         target_path.unlink()
+27 |
+
+
+--------------------------------------------------------------------------------
+/src/tests/test_pkg/__init__.py:
+--------------------------------------------------------------------------------
+1 | from .some_module import test1
+2 |
+3 | __all__ = ["test1"]
+4 |
+
+
+--------------------------------------------------------------------------------
+/src/tests/test_pkg/some_module.py:
+--------------------------------------------------------------------------------
+1 | def test1(x):
+2 |     return x * x + 1
+3 |
+4 |
+5 | def test2(x):
+6 |     return x * x - 1
+7 |
+
+
+--------------------------------------------------------------------------------
+/src/tests/test_pytest_wrapper.py:
+--------------------------------------------------------------------------------
+ 1 | import sys
+ 2 | from pathlib import Path
+ 3 |
+ 4 | sys.path.append(str(Path(__file__).parents[2] / "tools"))
+ 5 |
+ 6 | from pytest_wrapper import remove_num_threads_option
+ 7 |
+ 8 |
+ 9 | def test_find_imports():
+10 |     args = ["-v", "-n", "3"]
+11 |     remove_num_threads_option(args)
+12 |     assert args == ["-v"]
+13 |
+14 |     args = ["-v", "-n", "3", "-k", "firefox"]
+15 |     remove_num_threads_option(args)
+16 |     assert args == ["-v", "-k", "firefox"]
+17 |
+
+
+--------------------------------------------------------------------------------
+/src/tests/test_python_esm.py:
+--------------------------------------------------------------------------------
+ 1 | import pytest
+ 2 |
+ 3 |
+ 4 | def test_print(selenium_esm):
+ 5 |     selenium_esm.run("print('This should be logged')")
+ 6 |     assert "This should be logged" in selenium_esm.logs.splitlines()
+ 7 |
+ 8 |
+ 9 | @pytest.mark.xfail_browsers(node="No window in node")
+10 | def test_import_js(selenium_esm):
+11 |     result = selenium_esm.run(
+12 |         """
+13 |         import js
+14 |         js.window.title = 'Foo'
+15 |         js.window.title
+16 |         """
+17 |     )
+18 |     assert result == "Foo"
+19 |     result = selenium_esm.run(
+20 |         """
+21 |         dir(js)
+22 |         """
+23 |     )
+24 |     assert len(result) > 100
+25 |     assert "document" in result
+26 |     assert "window" in result
+27 |
+
+
+--------------------------------------------------------------------------------
+/src/tests/wheels/dummy_pkg-0.1.0-py3-none-any.whl:
+--------------------------------------------------------------------------------
+https://raw.githubusercontent.com/pyodide/pyodide/bb87f5eec91c99a021e8ebc88d617a55ad297fe0/src/tests/wheels/dummy_pkg-0.1.0-py3-none-any.whl
+
+
+--------------------------------------------------------------------------------
+/tools/check_build_trigger.sh:
+--------------------------------------------------------------------------------
+ 1 | #!/bin/bash
+ 2 |
+ 3 | set -e
+ 4 | set -x
+ 5 |
+ 6 | COMMIT_MSG=$(git log --no-merges -1 --oneline)
+ 7 |
+ 8 | # The scipy tests will be triggered on push or on pull_request when the commit
+ 9 | # message contains "[scipy]"
+10 | if [[ "$GITHUB_EVENT_NAME" == push ||
+11 |       "$COMMIT_MSG" =~ \[scipy\] ]]; then
+12 |     echo "trigger=true" >> "$GITHUB_OUTPUT"
+13 | fi
+14 |
+
+
+--------------------------------------------------------------------------------
+/tools/check_ccache.py:
+--------------------------------------------------------------------------------
+ 1 | import re
+ 2 | import subprocess
+ 3 | import sys
+ 4 |
+ 5 |
+ 6 | def main():
+ 7 |     result = subprocess.run(
+ 8 |         ["emcc", "--version"], capture_output=True, encoding="utf8", check=False
+ 9 |     )
+10 |     if result.returncode == 0:
+11 |         return 0
+12 |     if re.search("GLIBC.*not found.*ccache", result.stderr):
+13 |         print(
+14 |             "Emscripten ccache was linked against an incompatible version of glibc.\n"
+15 |             "Run `make -C emsdk clean` and try again.\n"
+16 |             "If this error persists, please open an issue to ask for help."
+17 |         )
+18 |     else:
+19 |         print("Something is wrong but I'm not sure what.")
+20 |         print("Info:")
+21 |         print(result)
+22 |     return 1
+23 |
+24 |
+25 | if __name__ == "__main__":
+26 |     sys.exit(main())
+27 |
+
+
+--------------------------------------------------------------------------------
+/tools/cmdline-runner-test.sh:
+--------------------------------------------------------------------------------
+ 1 | #!/bin/bash
+ 2 | set -x
+ 3 | export PYODIDE_ROOT
+ 4 | PYODIDE_ROOT=$(pwd)
+ 5 | echo "$PYODIDE_ROOT"
+ 6 | # shellcheck source=pyodide_env.sh
+ 7 | source pyodide_env.sh
+ 8 | make pyodide_build
+ 9 | rm -rf test-cmdline-runner
+10 | mkdir test-cmdline-runner
+11 | cd test-cmdline-runner || exit
+12 |
+13 | python -m venv .venv-host
+14 | # shellcheck source=/dev/null
+15 | source .venv-host/bin/activate
+16 |
+17 | pyodide venv .venv-pyodide
+18 | # shellcheck source=/dev/null
+19 | source .venv-pyodide/bin/activate
+20 |
+21 | git clone https://github.com/python-attrs/attrs --depth 1 --branch 25.3.0
+22 | cd attrs || exit
+23 | pip install ".[tests]"
+24 | # mypy_plugins uses pty and stuff that isn't supported on Emscripten.
+25 | .venv-pyodide/bin/pip uninstall pytest_mypy_plugins
+26 | python -m pytest -k 'not mypy'
+27 |
+
+
+--------------------------------------------------------------------------------
+/tools/codespell_ignore_words.txt:
+--------------------------------------------------------------------------------
+ 1 | ags
+ 2 | aray
+ 3 | asend
+ 4 | ba
+ 5 | classs
+ 6 | crate
+ 7 | falsy
+ 8 | feld
+ 9 | inflight
+10 | lits
+11 | nd
+12 | slowy
+13 | te
+14 | oint
+15 | conveniant
+16 | atmost
+17 | coo
+18 |
+
+
+--------------------------------------------------------------------------------
+/tools/common.py:
+--------------------------------------------------------------------------------
+ 1 | import subprocess
+ 2 | import sys
+ 3 | from pathlib import Path
+ 4 |
+ 5 | PYODIDE_ROOT = Path(__file__).parents[1]
+ 6 |
+ 7 |
+ 8 | def get_makefile_envs() -> dict[str, str]:
+ 9 |     result = subprocess.run(
+10 |         ["make", "-f", str(PYODIDE_ROOT / "Makefile.envs"), ".output_vars"],
+11 |         capture_output=True,
+12 |         text=True,
+13 |         env={"PYODIDE_ROOT": str(PYODIDE_ROOT)},
+14 |         check=False,
+15 |     )
+16 |
+17 |     if result.returncode != 0:
+18 |         print("ERROR: Failed to load environment variables from Makefile.envs")
+19 |         sys.exit(1)
+20 |
+21 |     environment = {}
+22 |     for line in result.stdout.splitlines():
+23 |         equalPos = line.find("=")
+24 |         if equalPos != -1:
+25 |             varname = line[0:equalPos]
+26 |
+27 |             value = line[equalPos + 1 :]
+28 |             value = value.strip("'").strip()
+29 |             environment[varname] = value
+30 |
+31 |     return environment
+32 |
+
+
+--------------------------------------------------------------------------------
+/tools/constraints.txt:
+--------------------------------------------------------------------------------
+1 | # This file is used to track build constraints for packages
+2 | # via pyodide-build.
+3 | #
+4 | # Add any upper bounds for packages here to ensure that
+5 | # their builds succeed, or those for packages that rely
+6 | # on them at build time.
+7 |
+8 | cmake < 4
+9 |
+
+
+--------------------------------------------------------------------------------
+/tools/d8-test.mjs:
+--------------------------------------------------------------------------------
+1 | import { loadPyodide } from "../dist/pyodide.mjs";
+2 |
+3 | console.log("Start!");
+4 | const py = await loadPyodide();
+5 | console.log("Loaded");
+6 | py.runPython("print('hello!')");
+7 | print(py.runPython("import random; random.random()"));
+8 | console.log("Done...");
+9 |
+
+
+--------------------------------------------------------------------------------
+/tools/d8-test.sh:
+--------------------------------------------------------------------------------
+ 1 | #!/bin/bash
+ 2 |
+ 3 | # Smoke test for d8
+ 4 |
+ 5 | set -x
+ 6 | TOOLS=$(dirname "${BASH_SOURCE[0]}")
+ 7 |
+ 8 | npx jsvu --engines=v8 --os=linux64
+ 9 | echo $?
+10 |
+11 | "${HOME}"/.jsvu/bin/v8 --enable-os-system --module "${TOOLS}"/d8-test.mjs
+12 |
+
+
+--------------------------------------------------------------------------------
+/tools/deploy_to_npm.sh:
+--------------------------------------------------------------------------------
+ 1 | #!/usr/bin/env bash
+ 2 |
+ 3 | set -e
+ 4 |
+ 5 | echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+ 6 |
+ 7 | SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+ 8 | cd "$SCRIPT_DIR"/..
+ 9 |
+10 | # FIXME: since we release from dist directory, README file needs to be copied before release
+11 | cp src/js/README.md dist/
+12 | cp src/js/package.json dist/
+13 |
+14 | cd dist/
+15 |
+16 | PACKAGE_NAME=$(node -p "require('./package.json').name")
+17 | JS_VERSION=$(node -p "require('./package.json').version")
+18 | if [[ -n "${DRY_RUN}" ]]; then
+19 |     echo "Dry run: npm publish --tag ${JS_VERSION}"
+20 |     npm publish --dry-run
+21 | elif [[ ${JS_VERSION} =~ [alpha|beta|rc|dev] ]]; then
+22 |     echo "Publishing an unstable release"
+23 |     npm publish --tag next
+24 | else
+25 |     echo "Publishing a stable release"
+26 |     npm publish
+27 |     npm dist-tag add "$PACKAGE_NAME"@"$JS_VERSION" next
+28 | fi
+29 |
+30 | rm -f dist/README.md
+31 |
+
+
+--------------------------------------------------------------------------------
+/tools/docker_image_tag.py:
+--------------------------------------------------------------------------------
+ 1 | #!/usr/bin/env python3
+ 2 | """
+ 3 | Get the current versions of Chrome and Firefox to aid in tagging Docker images.
+ 4 |
+ 5 | Old Docker image tag: 20230411-chromelatest-firefoxlatest
+ 6 | New Docker image tag: 20230411-chrome112-firefox112-py311
+ 7 | """
+ 8 |
+ 9 | from datetime import date
+10 | from sys import version_info
+11 |
+12 | import requests
+13 |
+14 |
+15 | def latest_version_of_chrome() -> str:
+16 |     URL = "https://chromedriver.storage.googleapis.com/LATEST_RELEASE"
+17 |     return requests.get(URL).text.split(".")[0]
+18 |
+19 |
+20 | def latest_version_of_firefox() -> str:
+21 |     URL = "https://www.mozilla.org/en-US/firefox/releasenotes"
+22 |     return requests.get(URL, allow_redirects=True).url.split("/")[-3].split(".")[0]
+23 |
+24 |
+25 | def docker_image_tag() -> str:
+26 |     """
+27 |     Return 20230411-chrome112-firefox112-py311
+28 |     """
+29 |     chrome = f"chrome{latest_version_of_chrome()}"
+30 |     firefox = f"firefox{latest_version_of_firefox()}"
+31 |     python = "py{}{}".format(*version_info)
+32 |     return f"{date.today():%Y%m%d}-{chrome}-{firefox}-{python}"
+33 |
+34 |
+35 | if __name__ == "__main__":
+36 |     print(latest_version_of_chrome())
+37 |     print(latest_version_of_firefox())
+38 |     print(docker_image_tag())
+39 |
+
+
+--------------------------------------------------------------------------------
+/tools/tests/test_create_lockfile_diff.py:
+--------------------------------------------------------------------------------
+ 1 | import sys
+ 2 | from pathlib import Path
+ 3 |
+ 4 | sys.path.append(str(Path(__file__).parents[1]))
+ 5 | from create_lockfile_diff import calculate_diff
+ 6 |
+ 7 |
+ 8 | def test_calculate_diff():
+ 9 |     old = Path(__file__).parent / "testdata" / "pyodide-lock-0.27.7.json"
+10 |     new = Path(__file__).parent / "testdata" / "pyodide-lock-0.28.0a3.json"
+11 |
+12 |     added, removed, changed = calculate_diff(old, new)
+13 |     assert "platformdirs" in [pkg.name for pkg in added]
+14 |     assert "sharedlib-test-py" in [pkg.name for pkg in removed]
+15 |     assert "numpy" in [pkg.name for pkg in changed]
+16 |
+
+
+--------------------------------------------------------------------------------
+/tools/tests/test_create_xbuildenv.py:
+--------------------------------------------------------------------------------
+ 1 | import sys
+ 2 | from pathlib import Path
+ 3 |
+ 4 | sys.path.append(str(Path(__file__).parents[1]))
+ 5 | from create_xbuildenv import create
+ 6 |
+ 7 |
+ 8 | def test_xbuildenv_create(selenium, tmp_path):
+ 9 |     envpath = Path(tmp_path) / ".xbuildenv"
+10 |     root = Path(__file__).parents[2]
+11 |
+12 |     create(envpath, root, skip_missing_files=True)
+13 |
+14 |     assert (envpath / "xbuildenv").exists()
+15 |     assert (envpath / "xbuildenv" / "pyodide-root").is_dir()
+16 |     assert (envpath / "xbuildenv" / "site-packages-extras").is_dir()
+17 |     assert (envpath / "xbuildenv" / "requirements.txt").exists()
+18 |
+
+
+--------------------------------------------------------------------------------
+/tools/tests/test_cross_build_environments_metadata.py:
+--------------------------------------------------------------------------------
+ 1 | from pathlib import Path
+ 2 |
+ 3 | from pyodide_build.xbuildenv_releases import CrossBuildEnvMetaSpec
+ 4 |
+ 5 | METADATA_FILE = Path(__file__).parents[2] / "pyodide-cross-build-environments.json"
+ 6 |
+ 7 |
+ 8 | def test_load():
+ 9 |     model = CrossBuildEnvMetaSpec.parse_file(METADATA_FILE)
+10 |     assert model.releases
+11 |
+
+
+--------------------------------------------------------------------------------
+/tools/tests/test_run_docker.py:
+--------------------------------------------------------------------------------
+ 1 | import subprocess
+ 2 | from pathlib import Path
+ 3 |
+ 4 | PYODIDE_ROOT = Path(__file__).parent.parent.parent
+ 5 |
+ 6 |
+ 7 | def test_run_docker_script():
+ 8 |     res = subprocess.run(
+ 9 |         ["bash", str(PYODIDE_ROOT / "run_docker"), "--help"],
+10 |         check=False,
+11 |         capture_output=True,
+12 |     )
+13 |
+14 |     assert "Usage: run_docker" in res.stdout.decode("utf-8")
+15 |
+16 |     res = subprocess.run(
+17 |         ["bash", str(PYODIDE_ROOT / "run_docker"), "--invalid-param"],
+18 |         check=False,
+19 |         capture_output=True,
+20 |     )
+21 |     assert res.returncode > 0
+22 |     assert "Unknown option --invalid-param" in res.stderr.decode("utf-8")
+23 |
+
+
+--------------------------------------------------------------------------------

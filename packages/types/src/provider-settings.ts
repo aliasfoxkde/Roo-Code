@@ -76,7 +76,7 @@ const baseProviderSettingsSchema = z.object({
 	modelMaxThinkingTokens: z.number().optional(),
 
 	// Proxy settings
-	proxyEnabled: z.boolean().optional(),
+	proxyRoutingEnabled: z.boolean().optional(),
 	proxyUrl: z.string().optional(),
 	proxyAuth: z.object({
 		username: z.string().optional(),
@@ -84,8 +84,14 @@ const baseProviderSettingsSchema = z.object({
 	}).optional(),
 	proxyBypassLocal: z.boolean().optional(),
 	
+	// Custom model parameters
+	modelTopP: z.number().nullish(),
+	modelFrequencyPenalty: z.number().nullish(),
+	modelPresencePenalty: z.number().nullish(),
+	modelMaxTokens: z.number().nullish(),
+	
 	// VPN settings
-	vpnEnabled: z.boolean().optional(),
+	vpnRoutingEnabled: z.boolean().optional(),
 	vpnServer: z.string().optional(),
 	vpnUsername: z.string().optional(),
 	vpnPassword: z.string().optional(),

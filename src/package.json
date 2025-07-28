@@ -244,22 +244,22 @@
 				},
 				{
 					"command": "hivemind.historyButtonClicked",
-					"group": "overflow@1",
+					"group": "navigation@5",
 					"when": "view == hivemind.SidebarProvider"
 				},
 				{
 					"command": "hivemind.promptsButtonClicked",
-					"group": "overflow@2",
+					"group": "navigation@6",
 					"when": "view == hivemind.SidebarProvider"
 				},
 				{
 					"command": "hivemind.mcpButtonClicked",
-					"group": "overflow@3",
+					"group": "navigation@7",
 					"when": "view == hivemind.SidebarProvider"
 				},
 				{
 					"command": "hivemind.popoutButtonClicked",
-					"group": "overflow@4",
+					"group": "navigation@8",
 					"when": "view == hivemind.SidebarProvider"
 				}
 			],
@@ -286,22 +286,22 @@
 				},
 				{
 					"command": "hivemind.historyButtonClicked",
-					"group": "overflow@1",
+					"group": "navigation@5",
 					"when": "activeWebviewPanelId == hivemind.TabPanelProvider"
 				},
 				{
 					"command": "hivemind.promptsButtonClicked",
-					"group": "overflow@2",
+					"group": "navigation@6",
 					"when": "activeWebviewPanelId == hivemind.TabPanelProvider"
 				},
 				{
 					"command": "hivemind.mcpButtonClicked",
-					"group": "overflow@3",
+					"group": "navigation@7",
 					"when": "activeWebviewPanelId == hivemind.TabPanelProvider"
 				},
 				{
 					"command": "hivemind.popoutButtonClicked",
-					"group": "overflow@4",
+					"group": "navigation@8",
 					"when": "activeWebviewPanelId == hivemind.TabPanelProvider"
 				}
 			]

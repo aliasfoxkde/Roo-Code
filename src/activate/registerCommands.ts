@@ -225,12 +225,12 @@ const getCommandsMap = ({ context, outputChannel, provider }: RegisterCommandOpt
 		}
 
 		// Show quick pick for enabling/disabling proxy
-		const proxyEnabled = await visibleProvider.getValue("proxyEnabled") || false
+		const proxyRoutingEnabled = await visibleProvider.getValue("proxyRoutingEnabled") || false
 		const quickPick = vscode.window.createQuickPick()
 		quickPick.items = [
 			{
-				label: proxyEnabled ? "$(check) Proxy Enabled" : "$(circle-slash) Proxy Disabled",
-				description: proxyEnabled ? "Click to disable proxy" : "Click to enable proxy"
+				label: proxyRoutingEnabled ? "$(check) Proxy Enabled" : "$(circle-slash) Proxy Disabled",
+				description: proxyRoutingEnabled ? "Click to disable proxy" : "Click to enable proxy"
 			},
 			{
 				label: "$(settings-gear) Configure Proxy Settings",
@@ -244,9 +244,9 @@ const getCommandsMap = ({ context, outputChannel, provider }: RegisterCommandOpt
 			if (selectedItem) {
 				if (selectedItem.label.includes("Proxy Enabled") || selectedItem.label.includes("Proxy Disabled")) {
 					// Toggle proxy enabled state
-					await visibleProvider.setValue("proxyEnabled", !proxyEnabled)
+					await visibleProvider.setValue("proxyRoutingEnabled", !proxyRoutingEnabled)
 					vscode.window.showInformationMessage(
-						!proxyEnabled
+						!proxyRoutingEnabled
 							? "Proxy enabled. Configure proxy settings in Hivemind settings."
 							: "Proxy disabled."
 					)

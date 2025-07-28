@@ -54,14 +54,14 @@ export const ProxyConfigForm = ({ settings, onChange, showAdvanced = false }: Pr
 		<div className="flex flex-col gap-3">
 			<div className="flex items-center gap-2">
 				<VSCodeCheckbox
-					checked={settings.proxyEnabled ?? false}
-					onChange={(e: any) => handleInputChange("proxyEnabled", e.target.checked)}>
+					checked={settings.proxyRoutingEnabled ?? false}
+					onChange={(e: any) => handleInputChange("proxyRoutingEnabled", e.target.checked)}>
 					{t("settings:proxy.enableProxy")}
 				</VSCodeCheckbox>
 			</div>
 
-			{settings.proxyEnabled && (
-				<>
+			{settings.proxyRoutingEnabled && (
+				<div className="border border-vscode-settings-dropdownBorder rounded-md p-3 ml-6">
 					<div>
 						<VSCodeTextField
 							value={settings.proxyUrl || ""}
@@ -75,47 +75,47 @@ export const ProxyConfigForm = ({ settings, onChange, showAdvanced = false }: Pr
 						</div>
 					</div>
 
-					<div className="flex items-center gap-2">
-						<VSCodeCheckbox
-							checked={showAuth}
-							onChange={toggleAuthFields}>
-							{t("settings:proxy.enableAuthentication")}
-						</VSCodeCheckbox>
-					</div>
-
-					{showAuth && (
-						<div className="grid grid-cols-2 gap-3">
-							<VSCodeTextField
-								value={settings.proxyAuth?.username || ""}
-								onInput={(e: any) => handleAuthChange("username", e.target.value)}
-								placeholder={t("settings:proxy.usernamePlaceholder")}
-								className="w-full">
-								<label className="block font-medium mb-1">{t("settings:proxy.username")}</label>
-							</VSCodeTextField>
-							<VSCodeTextField
-								value={settings.proxyAuth?.password || ""}
-								onInput={(e: any) => handleAuthChange("password", e.target.value)}
-								placeholder={t("settings:proxy.passwordPlaceholder")}
-								type="password"
-								className="w-full">
-								<label className="block font-medium mb-1">{t("settings:proxy.password")}</label>
-							</VSCodeTextField>
-						</div>
-					)}
-
-					{showAdvanced && (
+					<div className="ml-4 mt-3">
 						<div className="flex items-center gap-2">
 							<VSCodeCheckbox
-								checked={settings.proxyBypassLocal ?? false}
-								onChange={(e: any) => handleInputChange("proxyBypassLocal", e.target.checked)}>
-								{t("settings:proxy.bypassLocal")}
+								checked={showAuth}
+								onChange={toggleAuthFields}>
+								{t("settings:proxy.enableAuthentication")}
 							</VSCodeCheckbox>
-							<StandardTooltip content={t("settings:proxy.bypassLocalDescription")}>
-								<i className="codicon codicon-info text-vscode-descriptionForeground" />
-							</StandardTooltip>
 						</div>
-					)}
-				</>
+
+						{showAuth && (
+							<div className="grid grid-cols-2 gap-3 mt-2 ml-6">
+								<VSCodeTextField
+									value={settings.proxyAuth?.username || ""}
+									onInput={(e: any) => handleAuthChange("username", e.target.value)}
+									placeholder={t("settings:proxy.usernamePlaceholder")}
+									className="w-full">
+									<label className="block font-medium mb-1">{t("settings:proxy.username")}</label>
+								</VSCodeTextField>
+								<VSCodeTextField
+									value={settings.proxyAuth?.password || ""}
+									onInput={(e: any) => handleAuthChange("password", e.target.value)}
+									placeholder={t("settings:proxy.passwordPlaceholder")}
+									type="password"
+									className="w-full">
+									<label className="block font-medium mb-1">{t("settings:proxy.password")}</label>
+								</VSCodeTextField>
+							</div>
+						)}
+					</div>
+
+					<div className="flex items-center gap-2 mt-3">
+						<VSCodeCheckbox
+							checked={settings.proxyBypassLocal ?? false}
+							onChange={(e: any) => handleInputChange("proxyBypassLocal", e.target.checked)}>
+							{t("settings:proxy.bypassLocal")}
+						</VSCodeCheckbox>
+						<StandardTooltip content={t("settings:proxy.bypassLocalDescription")}>
+							<i className="codicon codicon-info text-vscode-descriptionForeground" />
+						</StandardTooltip>
+					</div>
+				</div>
 			)}
 		</div>
 	)

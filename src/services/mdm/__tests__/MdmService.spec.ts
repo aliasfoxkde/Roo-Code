@@ -35,10 +35,10 @@ vi.mock("vscode", () => ({
 
 vi.mock("../../../shared/package", () => ({
 	Package: {
-		publisher: "roo-code",
+		publisher: "hivemind",
 		name: "hivemind",
 		version: "1.0.0",
-		outputChannel: "Roo-Code",
+		outputChannel: "Hivemind",
 		sha: undefined,
 	},
 }))
@@ -170,7 +170,7 @@ describe("MdmService", () => {
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith(path.join("C:\\ProgramData", "RooCode", "mdm.json"))
+			expect(mockFs.existsSync).toHaveBeenCalledWith(path.join("C:\\ProgramData", "Hivemind", "mdm.json"))
 		})
 
 		it("should use correct path for Windows in development", async () => {
@@ -182,7 +182,7 @@ describe("MdmService", () => {
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith(path.join("C:\\ProgramData", "RooCode", "mdm.dev.json"))
+			expect(mockFs.existsSync).toHaveBeenCalledWith(path.join("C:\\ProgramData", "Hivemind", "mdm.dev.json"))
 		})
 
 		it("should use correct path for macOS in production", async () => {
@@ -193,7 +193,7 @@ describe("MdmService", () => {
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/RooCode/mdm.json")
+			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/Hivemind/mdm.json")
 		})
 
 		it("should use correct path for macOS in development", async () => {
@@ -204,7 +204,7 @@ describe("MdmService", () => {
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/RooCode/mdm.dev.json")
+			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/Hivemind/mdm.dev.json")
 		})
 
 		it("should use correct path for Linux in production", async () => {
@@ -237,7 +237,7 @@ describe("MdmService", () => {
 
 			await MdmService.createInstance()
 
-			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/RooCode/mdm.dev.json")
+			expect(mockFs.existsSync).toHaveBeenCalledWith("/Library/Application Support/Hivemind/mdm.dev.json")
 		})
 	})
 

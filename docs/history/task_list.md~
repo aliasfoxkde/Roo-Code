@@ -1,0 +1,639 @@
+[TASK RESUMPTION] This task was interrupted just now. It may or may not be complete, so please reassess the task context. Be aware that the project state may have changed since then. If the task has not been completed, retry the last step before interruption and proceed with completing the task.
+
+Note: If you previously attempted a tool use that the user did not provide a result for, you should assume the tool use was not successful and assess whether you should retry. If the last tool was a browser_action, the browser has been closed and you must launch a new browser if needed.
+
+IMPORTANT: If the last tool use was a write_to_file that was interrupted, the file was reverted back to its original state before the interrupted edit, and you do NOT need to re-read the file as you already have its up-to-date contents.
+
+<environment_details>
+# VSCode Visible Files
+webview-ui/src/components/account/AccountView.tsx
+
+# VSCode Open Tabs
+docs/technical-analysis.md,webview-ui/src/components/settings/VpnConfigForm.tsx,src/core/proxy/ProxyManager.ts,webview-ui/src/components/settings/ApiOptions.tsx,webview-ui/src/i18n/locales/en/settings.json,packages/types/src/provider-settings.ts,webview-ui/src/components/settings/PromptsSettings.tsx,packages/types/src/global-settings.ts,webview-ui/src/components/settings/SettingsView.tsx,src/shared/ExtensionMessage.ts,webview-ui/src/context/ExtensionStateContext.tsx,src/shared/package.ts,apps/web-roo-code/src/lib/hooks/use-logo-src.ts,webview-ui/src/components/welcome/RooHero.tsx,webview-ui/src/components/account/AccountView.tsx
+
+# Current Time
+Current time in ISO 8601 UTC format: 2025-07-28T01:15:42.462Z
+User time zone: America/Chicago, UTC-5:00
+
+# Current Cost
+$0.00
+
+# Current Mode
+<slug>code</slug>
+<name>💻 Code</name>
+<model>qwen/qwen3-coder:free</model>
+<role>You are Roo, a highly skilled software engineer with extensive knowledge in many programming languages, frameworks, design patterns, and best practices.</role>
+<custom_instructions>
+====
+
+USER'S CUSTOM INSTRUCTIONS
+
+The following additional instructions are provided by the user, and should be followed to the best of your ability without interfering with the TOOL USE guidelines.
+
+Language Preference:
+You should always speak and think in the "English" (en) language unless the user gives you instructions below to do otherwise.
+
+Rules:
+
+# Rules from rules-code directories:
+
+# Rules from /home/mkinney/Repos/Roo-Code/.roo/rules-code/use-safeWriteJson.md:
+# JSON File Writing Must Be Atomic
+
+- You MUST use `safeWriteJson(filePath: string, data: any): Promise<void>` from `src/utils/safeWriteJson.ts` instead of `JSON.stringify` with file-write operations
+- `safeWriteJson` will create parent directories if necessary, so do not call `mkdir` prior to `safeWriteJson`
+- `safeWriteJson` prevents data corruption via atomic writes with locking and streams the write to minimize memory footprint
+- Test files are exempt from this rule
+
+# Rules from /home/mkinney/Repos/Roo-Code/.roo/rules/rules.md:
+# Code Quality Rules
+
+1. Test Coverage:
+
+    - Before attempting completion, always make sure that any code changes have test coverage
+    - Ensure all tests pass before submitting changes
+    - The vitest framework is used for testing; the `describe`, `test`, `it`, etc functions are defined by default in `tsconfig.json` and therefore don't need to be imported
+    - Tests must be run from the same directory as the `package.json` file that specifies `vitest` in `devDependencies`
+    - Run tests with: `npx vitest run <relative-path-from-workspace-root>`
+    - Do NOT run tests from project root - this causes "vitest: command not found" error
+    - Tests must be run from inside the correct workspace:
+        - Backend tests: `cd src && npx vitest run path/to/test-file` (don't include `src/` in path)
+        - UI tests: `cd webview-ui && npx vitest run src/path/to/test-file`
+    - Example: For `src/tests/user.test.ts`, run `cd src && npx vitest run tests/user.test.ts` NOT `npx vitest run src/tests/user.test.ts`
+
+2. Lint Rules:
+
+    - Never disable any lint rules without explicit user approval
+
+3. Styling Guidelines:
+    - Use Tailwind CSS classes instead of inline style objects for new markup
+    - VSCode CSS variables must be added to webview-ui/src/index.css before using them in Tailwind classes
+    - Example: `<div className="text-md text-vscode-descriptionForeground mb-2" />` instead of style objects</custom_instructions>
+
+
+# Current Workspace Directory (/home/mkinney/Repos/Roo-Code) Files
+.git-blame-ignore-revs
+.gitconfig
+.gitignore
+.nvmrc
+.prettierrc.json
+🔒 .rooignore
+.roomodes
+.tool-versions
+ellipsis.yaml
+knip.json
+pnpm-workspace.yaml
+README.md
+renovate.json
+apps/
+apps/vscode-e2e/
+apps/vscode-e2e/src/
+apps/vscode-e2e/src/suite/
+apps/vscode-e2e/src/suite/tools/
+apps/vscode-e2e/src/types/
+apps/vscode-nightly/
+apps/vscode-nightly/.gitignore
+apps/vscode-nightly/esbuild.mjs
+apps/vscode-nightly/package.json
+apps/vscode-nightly/package.nightly.json
+apps/vscode-nightly/package.nls.nightly.json
+apps/vscode-nightly/turbo.json
+apps/web-docs/
+apps/web-docs/.gitkeep
+apps/web-docs/README.md
+apps/web-evals/
+🔒 apps/web-evals/.env
+apps/web-evals/eslint.config.mjs
+apps/web-evals/next-env.d.ts
+apps/web-evals/next.config.ts
+apps/web-evals/postcss.config.mjs
+apps/web-evals/tsconfig.json
+apps/web-evals/turbo.json
+apps/web-evals/vitest.config.ts
+apps/web-evals/public/
+apps/web-evals/scripts/
+apps/web-evals/src/
+apps/web-evals/src/actions/
+apps/web-evals/src/app/
+apps/web-evals/src/app/api/
+apps/web-evals/src/app/api/health/
+apps/web-evals/src/app/api/runs/
+apps/web-evals/src/app/api/runs/[id]/
+apps/web-evals/src/app/api/runs/[id]/stream/
+apps/web-evals/src/app/runs/
+apps/web-evals/src/app/runs/[id]/
+apps/web-evals/src/app/runs/new/
+apps/web-evals/src/components/
+apps/web-evals/src/components/home/
+apps/web-evals/src/components/layout/
+apps/web-evals/src/components/providers/
+apps/web-evals/src/components/ui/
+apps/web-evals/src/hooks/
+apps/web-evals/src/lib/
+apps/web-evals/src/lib/server/
+apps/web-evals/src/lib/server/__tests__/
+apps/web-roo-code/
+apps/web-roo-code/public/
+apps/web-roo-code/src/
+apps/web-roo-code/src/actions/
+apps/web-roo-code/src/app/
+apps/web-roo-code/src/app/enterprise/
+apps/web-roo-code/src/app/evals/
+apps/web-roo-code/src/app/privacy/
+apps/web-roo-code/src/app/terms/
+apps/web-roo-code/src/components/
+apps/web-roo-code/src/components/chromes/
+apps/web-roo-code/src/components/enterprise/
+apps/web-roo-code/src/components/homepage/
+apps/web-roo-code/src/components/providers/
+apps/web-roo-code/src/components/ui/
+apps/web-roo-code/src/lib/
+apps/web-roo-code/src/lib/hooks/
+docs/
+docs/CHANGELOG.md
+docs/CODE_OF_CONDUCT.md
+docs/CONTRIBUTING.md
+docs/implementation-plan.md
+docs/IMPROVE.md
+docs/migration-strategy.md
+docs/milvus.md
+docs/milvus.md~
+docs/PLAN.md
+docs/PRIVACY.md
+docs/SECURITY.md
+docs/technical-design.md
+docs/research/
+docs/rules/
+docs/rules/DEFAULT.md
+docs/rules/DEFAULT.md~
+locales/
+locales/ca/
+locales/ca/CODE_OF_CONDUCT.md
+locales/ca/CONTRIBUTING.md
+locales/ca/README.md
+locales/de/
+locales/de/CODE_OF_CONDUCT.md
+locales/de/CONTRIBUTING.md
+locales/de/README.md
+locales/es/
+locales/es/CODE_OF_CONDUCT.md
+locales/es/CONTRIBUTING.md
+locales/es/README.md
+locales/fr/
+locales/fr/CODE_OF_CONDUCT.md
+locales/fr/CONTRIBUTING.md
+locales/fr/README.md
+locales/hi/
+locales/hi/CODE_OF_CONDUCT.md
+locales/hi/CONTRIBUTING.md
+locales/hi/README.md
+locales/id/
+locales/id/CODE_OF_CONDUCT.md
+locales/id/CONTRIBUTING.md
+locales/id/README.md
+locales/it/
+locales/it/CODE_OF_CONDUCT.md
+locales/it/CONTRIBUTING.md
+locales/it/README.md
+locales/ja/
+locales/ja/CODE_OF_CONDUCT.md
+locales/ja/CONTRIBUTING.md
+locales/ja/README.md
+locales/ko/
+locales/ko/CODE_OF_CONDUCT.md
+locales/ko/CONTRIBUTING.md
+locales/ko/README.md
+locales/nl/
+locales/nl/CODE_OF_CONDUCT.md
+locales/nl/CONTRIBUTING.md
+locales/nl/README.md
+locales/pl/
+locales/pl/CODE_OF_CONDUCT.md
+locales/pl/CONTRIBUTING.md
+locales/pl/README.md
+locales/pt-BR/
+locales/pt-BR/CODE_OF_CONDUCT.md
+locales/pt-BR/CONTRIBUTING.md
+locales/pt-BR/README.md
+locales/ru/
+locales/ru/CODE_OF_CONDUCT.md
+locales/ru/CONTRIBUTING.md
+locales/ru/README.md
+locales/tr/
+locales/tr/CODE_OF_CONDUCT.md
+locales/tr/CONTRIBUTING.md
+locales/tr/README.md
+locales/vi/
+locales/vi/CODE_OF_CONDUCT.md
+locales/vi/CONTRIBUTING.md
+locales/vi/README.md
+locales/zh-CN/
+locales/zh-CN/CODE_OF_CONDUCT.md
+locales/zh-CN/CONTRIBUTING.md
+locales/zh-CN/README.md
+locales/zh-TW/
+locales/zh-TW/CODE_OF_CONDUCT.md
+locales/zh-TW/CONTRIBUTING.md
+locales/zh-TW/README.md
+packages/
+packages/build/tsconfig.json
+packages/build/src/esbuild.ts
+packages/build/src/git.ts
+packages/build/src/index.ts
+packages/build/src/types.ts
+packages/build/src/__tests__/index.test.ts
+packages/cloud/
+packages/cloud/tsconfig.json
+packages/cloud/vitest.config.ts
+packages/cloud/src/
+packages/cloud/src/__mocks__/
+packages/cloud/src/__tests__/
+packages/cloud/src/__tests__/auth/
+packages/cloud/src/auth/
+packages/config-eslint/
+packages/config-eslint/base.js
+packages/config-eslint/next.js
+packages/config-eslint/package.json
+packages/config-eslint/react.js
+packages/config-typescript/
+packages/config-typescript/base.json
+packages/config-typescript/cjs.json
+packages/config-typescript/nextjs.json
+packages/config-typescript/package.json
+packages/config-typescript/vscode-library.json
+packages/evals/
+packages/evals/scripts/
+packages/evals/src/
+packages/evals/src/cli/
+packages/evals/src/db/
+packages/evals/src/db/migrations/
+packages/evals/src/db/migrations/meta/
+packages/evals/src/db/queries/
+packages/evals/src/db/queries/__tests__/
+packages/evals/src/exercises/
+packages/ipc/
+packages/ipc/eslint.config.mjs
+packages/ipc/package.json
+packages/ipc/tsconfig.json
+packages/ipc/src/
+packages/ipc/src/index.ts
+packages/ipc/src/ipc-client.ts
+packages/ipc/src/ipc-server.ts
+packages/telemetry/
+packages/telemetry/src/
+packages/telemetry/src/__tests__/
+packages/types/
+packages/types/eslint.config.mjs
+packages/types/README.md
+packages/types/tsconfig.json
+packages/types/tsup.config.ts
+packages/types/vitest.config.ts
+packages/types/npm/
+packages/types/src/
+packages/types/src/api.ts
+packages/types/src/cloud.ts
+packages/types/src/codebase-index.ts
+packages/types/src/experiment.ts
+packages/types/src/followup.ts
+packages/types/src/global-settings.ts
+packages/types/src/history.ts
+packages/types/src/index.ts
+packages/types/src/ipc.ts
+packages/types/src/marketplace.ts
+packages/types/src/mcp.ts
+packages/types/src/message.ts
+packages/types/src/mode.ts
+packages/types/src/model.ts
+packages/types/src/provider-settings.ts
+packages/types/src/sharing.ts
+packages/types/src/telemetry.ts
+packages/types/src/terminal.ts
+packages/types/src/todo.ts
+packages/types/src/tool.ts
+packages/types/src/type-fu.ts
+packages/types/src/vscode.ts
+packages/types/src/__tests__/
+packages/types/src/__tests__/index.test.ts
+packages/types/src/providers/
+packages/types/src/providers/anthropic.ts
+packages/types/src/providers/bedrock.ts
+packages/types/src/providers/chutes.ts
+packages/types/src/providers/claude-code.ts
+packages/types/src/providers/deepseek.ts
+packages/types/src/providers/gemini.ts
+packages/types/src/providers/glama.ts
+packages/types/src/providers/groq.ts
+packages/types/src/providers/index.ts
+packages/types/src/providers/lite-llm.ts
+packages/types/src/providers/lm-studio.ts
+packages/types/src/providers/mistral.ts
+packages/types/src/providers/moonshot.ts
+packages/types/src/providers/ollama.ts
+packages/types/src/providers/openai.ts
+packages/types/src/providers/openrouter.ts
+packages/types/src/providers/requesty.ts
+packages/types/src/providers/unbound.ts
+packages/types/src/providers/vertex.ts
+packages/types/src/providers/vscode-llm.ts
+packages/types/src/providers/xai.ts
+packages/types/src/providers/__tests__/
+packages/types/src/providers/__tests__/claude-code.spec.ts
+scripts/
+src/
+src/.prettierignore
+src/__mocks__/
+src/__mocks__/vscode.js
+src/__mocks__/fs/
+src/__tests__/
+src/activate/
+src/activate/__tests__/
+src/api/
+src/api/providers/
+src/api/providers/__tests__/
+src/api/providers/fetchers/
+src/api/providers/fetchers/__tests__/
+src/api/providers/fetchers/__tests__/fixtures/
+src/api/transform/
+src/api/transform/__tests__/
+src/api/transform/cache-strategy/
+src/api/transform/cache-strategy/__tests__/
+src/api/transform/caching/
+src/api/transform/caching/__tests__/
+src/assets/
+src/assets/codicons/
+src/assets/docs/
+src/assets/icons/
+src/assets/images/
+src/assets/vscode-material-icons/
+src/assets/vscode-material-icons/icons/
+src/core/
+src/core/assistant-message/
+src/core/assistant-message/index.ts
+src/core/assistant-message/parseAssistantMessage.ts
+src/core/assistant-message/parseAssistantMessageV2.ts
+src/core/assistant-message/presentAssistantMessage.ts
+src/core/assistant-message/__tests__/
+src/core/assistant-message/__tests__/parseAssistantMessage.spec.ts
+src/core/assistant-message/__tests__/parseAssistantMessageBenchmark.ts
+src/core/checkpoints/
+src/core/checkpoints/index.ts
+src/core/condense/
+src/core/condense/index.ts
+src/core/condense/__tests__/
+src/core/condense/__tests__/index.spec.ts
+src/core/config/
+src/core/config/__tests__/
+src/core/config/__tests__/CustomModesManager.yamlEdgeCases.spec.ts
+src/core/config/__tests__/importExport.spec.ts
+src/core/context-tracking/
+src/core/diff/
+src/core/diff/strategies/
+src/core/diff/strategies/__tests__/
+src/core/environment/
+src/core/environment/__tests__/
+src/core/http/
+src/core/ignore/
+src/core/ignore/__mocks__/
+src/core/ignore/__tests__/
+src/core/mentions/
+src/core/mentions/__tests__/
+src/core/prompts/
+src/core/prompts/__tests__/
+src/core/prompts/__tests__/__snapshots__/
+src/core/prompts/__tests__/__snapshots__/add-custom-instructions/
+src/core/prompts/__tests__/__snapshots__/system-prompt/
+src/core/prompts/instructions/
+src/core/prompts/sections/
+src/core/prompts/sections/__tests__/
+src/core/prompts/tools/
+src/core/prompts/tools/__tests__/
+src/core/protect/
+src/core/protect/__tests__/
+src/core/proxy/
+src/core/proxy/__tests__/
+src/core/sliding-window/
+src/core/sliding-window/__tests__/
+src/core/task/
+src/core/task/__tests__/
+src/core/task-persistence/
+src/core/tools/
+src/core/tools/__tests__/
+src/core/webview/
+src/core/webview/__tests__/
+src/extension/
+src/i18n/
+src/i18n/locales/
+src/i18n/locales/ca/
+src/i18n/locales/de/
+src/i18n/locales/en/
+src/i18n/locales/es/
+src/i18n/locales/fr/
+src/i18n/locales/hi/
+src/i18n/locales/id/
+src/i18n/locales/it/
+src/i18n/locales/ja/
+src/i18n/locales/ko/
+src/i18n/locales/nl/
+src/i18n/locales/pl/
+src/i18n/locales/pt-BR/
+src/i18n/locales/ru/
+src/i18n/locales/tr/
+src/i18n/locales/vi/
+src/i18n/locales/zh-CN/
+src/i18n/locales/zh-TW/
+src/integrations/
+src/integrations/claude-code/
+src/integrations/claude-code/__tests__/
+src/integrations/diagnostics/
+src/integrations/diagnostics/__tests__/
+src/integrations/editor/
+src/integrations/editor/__tests__/
+src/integrations/misc/
+src/integrations/misc/__tests__/
+src/integrations/misc/__tests__/performance/
+src/integrations/terminal/
+src/integrations/terminal/__tests__/
+src/integrations/terminal/__tests__/streamUtils/
+src/integrations/theme/
+src/integrations/theme/default-themes/
+src/integrations/workspace/
+src/integrations/workspace/__tests__/
+src/services/
+src/services/browser/
+src/services/browser/__tests__/
+src/services/checkpoints/
+src/services/checkpoints/__tests__/
+src/services/code-index/
+src/services/code-index/__tests__/
+src/services/code-index/constants/
+src/services/code-index/embedders/
+src/services/code-index/embedders/__tests__/
+src/services/code-index/interfaces/
+src/services/code-index/processors/
+src/services/code-index/processors/__tests__/
+src/services/code-index/shared/
+src/services/code-index/shared/__tests__/
+src/services/code-index/vector-store/
+src/services/code-index/vector-store/__tests__/
+src/services/glob/
+src/services/glob/__mocks__/
+src/services/glob/__tests__/
+src/services/marketplace/
+src/services/marketplace/__tests__/
+src/services/mcp/
+src/services/mcp/__tests__/
+src/services/mdm/
+src/services/mdm/__tests__/
+src/services/ripgrep/
+src/services/ripgrep/__tests__/
+src/services/roo-config/
+src/services/roo-config/__tests__/
+src/services/search/
+src/services/tree-sitter/
+src/services/tree-sitter/__tests__/
+src/services/tree-sitter/__tests__/fixtures/
+src/services/tree-sitter/queries/
+src/shared/
+src/shared/__tests__/
+src/utils/
+src/utils/__tests__/
+src/utils/logging/
+src/utils/logging/__tests__/
+src/webview-ui/
+src/webview-ui/audio/
+src/workers/
+webview-ui/
+webview-ui/audio/
+webview-ui/public/
+webview-ui/src/
+webview-ui/src/__tests__/
+webview-ui/src/components/
+webview-ui/src/components/__tests__/
+webview-ui/src/components/account/
+webview-ui/src/components/account/__tests__/
+webview-ui/src/components/chat/
+webview-ui/src/components/chat/__tests__/
+webview-ui/src/components/chat/checkpoints/
+webview-ui/src/components/chat/hooks/
+webview-ui/src/components/common/
+webview-ui/src/components/common/__mocks__/
+webview-ui/src/components/common/__tests__/
+webview-ui/src/components/history/
+webview-ui/src/components/history/__tests__/
+webview-ui/src/components/human-relay/
+webview-ui/src/components/marketplace/
+webview-ui/src/components/marketplace/__tests__/
+webview-ui/src/components/marketplace/components/
+webview-ui/src/components/marketplace/components/__tests__/
+webview-ui/src/components/mcp/
+webview-ui/src/components/mcp/__tests__/
+webview-ui/src/components/modes/
+webview-ui/src/components/modes/__tests__/
+webview-ui/src/components/settings/
+webview-ui/src/components/settings/__tests__/
+webview-ui/src/components/settings/providers/
+webview-ui/src/components/settings/providers/__tests__/
+webview-ui/src/components/settings/utils/
+webview-ui/src/components/settings/utils/__tests__/
+webview-ui/src/components/ui/
+webview-ui/src/components/ui/__tests__/
+webview-ui/src/components/ui/hooks/
+webview-ui/src/components/ui/hooks/__tests__/
+webview-ui/src/components/welcome/
+webview-ui/src/components/welcome/__tests__/
+webview-ui/src/context/
+webview-ui/src/context/__tests__/
+webview-ui/src/hooks/
+webview-ui/src/hooks/__tests__/
+webview-ui/src/i18n/
+webview-ui/src/i18n/__mocks__/
+webview-ui/src/i18n/__tests__/
+webview-ui/src/i18n/locales/
+webview-ui/src/i18n/locales/ca/
+webview-ui/src/i18n/locales/de/
+webview-ui/src/i18n/locales/en/
+webview-ui/src/i18n/locales/es/
+webview-ui/src/i18n/locales/fr/
+webview-ui/src/i18n/locales/hi/
+webview-ui/src/i18n/locales/id/
+webview-ui/src/i18n/locales/it/
+webview-ui/src/i18n/locales/ja/
+webview-ui/src/i18n/locales/ko/
+webview-ui/src/i18n/locales/nl/
+webview-ui/src/i18n/locales/pl/
+webview-ui/src/i18n/locales/pt-BR/
+webview-ui/src/i18n/locales/ru/
+webview-ui/src/i18n/locales/tr/
+webview-ui/src/i18n/locales/vi/
+webview-ui/src/i18n/locales/zh-CN/
+webview-ui/src/i18n/locales/zh-TW/
+webview-ui/src/lib/
+webview-ui/src/oauth/
+webview-ui/src/utils/
+webview-ui/src/utils/__tests__/
+webview-ui/src/vite-plugins/
+
+(File list truncated. Use list_files on specific subdirectories if you need to explore further.)
+====
+
+REMINDERS
+
+Below is your current list of reminders for this task. Keep them updated as you progress.
+
+| # | Content | Status |
+|---|---------|--------|
+| 1 | Analyze current logo references and branding in the codebase | Completed |
+| 2 | Identify proxy and VPN settings implementation | Completed |
+| 3 | Review current event triggers system | Completed |
+| 4 | Examine default settings values | Completed |
+| 5 | Understand UI layout and structure | Completed |
+| 6 | Research Milvus Lite integration requirements | Completed |
+| 7 | Phase 1: Logo rebranding and file updates | In Progress |
+| 8 | Update src/assets/images/roo-logo.svg to hivemind branding | Pending |
+| 9 | Update all code references to roo-logo.svg | Pending |
+| 10 | Update logo references in web-roo-code/src/lib/hooks/use-logo-src.ts | Pending |
+| 11 | Rename logo files in apps/web-roo-code/public/ from Roo-Code-Logo-Horiz-* to Hivemind-Logo-Horiz-* | Pending |
+| 12 | Update VS Code extension manifest and icon references | Pending |
+| 13 | Update Package.outputChannel in src/shared/package.ts from "Roo-Code" to "Hivemind" | Pending |
+| 14 | Phase 2: Proxy/VPN settings analysis and restructuring | In Progress |
+| 15 | Rename proxyEnabled field and UI label to "Enable Proxy Routing" | Completed |
+| 16 | Rename proxy authentication UI label to "Proxy Authentication" and nest under "Proxy URL" | Pending |
+| 17 | Rename proxyBypassLocal field and UI label to "Bypass Local Routing" | Pending |
+| 18 | Create tabbed "Proxy Settings" section grouping all proxy options | Pending |
+| 19 | Update TypeScript types in packages/types/src/provider-settings.ts for renamed fields | Completed |
+| 20 | Rename vpnEnabled field and UI label to "Enable VPN Routing" | Completed |
+| 21 | Apply consistent naming to all VPN-related options | Pending |
+| 22 | Create tabbed "VPN Settings" section grouping all VPN options | Pending |
+| 23 | Update TypeScript types for VPN fields | Completed |
+| 24 | Phase 3: Default settings changes | Pending |
+| 25 | Change autoApprovalEnabled default from false to true in packages/types/src/global-settings.ts | Pending |
+| 26 | Change autoApprovalEnabled default from false to true in webview-ui/src/context/ExtensionStateContext.tsx | Pending |
+| 27 | Change autoCondenseContextPercent default from 100 to 60 in Context section settings | Pending |
+| 28 | Rename "Use Custom Temperature" field to "Use Custom Parameters" | Pending |
+| 29 | Expand Custom Parameters section to include top_p, frequency_penalty, presence_penalty, max_tokens | Pending |
+| 30 | Add schema fields to packages/types/src/provider-settings.ts for new parameters | Pending |
+| 31 | Phase 4: Event triggers system redesign | Pending |
+| 32 | Extend eventTriggers array schema to include custom execution blocks | Pending |
+| 33 | Add support for Shell, PowerShell, and Batch code execution blocks | Pending |
+| 34 | Add language selection dropdown and enable/disable toggles for each trigger | Pending |
+| 35 | Add new state properties to ExtensionStateContextType | Pending |
+| 36 | Move "Automatically Trigger intelligent context condensing" setting to "Context Condensing" under "Prompts" | Pending |
+| 37 | Update schema in packages/types/src/global-settings.ts for execution language and code blocks | Pending |
+| 38 | Phase 5: UI layout improvements | Pending |
+| 39 | Reduce CSS margins/padding between section headings and descriptive subtext | Pending |
+| 40 | Rename "Experimental" section to "Advanced" in settings navigation | Pending |
+| 41 | Move "MCP Servers", "Modes", "History", and "Open In Editor" from overflow menu to individual icon buttons | Pending |
+| 42 | Position new icon buttons between settings gear and user profile in main toolbar | Pending |
+| 43 | Phase 6: New features implementation | Pending |
+| 44 | Add "Storage Database" dropdown selector in main chat window with Supabase, Milvus Lite, Qdrant, Custom options | Pending |
+| 45 | Add state management properties to ExtensionStateContextType for vector database | Pending |
+| 46 | Add schema fields to packages/types/src/global-settings.ts for vector database configuration | Pending |
+| 47 | Create "Knowledge Section" for managing documentation and reference data | Pending |
+| 48 | Create "Rules Section" for transparent management of Roo Rules | Pending |
+| 49 | Configure Milvus Lite as default vector database backend | Pending |
+| 50 | Integrate with existing codebase indexing configuration | Pending |
+
+
+IMPORTANT: When task status changes, remember to call the `update_todo_list` tool to update your progress.
+
+</environment_details>

@@ -61,14 +61,14 @@ private async migrateProxySettings(providerProfiles: ProviderProfiles) {
     for (const [name, config] of Object.entries(providerProfiles.apiConfigs)) {
       // Only migrate if profile doesn't already have proxy settings
       if (
-        config.proxyEnabled === undefined &&
+        config.proxyRoutingEnabled === undefined &&
         !config.proxyUrl &&
         !config.proxyAuth &&
         config.proxyBypassLocal === undefined
       ) {
         providerProfiles.apiConfigs[name] = {
           ...config,
-          proxyEnabled: globalProxyConfig.get<boolean>("enabled", false),
+          proxyRoutingEnabled: globalProxyConfig.get<boolean>("enabled", false),
           proxyUrl: globalProxyConfig.get<string>("url", ""),
           proxyAuth: {
             username: globalProxyConfig.get<string>("auth.username", ""),
@@ -167,7 +167,7 @@ public async rollbackProxyMigration() {
   
   // Clear proxy settings from all profiles
   for (const [name, config] of Object.entries(profiles.apiConfigs)) {
-    delete config.proxyEnabled
+    delete config.proxyRoutingEnabled
     delete config.proxyUrl
     delete config.proxyAuth
     delete config.proxyBypassLocal

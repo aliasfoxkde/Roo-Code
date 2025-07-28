@@ -102,7 +102,7 @@ describe("ProxyTestUtils", () => {
 
 		it("should pass provider settings to ProxyManager", async () => {
 			const providerSettings = {
-				proxyEnabled: true,
+				proxyRoutingEnabled: true,
 				proxyUrl: "http://proxy.example.com:8080",
 			}
 			mockProxyManager.getProxyAgent.mockReturnValue(null)
@@ -149,7 +149,7 @@ describe("ProxyTestUtils", () => {
 		it("should pass provider settings to individual tests", async () => {
 			const urls = ["https://api.example.com/test"]
 			const providerSettings = {
-				proxyEnabled: true,
+				proxyRoutingEnabled: true,
 				proxyUrl: "http://proxy.example.com:8080",
 			}
 
@@ -171,7 +171,7 @@ describe("ProxyTestUtils", () => {
 		it("should return proxy configuration info when proxy is configured", () => {
 			const mockAgent = { proxy: "test-agent" }
 			const proxySettings = {
-				proxyEnabled: true,
+				proxyRoutingEnabled: true,
 				proxyUrl: "http://proxy.example.com:8080",
 				proxyBypassLocal: false
 			}
@@ -192,7 +192,7 @@ describe("ProxyTestUtils", () => {
 		it("should return correct info when no proxy is configured", () => {
 			mockProxyManager.getProxyAgent.mockReturnValue(null)
 			mockProxyManager.getProxySettings.mockReturnValue({
-				proxyEnabled: false,
+				proxyRoutingEnabled: false,
 				proxyUrl: "",
 				proxyBypassLocal: false
 			})
@@ -209,7 +209,7 @@ describe("ProxyTestUtils", () => {
 
 		it("should return correct info when URL is bypassed", () => {
 			const proxySettings = {
-				proxyEnabled: true,
+				proxyRoutingEnabled: true,
 				proxyUrl: "http://proxy.example.com:8080",
 				proxyBypassLocal: true
 			}
@@ -230,7 +230,7 @@ describe("ProxyTestUtils", () => {
 
 		it("should pass provider settings to ProxyManager", () => {
 			const providerSettings = {
-				proxyEnabled: true,
+				proxyRoutingEnabled: true,
 				proxyUrl: "http://proxy.example.com:8080",
 			}
 			const mockAgent = { proxy: "test-agent" }

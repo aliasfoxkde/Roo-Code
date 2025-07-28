@@ -82,7 +82,7 @@ import { ApiErrorMessage } from "./ApiErrorMessage"
 import { ThinkingBudget } from "./ThinkingBudget"
 import { DiffSettingsControl } from "./DiffSettingsControl"
 import { TodoListSettingsControl } from "./TodoListSettingsControl"
-import { TemperatureControl } from "./TemperatureControl"
+import { ParametersControl } from "./ParametersControl"
 import { RateLimitSecondsControl } from "./RateLimitSecondsControl"
 import { ConsecutiveMistakeLimitControl } from "./ConsecutiveMistakeLimitControl"
 import { BedrockCustomArn } from "./providers/BedrockCustomArn"
@@ -588,10 +588,22 @@ const ApiOptions = ({
 							fuzzyMatchThreshold={apiConfiguration.fuzzyMatchThreshold}
 							onChange={(field, value) => setApiConfigurationField(field, value)}
 						/>
-						<TemperatureControl
-							value={apiConfiguration.modelTemperature}
-							onChange={handleInputChange("modelTemperature", noTransform)}
-							maxValue={2}
+						<ParametersControl
+							value={{
+								temperature: apiConfiguration.modelTemperature,
+								topP: apiConfiguration.modelTopP,
+								frequencyPenalty: apiConfiguration.modelFrequencyPenalty,
+								presencePenalty: apiConfiguration.modelPresencePenalty,
+								maxTokens: apiConfiguration.modelMaxTokens
+							}}
+							onChange={(newParams) => {
+								setApiConfigurationField("modelTemperature", newParams.temperature)
+								setApiConfigurationField("modelTopP", newParams.topP)
+								setApiConfigurationField("modelFrequencyPenalty", newParams.frequencyPenalty)
+								setApiConfigurationField("modelPresencePenalty", newParams.presencePenalty)
+								setApiConfigurationField("modelMaxTokens", newParams.maxTokens)
+							}}
+							maxTemperature={2}
 						/>
 						<RateLimitSecondsControl
 							value={apiConfiguration.rateLimitSeconds || 0}

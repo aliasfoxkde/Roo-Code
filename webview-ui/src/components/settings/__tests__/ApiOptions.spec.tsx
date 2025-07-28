@@ -126,13 +126,13 @@ vi.mock("@/components/ui", () => ({
 	),
 }))
 
-vi.mock("../TemperatureControl", () => ({
-	TemperatureControl: ({ value, onChange }: any) => (
-		<div data-testid="temperature-control">
+vi.mock("../ParametersControl", () => ({
+	ParametersControl: ({ value, onChange }: any) => (
+		<div data-testid="parameters-control">
 			<input
 				type="range"
-				value={value || 0}
-				onChange={(e) => onChange(parseFloat(e.target.value))}
+				value={value.temperature || 0}
+				onChange={(e) => onChange({ ...value, temperature: parseFloat(e.target.value) })}
 				min={0}
 				max={2}
 				step={0.1}
@@ -284,7 +284,7 @@ const renderApiOptions = (props: Partial<ApiOptionsProps> = {}) => {
 }
 
 describe("ApiOptions", () => {
-	it("shows diff settings, temperature and rate limit controls by default", () => {
+	it("shows diff settings, parameters and rate limit controls by default", () => {
 		renderApiOptions({
 			apiConfiguration: {
 				diffEnabled: true,
@@ -293,7 +293,7 @@ describe("ApiOptions", () => {
 		})
 		// Check for DiffSettingsControl by looking for text content
 		expect(screen.getByText(/enable editing through diffs/i)).toBeInTheDocument()
-		expect(screen.getByTestId("temperature-control")).toBeInTheDocument()
+		expect(screen.getByTestId("parameters-control")).toBeInTheDocument()
 		expect(screen.getByTestId("rate-limit-seconds-control")).toBeInTheDocument()
 	})
 
@@ -301,7 +301,7 @@ describe("ApiOptions", () => {
 		renderApiOptions({ fromWelcomeView: true })
 		// Check for absence of DiffSettingsControl text
 		expect(screen.queryByText(/enable editing through diffs/i)).not.toBeInTheDocument()
-		expect(screen.queryByTestId("temperature-control")).not.toBeInTheDocument()
+		expect(screen.queryByTestId("parameters-control")).not.toBeInTheDocument()
 		expect(screen.queryByTestId("rate-limit-seconds-control")).not.toBeInTheDocument()
 	})
 

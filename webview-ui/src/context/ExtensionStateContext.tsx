@@ -152,8 +152,20 @@ export interface ExtensionStateContextType extends ExtensionState {
 	// Event triggers properties
 	eventTriggersEnabled?: boolean
 	setEventTriggersEnabled: (value: boolean) => void
-	eventTriggers?: Array<{ eventName: string; triggerPrompt: string; enabled?: boolean }>
-	setEventTriggers: (value: Array<{ eventName: string; triggerPrompt: string; enabled?: boolean }>) => void
+	eventTriggers?: Array<{
+		eventName: string;
+		triggerPrompt: string;
+		enabled?: boolean;
+		executionLanguage?: "shell" | "powershell" | "batch";
+		executionCode?: string;
+	}>
+	setEventTriggers: (value: Array<{
+		eventName: string;
+		triggerPrompt: string;
+		enabled?: boolean;
+		executionLanguage?: "shell" | "powershell" | "batch";
+		executionCode?: string;
+	}>) => void
 }
 
 export const ExtensionStateContext = createContext<ExtensionStateContextType | undefined>(undefined)
@@ -214,7 +226,7 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		condensingApiConfigId: "", // Default empty string for condensing API config ID
 		customCondensingPrompt: "", // Default empty string for custom condensing prompt
 		hasOpenedModeSelector: false, // Default to false (not opened yet)
-		autoApprovalEnabled: false,
+		autoApprovalEnabled: true,
 		customModes: [],
 		maxOpenTabsContext: 20,
 		maxWorkspaceFiles: 200,
@@ -236,7 +248,7 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 		sharingEnabled: false,
 		organizationAllowList: ORGANIZATION_ALLOW_ALL,
 		autoCondenseContext: true,
-		autoCondenseContextPercent: 100,
+		autoCondenseContextPercent: 60,
 		profileThresholds: {},
 		codebaseIndexConfig: {
 			codebaseIndexEnabled: true,

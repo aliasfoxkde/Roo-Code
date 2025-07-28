@@ -32,8 +32,24 @@ interface PromptsSettingsProps {
 	setPromptMaxQueueSize: (size: number) => void
 	eventTriggersEnabled?: boolean
 	setEventTriggersEnabled: (enabled: boolean) => void
-	eventTriggers?: Array<{ eventName: string; triggerPrompt: string; enabled?: boolean }>
-	setEventTriggers: (triggers: Array<{ eventName: string; triggerPrompt: string; enabled?: boolean }>) => void
+	eventTriggers?: Array<{
+		eventName: string;
+		triggerPrompt: string;
+		enabled?: boolean;
+		executionLanguage?: "shell" | "powershell" | "batch";
+		executionCode?: string;
+	}>
+	setEventTriggers: (triggers: Array<{
+		eventName: string;
+		triggerPrompt: string;
+		enabled?: boolean;
+		executionLanguage?: "shell" | "powershell" | "batch";
+		executionCode?: string;
+	}>) => void
+	autoCondenseContext: boolean
+	setAutoCondenseContext: (value: boolean) => void
+	autoCondenseContextPercent: number
+	setAutoCondenseContextPercent: (value: number) => void
 }
 
 const PromptsSettings = ({
@@ -51,6 +67,10 @@ const PromptsSettings = ({
 	setEventTriggersEnabled,
 	eventTriggers,
 	setEventTriggers,
+	autoCondenseContext,
+	setAutoCondenseContext,
+	autoCondenseContextPercent,
+	setAutoCondenseContextPercent,
 }: PromptsSettingsProps) => {
 	const { t } = useAppTranslation()
 	const {
@@ -423,51 +443,173 @@ const PromptsSettings = ({
 							
 							<div className="space-y-3">
 								{(eventTriggers || []).map((trigger, index) => (
-									<div key={index} className="flex gap-2">
-										<input
-											type="text"
-											value={trigger.eventName}
-											onChange={(e) => {
-												const newTriggers = [...(eventTriggers || [])];
-												newTriggers[index] = { ...trigger, eventName: e.target.value };
-												setEventTriggers(newTriggers);
-											}}
-											placeholder={t("settings:prompts.eventTriggers.customTrigger.eventNamePlaceholder")}
-											className="flex-1 px-2 py-1 text-sm border border-vscode-input-border rounded bg-vscode-input-background text-vscode-input-foreground"
-										/>
-										<input
-											type="text"
-											value={trigger.triggerPrompt}
-											onChange={(e) => {
-												const newTriggers = [...(eventTriggers || [])];
-												newTriggers[index] = { ...trigger, triggerPrompt: e.target.value };
-												setEventTriggers(newTriggers);
-											}}
-											placeholder={t("settings:prompts.eventTriggers.customTrigger.triggerPromptPlaceholder")}
-											className="flex-1 px-2 py-1 text-sm border border-vscode-input-border rounded bg-vscode-input-background text-vscode-input-foreground"
-										/>
-										<Button
-											variant="secondary"
-											size="sm"
-											onClick={() => {
-												const newTriggers = [...(eventTriggers || [])];
-												newTriggers.splice(index, 1);
-												setEventTriggers(newTriggers);
-											}}>
-											<span className="codicon codicon-trash"></span>
-										</Button>
+									<div key={index} className="border border-vscode-input-border rounded p-3">
+										<div className="flex gap-2 mb-2">
+											<input
+												type="text"
+												value={trigger.eventName}
+												onChange={(e) => {
+													const newTriggers = [...(eventTriggers || [])];
+													newTriggers[index] = { ...trigger, eventName: e.target.value };
+													setEventTriggers(newTriggers);
+												}}
+												placeholder={t("settings:prompts.eventTriggers.customTrigger.eventNamePlaceholder")}
+												className="flex-1 px-2 py-1 text-sm border border-vscode-input-border rounded bg-vscode-input-background text-vscode-input-foreground"
+											/>
+											<Button
+												variant="secondary"
+												size="sm"
+												onClick={() => {
+													const newTriggers = [...(eventTriggers || [])];
+													newTriggers.splice(index, 1);
+													setEventTriggers(newTriggers);
+												}}>
+												<span className="codicon codicon-trash"></span>
+											</Button>
+										</div>
+										<div className="mb-2">
+											<label className="block text-sm font-medium mb-1">
+												{t("settings:prompts.eventTriggers.customTrigger.triggerPrompt")}
+											</label>
+											<input
+												type="text"
+												value={trigger.triggerPrompt}
+												onChange={(e) => {
+													const newTriggers = [...(eventTriggers || [])];
+													newTriggers[index] = { ...trigger, triggerPrompt: e.target.value };
+													setEventTriggers(newTriggers);
+												}}
+												placeholder={t("settings:prompts.eventTriggers.customTrigger.triggerPromptPlaceholder")}
+												className="w-full px-2 py-1 text-sm border border-vscode-input-border rounded bg-vscode-input-background text-vscode-input-foreground"
+											/>
+										</div>
+										<div className="flex items-center gap-2 mb-2">
+											<input
+												type="checkbox"
+												id={`trigger-enabled-${index}`}
+												checked={trigger.enabled !== false}
+												onChange={(e) => {
+													const newTriggers = [...(eventTriggers || [])];
+													newTriggers[index] = { ...trigger, enabled: e.target.checked };
+													setEventTriggers(newTriggers);
+												}}
+												className="form-checkbox h-4 w-4 text-vscode-button-background"
+											/>
+											<label htmlFor={`trigger-enabled-${index}`} className="text-sm">
+												{t("common:enabled")}
+											</label>
+										</div>
+										<div className="space-y-2">
+											<div>
+												<label className="block text-sm font-medium mb-1">
+													{t("settings:prompts.eventTriggers.customTrigger.executionLanguage")}
+												</label>
+												<select
+													value={trigger.executionLanguage || ""}
+													onChange={(e) => {
+														const newTriggers = [...(eventTriggers || [])];
+														newTriggers[index] = {
+															...trigger,
+															executionLanguage: e.target.value as "shell" | "powershell" | "batch" | undefined
+														};
+														setEventTriggers(newTriggers);
+													}}
+													className="w-full px-2 py-1 text-sm border border-vscode-input-border rounded bg-vscode-input-background text-vscode-input-foreground"
+												>
+													<option value="">{t("common:select")}</option>
+													<option value="shell">Shell</option>
+													<option value="powershell">PowerShell</option>
+													<option value="batch">Batch</option>
+												</select>
+											</div>
+											{trigger.executionLanguage && (
+												<div>
+													<label className="block text-sm font-medium mb-1">
+														{t("settings:prompts.eventTriggers.customTrigger.executionCode")}
+													</label>
+													<textarea
+														value={trigger.executionCode || ""}
+														onChange={(e) => {
+															const newTriggers = [...(eventTriggers || [])];
+															newTriggers[index] = { ...trigger, executionCode: e.target.value };
+															setEventTriggers(newTriggers);
+														}}
+														placeholder={t("settings:prompts.eventTriggers.customTrigger.executionCodePlaceholder")}
+														rows={3}
+														className="w-full px-2 py-1 text-sm border border-vscode-input-border rounded bg-vscode-input-background text-vscode-input-foreground font-mono"
+													/>
+												</div>
+											)}
+										</div>
 									</div>
 								))}
 								<Button
 									variant="secondary"
 									size="sm"
 									onClick={() => {
-										const newTriggers = [...(eventTriggers || []), { eventName: "", triggerPrompt: "" }];
+										const newTriggers = [...(eventTriggers || []), {
+											eventName: "",
+											triggerPrompt: "",
+											enabled: true
+										}];
 										setEventTriggers(newTriggers);
 									}}>
 									<span className="codicon codicon-add"></span>
 									{t("settings:prompts.eventTriggers.customTrigger.addTrigger")}
 								</Button>
+							</div>
+						</div>
+					</div>
+				)}
+			</Section>
+			
+			{/* Context Condensing Section */}
+			<Section>
+				<div className="flex items-center justify-between mb-3">
+					<h3 className="font-medium">{t("settings:prompts.contextCondensing.title")}</h3>
+				</div>
+				<div className="text-sm text-vscode-descriptionForeground mb-4">
+					{t("settings:prompts.contextCondensing.description")}
+				</div>
+				
+				<div className="flex items-center justify-between mb-4">
+					<div>
+						<label className="block font-medium text-sm">
+							{t("settings:contextManagement.autoCondenseContext.name")}
+						</label>
+						<div className="text-xs text-vscode-descriptionForeground mt-1">
+							{t("settings:prompts.contextCondensing.autoTriggerDescription")}
+						</div>
+					</div>
+					<Button
+						variant={autoCondenseContext ? "default" : "secondary"}
+						size="sm"
+						onClick={() => setAutoCondenseContext(!autoCondenseContext)}>
+						{autoCondenseContext ? t("common:enabled") : t("common:disabled")}
+					</Button>
+				</div>
+				
+				{autoCondenseContext && (
+					<div className="space-y-4 pl-3 border-l-2 border-vscode-button-background">
+						<div>
+							<label className="block font-medium text-sm mb-1">
+								{t("settings:contextManagement.condensingThreshold.label")}
+							</label>
+							<div className="flex items-center gap-2">
+								<input
+									type="range"
+									min="10"
+									max="100"
+									value={autoCondenseContextPercent}
+									onChange={(e) => setAutoCondenseContextPercent(parseInt(e.target.value))}
+									className="w-full"
+								/>
+								<span className="text-sm w-12">{autoCondenseContextPercent}%</span>
+							</div>
+							<div className="text-xs text-vscode-descriptionForeground mt-1">
+								{t("settings:contextManagement.condensingThreshold.defaultDescription", {
+									threshold: autoCondenseContextPercent,
+								})}
 							</div>
 						</div>
 					</div>

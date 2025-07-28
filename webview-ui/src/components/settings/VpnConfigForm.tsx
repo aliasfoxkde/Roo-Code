@@ -48,14 +48,14 @@ export const VpnConfigForm = ({ settings, onChange, showAdvanced = false }: VpnC
 		<div className="flex flex-col gap-3">
 			<div className="flex items-center gap-2">
 				<VSCodeCheckbox
-					checked={settings.vpnEnabled ?? false}
-					onChange={(e: any) => handleInputChange("vpnEnabled", e.target.checked)}>
+					checked={settings.vpnRoutingEnabled ?? false}
+					onChange={(e: any) => handleInputChange("vpnRoutingEnabled", e.target.checked)}>
 					{t("settings:vpn.enableVpn")}
 				</VSCodeCheckbox>
 			</div>
 
-			{settings.vpnEnabled && (
-				<>
+			{settings.vpnRoutingEnabled && (
+				<div className="border border-vscode-settings-dropdownBorder rounded-md p-3 ml-6">
 					<div>
 						<VSCodeTextField
 							value={settings.vpnServer || ""}
@@ -69,35 +69,37 @@ export const VpnConfigForm = ({ settings, onChange, showAdvanced = false }: VpnC
 						</div>
 					</div>
 
-					<div className="flex items-center gap-2">
-						<VSCodeCheckbox
-							checked={showAuth}
-							onChange={toggleAuthFields}>
-							{t("settings:proxy.enableAuthentication")}
-						</VSCodeCheckbox>
+					<div className="ml-4 mt-3">
+						<div className="flex items-center gap-2">
+							<VSCodeCheckbox
+								checked={showAuth}
+								onChange={toggleAuthFields}>
+								{t("settings:vpn.enableAuthentication")}
+							</VSCodeCheckbox>
+						</div>
+
+						{showAuth && (
+							<div className="grid grid-cols-2 gap-3 mt-2 ml-6">
+								<VSCodeTextField
+									value={settings.vpnUsername || ""}
+									onInput={(e: any) => handleAuthChange("vpnUsername", e.target.value)}
+									placeholder={t("settings:vpn.usernamePlaceholder")}
+									className="w-full">
+									<label className="block font-medium mb-1">{t("settings:vpn.username")}</label>
+								</VSCodeTextField>
+								<VSCodeTextField
+									value={settings.vpnPassword || ""}
+									onInput={(e: any) => handleAuthChange("vpnPassword", e.target.value)}
+									placeholder={t("settings:vpn.passwordPlaceholder")}
+									type="password"
+									className="w-full">
+									<label className="block font-medium mb-1">{t("settings:vpn.password")}</label>
+								</VSCodeTextField>
+							</div>
+						)}
 					</div>
 
-					{showAuth && (
-						<div className="grid grid-cols-2 gap-3">
-							<VSCodeTextField
-								value={settings.vpnUsername || ""}
-								onInput={(e: any) => handleAuthChange("vpnUsername", e.target.value)}
-								placeholder={t("settings:vpn.usernamePlaceholder")}
-								className="w-full">
-								<label className="block font-medium mb-1">{t("settings:vpn.username")}</label>
-							</VSCodeTextField>
-							<VSCodeTextField
-								value={settings.vpnPassword || ""}
-								onInput={(e: any) => handleAuthChange("vpnPassword", e.target.value)}
-								placeholder={t("settings:vpn.passwordPlaceholder")}
-								type="password"
-								className="w-full">
-								<label className="block font-medium mb-1">{t("settings:vpn.password")}</label>
-							</VSCodeTextField>
-						</div>
-					)}
-
-					<div>
+					<div className="mt-3">
 						<VSCodeTextField
 							value={settings.vpnCertificatePath || ""}
 							onInput={(e: any) => handleInputChange("vpnCertificatePath", e.target.value)}
@@ -110,19 +112,17 @@ export const VpnConfigForm = ({ settings, onChange, showAdvanced = false }: VpnC
 						</div>
 					</div>
 
-					{showAdvanced && (
-						<div className="flex items-center gap-2">
-							<VSCodeCheckbox
-								checked={settings.vpnBypassLocal ?? false}
-								onChange={(e: any) => handleInputChange("vpnBypassLocal", e.target.checked)}>
-								{t("settings:vpn.bypassLocal")}
-							</VSCodeCheckbox>
-							<StandardTooltip content={t("settings:vpn.bypassLocalDescription")}>
-								<i className="codicon codicon-info text-vscode-descriptionForeground" />
-							</StandardTooltip>
-						</div>
-					)}
-				</>
+					<div className="flex items-center gap-2 mt-3">
+						<VSCodeCheckbox
+							checked={settings.vpnBypassLocal ?? false}
+							onChange={(e: any) => handleInputChange("vpnBypassLocal", e.target.checked)}>
+							{t("settings:vpn.bypassLocal")}
+						</VSCodeCheckbox>
+						<StandardTooltip content={t("settings:vpn.bypassLocalDescription")}>
+							<i className="codicon codicon-info text-vscode-descriptionForeground" />
+						</StandardTooltip>
+					</div>
+				</div>
 			)}
 		</div>
 	)

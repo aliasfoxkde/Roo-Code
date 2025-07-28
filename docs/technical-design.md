@@ -19,7 +19,7 @@ const baseProviderSettingsSchema = z.object({
   // ... existing fields ...
   
   // Proxy settings (already present)
-  proxyEnabled: z.boolean().optional(),
+  proxyRoutingEnabled: z.boolean().optional(),
   proxyUrl: z.string().optional(),
   proxyAuth: z.object({
     username: z.string().optional(),
@@ -41,13 +41,13 @@ export class ProxyManager {
     // First check provider-specific settings
     if (providerSettings) {
       if (
-        providerSettings.proxyEnabled !== undefined ||
+        providerSettings.proxyRoutingEnabled !== undefined ||
         providerSettings.proxyUrl ||
         providerSettings.proxyAuth ||
         providerSettings.proxyBypassLocal !== undefined
       ) {
         return {
-          proxyEnabled: providerSettings.proxyEnabled,
+          proxyRoutingEnabled: providerSettings.proxyRoutingEnabled,
           proxyUrl: providerSettings.proxyUrl,
           proxyAuth: providerSettings.proxyAuth,
           proxyBypassLocal: providerSettings.proxyBypassLocal,
@@ -58,7 +58,7 @@ export class ProxyManager {
     // Fall back to global VSCode configuration
     const config = vscode.workspace.getConfiguration("hivemind.proxy")
     return {
-      proxyEnabled: config.get<boolean>("enabled", false),
+      proxyRoutingEnabled: config.get<boolean>("enabled", false),
       proxyUrl: config.get<string>("url", ""),
       proxyAuth: {
         username: config.get<string>("auth.username", ""),
@@ -189,14 +189,14 @@ const ProxyConfigForm: React.FC<ProxyConfigFormProps> = ({ settings, onChange })
         <label>
           <input
             type="checkbox"
-            checked={settings.proxyEnabled ?? false}
-            onChange={(e) => onChange({ proxyEnabled: e.target.checked })}
+            checked={settings.proxyRoutingEnabled ?? false}
+            onChange={(e) => onChange({ proxyRoutingEnabled: e.target.checked })}
           />
-          Enable Proxy for this profile
+          Enable Proxy Routing for this profile
         </label>
       </div>
       
-      {settings.proxyEnabled && (
+      {settings.proxyRoutingEnabled && (
         <>
           <div className="form-group">
             <label>Proxy URL</label>
