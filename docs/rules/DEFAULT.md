@@ -187,3 +187,23 @@ App Template
   - No Console, Build, NPM, Jest, Strict Linting, or Unit Test errors/warnings
   - Built in Puppeteer for reading Console & Routes testing
   - Build in Playwright for Browser Automation Testing
+
+- Have first-steps intro section
+  - Welcome screen and intro with links, etc.
+  - Providers (Free)
+    - GitHub PAT
+      - For searching GitHub API, Creating Repos, Model access?, etc.
+    - Openrouter API Key
+      - Put $10 Credit, get 1K Daily Requests, use Qwen3-Coder
+    - Google AI Studio API Key
+      - Use for Gemma 3n 27B IT 128K with 14,400 free requests per day and for Vision,
+        Prompt Enhancing & Condensing, and Text-Embedding for Knowledge Base & Code Indexing
+    - Hugging Face
+      - Used for Image Generation
+  - Integrate Suggestions?
+    - Qdrant
+    - Code Rabbit*
+    - Supbase
+    - Cloudflare: For automatic deployment of CSR Web Apps.
+    - Vercel: For automatic deployment of SSR Web Apps.
+  - Documentation

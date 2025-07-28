@@ -8,7 +8,7 @@ import { isLanguage } from "@roo-code/types"
 import type { SystemPromptSettings } from "../types"
 
 import { LANGUAGES } from "../../../shared/language"
-import { getRooDirectoriesForCwd, getGlobalRooDirectory } from "../../../services/roo-config"
+import { getRooDirectoriesForCwd, getGlobalRooDirectory, getRooConfigService } from "../../../services/roo-config"
 
 /**
  * Safely read a file and return its trimmed content

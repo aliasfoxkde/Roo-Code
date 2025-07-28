@@ -30,6 +30,10 @@ import { MdmService } from "./services/mdm/MdmService"
 import { migrateSettings } from "./utils/migrateSettings"
 import { autoImportSettings } from "./utils/autoImportSettings"
 import { API } from "./extension/api"
+import { getFileWatcherService, disposeFileWatcherService } from "./services/file-watcher"
+import { getRooConfigService, disposeRooConfigService } from "./services/roo-config"
+import { getTypeScriptIntegrationService, disposeTypeScriptIntegrationService } from "./services/typescript-integration"
+import { getModeManagementService, disposeModeManagementService } from "./services/mode-management"
 
 import {
 	handleUri,
@@ -174,6 +178,50 @@ export async function activate(context: vscode.ExtensionContext) {
 	registerCodeActions(context)
 	registerTerminalActions(context)
 
+	// Initialize enhanced .roo directory services
+	try {
+		// Initialize file watcher service for hot reloading
+		const fileWatcherService = getFileWatcherService()
+
+		// Initialize roo config service with caching and hot reloading
+		const rooConfigService = getRooConfigService()
+
+		// Initialize TypeScript integration service
+		const typeScriptService = getTypeScriptIntegrationService()
+
+		// Initialize mode management service
+		const modeManagementService = getModeManagementService()
+
+		// Set up .roo directory watching for the current workspace
+		if (vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0) {
+			const workspaceRoot = vscode.workspace.workspaceFolders[0].uri.fsPath
+			const rooDir = path.join(workspaceRoot, '.roo')
+
+			// Watch .roo directory for changes
+			fileWatcherService.watchDirectory(rooDir, {
+				recursive: true,
+				debounceMs: 300,
+				includePatterns: ['**/*.md', '**/*.json', '**/*.yaml', '**/*.yml'],
+				excludePatterns: ['**/temp/**', '**/*.tmp', '**/*.log']
+			})
+
+			outputChannel.appendLine(`✅ Enhanced .roo directory system initialized for ${workspaceRoot}`)
+		}
+
+		// Listen for configuration changes and show notifications
+		rooConfigService.on('hotReload', (change) => {
+			outputChannel.appendLine(`🔄 Configuration hot reloaded: ${change.configType} at ${change.path}`)
+		})
+
+		modeManagementService.on('modeChanged', (event) => {
+			outputChannel.appendLine(`🔄 Mode switched from ${event.previousMode} to ${event.newMode}`)
+		})
+
+	} catch (error) {
+		outputChannel.appendLine(`⚠️ Failed to initialize enhanced .roo directory services: ${error}`)
+		console.error('Enhanced .roo directory services initialization failed:', error)
+	}
+
 	// Allows other extensions to activate once Roo is ready.
 	vscode.commands.executeCommand(`${Package.name}.activationCompleted`)
 
@@ -214,6 +262,13 @@ export async function activate(context: vscode.ExtensionContext) {
 // This method is called when your extension is deactivated.
 export async function deactivate() {
 	outputChannel.appendLine(`${Package.name} extension deactivated`)
+
+	// Clean up enhanced services
+	disposeFileWatcherService()
+	disposeRooConfigService()
+	disposeTypeScriptIntegrationService()
+	disposeModeManagementService()
+
 	await McpServerManager.cleanup(extensionContext)
 	TelemetryService.instance.shutdown()
 	TerminalRegistry.cleanup()
