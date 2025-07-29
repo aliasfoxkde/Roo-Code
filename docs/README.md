@@ -52,6 +52,20 @@ Upgrading from previous versions:
 - **[From Legacy Rules](migration/from-legacy-rules.md)** - Migrate .roorules to .roo directory
 - **[Configuration Updates](migration/configuration-updates.md)** - Update existing configurations
 - **[Breaking Changes](migration/breaking-changes.md)** - Version-specific breaking changes
+- **[Kiro Content Migration](migration/kiro-content-migration.md)** - Legacy Kiro system migration
+
+### 🧠 Knowledge Base
+Research-based insights and industry analysis:
+
+- **[AI Coding Assistants](knowledge-base/ai-coding-assistants.md)** - Analysis of leading AI coding assistant implementations
+- **[VS Code Extension Patterns](knowledge-base/vscode-extension-patterns.md)** - Proven patterns for VS Code extension development
+- **[Configuration Directory Patterns](knowledge-base/configuration-directory-patterns.md)** - Analysis of configuration systems across development tools
+
+### 📜 Legacy Documentation
+Preserved historical content:
+
+- **[Legacy Kiro Documentation](legacy/kiro/)** - Archived Kiro AI assistant system documentation
+- **[Migration Notes](legacy/kiro/README.md)** - Historical context and migration information
 
 ## 🎯 Popular Topics
 

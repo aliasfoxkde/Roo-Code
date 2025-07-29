@@ -1,19 +1,23 @@
 # Code Quality Rules for Roo Code VS Code Extension
 
-> **⚠️ IMPORTANT: This file has been restructured into a modular format for better maintainability and discoverability.**
->
-> **Please use the new modular structure located in the organized directories below.**
+This directory contains the comprehensive coding standards and development guidelines for the Roo Code VS Code Extension project. The rules are organized into focused, modular files for better maintainability and discoverability.
 
-## 🔄 Migration Notice
+## Quick Navigation
 
-This comprehensive rules file has been split into focused, modular files organized by category. The new structure provides:
+### For New Team Members
+- Start with [Development Principles](core/development-principles.md) to understand our foundational approach
+- Review [TypeScript Standards](core/typescript-standards.md) for language-specific guidelines
+- Follow the [Development Workflow](checklists/development-workflow.md) for day-to-day processes
 
-- **Better Navigation**: Find specific rules quickly
-- **Improved Maintainability**: Update specific rule categories independently
-- **Enhanced Discoverability**: Role-based organization for different team members
-- **Reduced Complexity**: Smaller, focused files instead of one large document
+### For Experienced Developers
+- Use the navigation below to quickly access specific rule categories
+- Reference the checklists for quality assurance and code reviews
+- Consult architecture guidelines when making design decisions
 
-## 📁 New Modular Structure
+### For Code Reviews
+- Use the [Code Review Checklist](checklists/code-review-checklist.md) systematically
+- Reference specific rule files when providing feedback
+- Ensure all [Quality Checklist](checklists/quality-checklist.md) items are verified
 
 ### 🏗️ Core Development Standards
 Essential principles and standards that apply to all development work.
@@ -78,9 +82,25 @@ Quick reference checklists for common development tasks.
 | **Process** | Project management and workflows | Documentation, Methodology, Deployment |
 | **Checklists** | Quick reference and verification | Workflow, Quality gates, Code review |
 
-## 🔗 Navigation Hub
+## Contributing to These Rules
 
-**👉 [Start with the comprehensive README](README.md) for detailed navigation and usage instructions.**
+When updating or adding rules:
+
+1. **Identify the correct category** - Place rules in the most appropriate file
+2. **Maintain consistency** - Follow the established format and style
+3. **Update cross-references** - Ensure links between files remain accurate
+4. **Test examples** - Verify all code examples are functional and current
+5. **Update this navigation** - Add new files or sections to the structure above
+
+## 🔍 How to Use These Rules
+
+Each rule file is designed to be:
+- **Self-contained**: Complete context within each file
+- **Actionable**: Specific guidance rather than abstract principles
+- **Searchable**: Clear headings and consistent terminology
+- **Maintainable**: Focused scope for easier updates
+
+Navigate to specific files based on your current task or use the comprehensive view above.
 
 ## 📚 Legacy Reference
 
