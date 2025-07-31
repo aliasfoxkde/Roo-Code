@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ai-ml-project-template-statefulset
+  namespace: ai-ml-project-template
+  labels:
+    app: ai-ml-project-template-mlflow
+spec:
+  serviceName: ai-ml-project-template-mlflow
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-ml-project-template-mlflow
+  template:
+    metadata:
+      labels:
+        app: ai-ml-project-template-mlflow
+    spec:
+      containers:
+      - name: mlflow
+        image: ghcr.io/mlflow/mlflow:v1.20.2
+        ports:
+        - containerPort: 5000
+          name: http
+        env:
+        - name: MLFLOW_BACKEND_STORE_URI
+          valueFrom:
+            secretKeyRef:
+              name: ai-ml-secret
+              key: database-url
+        - name: MLFLOW_DEFAULT_ARTIFACT_ROOT
+          value: "/mlflow/artifacts"
+        volumeMounts:
+        - name: mlflow-data
+          mountPath: /mlflow
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1"
+      volumes:
+      - name: mlflow-data
+        persistentVolumeClaim:
+          claimName: ai-ml-mlflow-pvc
+      serviceAccountName: ai-ml-project-template-sa
+  volumeClaimTemplates:
+  - metadata:
+      name: mlflow-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 20Gi

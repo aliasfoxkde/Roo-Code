@@ -1,0 +1,20 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: ai-ml-project-template-cluster-rolebinding
+  labels:
+    app: ai-ml-project-template
+subjects:
+- kind: ServiceAccount
+  name: ai-ml-project-template-sa
+  namespace: ai-ml-project-template
+- kind: ServiceAccount
+  name: ai-ml-project-template-admin-sa
+  namespace: ai-ml-project-template
+- kind: ServiceAccount
+  name: ai-ml-project-template-monitoring-sa
+  namespace: ai-ml-project-template
+roleRef:
+  kind: ClusterRole
+  name: ai-ml-project-template-cluster-role
+  apiGroup: rbac.authorization.k8s.io

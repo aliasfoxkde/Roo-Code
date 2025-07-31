@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ai-ml-project-template
+  labels:
+    name: ai-ml-project-template
+  annotations:
+    description: "Namespace for AI/ML Project Template"

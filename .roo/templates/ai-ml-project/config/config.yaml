@@ -1,0 +1,222 @@
+# Configuration for AI/ML Project Template
+
+# Application settings
+app:
+  name: "AI/ML Project Template"
+  version: "1.0.0"
+  description: "A template for AI/ML projects with FastAPI, Scikit-learn, and more"
+  debug: false
+  host: "0.0.0.0"
+  port: 8000
+  reload: false
+
+# Database settings
+database:
+  url: "postgresql://user:password@localhost:5432/ai_ml_db"
+  pool_size: 10
+  max_overflow: 20
+  pool_timeout: 30
+  pool_recycle: 3600
+  echo: false
+
+# Redis settings
+redis:
+  url: "redis://localhost:6379/0"
+  host: "localhost"
+  port: 6379
+  db: 0
+  password: null
+  socket_timeout: 5
+  socket_connect_timeout: 5
+  socket_keepalive: true
+  retry_on_timeout: true
+
+# API settings
+api:
+  title: "AI/ML Project Template API"
+  description: "API for AI/ML Project Template"
+  version: "1.0.0"
+  openapi_url: "/openapi.json"
+  docs_url: "/docs"
+  redoc_url: "/redoc"
+  prefix: ""
+
+# Model settings
+model:
+  default_type: "random_forest"
+  storage_path: "models/trained/"
+  temp_path: "models/temp/"
+  experiment_path: "models/experiments/"
+  log_path: "models/logs/"
+  versioning: true
+  compression: true
+
+# Data settings
+data:
+  input_path: "data/input/"
+  processed_path: "data/processed/"
+  output_path: "data/output/"
+  temp_path: "data/temp/"
+  validation:
+    enabled: true
+    strict_mode: false
+  cleaning:
+    missing_value_strategy: "mean"
+    outlier_method: "iqr"
+    duplicate_handling: "remove"
+
+# Logging settings
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  file_path: "logs/app.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
+  console_output: true
+
+# Security settings
+security:
+  secret_key: "your-secret-key-here"
+  algorithm: "HS256"
+  access_token_expire_minutes: 30
+  cors_origins:
+    - "*"
+  allowed_hosts:
+    - "*"
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 100
+    burst_limit: 20
+
+# Performance settings
+performance:
+  cache_enabled: true
+  cache_ttl: 300  # 5 minutes
+  async_enabled: true
+  max_workers: 4
+  timeout: 30
+
+# Monitoring settings
+monitoring:
+  metrics_enabled: true
+  tracing_enabled: false
+  profiling_enabled: false
+  health_check_interval: 60
+
+# MLflow settings
+mlflow:
+  tracking_uri: "http://localhost:5000"
+  experiment_name: "ai-ml-project-template"
+  artifact_location: "./mlruns"
+  autolog_enabled: true
+
+# Jupyter settings
+jupyter:
+  notebook_dir: "notebooks/"
+  ip: "0.0.0.0"
+  port: 8888
+  allow_origin: "*"
+  allow_credentials: true
+  allow_root: true
+
+# Testing settings
+testing:
+  database_url: "postgresql://user:password@localhost:5432/test_ai_ml_db"
+  redis_url: "redis://localhost:6379/1"
+  mlflow_tracking_uri: "sqlite:///test_mlflow.db"
+  data_path: "tests/data/"
+  model_path: "tests/models/"
+  coverage_threshold: 80
+
+# Deployment settings
+deployment:
+  environment: "development"
+  docker_image: "ai-ml-project-template:latest"
+  kubernetes_namespace: "default"
+  replicas: 1
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "1Gi"
+      cpu: "500m"
+
+# Feature flags
+features:
+  api_enabled: true
+  ml_enabled: true
+  data_processing_enabled: true
+  model_training_enabled: true
+  model_inference_enabled: true
+  dashboard_enabled: false
+  reporting_enabled: false
+
+# External services
+external:
+  aws:
+    access_key_id: null
+    secret_access_key: null
+    region: "us-east-1"
+  gcp:
+    project_id: null
+    credentials_file: null
+  azure:
+    subscription_id: null
+    tenant_id: null
+    client_id: null
+    client_secret: null
+
+# Notification settings
+notifications:
+  email:
+    enabled: false
+    smtp_host: "smtp.gmail.com"
+    smtp_port: 587
+    username: null
+    password: null
+    from_address: null
+  slack:
+    enabled: false
+    webhook_url: null
+  telegram:
+    enabled: false
+    bot_token: null
+    chat_id: null
+
+# Backup settings
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  retention_days: 30
+  storage_path: "backups/"
+  compression: true
+
+# Audit settings
+audit:
+  enabled: true
+  log_path: "logs/audit.log"
+  retention_days: 90
+
+# Compliance settings
+compliance:
+  gdpr_enabled: false
+  hipaa_enabled: false
+  sox_enabled: false
+  pci_enabled: false
+
+# Internationalization settings
+i18n:
+  default_language: "en"
+  supported_languages:
+    - "en"
+    - "es"
+    - "fr"
+    - "de"
+  translation_path: "translations/"
+
+# Custom settings
+custom:
+  # Add your custom settings here
+  example_setting: "example_value"

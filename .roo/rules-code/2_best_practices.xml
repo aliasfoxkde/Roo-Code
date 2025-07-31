@@ -1,0 +1,93 @@
+<code_best_practices>
+  <overview>
+    Coding standards and best practices for writing high-quality, maintainable code.
+  </overview>
+  
+  <general_principles>
+    <principle>Write code that is easy to read and understand</principle>
+    <principle>Follow established patterns and conventions</principle>
+    <principle>Keep functions and methods focused and small</principle>
+    <principle>Use meaningful names for variables, functions, and classes</principle>
+    <principle>Comment complex logic and non-obvious decisions</principle>
+  </general_principles>
+  
+  <code_organization>
+    <structure>
+      <guideline>Organize code into logical modules and components</guideline>
+      <guideline>Group related functionality together</guideline>
+      <guideline>Separate concerns clearly</guideline>
+      <guideline>Follow established project structure</guideline>
+    </structure>
+    
+    <naming>
+      <convention>Use descriptive, meaningful names</convention>
+      <convention>Follow language-specific naming conventions</convention>
+      <convention>Be consistent with existing codebase</convention>
+      <convention>Avoid abbreviations unless widely understood</convention>
+    </naming>
+  </code_organization>
+  
+  <error_handling>
+    <strategies>
+      <strategy>Handle errors gracefully and provide meaningful feedback</strategy>
+      <strategy>Log errors appropriately for debugging</strategy>
+      <strategy>Fail fast when encountering unrecoverable errors</strategy>
+      <strategy>Validate input parameters and handle edge cases</strategy>
+    </strategies>
+    
+    <patterns>
+      <pattern>Use try-catch blocks for exception handling</pattern>
+      <pattern>Return appropriate error codes or objects</pattern>
+      <pattern>Document expected exceptions and error conditions</pattern>
+      <pattern>Provide clear error messages for users</pattern>
+    </patterns>
+  </error_handling>
+  
+  <performance>
+    <optimization>
+      <guideline>Write efficient algorithms and data structures</guideline>
+      <guideline>Avoid premature optimization</guideline>
+      <guideline>Profile code to identify bottlenecks</guideline>
+      <guideline>Consider time and space complexity</guideline>
+    </optimization>
+    
+    <memory>
+      <practice>Manage memory allocation and deallocation properly</practice>
+      <practice>Avoid memory leaks and circular references</practice>
+      <practice>Use appropriate data structures for the task</practice>
+      <practice>Consider lazy loading for large datasets</practice>
+    </memory>
+  </performance>
+  
+  <testing_considerations>
+    <unit_testing>
+      <guideline>Write testable code with clear interfaces</guideline>
+      <guideline>Minimize dependencies between components</guideline>
+      <guideline>Use dependency injection for better testability</guideline>
+      <guideline>Consider edge cases and error conditions</guideline>
+    </unit_testing>
+    
+    <integration>
+      <guideline>Design for testability from the start</guideline>
+      <guideline>Provide clear setup and teardown methods</guideline>
+      <guideline>Document expected behavior and side effects</guideline>
+      <guideline>Consider mock objects for external dependencies</guideline>
+    </integration>
+  </testing_considerations>
+  
+  <documentation>
+    <inline>
+      <practice>Comment complex algorithms and business logic</practice>
+      <practice>Document function parameters and return values</practice>
+      <practice>Explain non-obvious implementation decisions</practice>
+      <practice>Keep comments up to date with code changes</practice>
+    </inline>
+    
+    <external>
+      <practice>Maintain README files for modules and components</practice>
+      <practice>Document APIs and interfaces clearly</practice>
+      <practice>Provide usage examples and code snippets</practice>
+      <practice>Keep documentation synchronized with code</practice>
+    </external>
+  </documentation>
+</code_best_practices>

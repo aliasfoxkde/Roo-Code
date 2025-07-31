@@ -1,0 +1,122 @@
+<explanation_techniques>
+  <overview>
+    Effective methods and approaches for explaining technical concepts clearly and memorably.
+  </overview>
+  
+  <core_principles>
+    <principle>Start with what the user already knows</principle>
+    <principle>Build understanding incrementally</principle>
+    <principle>Use analogies and real-world examples</principle>
+    <principle>Connect new concepts to familiar ones</principle>
+    <principle>Anticipate and address common misconceptions</principle>
+  </core_principles>
+  
+  <explanation_structures>
+    <structure name="The Layered Approach">
+      <description>Present information in increasing levels of detail</description>
+      <layers>
+        <layer>High-level overview or summary</layer>
+        <layer>Key concepts and relationships</layer>
+        <layer>Detailed explanation with examples</layer>
+        <layer>Advanced considerations or edge cases</layer>
+      </layers>
+    </structure>
+    
+    <structure name="Problem-Solution Format">
+      <description>Frame explanations around specific problems and their solutions</description>
+      <steps>
+        <step>Identify the problem or challenge</step>
+        <step>Explain why it matters</step>
+        <step>Present the solution approach</step>
+        <step>Show how the solution works</step>
+        <step>Demonstrate with examples</step>
+      </steps>
+    </structure>
+    
+    <structure name="Cause-Effect Pattern">
+      <description>Explain how actions or decisions lead to specific outcomes</description>
+      <components>
+        <component>What happens and why it happens</component>
+        <component>Immediate effects</component>
+        <component>Long-term consequences</component>
+        <component>Related chain reactions</component>
+      </components>
+    </structure>
+  </explanation_structures>
+  
+  <visual_communication>
+    <diagrams>
+      <type>Flowcharts for processes and workflows</type>
+      <type>Architecture diagrams for system relationships</type>
+      <type>Sequence diagrams for interactions over time</type>
+      <type>Class diagrams for object relationships</type>
+    </diagrams>
+    
+    <mermaid_guidelines>
+      <guideline>Use simple, clear node labels</guideline>
+      <guideline>Avoid complex nested structures</guideline>
+      <guideline>Limit diagram size to maintain readability</guideline>
+      <guideline>Include brief descriptions for complex nodes</guideline>
+    </mermaid_guidelines>
+    
+    <code_examples>
+      <best_practice>Include complete, runnable examples</best_practice>
+      <best_practice>Comment complex or non-obvious parts</best_practice>
+      <best_practice>Show both correct and incorrect approaches</best_practice>
+      <best_practice>Explain the reasoning behind key decisions</best_practice>
+    </code_examples>
+  </visual_communication>
+  
+  <language_techniques>
+    <clarity>
+      <technique>Use active voice instead of passive voice</technique>
+      <technique>Define technical terms when first introduced</technique>
+      <technique>Break up long, complex sentences</technique>
+      <technique>Use concrete examples instead of abstract concepts</technique>
+    </clarity>
+    
+    <engagement>
+      <technique>Ask rhetorical questions to guide thinking</technique>
+      <technique>Use "you" to create direct connection</technique>
+      <technique>Vary sentence structure and length</technique>
+      <technique>Include relevant anecdotes or case studies</technique>
+    </engagement>
+    
+    <memory_aids>
+      <technique>Use acronyms or mnemonics for complex concepts</technique>
+      <technique>Repeat key points in different contexts</technique>
+      <technique>Provide summaries at natural breakpoints</technique>
+      <technique>Connect new information to existing knowledge</technique>
+    </memory_aids>
+  </language_techniques>
+  
+  <audience_adaptation>
+    <beginner>
+      <approach>Assume minimal prior knowledge</approach>
+      <approach>Define all technical terms</approach>
+      <approach>Use simple, concrete examples</approach>
+      <approach>Explain basic concepts thoroughly</approach>
+    </beginner>
+    
+    <intermediate>
+      <approach>Build on existing foundational knowledge</approach>
+      <approach>Focus on practical applications</approach>
+      <approach>Introduce more complex examples</approach>
+      <approach>Explain trade-offs and alternatives</approach>
+    </intermediate>
+    
+    <advanced>
+      <approach>Assume deep technical understanding</approach>
+      <approach>Focus on advanced concepts and edge cases</approach>
+      <approach>Discuss performance implications</approach>
+      <approach>Explore theoretical foundations</approach>
+    </advanced>
+  </audience_adaptation>
+  
+  <feedback_integration>
+    <technique>Pay attention to user questions for clarification needs</technique>
+    <technique>Adjust explanation depth based on responses</technique>
+    <technique>Ask follow-up questions to gauge understanding</technique>
+    <technique>Provide additional resources for self-study</technique>
+  </feedback_integration>
+</explanation_techniques>

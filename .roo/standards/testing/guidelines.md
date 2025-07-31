@@ -1,0 +1,67 @@
+---
+title: "Rule Testing Guidelines"
+category: "Development Standards"
+subcategory: "Testing"
+tags: ["testing", "validation", "rules", "quality-assurance"]
+last_updated: "2025-07-29"
+applicability: "All projects"
+confidence: "High"
+---
+
+# Rule Testing Guidelines
+
+## Purpose
+This document provides guidelines for testing and validating rules within the Kilo-Code system to ensure they function correctly and provide the intended benefits.
+
+## General Testing Principles
+
+### Rule Validation
+- Every rule must have a clear, testable objective
+- Rules should be validated against real-world scenarios
+- Test cases should cover both positive and negative examples
+- Edge cases must be explicitly considered and tested
+
+### Implementation Testing
+- Test rule application in various contexts
+- Verify rule interactions with other system components
+- Ensure rules work across different project types
+- Validate rule behavior with different input formats
+
+## Testing Process
+
+### 1. Rule Definition Testing
+1. Verify rule metadata is complete and accurate
+2. Confirm rule structure follows established conventions
+3. Test rule parsing and validation
+4. Validate rule dependencies and prerequisites
+
+### 2. Integration Testing
+1. Test rule application within the Kilo-Code workflow
+2. Verify rule interactions with other rules
+3. Check rule behavior in different execution modes
+4. Validate rule performance and resource usage
+
+### 3. User Experience Testing
+1. Ensure rule explanations are clear and actionable
+2. Test rule feedback mechanisms
+3. Verify rule documentation is accessible
+4. Confirm rule customization options work as expected
+
+## Quality Assurance Guidelines
+
+### Test Coverage Requirements
+- Each rule must have at least one positive test case
+- Negative test cases should cover common misuse scenarios
+- Edge cases should be explicitly tested
+- Cross-rule interaction scenarios should be validated
+
+### Validation Standards
+- Rules must pass all defined test cases before deployment
+- Test results should be documented and versioned
+- Rule changes require corresponding test updates
+- Test failures should block rule deployment
+
+## Related Resources
+- See also: [Code Quality Rules](../code-quality/rules.md)
+- See also: Development Workflow Standards
+- See also: System Integration Guidelines

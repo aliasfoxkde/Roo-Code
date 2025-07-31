@@ -1,0 +1,44 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ai-ml-project-template-cronjob
+  namespace: ai-ml-project-template
+spec:
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: ai-ml-project-template-cronjob
+            image: ai-ml-project-template:latest
+            command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Running daily maintenance tasks..."
+              # Add your maintenance tasks here
+              # For example:
+              # python /app/scripts/cleanup.py
+              # python /app/scripts/backup.py
+              echo "Daily maintenance tasks completed."
+            env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: ai-ml-secret
+                  key: database-url
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: ai-ml-secret
+                  key: redis-url
+            resources:
+              requests:
+                memory: "256Mi"
+                cpu: "100m"
+              limits:
+                memory: "512Mi"
+                cpu: "200m"
+          restartPolicy: OnFailure
+          serviceAccountName: ai-ml-project-template-sa

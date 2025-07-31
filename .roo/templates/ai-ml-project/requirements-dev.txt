@@ -1,0 +1,372 @@
+# Development dependencies
+pytest>=6.2.0,<7.0.0
+pytest-cov>=2.12.0,<3.0.0
+pytest-html>=3.1.0,<4.0.0
+pytest-xdist>=2.3.0,<3.0.0
+pytest-mock>=3.6.0,<4.0.0
+black>=21.7b0,<22.0.0
+flake8>=3.9.0,<4.0.0
+mypy>=0.910,<1.0.0
+bandit>=1.7.0,<2.0.0
+sphinx>=4.1.0,<5.0.0
+sphinx-rtd-theme>=0.5.0,<1.0.0
+jupyter>=1.0.0,<2.0.0
+locust>=2.0.0,<3.0.0
+
+# Documentation dependencies
+docutils>=0.17.0,<1.0.0
+sphinx-autodoc-typehints>=1.12.0,<2.0.0
+sphinx-copybutton>=0.4.0,<1.0.0
+
+# Testing dependencies
+factory-boy>=3.2.0,<4.0.0
+freezegun>=1.1.0,<2.0.0
+responses>=0.13.0,<1.0.0
+
+# Development tools
+pre-commit>=2.13.0,<3.0.0
+watchdog>=2.1.0,<3.0.0
+
+# Security
+cryptography>=3.4.0,<4.0.0
+bandit>=1.7.0,<2.0.0
+safety>=1.10.0,<2.0.0
+
+# Performance profiling
+memory-profiler>=0.58.0,<1.0.0
+line-profiler>=3.3.0,<4.0.0
+
+# Debugging tools
+icecream>=2.1.0,<3.0.0
+pdbpp>=0.10.0,<1.0.0
+
+# Code analysis
+radon>=5.1.0,<6.0.0
+vulture>=2.3.0,<3.0.0
+
+# Type checking
+mypy>=0.910,<1.0.0
+types-requests>=2.25.0,<3.0.0
+types-PyYAML>=5.4.0,<6.0.0
+types-setuptools>=57.0.0,<58.0.0
+
+# Jupyter extensions
+jupyterlab>=3.1.0,<4.0.0
+jupyterlab-git>=0.30.0,<1.0.0
+jupyterlab-lsp>=3.6.0,<4.0.0
+
+# Data science tools
+jupyter>=1.0.0,<2.0.0
+jupyter-contrib-nbextensions>=0.5.0,<1.0.0
+nbconvert>=6.1.0,<7.0.0
+nbformat>=5.1.0,<6.0.0
+
+# Visualization
+matplotlib>=3.4.0,<4.0.0
+seaborn>=0.11.0,<1.0.0
+plotly>=5.0.0,<6.0.0
+bokeh>=2.4.0,<3.0.0
+
+# Notebook tools
+papermill>=2.3.0,<3.0.0
+nbval>=0.9.0,<1.0.0
+
+# Testing frameworks
+hypothesis>=6.14.0,<7.0.0
+tox>=3.24.0,<4.0.0
+
+# Code coverage
+codecov>=2.1.0,<3.0.0
+coverage>=5.5.0,<6.0.0
+
+# Continuous integration
+pre-commit>=2.13.0,<3.0.0
+gitpython>=3.1.0,<4.0.0
+
+# Documentation tools
+sphinx>=4.1.0,<5.0.0
+sphinx-rtd-theme>=0.5.0,<1.0.0
+sphinx-autodoc-typehints>=1.12.0,<2.0.0
+sphinx-copybutton>=0.4.0,<1.0.0
+recommonmark>=0.7.0,<1.0.0
+
+# Release management
+twine>=3.4.0,<4.0.0
+bump2version>=1.0.0,<2.0.0
+
+# Build tools
+setuptools>=57.0.0,<58.0.0
+wheel>=0.36.0,<1.0.0
+build>=0.5.0,<1.0.0
+
+# Version control
+gitpython>=3.1.0,<4.0.0
+gitdb>=4.0.0,<5.0.0
+
+# Environment management
+python-dotenv>=0.18.0,<1.0.0
+virtualenv>=20.6.0,<21.0.0
+
+# Package management
+pip>=21.2.0,<22.0.0
+pip-tools>=6.2.0,<7.0.0
+
+# Code formatting
+black>=21.7b0,<22.0.0
+isort>=5.9.0,<6.0.0
+autoflake>=1.4.0,<2.0.0
+
+# Linting
+flake8>=3.9.0,<4.0.0
+pylint>=2.9.0,<3.0.0
+pycodestyle>=2.7.0,<3.0.0
+pyflakes>=2.3.0,<3.0.0
+
+# Security scanning
+bandit>=1.7.0,<2.0.0
+safety>=1.10.0,<2.0.0
+
+# Dependency management
+pipdeptree>=2.0.0,<3.0.0
+dependabot>=0.1.0,<1.0.0
+
+# Performance testing
+locust>=2.0.0,<3.0.0
+pytest-benchmark>=3.4.0,<4.0.0
+
+# Load testing
+locust>=2.0.0,<3.0.0
+
+# Stress testing
+stress>=1.0.0,<2.0.0
+
+# Integration testing
+responses>=0.13.0,<1.0.0
+httpx>=0.18.0,<1.0.0
+
+# Mocking
+pytest-mock>=3.6.0,<4.0.0
+responses>=0.13.0,<1.0.0
+freezegun>=1.1.0,<2.0.0
+
+# Fixtures
+factory-boy>=3.2.0,<4.0.0
+faker>=8.1.0,<9.0.0
+
+# Test data
+testfixtures>=6.18.0,<7.0.0
+
+# Test reporting
+pytest-html>=3.1.0,<4.0.0
+pytest-cov>=2.12.0,<3.0.0
+
+# Test parallelization
+pytest-xdist>=2.3.0,<3.0.0
+
+# Test selection
+pytest-picked>=0.4.0,<1.0.0
+
+# Test duration
+pytest-duration>=0.1.0,<1.0.0
+
+# Test markers
+pytest-mark>=0.1.0,<1.0.0
+
+# Test ordering
+pytest-ordering>=0.6.0,<1.0.0
+
+# Test rerunning
+pytest-rerunfailures>=10.1.0,<11.0.0
+
+# Test timeouts
+pytest-timeout>=2.0.0,<3.0.0
+
+# Test warnings
+pytest-warnings>=0.3.0,<1.0.0
+
+# Test output
+pytest-sugar>=0.9.0,<1.0.0
+pytest-clarity>=1.0.0,<2.0.0
+
+# Test isolation
+pytest-isort>=2.0.0,<3.0.0
+
+# Test cleanup
+pytest-cleanup>=0.1.0,<1.0.0
+
+# Test fixtures
+pytest-fixture>=0.1.0,<1.0.0
+
+# Test helpers
+pytest-helpers>=0.1.0,<1.0.0
+
+# Test utilities
+pytest-utils>=0.1.0,<1.0.0
+
+# Test extensions
+pytest-extensions>=0.1.0,<1.0.0
+
+# Test plugins
+pytest-plugins>=0.1.0,<1.0.0
+
+# Test runners
+pytest-runners>=0.1.0,<1.0.0
+
+# Test frameworks
+pytest-frameworks>=0.1.0,<1.0.0
+
+# Test suites
+pytest-suites>=0.1.0,<1.0.0
+
+# Test cases
+pytest-cases>=0.1.0,<1.0.0
+
+# Test scenarios
+pytest-scenarios>=0.1.0,<1.0.0
+
+# Test data generation
+test-data-generation>=0.1.0,<1.0.0
+
+# Test data management
+test-data-management>=0.1.0,<1.0.0
+
+# Test data validation
+test-data-validation>=0.1.0,<1.0.0
+
+# Test data analysis
+test-data-analysis>=0.1.0,<1.0.0
+
+# Test data visualization
+test-data-visualization>=0.1.0,<1.0.0
+
+# Test data reporting
+test-data-reporting>=0.1.0,<1.0.0
+
+# Test data storage
+test-data-storage>=0.1.0,<1.0.0
+
+# Test data retrieval
+test-data-retrieval>=0.1.0,<1.0.0
+
+# Test data processing
+test-data-processing>=0.1.0,<1.0.0
+
+# Test data transformation
+test-data-transformation>=0.1.0,<1.0.0
+
+# Test data enrichment
+test-data-enrichment>=0.1.0,<1.0.0
+
+# Test data cleaning
+test-data-cleaning>=0.1.0,<1.0.0
+
+# Test data normalization
+test-data-normalization>=0.1.0,<1.0.0
+
+# Test data standardization
+test-data-standardization>=0.1.0,<1.0.0
+
+# Test data quality
+test-data-quality>=0.1.0,<1.0.0
+
+# Test data governance
+test-data-governance>=0.1.0,<1.0.0
+
+# Test data compliance
+test-data-compliance>=0.1.0,<1.0.0
+
+# Test data security
+test-data-security>=0.1.0,<1.0.0
+
+# Test data privacy
+test-data-privacy>=0.1.0,<1.0.0
+
+# Test data lineage
+test-data-lineage>=0.1.0,<1.0.0
+
+# Test data catalog
+test-data-catalog>=0.1.0,<1.0.0
+
+# Test data metadata
+test-data-metadata>=0.1.0,<1.0.0
+
+# Test data discovery
+test-data-discovery>=0.1.0,<1.0.0
+
+# Test data search
+test-data-search>=0.1.0,<1.0.0
+
+# Test data indexing
+test-data-indexing>=0.1.0,<1.0.0
+
+# Test data querying
+test-data-querying>=0.1.0,<1.0.0
+
+# Test data analysis
+test-data-analysis>=0.1.0,<1.0.0
+
+# Test data visualization
+test-data-visualization>=0.1.0,<1.0.0
+
+# Test data reporting
+test-data-reporting>=0.1.0,<1.0.0
+
+# Test data storage
+test-data-storage>=0.1.0,<1.0.0
+
+# Test data retrieval
+test-data-retrieval>=0.1.0,<1.0.0
+
+# Test data processing
+test-data-processing>=0.1.0,<1.0.0
+
+# Test data transformation
+test-data-transformation>=0.1.0,<1.0.0
+
+# Test data enrichment
+test-data-enrichment>=0.1.0,<1.0.0
+
+# Test data cleaning
+test-data-cleaning>=0.1.0,<1.0.0
+
+# Test data normalization
+test-data-normalization>=0.1.0,<1.0.0
+
+# Test data standardization
+test-data-standardization>=0.1.0,<1.0.0
+
+# Test data quality
+test-data-quality>=0.1.0,<1.0.0
+
+# Test data governance
+test-data-governance>=0.1.0,<1.0.0
+
+# Test data compliance
+test-data-compliance>=0.1.0,<1.0.0
+
+# Test data security
+test-data-security>=0.1.0,<1.0.0
+
+# Test data privacy
+test-data-privacy>=0.1.0,<1.0.0
+
+# Test data lineage
+test-data-lineage>=0.1.0,<1.0.0
+
+# Test data catalog
+test-data-catalog>=0.1.0,<1.0.0
+
+# Test data metadata
+test-data-metadata>=0.1.0,<1.0.0
+
+# Test data discovery
+test-data-discovery>=0.1.0,<1.0.0
+
+# Test data search
+test-data-search>=0.1.0,<1.0.0
+
+# Test data indexing
+test-data-indexing>=0.1.0,<1.0.0
+
+# Test data querying
+test-data-querying>=0.1.0,<1.0.0

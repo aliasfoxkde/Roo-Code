@@ -1,0 +1,281 @@
+# Docker ignore file for AI/ML Project Template
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+.idea/
+
+# Data directories (these should be mounted as volumes)
+/data/
+/models/
+/logs/
+/output/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# IDE
+*.swp
+*.swo
+
+# Backup files
+*~
+*.bak
+
+# Log files
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Docker
+docker-compose.override.yml
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+
+# Model artifacts (these should be mounted as volumes)
+*.pkl
+*.h5
+*.pth
+*.pt
+*.onnx
+*.joblib
+
+# TensorBoard logs
+tensorboard_logs/
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# DVC
+.dvc/
+.dvcignore
+
+# Weights & Biases
+wandb/
+
+# Git hooks
+.pre-commit-config.yaml
+
+# Local configuration
+config/local.yaml
+
+# Secrets (should not be committed)
+secrets/
+*.key
+*.pem
+*.crt
+*.csr
+
+# Docker images
+*.tar.gz
+*.tar
+
+# Conda
+conda-env.yaml
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE specific files
+*.idea/
+*.vscode/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git
+docker-compose.override.yml
+.git
+.gitignore
+
+# Tests (these should be run outside of the container)
+tests/
+
+# Documentation (this should be built outside of the container)
+docs/_build/
+
+# Development tools configuration
+.coveragerc
+.pylintrc
+.black.cfg
+.mypy.ini
+
+# Docker build context
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# CI/CD
+.github/
+.gitlab/
+.travis.yml
+.circleci/
+.appveyor.yml
+
+# Makefile
+Makefile
+
+# README
+README.md
+
+# License
+LICENSE
+
+# Setup files
+setup.py
+pyproject.toml
+
+# Requirements (these are installed during the build process)
+requirements/
+
+# Notebooks (these should be mounted as volumes)
+notebooks/

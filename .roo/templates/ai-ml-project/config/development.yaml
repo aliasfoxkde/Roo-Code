@@ -1,0 +1,75 @@
+# Development Environment Configuration
+
+# Database configuration
+database:
+  url: "postgresql://dev_user:dev_password@localhost:5432/ai_ml_dev"
+  pool_size: 5
+  max_overflow: 10
+
+# Redis configuration
+redis:
+  url: "redis://localhost:6379/0"
+  timeout: 5
+
+# API configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  debug: true
+  secret_key: "development-secret-key"
+
+# Model configuration
+model:
+  path: "./models/"
+  version: "latest"
+  cache_enabled: true
+  cache_ttl: 300
+
+# Logging configuration
+logging:
+  level: "DEBUG"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./logs/development.log"
+
+# Data configuration
+data:
+  raw_path: "./data/raw/"
+  processed_path: "./data/processed/"
+  external_path: "./data/external/"
+
+# Training configuration
+training:
+  epochs: 10
+  batch_size: 32
+  learning_rate: 0.001
+  validation_split: 0.2
+  shuffle: true
+  early_stopping: true
+  early_stopping_patience: 5
+
+# Feature engineering
+features:
+  scaling: "standard"
+  encoding: "one_hot"
+  missing_values: "mean"
+
+# Evaluation configuration
+evaluation:
+  metrics: ["accuracy", "precision", "recall", "f1_score"]
+  cross_validation_folds: 5
+
+# Jupyter configuration
+jupyter:
+  notebook_dir: "./notebooks/"
+  port: 8888
+  token: ""
+
+# Monitoring
+monitoring:
+  prometheus_enabled: true
+  prometheus_port: 9090
+
+# Testing
+testing:
+  sample_size: 1000
+  seed: 42

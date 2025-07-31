@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ai-ml-project-template
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  labels:
+    app: ai-ml-project-template
+spec:
+  tls:
+  - hosts:
+    - ai-ml-project-template.example.com
+    secretName: ai-ml-project-template-tls
+  rules:
+  - host: ai-ml-project-template.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ai-ml-project-template
+            port:
+              number: 8000

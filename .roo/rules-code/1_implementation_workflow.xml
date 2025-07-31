@@ -1,0 +1,135 @@
+<implementation_workflow>
+  <overview>
+    Your primary responsibility is to implement, modify, and refactor code based on approved plans and specifications.
+  </overview>
+  
+  <code_analysis>
+    <step number="1">
+      <title>Understand the Requirements</title>
+      <description>
+        Thoroughly read and understand the implementation requirements before writing code.
+      </description>
+      <tools_to_use>
+        <tool>read_file</tool>
+        <tool>list_files</tool>
+        <tool>search_files</tool>
+        <tool>list_code_definition_names</tool>
+      </tools_to_use>
+      <best_practices>
+        <practice>Read all related files together in a single operation</practice>
+        <practice>Analyze existing code patterns and conventions</practice>
+        <practice>Identify dependencies and related components</practice>
+        <practice>Understand the broader system context</practice>
+      </best_practices>
+    </step>
+  </code_analysis>
+  
+  <implementation_process>
+    <step number="2">
+      <title>Efficient Reading Strategy</title>
+      <description>
+        Use the most effective approach to gather necessary context before implementation.
+      </description>
+      <strategy>
+        <step>Read all related files and implementations together (up to 5 files at once)</step>
+        <step>Obtain all necessary context before proceeding with changes</step>
+        <step>Prioritize critical files first when reading more than 5 files</step>
+      </strategy>
+    </step>
+    
+    <step number="3">
+      <title>Implementation Approach</title>
+      <description>
+        Choose the most appropriate tools for making code changes.
+      </description>
+      <tool_priority>
+        <priority>Prefer apply_diff for replacing lines in existing files</priority>
+        <priority>Use insert_content for adding new lines to files</priority>
+        <priority>Use search_and_replace for finding and replacing text</priority>
+        <priority>Only use write_to_file for creating new files or complete rewrites</priority>
+      </tool_priority>
+    </step>
+  </implementation_process>
+  
+  <code_quality>
+    <standards>
+      <standard>Follow existing code style and conventions</standard>
+      <standard>Write clean, readable, and maintainable code</standard>
+      <standard>Include appropriate comments for complex logic</standard>
+      <standard>Ensure proper error handling</standard>
+      <standard>Write efficient and performant code</standard>
+    </standards>
+    
+    <testing>
+      <requirement>Consider how changes might affect existing functionality</requirement>
+      <requirement>Validate that new code works as expected</requirement>
+      <requirement>Check for potential side effects</requirement>
+    </testing>
+  </code_quality>
+  
+  <file_operations>
+    <editing_tools>
+      <tool name="apply_diff">
+        <description>For replacing lines in existing files</description>
+        <usage>Most efficient for targeted modifications</usage>
+      </tool>
+      <tool name="insert_content">
+        <description>For adding new lines without modifying existing content</description>
+        <usage>Ideal for adding imports, functions, or configuration blocks</usage>
+      </tool>
+      <tool name="search_and_replace">
+        <description>For finding and replacing specific text or patterns</description>
+        <usage>Good for targeted replacements across multiple locations</usage>
+      </tool>
+      <tool name="write_to_file">
+        <description>For creating new files or complete rewrites</description>
+        <usage>Slower and should be avoided for existing files</usage>
+        <restriction>Only use when necessary - prefer other editing tools</restriction>
+      </tool>
+    </editing_tools>
+    
+    <content_requirements>
+      <requirement>ALWAYS provide COMPLETE file content when using write_to_file</requirement>
+      <requirement>Include ALL parts of the file, even if they haven't been modified</requirement>
+      <requirement>Never use placeholders like "// rest of code unchanged"</requirement>
+      <requirement>Compute accurate line counts based on actual content</requirement>
+    </content_requirements>
+  </file_operations>
+  
+  <verification>
+    <step number="4">
+      <title>Validate Changes</title>
+      <description>
+        Ensure implementation meets requirements and doesn't introduce issues.
+      </description>
+      <checks>
+        <check>Verify code compiles/builds successfully</check>
+        <check>Test functionality with relevant tools</check>
+        <check>Check for syntax errors or typos</check>
+        <check>Ensure compatibility with existing codebase</check>
+      </checks>
+    </step>
+    
+    <step number="5">
+      <title>Completion and Handoff</title>
+      <description>
+        Signal completion and provide summary of implemented changes.
+      </description>
+      <tools_to_use>
+        <tool>attempt_completion</tool>
+      </tools_to_use>
+      <guidelines>
+        <guideline>Provide a clear, final summary of what was accomplished</guideline>
+        <guideline>Don't end with questions or requests for further assistance</guideline>
+        <guideline>Formulate the result to be final and complete</guideline>
+      </guidelines>
+    </step>
+  </verification>
+  
+  <restrictions>
+    <file_access>
+      <restriction>Can edit any file type (no fileRegex restrictions)</restriction>
+      <restriction>Must respect file editing best practices</restriction>
+    </file_access>
+  </restrictions>
+</implementation_workflow>

@@ -1,0 +1,794 @@
+# .pre-commit-config.yaml for AI/ML Project Template
+
+repos:
+  # Pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-toml
+      - id: check-xml
+      - id: check-symlinks
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: detect-private-key
+      - id: destroyed-symlinks
+
+  # Black formatter
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+      - id: black
+        language_version: python3.9
+        args: [--line-length=88]
+
+  # Isort for import sorting
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        args: [--profile=black]
+
+  # Flake8 for linting
+  - repo: https://github.com/PyCQA/flake8
+    rev: 4.0.1
+    hooks:
+      - id: flake8
+        args: [--max-line-length=88, --extend-ignore=E203,W503]
+
+  # Mypy for type checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.950
+    hooks:
+      - id: mypy
+        args: [--ignore-missing-imports]
+        additional_dependencies: [types-requests, types-PyYAML]
+
+  # Bandit for security scanning
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.4
+    hooks:
+      - id: bandit
+        args: [-c, pyproject.toml]
+        additional_dependencies: [bandit[toml]]
+
+  # Safety for dependency security checks
+  - repo: https://github.com/pyupio/safety
+    rev: 2.3.1
+    hooks:
+      - id: safety
+        args: [--full-report]
+
+  # Radon for code complexity analysis
+  - repo: https://github.com/rubik/radon
+    rev: 5.1.0
+    hooks:
+      - id: radon
+        args: [cc, --total-average, --max-avg= complexity]
+
+  # Vulture for dead code detection
+  - repo: https://github.com/jendrikseipp/vulture
+    rev: v2.3
+    hooks:
+      - id: vulture
+        args: [--min-confidence=80]
+
+  # Pyright for type checking
+  - repo: https://github.com/microsoft/pyright
+    rev: 1.1.244
+    hooks:
+      - id: pyright
+        additional_dependencies: [pyright]
+
+  # Pylint for code analysis
+  - repo: https://github.com/PyCQA/pylint
+    rev: v2.13.8
+    hooks:
+      - id: pylint
+        args: [--rcfile=pyproject.toml]
+
+  # Docformatter for docstring formatting
+  - repo: https://github.com/myint/docformatter
+    rev: v1.4
+    hooks:
+      - id: docformatter
+        args: [--in-place, --wrap-descriptions=88, --wrap-summaries=88]
+
+  # Pyupgrade for upgrading Python syntax
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.32.0
+    hooks:
+      - id: pyupgrade
+        args: [--py38-plus]
+
+  # Autoflake for removing unused imports and variables
+  - repo: https://github.com/myint/autoflake
+    rev: v1.4
+    hooks:
+      - id: autoflake
+        args: [--in-place, --remove-all-unused-imports, --remove-unused-variables]
+
+  # Unify for quote standardization
+  - repo: https://github.com/myint/unify
+    rev: v0.5
+    hooks:
+      - id: unify
+        args: [--in-place]
+
+  # Yesqa for removing unused noqa comments
+  - repo: https://github.com/asottile/yesqa
+    rev: v1.4.0
+    hooks:
+      - id: yesqa
+
+  # Commitizen for conventional commits
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v2.27.1
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
+  # Pre-commit placeholder
+  - repo: local
+    hooks:
+      - id: pytest-check
+        name: pytest-check
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true
+        args: [tests/]
+
+      - id: pytest-cov-check
+        name: pytest-cov-check
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true
+        args: [--cov=src, --cov-fail-under=80]
+
+      - id: sphinx-build
+        name: sphinx-build
+        entry: sphinx-build
+        language: system
+        pass_filenames: false
+        always_run: true
+        args: [docs, docs/_build]
+
+      - id: dockerfile-lint
+        name: dockerfile-lint
+        entry: dockerfilelint
+        language: system
+        files: Dockerfile$
+
+      - id: yamllint
+        name: yamllint
+        entry: yamllint
+        language: system
+        types: [yaml]
+
+      - id: jsonlint
+        name: jsonlint
+        entry: jsonlint
+        language: system
+        types: [json]
+
+      - id: shellcheck
+        name: shellcheck
+        entry: shellcheck
+        language: system
+        types: [shell]
+
+      - id: markdownlint
+        name: markdownlint
+        entry: markdownlint
+        language: system
+        types: [markdown]
+
+      - id: rst-lint
+        name: rst-lint
+        entry: rst-lint
+        language: system
+        types: [rst]
+
+      - id: check-makefile
+        name: check-makefile
+        entry: checkmake
+        language: system
+        files: Makefile$
+
+      - id: check-docker-compose
+        name: check-docker-compose
+        entry: docker-compose
+        language: system
+        files: docker-compose.yml$
+        args: [config]
+
+      - id: check-openapi
+        name: check-openapi
+        entry: openapi-spec-validator
+        language: system
+        files: openapi.json$
+
+      - id: check-xml
+        name: check-xml
+        entry: xmllint
+        language: system
+        types: [xml]
+
+      - id: check-sql
+        name: check-sql
+        entry: sqlfluff
+        language: system
+        types: [sql]
+
+      - id: check-terraform
+        name: check-terraform
+        entry: terraform
+        language: system
+        files: \.tf$
+        args: [fmt, -check]
+
+      - id: check-ansible
+        name: check-ansible
+        entry: ansible-lint
+        language: system
+        files: \.ya?ml$
+        args: [--parseable]
+
+      - id: check-kubernetes
+        name: check-kubernetes
+        entry: kubeval
+        language: system
+        files: \.ya?ml$
+        args: [--ignore-missing-schemas]
+
+      - id: check-helm
+        name: check-helm
+        entry: helm
+        language: system
+        files: Chart.yaml$
+        args: [lint]
+
+      - id: check-protobuf
+        name: check-protobuf
+        entry: protolint
+        language: system
+        files: \.proto$
+
+      - id: check-thrift
+        name: check-thrift
+        entry: thrift
+        language: system
+        files: \.thrift$
+        args: [--gen, py]
+
+      - id: check-avro
+        name: check-avro
+        entry: avro
+        language: system
+        files: \.avsc$
+
+      - id: check-parquet
+        name: check-parquet
+        entry: parquet-tools
+        language: system
+        files: \.parquet$
+
+      - id: check-hdf5
+        name: check-hdf5
+        entry: h5dump
+        language: system
+        files: \.h5$
+
+      - id: check-netcdf
+        name: check-netcdf
+        entry: ncdump
+        language: system
+        files: \.nc$
+
+      - id: check-matlab
+        name: check-matlab
+        entry: mlint
+        language: system
+        files: \.m$
+
+      - id: check-r
+        name: check-r
+        entry: R
+        language: system
+        files: \.R$
+        args: [-e, "tools::checkRdFiles()"]
+
+      - id: check-julia
+        name: check-julia
+        entry: julia
+        language: system
+        files: \.jl$
+        args: [--check-bounds=yes]
+
+      - id: check-go
+        name: check-go
+        entry: go
+        language: system
+        files: \.go$
+        args: [vet]
+
+      - id: check-rust
+        name: check-rust
+        entry: cargo
+        language: system
+        files: Cargo.toml$
+        args: [check]
+
+      - id: check-java
+        name: check-java
+        entry: javac
+        language: system
+        files: \.java$
+
+      - id: check-c
+        name: check-c
+        entry: gcc
+        language: system
+        files: \.c$
+        args: [-fsyntax-only]
+
+      - id: check-cpp
+        name: check-cpp
+        entry: g++
+        language: system
+        files: \.cpp$
+        args: [-fsyntax-only]
+
+      - id: check-javascript
+        name: check-javascript
+        entry: eslint
+        language: system
+        files: \.js$
+
+      - id: check-typescript
+        name: check-typescript
+        entry: tsc
+        language: system
+        files: \.ts$
+        args: [--noEmit]
+
+      - id: check-html
+        name: check-html
+        entry: htmlhint
+        language: system
+        files: \.html$
+
+      - id: check-css
+        name: check-css
+        entry: stylelint
+        language: system
+        files: \.css$
+
+      - id: check-sass
+        name: check-sass
+        entry: sass
+        language: system
+        files: \.scss$
+        args: [--check]
+
+      - id: check-less
+        name: check-less
+        entry: lessc
+        language: system
+        files: \.less$
+        args: [--lint]
+
+      - id: check-stylus
+        name: check-stylus
+        entry: stylus
+        language: system
+        files: \.styl$
+        args: [--compress]
+
+      - id: check-coffee
+        name: check-coffee
+        entry: coffee
+        language: system
+        files: \.coffee$
+        args: [-c, -b]
+
+      - id: check-livescript
+        name: check-livescript
+        entry: lsc
+        language: system
+        files: \.ls$
+        args: [-c]
+
+      - id: check-dart
+        name: check-dart
+        entry: dart
+        language: system
+        files: \.dart$
+        args: [analyze]
+
+      - id: check-swift
+        name: check-swift
+        entry: swift
+        language: system
+        files: \.swift$
+        args: [build]
+
+      - id: check-kotlin
+        name: check-kotlin
+        entry: kotlinc
+        language: system
+        files: \.kt$
+
+      - id: check-scala
+        name: check-scala
+        entry: scalac
+        language: system
+        files: \.scala$
+
+      - id: check-clojure
+        name: check-clojure
+        entry: clj
+        language: system
+        files: \.clj$
+        args: [-c]
+
+      - id: check-erlang
+        name: check-erlang
+        entry: erlc
+        language: system
+        files: \.erl$
+
+      - id: check-elixir
+        name: check-elixir
+        entry: elixirc
+        language: system
+        files: \.ex$
+
+      - id: check-haskell
+        name: check-haskell
+        entry: ghc
+        language: system
+        files: \.hs$
+        args: [-fno-code]
+
+      - id: check-ocaml
+        name: check-ocaml
+        entry: ocamlc
+        language: system
+        files: \.ml$
+        args: [-c]
+
+      - id: check-f#
+        name: check-f#
+        entry: fsharpc
+        language: system
+        files: \.fs$
+        args: [--target:library]
+
+      - id: check-perl
+        name: check-perl
+        entry: perl
+        language: system
+        files: \.pl$
+        args: [-c]
+
+      - id: check-php
+        name: check-php
+        entry: php
+        language: system
+        files: \.php$
+        args: [-l]
+
+      - id: check-lua
+        name: check-lua
+        entry: luac
+        language: system
+        files: \.lua$
+        args: [-p]
+
+      - id: check-ruby
+        name: check-ruby
+        entry: ruby
+        language: system
+        files: \.rb$
+        args: [-c]
+
+      - id: check-crystal
+        name: check-crystal
+        entry: crystal
+        language: system
+        files: \.cr$
+        args: [build, --no-codegen]
+
+      - id: check-nim
+        name: check-nim
+        entry: nim
+        language: system
+        files: \.nim$
+        args: [check]
+
+      - id: check-zig
+        name: check-zig
+        entry: zig
+        language: system
+        files: \.zig$
+        args: [build-exe, --verbose]
+
+      - id: check-v
+        name: check-v
+        entry: v
+        language: system
+        files: \.v$
+        args: [-check]
+
+      - id: check-d
+        name: check-d
+        entry: dmd
+        language: system
+        files: \.d$
+        args: [-c]
+
+      - id: check-fortran
+        name: check-fortran
+        entry: gfortran
+        language: system
+        files: \.f$
+        args: [-fsyntax-only]
+
+      - id: check-matlab
+        name: check-matlab
+        entry: mlint
+        language: system
+        files: \.m$
+
+      - id: check-r
+        name: check-r
+        entry: R
+        language: system
+        files: \.R$
+        args: [-e, "tools::checkRdFiles()"]
+
+      - id: check-julia
+        name: check-julia
+        entry: julia
+        language: system
+        files: \.jl$
+        args: [--check-bounds=yes]
+
+      - id: check-go
+        name: check-go
+        entry: go
+        language: system
+        files: \.go$
+        args: [vet]
+
+      - id: check-rust
+        name: check-rust
+        entry: cargo
+        language: system
+        files: Cargo.toml$
+        args: [check]
+
+      - id: check-java
+        name: check-java
+        entry: javac
+        language: system
+        files: \.java$
+
+      - id: check-c
+        name: check-c
+        entry: gcc
+        language: system
+        files: \.c$
+        args: [-fsyntax-only]
+
+      - id: check-cpp
+        name: check-cpp
+        entry: g++
+        language: system
+        files: \.cpp$
+        args: [-fsyntax-only]
+
+      - id: check-javascript
+        name: check-javascript
+        entry: eslint
+        language: system
+        files: \.js$
+
+      - id: check-typescript
+        name: check-typescript
+        entry: tsc
+        language: system
+        files: \.ts$
+        args: [--noEmit]
+
+      - id: check-html
+        name: check-html
+        entry: htmlhint
+        language: system
+        files: \.html$
+
+      - id: check-css
+        name: check-css
+        entry: stylelint
+        language: system
+        files: \.css$
+
+      - id: check-sass
+        name: check-sass
+        entry: sass
+        language: system
+        files: \.scss$
+        args: [--check]
+
+      - id: check-less
+        name: check-less
+        entry: lessc
+        language: system
+        files: \.less$
+        args: [--lint]
+
+      - id: check-stylus
+        name: check-stylus
+        entry: stylus
+        language: system
+        files: \.styl$
+        args: [--compress]
+
+      - id: check-coffee
+        name: check-coffee
+        entry: coffee
+        language: system
+        files: \.coffee$
+        args: [-c, -b]
+
+      - id: check-livescript
+        name: check-livescript
+        entry: lsc
+        language: system
+        files: \.ls$
+        args: [-c]
+
+      - id: check-dart
+        name: check-dart
+        entry: dart
+        language: system
+        files: \.dart$
+        args: [analyze]
+
+      - id: check-swift
+        name: check-swift
+        entry: swift
+        language: system
+        files: \.swift$
+        args: [build]
+
+      - id: check-kotlin
+        name: check-kotlin
+        entry: kotlinc
+        language: system
+        files: \.kt$
+
+      - id: check-scala
+        name: check-scala
+        entry: scalac
+        language: system
+        files: \.scala$
+
+      - id: check-clojure
+        name: check-clojure
+        entry: clj
+        language: system
+        files: \.clj$
+        args: [-c]
+
+      - id: check-erlang
+        name: check-erlang
+        entry: erlc
+        language: system
+        files: \.erl$
+
+      - id: check-elixir
+        name: check-elixir
+        entry: elixirc
+        language: system
+        files: \.ex$
+
+      - id: check-haskell
+        name: check-haskell
+        entry: ghc
+        language: system
+        files: \.hs$
+        args: [-fno-code]
+
+      - id: check-ocaml
+        name: check-ocaml
+        entry: ocamlc
+        language: system
+        files: \.ml$
+        args: [-c]
+
+      - id: check-f#
+        name: check-f#
+        entry: fsharpc
+        language: system
+        files: \.fs$
+        args: [--target:library]
+
+      - id: check-perl
+        name: check-perl
+        entry: perl
+        language: system
+        files: \.pl$
+        args: [-c]
+
+      - id: check-php
+        name: check-php
+        entry: php
+        language: system
+        files: \.php$
+        args: [-l]
+
+      - id: check-lua
+        name: check-lua
+        entry: luac
+        language: system
+        files: \.lua$
+        args: [-p]
+
+      - id: check-ruby
+        name: check-ruby
+        entry: ruby
+        language: system
+        files: \.rb$
+        args: [-c]
+
+      - id: check-crystal
+        name: check-crystal
+        entry: crystal
+        language: system
+        files: \.cr$
+        args: [build, --no-codegen]
+
+      - id: check-nim
+        name: check-nim
+        entry: nim
+        language: system
+        files: \.nim$
+        args: [check]
+
+      - id: check-zig
+        name: check-zig
+        entry: zig
+        language: system
+        files: \.zig$
+        args: [build-exe, --verbose]
+
+      - id: check-v
+        name: check-v
+        entry: v
+        language: system
+        files: \.v$
+        args: [-check]
+
+      - id: check-d
+        name: check-d
+        entry: dmd
+        language: system
+        files: \.d$
+        args: [-c]
+
+      - id: check-fortran
+        name: check-fortran
+        entry: gfortran
+        language: system
+        files: \.f$
+        args: [-fsyntax-only]

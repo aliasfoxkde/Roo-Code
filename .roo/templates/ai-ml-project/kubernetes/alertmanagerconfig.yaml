@@ -1,0 +1,43 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: ai-ml-project-template-alertmanager-config
+  namespace: ai-ml-project-template
+  labels:
+    app: ai-ml-project-template
+spec:
+  route:
+    groupBy: ['alertname']
+    groupWait: 30s
+    groupInterval: 5m
+    repeatInterval: 12h
+    receiver: 'slack'
+    routes:
+    - matchers:
+      - name: severity
+        value: critical
+      receiver: 'pagerduty'
+  receivers:
+  - name: 'slack'
+    slackConfigs:
+    - apiURL:
+        name: slack-webhook
+        key: webhook-url
+      channel: '#alerts'
+      username: 'Alertmanager'
+      iconEmoji: ':prometheus:'
+      title: '{{ template "slack.title" . }}'
+      text: '{{ template "slack.text" . }}'
+      sendResolved: true
+  - name: 'pagerduty'
+    pagerdutyConfigs:
+    - routingKey:
+        name: pagerduty-key
+        key: key
+      description: '{{ template "pagerduty.description" . }}'
+      details:
+        firing: '{{ template "pagerduty firing" .Alerts.Firing }}'
+        resolved: '{{ template "pagerduty resolved" .Alerts.Resolved }}'
+        num_firing: '{{ .Alerts.Firing | len }}'
+        num_resolved: '{{ .Alerts.Resolved | len }}'
+      sendResolved: true

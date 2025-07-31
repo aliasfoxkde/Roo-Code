@@ -1,0 +1,59 @@
+# Testing requirements for the AI/ML project
+
+# Include base requirements
+-r base.txt
+
+# Testing frameworks
+pytest>=6.0
+pytest-cov>=2.0
+pytest-mock>=3.0
+pytest-html>=3.0
+pytest-xdist>=2.0
+
+# Test data generation
+factory-boy>=3.2
+faker>=8.0
+
+# Mocking
+responses>=0.13
+freezegun>=1.1
+
+# Test coverage
+coverage>=5.5
+
+# Performance testing
+locust>=1.5
+
+# Security testing
+bandit>=1.7
+
+# Mutation testing
+mutpy>=0.6
+
+# Test reporting
+allure-pytest>=2.8
+
+# API testing
+requests-mock>=1.9
+
+# Database testing
+pytest-postgresql>=2.5
+
+# Code quality for tests
+pytest-flake8>=1.0
+
+# Test utilities
+testfixtures>=6.18
+
+# Mock HTTP servers for testing
+httpretty>=1.1
+
+# Test parameterization
+hypothesis>=6.0
+
+# Test runner enhancements
+pytest-sugar>=0.9
+pytest-clarity>=1.0
+
+# Test environment
+pytest-dotenv>=0.5

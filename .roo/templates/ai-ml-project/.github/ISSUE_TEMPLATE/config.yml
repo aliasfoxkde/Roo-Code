@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: AI/ML Project Template Community Support
+    url: https://github.com/your-username/ai-ml-project-template/discussions
+    about: Please ask and answer questions here.
+  - name: AI/ML Project Template Documentation
+    url: https://github.com/your-username/ai-ml-project-template/docs
+    about: Please check the documentation before creating an issue.

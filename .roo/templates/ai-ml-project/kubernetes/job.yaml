@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ai-ml-project-template-job
+  namespace: ai-ml-project-template
+spec:
+  template:
+    spec:
+      containers:
+      - name: ai-ml-project-template-job
+        image: ai-ml-project-template:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          echo "Running one-time initialization tasks..."
+          # Add your initialization tasks here
+          # For example:
+          # python /app/scripts/init_db.py
+          # python /app/scripts/load_data.py
+          echo "Initialization tasks completed."
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: ai-ml-secret
+              key: database-url
+        - name: REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              name: ai-ml-secret
+              key: redis-url
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      restartPolicy: Never
+      serviceAccountName: ai-ml-project-template-sa

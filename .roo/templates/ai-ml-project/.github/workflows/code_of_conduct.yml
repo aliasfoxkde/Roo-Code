@@ -1,0 +1,38 @@
+name: Code of Conduct
+
+on:
+  issues:
+    types: [opened, edited]
+  pull_request:
+    types: [opened, edited]
+  discussion:
+    types: [created, edited]
+
+jobs:
+  coc_check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check for Code of Conduct violations
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const body = context.payload.issue?.body || context.payload.pull_request?.body || context.payload.discussion?.body || '';
+          const title = context.payload.issue?.title || context.payload.pull_request?.title || context.payload.discussion?.title || '';
+          
+          // Simple check for potentially problematic language
+          const problematicWords = [
+            'stupid', 'idiot', 'dumb', 'moron', 'retard',
+            'lame', 'worthless', 'useless', 'crap', ' garbage'
+          ];
+          
+          const combinedText = (title + ' ' + body).toLowerCase();
+          
+          for (const word of problematicWords) {
+            if (combinedText.includes(word)) {
+              console.log(`Potential Code of Conduct violation detected: ${word}`);
+              // In a real implementation, you might want to add a label or comment
+              // For now, we'll just log it
+            }
+          }
+          
+          console.log('Code of Conduct check completed');

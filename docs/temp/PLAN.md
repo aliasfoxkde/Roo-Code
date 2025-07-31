@@ -276,3 +276,15 @@ This plan delivers your OOTB vision through:
   - Add "Code of Conduct" section that shows the code of conduct and links to the code of conduct file (with links to the docs, etc.)
   - Add "FAQ" section that shows the frequently asked questions and links to the FAQ file (with links to the docs, etc.)
   - Add Dropdown option for Opening Documentation in "Browser", "Code Editor", or Settings preview.
+
+- Refine rules to read multiple files at one time but only edit one at a time?
+
+
+GitHub
+Openrouter
+HuggingFace
+Google AI Studio
+
+???
+Microsoft CoPilot
+CodeRabbit for Reviews

@@ -1,0 +1,46 @@
+# Base requirements for AI/ML Project Template
+
+# Core data science libraries
+numpy>=1.19.0
+pandas>=1.2.0
+scipy>=1.6.0
+
+# Machine learning libraries
+scikit-learn>=0.24.0
+xgboost>=1.3.0
+
+# Deep learning libraries (optional)
+# tensorflow>=2.4.0
+# torch>=1.7.0
+
+# Data visualization
+matplotlib>=3.3.0
+seaborn>=0.11.0
+plotly>=4.14.0
+
+# Data processing and pipeline
+dask>=2021.0.0
+pyarrow>=3.0.0
+
+# Configuration management
+PyYAML>=5.4.0
+
+# Database connectivity
+SQLAlchemy>=1.4.0
+psycopg2-binary>=2.8.0
+
+# Serialization
+joblib>=1.0.0
+
+# Utilities
+tqdm>=4.50.0
+
+# Jupyter notebooks
+jupyter>=1.0.0
+jupyterlab>=3.0.0
+
+# Model tracking (optional)
+# mlflow>=1.12.0
+
+# Data version control (optional)
+# dvc>=2.0.0

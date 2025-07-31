@@ -1,0 +1,254 @@
+<project_management>
+  <overview>
+    Strategic project management and coordination techniques for orchestrating complex multi-mode workflows.
+  </overview>
+  
+  <project_planning>
+    <phase name="Initiation">
+      <description>Define project scope, objectives, and success criteria</description>
+      <activities>
+        <activity>Clarify project goals and deliverables</activity>
+        <activity>Identify stakeholders and their requirements</activity>
+        <activity>Assess available resources and constraints</activity>
+        <activity>Define success metrics and acceptance criteria</activity>
+      </activities>
+      <tools_to_use>
+        <tool>ask_followup_question</tool>
+        <tool>read_file</tool>
+        <tool>list_files</tool>
+      </tools_to_use>
+    </phase>
+    
+    <phase name="Planning">
+      <description>Break down work into manageable tasks and establish workflow</description>
+      <activities>
+        <activity>Decompose project into logical work packages</activity>
+        <activity>Identify task dependencies and critical path</activity>
+        <activity>Estimate effort and timeline for each task</activity>
+        <activity>Assign tasks to appropriate specialized modes</activity>
+      </activities>
+      <tools_to_use>
+        <tool>new_task</tool>
+        <tool>update_todo_list</tool>
+      </tools_to_use>
+    </phase>
+    
+    <phase name="Execution">
+      <description>Coordinate task execution and monitor progress</description>
+      <activities>
+        <activity>Track subtask completion and deliverables</activity>
+        <activity>Facilitate communication between different modes</activity>
+        <activity>Manage dependencies and resolve blockers</activity>
+        <activity>Adjust plans based on progress and feedback</activity>
+      </activities>
+      <tools_to_use>
+        <tool>read_file</tool>
+        <tool>search_files</tool>
+      </tools_to_use>
+    </phase>
+    
+    <phase name="Closure">
+      <description>Complete project and document outcomes</description>
+      <activities>
+        <activity>Synthesize all deliverables into final output</activity>
+        <activity>Verify that all objectives have been met</activity>
+        <activity>Document lessons learned and best practices</activity>
+        <activity>Provide final summary and next steps</activity>
+      </activities>
+      <tools_to_use>
+        <tool>attempt_completion</tool>
+        <tool>write_to_file</tool>
+      </tools_to_use>
+    </phase>
+  </project_planning>
+  
+  <workflow_coordination>
+    <strategy name="Parallel Processing">
+      <description>Execute independent tasks simultaneously to optimize efficiency</description>
+      <implementation>
+        <step>Identify tasks with no dependencies on each other</step>
+        <step>Create multiple subtasks that can run concurrently</step>
+        <step>Monitor progress of parallel tasks independently</step>
+        <step>Coordinate integration of parallel results</step>
+      </implementation>
+      <benefits>
+        <benefit>Reduced overall project timeline</benefit>
+        <benefit>Better resource utilization</benefit>
+        <benefit>Faster delivery of intermediate results</benefit>
+      </benefits>
+    </strategy>
+    
+    <strategy name="Sequential Dependencies">
+      <description>Manage tasks that must be completed in specific order</description>
+      <implementation>
+        <step>Map out task dependencies and prerequisites</step>
+        <step>Create tasks in logical sequence</step>
+        <step>Ensure proper handoff of results between tasks</step>
+        <step>Monitor critical path for project timeline</step>
+      </implementation>
+      <considerations>
+        <consideration>Identify and mitigate bottleneck tasks</consideration>
+        <consideration>Plan for rework if early tasks need revision</consideration>
+        <consideration>Build in buffers for critical dependencies</consideration>
+      </considerations>
+    </strategy>
+    
+    <strategy name="Iterative Development">
+      <description>Break complex work into cycles of planning, execution, and review</description>
+      <implementation>
+        <step>Define iterative cycles with clear objectives</step>
+        <step>Create feedback loops for continuous improvement</step>
+        <step>Adjust approach based on learning from each cycle</step>
+        <step>Gradually build toward final deliverable</step>
+      </implementation>
+      <advantages>
+        <advantage>Early identification of issues and risks</advantage>
+        <advantage>Flexibility to adapt based on results</advantage>
+        <advantage>Regular progress validation with stakeholders</advantage>
+      </advantages>
+    </strategy>
+  </workflow_coordination>
+  
+  <risk_management>
+    <category name="Technical Risks">
+      <risks>
+        <risk>Integration challenges between different components</risk>
+        <risk>Performance bottlenecks in complex systems</risk>
+        <risk>Compatibility issues with existing systems</risk>
+        <risk>Emerging technical debt from rapid development</risk>
+      </risks>
+      <mitigation>
+        <strategy>Plan integration testing early and often</strategy>
+        <strategy>Build performance monitoring into solutions</strategy>
+        <strategy>Address compatibility issues proactively</strategy>
+        <strategy>Maintain code quality standards throughout</strategy>
+      </mitigation>
+    </category>
+    
+    <category name="Coordination Risks">
+      <risks>
+        <risk>Miscommunication between different specialized modes</risk>
+        <risk>Inconsistent approaches across subtasks</risk>
+        <risk>Lost context during handoffs</risk>
+        <risk>Overlapping or conflicting work</risk>
+      </risks>
+      <mitigation>
+        <strategy>Maintain clear documentation of decisions and context</strategy>
+        <strategy>Establish consistent standards and guidelines</strategy>
+        <strategy>Use structured handoff mechanisms</strategy>
+        <strategy>Coordinate overlapping work proactively</strategy>
+      </mitigation>
+    </category>
+    
+    <category name="Schedule Risks">
+      <risks>
+        <risk>Delays in critical path tasks</risk>
+        <risk>Underestimated complexity leading to scope creep</risk>
+        <risk>Blocked tasks due to external dependencies</risk>
+        <risk>Insufficient time for integration and testing</risk>
+      </risks>
+      <mitigation>
+        <strategy>Monitor critical path tasks closely</strategy>
+        <strategy>Regular scope validation with stakeholders</strategy>
+        <strategy>Identify and manage external dependencies early</strategy>
+        <strategy>Build testing time into project schedule</strategy>
+      </mitigation>
+    </category>
+  </risk_management>
+  
+  <quality_assurance>
+    <principle name="Continuous Integration">
+      <description>Regularly integrate and validate work from different subtasks</description>
+      <practices>
+        <practice>Maintain a shared understanding of project goals</practice>
+        <practice>Regular check-ins and progress updates</practice>
+        <practice>Early detection and resolution of integration issues</practice>
+        <practice>Consistent quality standards across all subtasks</practice>
+      </practices>
+    </principle>
+    
+    <principle name="Peer Review">
+      <description>Leverage different perspectives to improve outcomes</description>
+      <practices>
+        <practice>Share results between different specialized modes</practice>
+        <practice>Solicit feedback on approaches and solutions</practice>
+        <practice>Learn from different expertise domains</practice>
+        <practice>Validate assumptions and decisions collectively</practice>
+      </practices>
+    </principle>
+    
+    <principle name="Documentation">
+      <description>Maintain clear records of decisions and progress</description>
+      <practices>
+        <practice>Document key decisions and rationale</practice>
+        <practice>Maintain current project status and plans</practice>
+        <practice>Record lessons learned for future projects</practice>
+        <practice>Share knowledge across different work areas</practice>
+      </practices>
+    </principle>
+  </quality_assurance>
+  
+  <communication_management>
+    <stakeholder name="User">
+      <communication_needs>
+        <need>Regular progress updates and status reports</need>
+        <need>Clear explanations of technical decisions</need>
+        <need>Opportunities for feedback and input</need>
+        <need>Final summary of deliverables and outcomes</need>
+      </communication_needs>
+      <communication_methods>
+        <method>Structured progress summaries</method>
+        <method>Visual workflow diagrams and charts</method>
+        <method>Interactive Q&A sessions</method>
+        <method>Comprehensive final documentation</method>
+      </communication_methods>
+    </stakeholder>
+    
+    <stakeholder name="Specialized Modes">
+      <communication_needs>
+        <need>Clear task specifications and requirements</need>
+        <need>Relevant context and background information</need>
+        <need>Coordination of dependent tasks</need>
+        <need>Integration of results and deliverables</need>
+      </communication_needs>
+      <communication_methods>
+        <method>Well-defined task creation with new_task</method>
+        <method>Structured context sharing in task messages</method>
+        <method>Progress tracking and status monitoring</method>
+        <method>Result synthesis and integration coordination</method>
+      </communication_methods>
+    </stakeholder>
+  </communication_management>
+  
+  <performance_monitoring>
+    <metric name="Progress Tracking">
+      <description>Monitor completion of tasks and milestones</description>
+      <indicators>
+        <indicator>Percentage of subtasks completed</indicator>
+        <indicator>Adherence to planned timeline</indicator>
+        <indicator>Resolution of blockers and issues</indicator>
+        <indicator>Quality of deliverables produced</indicator>
+      </indicators>
+    </metric>
+    
+    <metric name="Coordination Effectiveness">
+      <description>Measure efficiency of workflow coordination</description>
+      <indicators>
+        <indicator>Smoothness of task handoffs</indicator>
+        <indicator>Frequency of miscommunication issues</indicator>
+        <indicator>Effectiveness of resource utilization</indicator>
+        <indicator>Stakeholder satisfaction levels</indicator>
+      </indicators>
+    </metric>
+    
+    <metric name="Risk Management">
+      <description>Track identification and mitigation of project risks</description>
+      <indicators>
+        <indicator>Early detection of potential issues</indicator>
+        <indicator>Effectiveness of risk mitigation strategies</indicator>
+        <indicator>Impact of issues on project timeline</indicator>
+        <indicator>Proactive vs reactive problem solving</indicator>
+      </indicators>
+    </metric>
+  </performance_monitoring>
+</project_management>

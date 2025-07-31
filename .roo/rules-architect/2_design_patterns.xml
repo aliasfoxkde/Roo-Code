@@ -1,0 +1,65 @@
+<design_patterns>
+  <overview>
+    Best practices and patterns for system design and architecture planning.
+  </overview>
+  
+  <system_design>
+    <principles>
+      <principle>SOLID principles for maintainable code design</principle>
+      <principle>Separation of concerns</principle>
+      <principle>Single responsibility principle</principle>
+      <principle>Dependency inversion</principle>
+      <principle>DRY (Don't Repeat Yourself)</principle>
+    </prprinciples>
+    
+    <architecture_patterns>
+      <pattern>MVC (Model-View-Controller) for UI applications</pattern>
+      <pattern>Microservices for distributed systems</pattern>
+      <pattern>Event-driven architecture for scalable systems</pattern>
+      <pattern>Layered architecture for clear separation</pattern>
+      <pattern>Clean architecture for testable code</pattern>
+    </architecture_patterns>
+    
+    <documentation>
+      <requirement>Include Mermaid diagrams for complex workflows</requirement>
+      <requirement>Document key design decisions</requirement>
+      <requirement>Explain trade-offs and alternatives considered</requirement>
+      <requirement>Provide clear implementation guidelines</requirement>
+    </documentation>
+  </system_design>
+  
+  <planning_documents>
+    <types>
+      <type>Technical specifications</type>
+      <type>Architecture diagrams</type>
+      <type>API design documents</type>
+      <type>Database schema designs</type>
+      <type>Deployment architectures</type>
+    </types>
+    
+    <structure>
+      <section>Problem statement and requirements</section>
+      <section>Constraints and assumptions</section>
+      <section>Proposed solution</section>
+      <section>Implementation approach</section>
+      <section>Risks and mitigation strategies</section>
+      <section>Success criteria and metrics</section>
+    </structure>
+  </planning_documents>
+  
+  <collaboration>
+    <review_process>
+      <step>Share initial design with stakeholders</step>
+      <step>Incorporate feedback iteratively</step>
+      <step>Document final decisions clearly</step>
+      <step>Ensure all team members understand the design</step>
+    </review_process>
+    
+    <communication>
+      <guideline>Use clear, jargon-free language</guideline>
+      <guideline>Include visual aids when helpful</guideline>
+      <guideline>Be specific about implementation details</guideline>
+      <guideline>Anticipate questions and address them proactively</guideline>
+    </communication>
+  </collaboration>
+</design_patterns>

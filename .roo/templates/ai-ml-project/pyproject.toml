@@ -1,0 +1,121 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-ml-project-template"
+dynamic = ["version"]
+description = "A comprehensive template for AI and machine learning projects"
+readme = "README.md"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "numpy>=1.19.0",
+    "pandas>=1.2.0",
+    "scipy>=1.6.0",
+    "scikit-learn>=0.24.0",
+    "xgboost>=1.3.0",
+    "matplotlib>=3.3.0",
+    "seaborn>=0.11.0",
+    "plotly>=4.14.0",
+    "dask>=2021.0.0",
+    "pyarrow>=3.0.0",
+    "PyYAML>=5.4.0",
+    "SQLAlchemy>=1.4.0",
+    "psycopg2-binary>=2.8.0",
+    "joblib>=1.0.0",
+    "tqdm>=4.50.0",
+    "jupyter>=1.0.0",
+    "jupyterlab>=3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.2.0",
+    "pytest-cov>=2.11.0",
+    "pytest-html>=3.1.0",
+    "flake8>=3.8.0",
+    "black>=21.0.0",
+    "isort>=5.7.0",
+    "mypy>=0.812",
+    "pre-commit>=2.10.0",
+    "ipython>=7.20.0",
+]
+docs = [
+    "sphinx>=3.5.0",
+    "sphinx-rtd-theme>=0.5.0",
+]
+
+[project.scripts]
+ai-ml-train = "src.models.training:main"
+ai-ml-evaluate = "src.models.evaluation:main"
+ai-ml-serve = "src.api.app:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/ai-ml-project-template"
+Documentation = "https://github.com/yourusername/ai-ml-project-template#readme"
+Repository = "https://github.com/yourusername/ai-ml-project-template.git"
+"Bug Tracker" = "https://github.com/yourusername/ai-ml-project-template/issues"
+
+[tool.setuptools_scm]
+write_to = "src/_version.py"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+(
+  /(\n    \.eggs         # exclude a few common directories in the
+  | \.git          # root of the project
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  )/
+)'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["src"]
+known_third_party = ["dask", "flask", "joblib", "matplotlib", "numpy", "pandas", "plotly", "psycopg2", "pyarrow", "pytest", "scipy", "seaborn", "setuptools", "sklearn", "sqlalchemy", "tqdm", "xgboost", "yaml"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "--verbose --cov=src --cov-report=html --cov-report=term-missing"
+markers = [
+    "slow: marks tests as slow (deselect with '-m "not slow"')",
+    "integration: marks tests as integration tests",
+]

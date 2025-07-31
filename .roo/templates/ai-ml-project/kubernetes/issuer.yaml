@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: ai-ml-project-template-issuer
+  namespace: ai-ml-project-template
+  labels:
+    app: ai-ml-project-template
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: admin@ai-ml-project-template.example.com
+    privateKeySecretRef:
+      name: ai-ml-project-template-issuer-account-key
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

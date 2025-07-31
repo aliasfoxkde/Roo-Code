@@ -1,0 +1,83 @@
+# Production Environment Configuration
+
+# Database configuration
+database:
+  url: "postgresql://prod_user:prod_password@db.prod.example.com:5432/ai_ml_prod"
+  pool_size: 20
+  max_overflow: 30
+
+# Redis configuration
+redis:
+  url: "redis://redis.prod.example.com:6379/0"
+  timeout: 2
+
+# API configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+  secret_key: "production-secret-key"
+
+# Model configuration
+model:
+  path: "/opt/ai-ml/models/"
+  version: "latest"
+  cache_enabled: true
+  cache_ttl: 3600
+
+# Logging configuration
+logging:
+  level: "WARNING"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "/var/log/ai-ml/production.log"
+
+# Data configuration
+data:
+  raw_path: "/opt/ai-ml/data/raw/"
+  processed_path: "/opt/ai-ml/data/processed/"
+  external_path: "/opt/ai-ml/data/external/"
+
+# Training configuration
+training:
+  epochs: 100
+  batch_size: 128
+  learning_rate: 0.00001
+  validation_split: 0.1
+  shuffle: true
+  early_stopping: true
+  early_stopping_patience: 15
+
+# Feature engineering
+features:
+  scaling: "standard"
+  encoding: "one_hot"
+  missing_values: "mean"
+
+# Evaluation configuration
+evaluation:
+  metrics: ["accuracy", "precision", "recall", "f1_score"]
+  cross_validation_folds: 5
+
+# Monitoring
+monitoring:
+  prometheus_enabled: true
+  prometheus_port: 9090
+
+# Security
+security:
+  rate_limiting: true
+  rate_limit_requests: 50
+  rate_limit_window: 60
+  cors_origins: ["https://example.com"]
+
+# Performance
+performance:
+  num_workers: 4
+  max_connections: 1000
+  timeout: 30
+
+# Backup
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  retention_days: 30

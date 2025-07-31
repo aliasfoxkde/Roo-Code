@@ -1,0 +1,50 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ai-ml-project-template-network-policy
+  namespace: ai-ml-project-template
+spec:
+  podSelector:
+    matchLabels:
+      app: ai-ml-project-template
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ai-ml-project-template
+    - podSelector:
+        matchLabels:
+          app: ai-ml-project-template
+    ports:
+    - protocol: TCP
+      port: 8000
+  - from:
+    - ipBlock:
+        cidr: 10.0.0.0/8
+    ports:
+    - protocol: TCP
+      port: 8000
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: ai-ml-project-template
+    - podSelector:
+        matchLabels:
+          app: ai-ml-project-template
+    ports:
+    - protocol: TCP
+      port: 5432  # PostgreSQL
+    - protocol: TCP
+      port: 6379  # Redis
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+    ports:
+    - protocol: TCP
+      port: 53  # DNS
+    - protocol: UDP
+      port: 53  # DNS

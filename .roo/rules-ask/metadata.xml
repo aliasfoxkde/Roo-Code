@@ -1,0 +1,12 @@
+<rules_metadata>
+  <version>1.0.0</version>
+  <last_updated>2025-07-30</last_updated>
+  <author>KiloCode AI System</author>
+  <description>Ask mode rules for explanations, documentation, and technical questions</description>
+  <standards_compliance>
+    <standard name="ISO/IEC 25010" version="2011">
+      <compliance_level>High</compliance_level>
+      <description>Software product quality model compliance</description>
+    </standard>
+  </standards_compliance>
+</rules_metadata>

@@ -1,0 +1,35 @@
+# Production requirements for AI/ML Project Template
+
+# Include base requirements
+-r base.txt
+
+# Web server
+gunicorn>=20.0.0
+
+# Monitoring and logging
+prometheus-client>=0.9.0
+sentry-sdk>=1.0.0
+
+# API framework
+flask>=1.1.0
+
+# Caching
+redis>=3.5.0
+
+# Performance optimization
+numba>=0.53.0
+
+# Security
+python-dotenv>=0.15.0
+
+# Model serving
+mlflow>=1.12.0
+
+# Data version control
+dvc>=2.0.0
+
+# Production monitoring
+newrelic>=6.0.0
+
+# Health checks
+psutil>=5.8.0

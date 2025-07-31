@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ai-ml-project-template-servicemonitor
+  namespace: ai-ml-project-template
+  labels:
+    app: ai-ml-project-template
+    prometheus: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: ai-ml-project-template
+  endpoints:
+  - port: http
+    interval: 30s
+    path: /metrics
+  namespaceSelector:
+    matchNames:
+    - ai-ml-project-template

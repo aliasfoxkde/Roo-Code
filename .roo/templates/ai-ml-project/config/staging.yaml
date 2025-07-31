@@ -1,0 +1,71 @@
+# Staging Environment Configuration
+
+# Database configuration
+database:
+  url: "postgresql://staging_user:staging_password@db.staging.example.com:5432/ai_ml_staging"
+  pool_size: 10
+  max_overflow: 20
+
+# Redis configuration
+redis:
+  url: "redis://redis.staging.example.com:6379/0"
+  timeout: 3
+
+# API configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+  secret_key: "staging-secret-key"
+
+# Model configuration
+model:
+  path: "./models/"
+  version: "staging"
+  cache_enabled: true
+  cache_ttl: 600
+
+# Logging configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./logs/staging.log"
+
+# Data configuration
+data:
+  raw_path: "./data/raw/"
+  processed_path: "./data/processed/"
+  external_path: "./data/external/"
+
+# Training configuration
+training:
+  epochs: 50
+  batch_size: 64
+  learning_rate: 0.0001
+  validation_split: 0.15
+  shuffle: true
+  early_stopping: true
+  early_stopping_patience: 10
+
+# Feature engineering
+features:
+  scaling: "standard"
+  encoding: "one_hot"
+  missing_values: "mean"
+
+# Evaluation configuration
+evaluation:
+  metrics: ["accuracy", "precision", "recall", "f1_score"]
+  cross_validation_folds: 5
+
+# Monitoring
+monitoring:
+  prometheus_enabled: true
+  prometheus_port: 9090
+
+# Security
+security:
+  rate_limiting: true
+  rate_limit_requests: 100
+  rate_limit_window: 60
+  cors_origins: ["https://staging.example.com"]

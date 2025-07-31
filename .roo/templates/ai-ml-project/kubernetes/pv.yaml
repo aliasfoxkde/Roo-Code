@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ai-ml-project-template-pv
+  labels:
+    app: ai-ml-project-template
+    type: local
+spec:
+  storageClassName: ai-ml-project-template-storage-class
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/ai-ml-project-template"
+  persistentVolumeReclaimPolicy: Retain
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ai-ml-project-template-models-pv
+  labels:
+    app: ai-ml-project-template
+    type: local
+spec:
+  storageClassName: ai-ml-project-template-storage-class
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/models/ai-ml-project-template"
+  persistentVolumeReclaimPolicy: Retain
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ai-ml-project-template-logs-pv
+  labels:
+    app: ai-ml-project-template
+    type: local
+spec:
+  storageClassName: ai-ml-project-template-storage-class
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/logs/ai-ml-project-template"
+  persistentVolumeReclaimPolicy: Retain
